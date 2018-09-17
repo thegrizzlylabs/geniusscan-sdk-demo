@@ -1,0 +1,5 @@
+rootProject.name = 'demo'
+include ':react-native-genius-scan'
+project(':react-native-genius-scan').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-genius-scan/android')
+
+include ':app'

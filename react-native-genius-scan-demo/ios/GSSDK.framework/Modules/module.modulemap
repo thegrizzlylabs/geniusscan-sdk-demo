@@ -1,0 +1,6 @@
+framework module GSSDK {
+  umbrella header "GSSDK.h"
+
+  export *
+  module * { export * }
+}
