@@ -1,7 +1,7 @@
 
 # cordova-plugin-genius-scan-demo
 
-This is a demo app for the `cordova-plugin-genius-scan` npm package
+This is a demo app for the [`@thegrizzlylabs/cordova-plugin-genius-scan`](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan) npm package
 
 ## Requirements
 

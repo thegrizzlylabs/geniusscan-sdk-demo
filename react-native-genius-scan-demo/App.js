@@ -12,7 +12,7 @@ import {
   View,
   Image
 } from 'react-native';
-import RNGeniusScan from 'react-native-genius-scan';
+import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
 
 export default class App extends Component {
   state = {

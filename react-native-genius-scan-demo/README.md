@@ -1,5 +1,5 @@
 # RNGeniusScan demo
-This is a demo app for the `react-native-genius-scan` npm package
+This is a demo app for the [`@thegrizzlylabs/react-native-genius-scan`](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan) npm package
 
 ## Installation
 If you don't have it already, install `react native CLI`:

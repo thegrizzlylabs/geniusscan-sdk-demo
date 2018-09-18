@@ -12,8 +12,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="~2.3.0" />
     <engine name="ios" spec="~4.5.0" />
     <engine name="android" spec="~6.3.0" />
-    <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="cordova-plugin-genius-scan" spec="2.3.0"/>
 </widget>

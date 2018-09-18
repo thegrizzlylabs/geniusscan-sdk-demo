@@ -21,7 +21,7 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
         flatDir {
-            dirs "$rootDir/../node_modules/react-native-genius-scan/android/libs"
+            dirs "$rootDir/../node_modules/@thegrizzlylabs/react-native-genius-scan/android/libs"
         }
     }
 }
