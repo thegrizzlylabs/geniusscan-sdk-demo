@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-* {
+ * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
@@ -43,6 +43,7 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
+    text-align: center;
 }
 
 /* Portrait layout (default) */
@@ -69,7 +70,7 @@ body {
 }
 
 h1 {
-    font-size:24px;
+    font-size:14px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
@@ -114,20 +115,11 @@ h1 {
 }
 
 /* custom for demo app */
-#button {
-  min-height: 30px;
-}
-
-.previews {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.control {
+  margin: 5px;
 }
 
 .img-preview {
-  max-width: 35%;
-  margin-left: 10%;
-  margin-top: 100px;
+  margin-top: 50px;
+  max-width: 80%;
 }

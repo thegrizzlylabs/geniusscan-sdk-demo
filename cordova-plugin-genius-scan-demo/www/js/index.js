@@ -1,23 +1,27 @@
-// We use https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file to copy
-// a sample image to scan with our demo app.
-function copy(filepath, toDirectory, filename) {
+function copy(filepath, toDirectory, filename, db) {
   window.resolveLocalFileSystemURL(filepath, function(fileEntry) {
     window.resolveLocalFileSystemURL(toDirectory, function(dirEntry) {
-      dirEntry.getFile(filename, {create: true, exclusive: false}, function(targetFileEntry) {
+      dirEntry.getFile(filename, { create: true, exclusive: false }, function(
+        targetFileEntry
+      ) {
         fileEntry.file(function(file) {
-          targetFileEntry.createWriter(function (fileWriter) {
+          targetFileEntry.createWriter(function(fileWriter) {
             fileWriter.write(file);
           });
-        })
-      })
-    })
-  })
+        });
+      });
+    });
+  });
 }
 
 var app = {
   // Application Constructor
   initialize: function() {
-    document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    document.addEventListener(
+      "deviceready",
+      this.onDeviceReady.bind(this),
+      false
+    );
   },
 
   // deviceready Event Handler
@@ -25,43 +29,64 @@ var app = {
   // Bind any cordova events here. Common events are:
   // 'pause', 'resume', etc.
   onDeviceReady: function() {
-    this.receivedEvent('deviceready');
+    this.receivedEvent("deviceready");
+    var imagePreview = document.getElementById("img_preview")
+    var cameraButton = document.getElementById("scan_camera_btn");
+    var imageButton = document.getElementById("scan_img_btn");
+    var pdfButton = document.getElementById("scan_pdf_btn");
+    var bwFilterCheckbox = document.getElementById("bw_filter");
 
-    var assetImgUri = `${cordova.file.applicationDirectory}www/img/scan.jpg`
-    var cacheImgUri = `${cordova.file.cacheDirectory}scan.jpg`
+    var assetImgUri = `${cordova.file.applicationDirectory}www/img/scan.jpg`;
+    var cacheImgUri = `${cordova.file.cacheDirectory}scan.jpg`;
     // On Android, we can't can't manipulate an assset file file:///android_asset/xxxx
     // as a normal file uri (https://stackoverflow.com/questions/4820816/how-to-get-uri-from-an-asset-file)
     // so we first need to copy that file in cache...
-    copy(assetImgUri, cordova.file.cacheDirectory, 'scan.jpg')
+    copy(assetImgUri, cordova.file.cacheDirectory, "scan.jpg");
 
-    function onError(message) {
-      alert('Error: ' + message)
+    var enhancedImage;
+
+    function onError(error) {
+      alert("Error: " + JSON.stringify(error));
     }
 
-    function setPicture(id, fileUri) {
-      var img = document.getElementById(id);
-      img.setAttribute('style', 'display:inline-block;');
-      img.setAttribute('src', fileUri);
+    function setPicture(fileUri) {
+      imagePreview.setAttribute("style", "display:inline-block;");
+      imagePreview.setAttribute("src", fileUri);
+      enhancedImage = fileUri;
+      pdfButton.disabled = false;
     }
 
-    var cameraButton = document.getElementById('scan_camera_btn');
-    cameraButton.addEventListener('click', function() {
+    cameraButton.addEventListener("click", function() {
       cordova.plugins.GeniusScan.scanCamera(
         function onSuccess(scanUri) {
-          setPicture('after', scanUri)
+          setPicture(scanUri);
         },
-        onError
+        onError,
+        bwFilterCheckbox.checked ? { defaultEnhancement: cordova.plugins.GeniusScan.ENHANCEMENT_BW } : {}
       );
     });
 
-    var imageButton = document.getElementById('scan_img_btn');
-    imageButton.addEventListener('click', function() {
+    imageButton.addEventListener("click", function() {
       cordova.plugins.GeniusScan.scanImage(
         cacheImgUri,
         function onSuccess(scanUri) {
-          setPicture('after', scanUri)
+          setPicture(scanUri);
         },
-        onError
+        onError,
+        bwFilterCheckbox.checked ? { defaultEnhancement: cordova.plugins.GeniusScan.ENHANCEMENT_BW } : {}
+      );
+    });
+
+    pdfButton.addEventListener("click", function() {
+      cordova.plugins.GeniusScan.generatePDF(
+        'Demo scan',
+        [enhancedImage],
+        function onSuccess(pdfUri) {
+          // TODO: preview pdf ?
+          alert('PDF generated at: ' + pdfUri)
+        },
+        onError,
+        { password: 'test' }
       );
     });
   },
@@ -69,13 +94,13 @@ var app = {
   // Update DOM on a Received Event
   receivedEvent: function(id) {
     var parentElement = document.getElementById(id);
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
+    var listeningElement = parentElement.querySelector(".listening");
+    var receivedElement = parentElement.querySelector(".received");
 
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
+    listeningElement.setAttribute("style", "display:none;");
+    receivedElement.setAttribute("style", "display:block;");
 
-    console.log('Received Event: ' + id);
+    console.log("Received Event: " + id);
   }
 };
 
