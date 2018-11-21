@@ -83,7 +83,8 @@ var app = {
         [enhancedImage],
         function onSuccess(pdfUri) {
           // TODO: preview pdf ?
-          alert('PDF generated at: ' + pdfUri)
+          alert('PDF generated at: ' + pdfUri);
+          window.plugins.socialsharing.share("PDF", null, pdfUri);
         },
         onError,
         { password: 'test' }

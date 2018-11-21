@@ -13,7 +13,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="~2.3.0">
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.3">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
+    </plugin>
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="file://../../cordova-plugin-genius-scan">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
     </plugin>
     <engine name="ios" spec="~4.5.0" />
