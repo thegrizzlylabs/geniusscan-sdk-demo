@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.thegrizzlylabs.geniusscan.sdk.cordova.demo" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Genius Scan SDK test app</name>
+    <name>GS SDK Cordova Demo</name>
     <description>
         A simple cordova app to test Genius Scan SDK features
     </description>

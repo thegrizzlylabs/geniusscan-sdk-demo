@@ -1,4 +1,4 @@
-# RNGeniusScan demo
+# Genius Scan SDK for React Native demo
 This is a demo app for the [`@thegrizzlylabs/react-native-genius-scan`](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan) npm package
 
 ## Installation

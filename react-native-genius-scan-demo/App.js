@@ -41,7 +41,7 @@ export default class App extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Demo app for react-native-genius-scan
+          GS SDK React Native Demo
         </Text>
         <View style={styles.controls}>
           <View style={{ height: 200}}>
