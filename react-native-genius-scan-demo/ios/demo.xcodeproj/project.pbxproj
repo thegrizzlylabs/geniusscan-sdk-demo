@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -26,6 +25,7 @@
 		C07B59D12DC14819A39BD327 /* libRNGeniusScan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F940196FC1A84E618B5A4B9A /* libRNGeniusScan.a */; };
 		F85E99D420EA67BE00A153BB /* GSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85E99D320EA67BE00A153BB /* GSSDK.framework */; };
 		F85E99D520EA67BE00A153BB /* GSSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F85E99D320EA67BE00A153BB /* GSSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F7D95E9C0B014202A65D576C /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58F97F74574F19A4512AE0 /* libRNShare.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -341,6 +341,8 @@
 		F8E08EA220EB80AC008DB53F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F8E08EA320EB80B6008DB53F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F940196FC1A84E618B5A4B9A /* libRNGeniusScan.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGeniusScan.a; sourceTree = "<group>"; };
+		0C411D90E19E422BA216C0B5 /* RNShare.xcodeproj */ = {isa = PBXFileReference; name = "RNShare.xcodeproj"; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3E58F97F74574F19A4512AE0 /* libRNShare.a */ = {isa = PBXFileReference; name = "libRNShare.a"; path = "libRNShare.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +364,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				F85E99D420EA67BE00A153BB /* GSSDK.framework in Frameworks */,
 				C07B59D12DC14819A39BD327 /* libRNGeniusScan.a in Frameworks */,
+				F7D95E9C0B014202A65D576C /* libRNShare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +512,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				DAD2F40A949C4B6FABFCDE6F /* RNGeniusScan.xcodeproj */,
+				0C411D90E19E422BA216C0B5 /* RNShare.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1021,11 +1025,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-share/ios",
 				);
 				INFOPLIST_FILE = demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/demo\"",
 					"\"$(SRCROOT)/demo\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1052,11 +1058,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-share/ios",
 				);
 				INFOPLIST_FILE = demo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/demo\"",
 					"\"$(SRCROOT)/demo\"",
 				);
 				OTHER_LDFLAGS = (

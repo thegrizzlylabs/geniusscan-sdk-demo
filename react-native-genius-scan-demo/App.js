@@ -10,9 +10,23 @@ import {
   Text,
   Button,
   View,
-  Image
+  Image,
+  Platform,
 } from 'react-native';
 import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
+import Share from 'react-native-share';
+import { YellowBox } from "react-native";
+
+// react-native-share v1.0.23 has unexpected warnings  (https://github.com/react-native-community/react-native-share/issues/329),
+// but later version has some issues with Android 8 (https://github.com/react-native-community/react-native-share/issues/200),
+// so we just hide warnings for now as this is just a demonstration.
+YellowBox.ignoreWarnings([
+  "Class GenericShare",
+  "Class GooglePlusShare",
+  "Class WhatsAppShare",
+  "Class InstagramShare"
+]);
+
 
 export default class App extends Component {
   state = {
@@ -85,8 +99,10 @@ export default class App extends Component {
               onPress={() => {
                 // Scanning the image previously scanned with the camera
                 RNGeniusScan.generatePDF('Scan', [this.state.image], {password: 'test'})
-                  .then((pdf) => alert(`PDF generated: ${pdf}`))
-                  .catch(e => alert(e))
+                  .then((pdf) => {
+                    return Share.open({ url: Platform.OS === 'android' ? `file://${pdf}` : pdf })
+                  })
+                  .catch(e => alert(JSON.stringify(e)))
               }}
               title="Generate PDF"
             />
