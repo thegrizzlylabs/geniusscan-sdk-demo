@@ -11,6 +11,7 @@ import {
   Button,
   View,
   Image,
+  Switch,
   Platform,
 } from 'react-native';
 import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
@@ -34,10 +35,9 @@ export default class App extends Component {
     bwFilter: false
   }
 
-
   render() {
     const scanOptions = this.state.bwFilter ? {defaultEnhancement: RNGeniusScan.ENHANCEMENT_BW} : {};
-
+    const ToggleComponent = Platform.OS === 'ios' ? Switch : CheckBox
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -56,13 +56,12 @@ export default class App extends Component {
               />
             }
           </View>
-
           <View style={{ flexDirection: 'row', height: 30 }}>
-            <CheckBox
+            <ToggleComponent
               value={this.state.bwFilter}
               onValueChange={() => this.setState({ bwFilter: !this.state.bwFilter })}
             />
-            <Text style={{ marginTop: 5 }}> B&W filter</Text>
+            <Text style={{ marginTop: 5, marginLeft: 5 }}> B&W filter</Text>
           </View>
 
           <View style={styles.button}>
@@ -125,11 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
   controls: {
     flexDirection: 'column',
