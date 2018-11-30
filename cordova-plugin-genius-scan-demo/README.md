@@ -6,7 +6,7 @@ This is a demo app for the [`@thegrizzlylabs/cordova-plugin-genius-scan`](https:
 ## Requirements
 
 For the demo app installation you will require:
-* [Cordova](https://cordova.apache.org/#getstarted)
+* [Cordova](https://cordova.apache.org/#getstarted), minimum version 7.1.0
 
 ## Installation
 
