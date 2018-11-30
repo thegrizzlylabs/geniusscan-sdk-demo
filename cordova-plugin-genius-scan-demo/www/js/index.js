@@ -84,7 +84,9 @@ var app = {
         function onSuccess(pdfUri) {
           // TODO: preview pdf ?
           alert('PDF generated at: ' + pdfUri);
-          window.plugins.socialsharing.share("PDF", null, pdfUri);
+          // The file:// prefix is required to work on android, but iOS works with or without it
+          var pdfPath = 'file://' + pdfUri;
+          window.plugins.socialsharing.share("PDF", null, pdfPath)
         },
         onError,
         { password: 'test' }
