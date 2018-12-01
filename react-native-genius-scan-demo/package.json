@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "react-native-genius-scan-demo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,9 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@thegrizzlylabs/react-native-genius-scan": "^2.3.2",
+    "@thegrizzlylabs/react-native-genius-scan": "^2.4.0",
     "react": "^16.5.0",
-    "react-native": "^0.57.1"
+    "react-native": "^0.57.1",
+    "react-native-share": "1.0.23"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",

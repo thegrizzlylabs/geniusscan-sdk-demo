@@ -17,20 +17,28 @@
         <title>Genius Scan SDK - Cordova plugin</title>
     </head>
     <body>
-        <div class="previews">
-            <img id="before" class="img-preview" style="display:none;" />
-            <img id="after" class="img-preview" style="display:none;"/>
-        </div>
+        <img id="img_preview" class="img-preview" style="display:none;" />
         <div class="app">
-            <h1>Genius Scan SDK - Cordova test app</h1>
+            <h1>GS SDK Cordova Demo</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
             <br />
             <div>
-              <button id="scan_img_btn">Scan from image</button>
-              <button id="scan_camera_btn">Scan from camera</button>
+                <div class="control">
+                    <input type="checkbox" id="bw_filter" name="bw_filter">
+                    <label for="bw_filter">B&W filter</label>
+                </div>
+                <div class="control">
+                    <button id="scan_img_btn">Scan from image</button>
+                </div>
+                <div class="control">
+                    <button id="scan_camera_btn">Scan from camera</button>
+                </div>
+                <div class="control">
+                    <button id="scan_pdf_btn" disabled>Generate PDF</button>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>

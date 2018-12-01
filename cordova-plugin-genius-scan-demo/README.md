@@ -1,12 +1,12 @@
 
-# cordova-plugin-genius-scan-demo
+# Genius Scan SDK Cordova plugin demo
 
 This is a demo app for the [`@thegrizzlylabs/cordova-plugin-genius-scan`](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan) npm package
 
 ## Requirements
 
 For the demo app installation you will require:
-* [Cordova](https://cordova.apache.org/#getstarted)
+* [Cordova](https://cordova.apache.org/#getstarted), minimum version 7.1.0
 
 ## Installation
 
