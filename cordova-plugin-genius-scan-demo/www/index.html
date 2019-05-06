@@ -17,6 +17,7 @@
         <title>Genius Scan SDK - Cordova plugin</title>
     </head>
     <body>
+        <img id="img_preview_original" class="img-preview" style="display:none;" />
         <img id="img_preview" class="img-preview" style="display:none;" />
         <div class="app">
             <h1>GS SDK Cordova Demo</h1>
@@ -31,10 +32,10 @@
                     <label for="bw_filter">B&W filter</label>
                 </div>
                 <div class="control">
-                    <button id="scan_img_btn">Scan from image</button>
+                    <button id="scan_camera_btn">Scan with camera</button>
                 </div>
                 <div class="control">
-                    <button id="scan_camera_btn">Scan from camera</button>
+                    <button id="scan_img_btn" disabled>Re-scan image</button>
                 </div>
                 <div class="control">
                     <button id="scan_pdf_btn" disabled>Generate PDF</button>
