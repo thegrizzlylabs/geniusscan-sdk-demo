@@ -22,7 +22,7 @@ react-native run-android
 
 ### iOS
 
-To run the demo on a physical device, you fist need to [sign code it in XCode](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca), which requires a change of its Bundle ID:
+To run the demo on a physical device, you first need to [sign code it in XCode](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca), which requires a change of its Bundle ID:
 
 1. Connect the device to your Mac and unlock it.
 2. Open `/geniusscan-sdk-demo/react-native-genius-scan-demo/ios/demo.xcodeproj`in XCode

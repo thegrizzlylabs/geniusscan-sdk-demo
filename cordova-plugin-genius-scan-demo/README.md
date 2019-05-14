@@ -19,11 +19,11 @@ For the demo app installation you will require:
 
 ## Building and deployment
 
-If you have trouble deploying your application after upgrading the plugin to a newer version, try removing the `node_modules/` `platforms/` and `plugins/` directories from your project before running `cordova prepare` and `cordova run android` again.
+If you have trouble deploying your application after upgrading the plugin to a newer version, try removing the `node_modules/` `platforms/` and `plugins/` directories from your project before running `cordova prepare` and `cordova run <platform` again.
 
 ### iOS
 
-To run the demo on a physical device, you fist need to [sign code it in XCode](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca), which requires a change of its Bundle ID:
+To run the demo on a physical device, you first need to [sign code it in XCode](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca), which requires a change of its Bundle ID:
 
 1. Connect the device to your Mac and unlock it.
 2. Open `/cordova-plugin-genius-scan-demo/platforms/ios/GS\ SDK\ Cordova\ Demo.xcworkspac`in XCode
