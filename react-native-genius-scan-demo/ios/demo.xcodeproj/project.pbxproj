@@ -1039,7 +1039,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.react-native-genius-scan";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.geniusscan.sdk.react-native.demo";
 				PRODUCT_NAME = demo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1073,7 +1073,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.react-native-genius-scan";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.geniusscan.sdk.react-native.demo";
 				PRODUCT_NAME = demo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

@@ -32,6 +32,7 @@ YellowBox.ignoreWarnings([
 export default class App extends Component {
   state = {
     image: null,
+    originalImage: null,
     bwFilter: false
   }
 
@@ -44,19 +45,33 @@ export default class App extends Component {
           GS SDK React Native Demo
         </Text>
         <View style={styles.controls}>
-          <View style={{ height: 200}}>
-            {
-              this.state.image && <Image
-                style={{
-                  width: 200,
-                  height: 200
-                }}
-                resizeMode="contain"
-                source={{ uri: this.state.image }}
-              />
-            }
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ height: 150}}>
+              {
+                this.state.originalImage && <Image
+                  style={{
+                    width: 150,
+                    height: 150
+                  }}
+                  resizeMode="contain"
+                  source={{ uri: this.state.originalImage }}
+                />
+              }
+            </View>
+            <View style={{ height: 150}}>
+              {
+                this.state.image && <Image
+                  style={{
+                    width: 150,
+                    height: 150
+                  }}
+                  resizeMode="contain"
+                  source={{ uri: this.state.image }}
+                />
+              }
+            </View>
           </View>
-          <View style={{ flexDirection: 'row', height: 30 }}>
+          <View style={{ flexDirection: 'row', height: 30, marginTop: 10 }}>
             <ToggleComponent
               value={this.state.bwFilter}
               onValueChange={() => this.setState({ bwFilter: !this.state.bwFilter })}
@@ -68,7 +83,7 @@ export default class App extends Component {
             <Button
               onPress={() => {
                 RNGeniusScan.scanCamera(scanOptions)
-                  .then((image) => this.setState({ image }))
+                  .then((result) => this.setState({ image: result["enhancedImageUri"], originalImage: result["originalImageUri"] }))
                   .catch(e => alert(e))
               }}
               title="Scan with camera"
@@ -82,11 +97,11 @@ export default class App extends Component {
               disabled={!this.state.image}
               onPress={() => {
                 // Scanning the image previously scanned with the camera
-                RNGeniusScan.scanImage(this.state.image, scanOptions)
-                  .then((image) => this.setState({ image }))
+                RNGeniusScan.scanImage(this.state.originalImage, scanOptions)
+                  .then((result) => this.setState({ image: result["enhancedImageUri"], originalImage: result["originalImageUri"] }))
                   .catch(e => alert(e))
               }}
-              title="Re-Scan image"
+              title="Re-scan image"
             />
           </View>
 
@@ -97,7 +112,7 @@ export default class App extends Component {
               style={{ margin: 5 }}
               onPress={() => {
                 // Scanning the image previously scanned with the camera
-                RNGeniusScan.generatePDF('Scan', [this.state.image], {password: 'test'})
+                RNGeniusScan.generatePDF('Scan', [this.state.image], { /*password: 'test'*/ })
                   .then((pdf) => {
                     return Share.open({ url: Platform.OS === 'android' ? `file://${pdf}` : pdf })
                   })
