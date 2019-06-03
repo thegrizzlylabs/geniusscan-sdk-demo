@@ -30,63 +30,32 @@ var app = {
   // 'pause', 'resume', etc.
   onDeviceReady: function() {
     this.receivedEvent("deviceready");
-    var imagePreview = document.getElementById("img_preview")
-    var originalImagePreview = document.getElementById("img_preview_original")
-    var cameraButton = document.getElementById("scan_camera_btn");
-    var imageButton = document.getElementById("scan_img_btn");
-    var pdfButton = document.getElementById("scan_pdf_btn");
-    var bwFilterCheckbox = document.getElementById("bw_filter");
-
-    var originalImage;
-    var enhancedImage;
+    var scanButton = document.getElementById("scan_btn");
 
     function onError(error) {
       alert("Error: " + JSON.stringify(error));
     }
 
-    function setPictures(enhancedImageUri, originalImageUri) {
-      originalImagePreview.setAttribute("style", "display:inline-block;");
-      originalImagePreview.setAttribute("src", originalImageUri);
-      originalImage = originalImageUri;
-      imagePreview.setAttribute("style", "display:inline-block;");
-      imagePreview.setAttribute("src", enhancedImageUri);
-      enhancedImage = enhancedImageUri;
-      pdfButton.disabled = false;
-      imageButton.disabled = false;
-    }
-
-    cameraButton.addEventListener("click", function() {
-      cordova.plugins.GeniusScan.scanCamera(
+    scanButton.addEventListener("click", function() {
+      cordova.plugins.GeniusScan.scanWithConfiguration(
+        {source: 'camera'},
         function onSuccess(result) {
-          setPictures(result['enhancedImageUri'], result['originalImageUri']);
-        },
-        onError,
-        bwFilterCheckbox.checked ? { defaultEnhancement: cordova.plugins.GeniusScan.ENHANCEMENT_BW } : {}
-      );
-    });
+          // result contains the generated PDF as well as the individual scans.
+          // you can use them any way you want.
+          console.log(result);
 
-    imageButton.addEventListener("click", function() {
-      cordova.plugins.GeniusScan.scanImage(
-        originalImage,
-        function onSuccess(result) {
-          setPictures(result['enhancedImageUri'], result['originalImageUri']);
+          // Here we demonstrate how you can share the generated PDF through the system
+          // share sheet, but that's also where you could send the document to your backend etc.
+          var options = {
+            files: [result.pdfUrl] // an array of filenames either locally or remotely
+          };
+          console.log(options);
+          console.log(window.plugins.socialsharing);
+          window.plugins.socialsharing.shareWithOptions(options,
+                                                         function(result) { console.log("Successful share " + result); },
+                                                         function(error) { console.log("Error sharing document: " + error); });
         },
         onError,
-        bwFilterCheckbox.checked ? { defaultEnhancement: cordova.plugins.GeniusScan.ENHANCEMENT_BW } : {}
-      );
-    });
-
-    pdfButton.addEventListener("click", function() {
-      cordova.plugins.GeniusScan.generatePDF(
-        'Scan',
-        [enhancedImage],
-        function onSuccess(pdfUri) {
-          // The file:// prefix is required to work on android, but iOS works with or without it
-          var pdfPath = 'file://' + pdfUri;
-          window.plugins.socialsharing.share("PDF", null, pdfPath);
-        },
-        onError,
-        { /*password: 'test'*/ }
       );
     });
   },
