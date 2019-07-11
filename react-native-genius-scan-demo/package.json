@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@thegrizzlylabs/react-native-genius-scan": "^3.0.0-beta5",
+    "@thegrizzlylabs/react-native-genius-scan": "^3.0.0",
     "react": "^16.5.0",
     "react-native": "^0.57.1",
     "react-native-share": "^1.0.23"
