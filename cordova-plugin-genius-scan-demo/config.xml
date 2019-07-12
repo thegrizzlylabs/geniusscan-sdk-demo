@@ -38,5 +38,5 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
     </plugin>
     <engine name="ios" spec="~4.5.0" />
-    <engine name="android" spec="^6.3.0" />
+    <engine name="android" spec="~6.3.0" />
 </widget>
