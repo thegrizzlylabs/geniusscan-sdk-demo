@@ -7,10 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@thegrizzlylabs/react-native-genius-scan": "^2.5.2",
+    "@thegrizzlylabs/react-native-genius-scan": "^3.0.0",
     "react": "^16.5.0",
     "react-native": "^0.57.1",
-    "react-native-share": "1.0.23"
+    "react-native-share": "^1.0.23"
   },
   "devDependencies": {
     "babel-jest": "23.2.0",

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.thegrizzlylabs.geniusscan.sdk.cordova.demo" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>GS SDK Cordova Demo</name>
+    <name>GS SDK Cordova</name>
     <description>
         A simple cordova app to test Genius Scan SDK features
     </description>
@@ -12,11 +12,29 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <platform name="ios">
+        <icon height="40" src="res/ios/icon-iPhone20@2x.png" width="40" />
+        <icon height="60" src="res/ios/icon-iPhone20@3x.png" width="60" />
+        <icon height="58" src="res/ios/icon-iPhone29@2x.png" width="58" />
+        <icon height="87" src="res/ios/icon-iPhone29@3x.png" width="87" />
+        <icon height="180" src="res/ios/icon-iPhone60@3x.png" width="180" />
+        <icon height="120" src="res/ios/icon-iPhone60@2x.png" width="120" />
+        <icon height="76" src="res/ios/icon-iPad76.png" width="76" />
+        <icon height="152" src="res/ios/icon-iPad76@2x.png" width="152" />
+        <icon height="167" src="res/ios/icon-iPad83@2x.png" width="167" />
+    </platform>
+    <platform name="android">
+        <icon density="mdpi" src="res/android/ic_launcher-mdpi.png" />
+        <icon density="hdpi" src="res/android/ic_launcher-hdpi.png" />
+        <icon density="xhdpi" src="res/android/ic_launcher-xhdpi.png" />
+        <icon density="xxhdpi" src="res/android/ic_launcher-xxhdpi.png" />
+        <icon density="xxxhdpi" src="res/android/ic_launcher-xxxhdpi.png" />
+    </platform>
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.3">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
     </plugin>
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="~2.5.1">
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@3.0.0">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
     </plugin>
     <engine name="ios" spec="~4.5.0" />

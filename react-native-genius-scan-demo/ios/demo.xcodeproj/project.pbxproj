@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -20,12 +21,16 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		153026EC228482F900A6A298 /* GSSDKScannerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153026E9228482F800A6A298 /* GSSDKScannerUI.framework */; };
+		153026ED228482F900A6A298 /* GSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153026EA228482F800A6A298 /* GSSDK.framework */; };
+		153026EF2284830200A6A298 /* GSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153026EA228482F800A6A298 /* GSSDK.framework */; };
+		153026F02284830200A6A298 /* GSSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 153026EA228482F800A6A298 /* GSSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		153026F32284830200A6A298 /* GSSDKScannerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 153026E9228482F800A6A298 /* GSSDKScannerUI.framework */; };
+		153026F42284830200A6A298 /* GSSDKScannerUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 153026E9228482F800A6A298 /* GSSDKScannerUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		82989794B7EE4E4ABE3CB88F /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4311709960224D5D82AEA139 /* libRNShare.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C07B59D12DC14819A39BD327 /* libRNGeniusScan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F940196FC1A84E618B5A4B9A /* libRNGeniusScan.a */; };
-		F85E99D420EA67BE00A153BB /* GSSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85E99D320EA67BE00A153BB /* GSSDK.framework */; };
-		F85E99D520EA67BE00A153BB /* GSSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F85E99D320EA67BE00A153BB /* GSSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F7D95E9C0B014202A65D576C /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E58F97F74574F19A4512AE0 /* libRNShare.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,16 +300,24 @@
 			remoteGlobalIDString = F85E98EE20EA62F600A153BB;
 			remoteInfo = RNGeniusScan;
 		};
+		F86DF08221AD3D1900D01FAC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BD553D556A0C40E6BA5DD2C0 /* RNShare.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNShare;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F85E99D620EA67BE00A153BB /* Embed Frameworks */ = {
+		153026F52284830300A6A298 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F85E99D520EA67BE00A153BB /* GSSDK.framework in Embed Frameworks */,
+				153026F42284830200A6A298 /* GSSDKScannerUI.framework in Embed Frameworks */,
+				153026F02284830200A6A298 /* GSSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,21 +341,25 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = demo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = demo/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		153026E9228482F800A6A298 /* GSSDKScannerUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSSDKScannerUI.framework; path = "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/GSSDK/GSSDKScannerUI.framework"; sourceTree = "<group>"; };
+		153026EA228482F800A6A298 /* GSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSSDK.framework; path = "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/GSSDK/GSSDK.framework"; sourceTree = "<group>"; };
+		153026EB228482F800A6A298 /* GSSDKOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSSDKOCR.framework; path = "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/GSSDK/GSSDKOCR.framework"; sourceTree = "<group>"; };
+		158CDC7422846DDB00E284C7 /* GSSDKScannerUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSSDKScannerUI.framework; path = GSSDK/GSSDKScannerUI.framework; sourceTree = "<group>"; };
+		158CDC7622846DDB00E284C7 /* GSSDKOCR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSSDKOCR.framework; path = GSSDK/GSSDKOCR.framework; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4311709960224D5D82AEA139 /* libRNShare.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNShare.a; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		BD553D556A0C40E6BA5DD2C0 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		DAD2F40A949C4B6FABFCDE6F /* RNGeniusScan.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGeniusScan.xcodeproj; path = "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/RNGeniusScan.xcodeproj"; sourceTree = "<group>"; };
 		F85E98EF20EA632B00A153BB /* GSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GSSDK.framework; sourceTree = "<group>"; };
-		F85E99D320EA67BE00A153BB /* GSSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GSSDK.framework; path = "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/GSSDK/GSSDK.framework"; sourceTree = "<group>"; };
 		F8E08E7A20EB809D008DB53F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F8E08EA120EB80A1008DB53F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F8E08EA220EB80AC008DB53F /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F8E08EA320EB80B6008DB53F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F940196FC1A84E618B5A4B9A /* libRNGeniusScan.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGeniusScan.a; sourceTree = "<group>"; };
-		0C411D90E19E422BA216C0B5 /* RNShare.xcodeproj */ = {isa = PBXFileReference; name = "RNShare.xcodeproj"; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		3E58F97F74574F19A4512AE0 /* libRNShare.a */ = {isa = PBXFileReference; name = "libRNShare.a"; path = "libRNShare.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,8 +367,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				153026F32284830200A6A298 /* GSSDKScannerUI.framework in Frameworks */,
+				153026EC228482F900A6A298 /* GSSDKScannerUI.framework in Frameworks */,
+				153026ED228482F900A6A298 /* GSSDK.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
+				153026EF2284830200A6A298 /* GSSDK.framework in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
@@ -362,9 +383,8 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				F85E99D420EA67BE00A153BB /* GSSDK.framework in Frameworks */,
 				C07B59D12DC14819A39BD327 /* libRNGeniusScan.a in Frameworks */,
-				F7D95E9C0B014202A65D576C /* libRNShare.a in Frameworks */,
+				82989794B7EE4E4ABE3CB88F /* libRNShare.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +493,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				153026EA228482F800A6A298 /* GSSDK.framework */,
+				153026EB228482F800A6A298 /* GSSDKOCR.framework */,
+				153026E9228482F800A6A298 /* GSSDKScannerUI.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 			);
 			name = Frameworks;
@@ -512,7 +535,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				DAD2F40A949C4B6FABFCDE6F /* RNGeniusScan.xcodeproj */,
-				0C411D90E19E422BA216C0B5 /* RNShare.xcodeproj */,
+				BD553D556A0C40E6BA5DD2C0 /* RNShare.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -529,7 +552,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				F85E99D320EA67BE00A153BB /* GSSDK.framework */,
 				13B07FAE1A68108700A75B9A /* demo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -571,8 +593,19 @@
 			children = (
 				F85E98EF20EA632B00A153BB /* GSSDK.framework */,
 				F940196FC1A84E618B5A4B9A /* libRNGeniusScan.a */,
+				4311709960224D5D82AEA139 /* libRNShare.a */,
+				158CDC7422846DDB00E284C7 /* GSSDKScannerUI.framework */,
+				158CDC7622846DDB00E284C7 /* GSSDKOCR.framework */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		F86DF07F21AD3D1900D01FAC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F86DF08321AD3D1900D01FAC /* libRNShare.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -586,7 +619,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				F85E99D620EA67BE00A153BB /* Embed Frameworks */,
+				153026F52284830300A6A298 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -607,7 +640,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 6639NQNPSP;
+						DevelopmentTeam = 67ZL68PX9A;
 					};
 				};
 			};
@@ -616,8 +649,13 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				fr,
+				de,
+				"pt-BR",
+				es,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -674,6 +712,10 @@
 				{
 					ProductGroup = F85B6F7E2159001600908BA2 /* Products */;
 					ProjectRef = DAD2F40A949C4B6FABFCDE6F /* RNGeniusScan.xcodeproj */;
+				},
+				{
+					ProductGroup = F86DF07F21AD3D1900D01FAC /* Products */;
+					ProjectRef = BD553D556A0C40E6BA5DD2C0 /* RNShare.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -950,6 +992,13 @@
 			remoteRef = F85B6F812159001700908BA2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		F86DF08321AD3D1900D01FAC /* libRNShare.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNShare.a;
+			remoteRef = F86DF08221AD3D1900D01FAC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1016,7 +1065,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 6639NQNPSP;
+				DEVELOPMENT_TEAM = 67ZL68PX9A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1039,7 +1088,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.geniusscan.sdk.react-native.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.react-native-genius-scan";
 				PRODUCT_NAME = demo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1051,7 +1100,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6639NQNPSP;
+				DEVELOPMENT_TEAM = 67ZL68PX9A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1073,7 +1122,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.geniusscan.sdk.react-native.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test.react-native-genius-scan";
 				PRODUCT_NAME = demo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

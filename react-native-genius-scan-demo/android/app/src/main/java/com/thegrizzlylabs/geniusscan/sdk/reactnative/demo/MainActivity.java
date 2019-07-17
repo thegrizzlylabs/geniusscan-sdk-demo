@@ -1,4 +1,4 @@
-package com.demo;
+package com.thegrizzlylabs.geniusscan.sdk.reactnative.demo;
 
 import com.facebook.react.ReactActivity;
 

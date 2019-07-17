@@ -31,94 +31,37 @@ YellowBox.ignoreWarnings([
 
 export default class App extends Component {
   state = {
-    image: null,
-    originalImage: null,
-    bwFilter: false
   }
 
   render() {
-    const scanOptions = this.state.bwFilter ? {defaultEnhancement: RNGeniusScan.ENHANCEMENT_BW} : {};
-    const ToggleComponent = Platform.OS === 'ios' ? Switch : CheckBox
+    // Refer to the Genius Scan SDK demo README.md for a list of the available options
+    const configuration = {
+      source: 'camera',
+    }
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
           GS SDK React Native Demo
         </Text>
-        <View style={styles.controls}>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={{ height: 150}}>
-              {
-                this.state.originalImage && <Image
-                  style={{
-                    width: 150,
-                    height: 150
-                  }}
-                  resizeMode="contain"
-                  source={{ uri: this.state.originalImage }}
-                />
-              }
-            </View>
-            <View style={{ height: 150}}>
-              {
-                this.state.image && <Image
-                  style={{
-                    width: 150,
-                    height: 150
-                  }}
-                  resizeMode="contain"
-                  source={{ uri: this.state.image }}
-                />
-              }
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', height: 30, marginTop: 10 }}>
-            <ToggleComponent
-              value={this.state.bwFilter}
-              onValueChange={() => this.setState({ bwFilter: !this.state.bwFilter })}
-            />
-            <Text style={{ marginTop: 5, marginLeft: 5 }}> B&W filter</Text>
-          </View>
-
+        <View>
           <View style={styles.button}>
             <Button
               onPress={() => {
-                RNGeniusScan.scanCamera(scanOptions)
-                  .then((result) => this.setState({ image: result["enhancedImageUri"], originalImage: result["originalImageUri"] }))
-                  .catch(e => alert(e))
-              }}
-              title="Scan with camera"
-            />
-          </View>
-
-
-          <View style={styles.button}>
-            <Button
-              style={styles.button}
-              disabled={!this.state.image}
-              onPress={() => {
-                // Scanning the image previously scanned with the camera
-                RNGeniusScan.scanImage(this.state.originalImage, scanOptions)
-                  .then((result) => this.setState({ image: result["enhancedImageUri"], originalImage: result["originalImageUri"] }))
-                  .catch(e => alert(e))
-              }}
-              title="Re-scan image"
-            />
-          </View>
-
-          <View style={styles.button}>
-            <Button
-              style={styles.button}
-              disabled={!this.state.image}
-              style={{ margin: 5 }}
-              onPress={() => {
-                // Scanning the image previously scanned with the camera
-                RNGeniusScan.generatePDF('Scan', [this.state.image], { /*password: 'test'*/ })
-                  .then((pdf) => {
-                    return Share.open({ url: Platform.OS === 'android' ? `file://${pdf}` : pdf })
+                RNGeniusScan.scanWithConfiguration(configuration)
+                  .then((result) => {
+                    // Here you can get the pdf file and the scans from the result
+                    // object.
+                    // As an example, we show here how you can share the resulting PDF:
+                    console.log(result);
+                    const shareOptions = { url: result.pdfUrl };
+                    console.log(shareOptions);
+                    Share.open(shareOptions)
+                      .then((res) => { console.log(res) })
+                      .catch(e => alert(e));
                   })
-                  .catch(e => alert(JSON.stringify(e)))
+                  .catch(e => alert(e))
               }}
-              title="Generate PDF"
+              title="Start scanning"
             />
           </View>
         </View>

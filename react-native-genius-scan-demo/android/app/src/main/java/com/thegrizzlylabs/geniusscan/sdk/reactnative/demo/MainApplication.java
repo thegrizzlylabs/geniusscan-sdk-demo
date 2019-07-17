@@ -1,17 +1,18 @@
-package com.demo;
+package com.thegrizzlylabs.geniusscan.sdk.reactnative.demo;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import cl.json.RNSharePackage;
-import com.reactlibrary.RNGeniusScanPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.thegrizzlylabs.geniusscan.sdk.reactnative.RNGeniusScanPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import cl.json.RNSharePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -25,8 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNSharePackage(),
-            new RNGeniusScanPackage()
+          new RNGeniusScanPackage(),
+          new RNSharePackage()
       );
     }
 
