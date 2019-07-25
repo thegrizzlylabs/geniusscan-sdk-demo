@@ -1,7 +1,3 @@
 rootProject.name = 'demo'
-include ':react-native-share'
-project(':react-native-share').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-share/android')
-include ':@thegrizzlylabs_react-native-genius-scan'
-project(':@thegrizzlylabs_react-native-genius-scan').projectDir = new File(rootProject.projectDir, '../node_modules/@thegrizzlylabs/react-native-genius-scan/android')
-
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'

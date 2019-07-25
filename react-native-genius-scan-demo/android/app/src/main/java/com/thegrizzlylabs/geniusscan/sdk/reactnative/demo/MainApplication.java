@@ -2,17 +2,13 @@ package com.thegrizzlylabs.geniusscan.sdk.reactnative.demo;
 
 import android.app.Application;
 
+import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.thegrizzlylabs.geniusscan.sdk.reactnative.RNGeniusScanPackage;
 
-import java.util.Arrays;
 import java.util.List;
-
-import cl.json.RNSharePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -24,11 +20,11 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-          new RNGeniusScanPackage(),
-          new RNSharePackage()
-      );
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      // Packages that cannot be autolinked yet can be added manually here, for example:
+      // packages.add(new MyReactNativePackage());
+      return packages;
     }
 
     @Override

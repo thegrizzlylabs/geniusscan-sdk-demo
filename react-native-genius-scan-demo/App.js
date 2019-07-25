@@ -1,82 +1,103 @@
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Fragment} from 'react';
 import {
+  SafeAreaView,
   StyleSheet,
-  CheckBox,
-  Text,
-  Button,
+  ScrollView,
   View,
-  Image,
-  Switch,
-  Platform,
+  Text,
+  StatusBar,
+  Button,
 } from 'react-native';
-import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
+
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+
 import Share from 'react-native-share';
-import { YellowBox } from "react-native";
+import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
 
-// react-native-share v1.0.23 has unexpected warnings  (https://github.com/react-native-community/react-native-share/issues/329),
-// but later version has some issues with Android 8 (https://github.com/react-native-community/react-native-share/issues/200),
-// so we just hide warnings for now as this is just a demonstration.
-YellowBox.ignoreWarnings([
-  "Class GenericShare",
-  "Class GooglePlusShare",
-  "Class WhatsAppShare",
-  "Class InstagramShare"
-]);
-
-
-export default class App extends Component {
-  state = {
+const App = () => {
+  // Refer to the Genius Scan SDK demo README.md for a list of the available options
+  const configuration = {
+    source: 'camera',
   }
+  return (
+    <Fragment>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <Header />
 
-  render() {
-    // Refer to the Genius Scan SDK demo README.md for a list of the available options
-    const configuration = {
-      source: 'camera',
-    }
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          GS SDK React Native Demo
-        </Text>
-        <View>
-          <View style={styles.button}>
-            <Button
-              onPress={() => {
-                RNGeniusScan.scanWithConfiguration(configuration)
-                  .then((result) => {
-                    // Here you can get the pdf file and the scans from the result
-                    // object.
-                    // As an example, we show here how you can share the resulting PDF:
-                    console.log(result);
-                    const shareOptions = { url: result.pdfUrl };
-                    console.log(shareOptions);
-                    Share.open(shareOptions)
-                      .then((res) => { console.log(res) })
-                      .catch(e => alert(e));
-                  })
-                  .catch(e => alert(e))
-              }}
-              title="Start scanning"
-            />
+          <Text style={styles.welcome}>
+            GS SDK React Native Demo
+          </Text>
+          <View>
+            <View style={styles.button}>
+              <Button
+                onPress={() => {
+                  RNGeniusScan.scanWithConfiguration(configuration)
+                    .then((result) => {
+                      // Here you can get the pdf file and the scans from the result
+                      // object.
+                      // As an example, we show here how you can share the resulting PDF:
+                      console.log(result);
+                      const shareOptions = { url: result.pdfUrl };
+                      console.log(shareOptions);
+                      Share.open(shareOptions)
+                        .then((res) => { console.log(res) })
+                        .catch(e => alert(e));
+                    })
+                    .catch(e => alert(e))
+                }}
+                title="Start scanning"
+              />
+            </View>
           </View>
-        </View>
 
-      </View>
-    );
-  }
-}
+        </ScrollView>
+      </SafeAreaView>
+    </Fragment>
+  );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  scrollView: {
+    backgroundColor: Colors.lighter,
+  },
+  body: {
+    backgroundColor: Colors.white,
+  },
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: Colors.black,
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+    color: Colors.dark,
+  },
+  highlight: {
+    fontWeight: '700',
   },
   welcome: {
     fontSize: 20,
@@ -89,5 +110,7 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 5
-  }
+  },
 });
+
+export default App;
