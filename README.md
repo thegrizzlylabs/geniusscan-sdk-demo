@@ -13,8 +13,7 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 
 - [react-native-genius-scan-demo](./react-native-genius-scan-demo/README.md), which uses the [Genius Scan React Native component](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan)
 - [cordova-plugin-genius-scan-demo](./cordova-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Cordova plugin](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan)
-
-These two items should be similar in content.
+- [flutter-plugin-genius-scan-demo](./flutter-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Flutter plugin](https://pub.dev/packages/flutter_genius_scan)
 
 # Features
 
