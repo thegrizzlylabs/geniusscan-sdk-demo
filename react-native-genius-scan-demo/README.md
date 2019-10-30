@@ -13,20 +13,10 @@ Install project dependencies
 npm install
 ```
 
+For iOS, run the command `pod install` from the `ios` folder.
+
 Run the app in a simulator or on a phone
 ```
 react-native run-ios
 react-native run-android
-```
-
-## Development
-When using this demo to develop the react-native plugin, it needs to load the plugin from the local `react-native-genius-scan` folder instead of the npm dependency.
-
-Unfortunately [react native packager does not support symlinks](https://stackoverflow.com/a/47403470/1878592), so the local folder needs to be copied manually to the demo's 
-node_modules directory after every local change. 
-
-From demo folder, run:
-
-```
-cp -r ../react-native-genius-scan node_modules/\@thegrizzlylabs/
 ```

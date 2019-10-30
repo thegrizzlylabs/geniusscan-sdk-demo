@@ -109,8 +109,8 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
-  - "RNGeniusScan (from `/Users/guillaume/Documents/src/geniusscan-sdk-demo/react-native-genius-scan-demo/node_modules/@thegrizzlylabs/react-native-genius-scan/ios`)"
-  - RNShare (from `/Users/guillaume/Documents/src/geniusscan-sdk-demo/react-native-genius-scan-demo/node_modules/react-native-share`)
+  - RNGeniusScan (from `../node_modules/@thegrizzlylabs/react-native-genius-scan/ios`)
+  - RNShare (from `../node_modules/react-native-share`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -161,9 +161,9 @@ EXTERNAL SOURCES:
   React-RCTWebSocket:
     :path: "../node_modules/react-native/Libraries/WebSocket"
   RNGeniusScan:
-    :path: "/Users/guillaume/Documents/src/geniusscan-sdk-demo/react-native-genius-scan-demo/node_modules/@thegrizzlylabs/react-native-genius-scan/ios"
+    :path: "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios"
   RNShare:
-    :path: "/Users/guillaume/Documents/src/geniusscan-sdk-demo/react-native-genius-scan-demo/node_modules/react-native-share"
+    :path: "../node_modules/react-native-share"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 

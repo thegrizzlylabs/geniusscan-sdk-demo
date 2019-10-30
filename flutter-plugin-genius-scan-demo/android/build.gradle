@@ -13,9 +13,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        flatDir {
-            dirs project(':flutter_genius_scan').file('libs')
-        }
     }
 }
 

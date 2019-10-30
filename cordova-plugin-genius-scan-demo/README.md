@@ -1,4 +1,3 @@
-
 # Genius Scan SDK Cordova plugin demo
 
 This is a demo app for the [`@thegrizzlylabs/cordova-plugin-genius-scan`](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan) npm package
@@ -19,7 +18,7 @@ For the demo app installation you will require:
 
 ## Building and deployment
 
-If you have trouble deploying your application after upgrading the plugin to a newer version, try removing the `node_modules/` `platforms/` and `plugins/` directories from your project before running `cordova prepare` and `cordova run <platform` again.
+If you have trouble deploying your application after upgrading the plugin to a newer version, try removing the `node_modules/` `platforms/` and `plugins/` directories from your project before running `cordova prepare` and `cordova run <platform>` again.
 
 ### iOS
 
