@@ -36,7 +36,7 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.3">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="28.0.0" />
     </plugin>
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@3.0.9">
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@3.0.10">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
         <variable name="ANDROID_SUPPORT_VERSION" value="28.0.0" />
     </plugin>

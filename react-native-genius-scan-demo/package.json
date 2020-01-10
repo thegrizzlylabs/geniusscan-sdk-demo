@@ -11,8 +11,8 @@
   "dependencies": {
     "react": "16.8.6",
     "react-native": "0.60.0",
-    "@thegrizzlylabs/react-native-genius-scan": "^3.0.9",
-    "react-native-share": "^1.0.23"
+    "@thegrizzlylabs/react-native-genius-scan": "^3.0.10",
+    "react-native-share": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
