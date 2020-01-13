@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.thegrizzlylabs.geniusscan.sdk:gs-sdk:3.0.10'
+    implementation 'com.thegrizzlylabs.geniusscan.sdk:gs-sdk-ocr:3.0.10'
+
+    def supportLibraryVersion = '28.0.0'
+    implementation "com.android.support:support-fragment:$supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+}

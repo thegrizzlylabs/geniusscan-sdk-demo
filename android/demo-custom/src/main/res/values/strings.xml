@@ -1,0 +1,22 @@
+<resources>
+
+    <string name="app_name">GS SDK Custom</string>
+    <string name="open_camera">Add page</string>
+    <string name="generate_pdf">Generate PDF document</string>
+    <string name="ocr">With OCR</string>
+    <string name="capture">Capture</string>
+    <string name="enhancement_dialog_title">Please select the enhancement to apply</string>
+    <string name="image_type_none">None</string>
+    <string name="image_type_color">Color</string>
+    <string name="image_type_whiteboard">Whiteboard</string>
+    <string name="image_type_black_white">Black &amp; White</string>
+
+    <plurals name="page_count">
+        <item quantity="one">The document has %d page</item>
+        <item quantity="other">The document has %d pages</item>
+    </plurals>
+
+    <string name="detection_status_searching">Looking for document…</string>
+    <string name="detection_status_found">Document found. Please remain steady.</string>
+
+</resources>

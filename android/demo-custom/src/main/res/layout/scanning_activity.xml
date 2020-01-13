@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/captureActivityRoot"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:background="@android:color/black"
+    >
+
+	<fragment
+		android:id="@+id/scan_fragment"
+		android:name="com.thegrizzlylabs.geniusscan.sdk.camera.ScanFragment"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentTop="true"
+		android:layout_above="@id/user_guidance"
+		tools:layout="@layout/scan_fragment"
+		/>
+
+	<com.thegrizzlylabs.geniusscan.sdk.camera.DefaultFocusIndicator
+		android:id="@+id/focus_indicator"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignTop="@+id/scan_fragment"
+		android:layout_alignBottom="@+id/scan_fragment"
+		android:layout_alignLeft="@+id/scan_fragment"
+		android:layout_alignRight="@+id/scan_fragment"
+		/>
+
+	<TextView
+		android:id="@+id/user_guidance"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@id/captureButton"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="10dp"
+		android:layout_marginTop="10dp"
+		android:textColor="#FFF"
+		tools:text="Detection status"
+		/>
+
+	<Button
+		android:id="@+id/captureButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="20dp"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentBottom="true"
+		android:text="@string/capture"
+		/>
+
+
+</RelativeLayout>

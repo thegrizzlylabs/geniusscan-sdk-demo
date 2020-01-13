@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >  
+    
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+		android:paddingLeft="10dp"
+		android:paddingRight="10dp"
+        android:background="#888888"
+		android:orientation="horizontal"
+		android:gravity="center_vertical"
+        >
+
+		<ImageView
+			style="?borderlessButtonStyle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:src="@drawable/ic_rotate_left_white_24dp"
+			android:onClick="rotateLeft"
+			/>
+
+		<ImageView
+			style="?borderlessButtonStyle"
+			android:id="@+id/distortion_correction_button"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:src="@drawable/ic_grid_on_white_24dp"
+			android:onClick="toggleDistortionCorrection"
+			/>
+
+		<ImageView
+			style="?borderlessButtonStyle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:src="@drawable/ic_tune_white_24dp"
+			android:onClick="changeEnhancement"
+			/>
+
+		<ImageView
+			style="?borderlessButtonStyle"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:src="@drawable/ic_check_white_24dp"
+			android:onClick="savePage"
+			/>
+
+    </LinearLayout>
+        
+    <ImageView
+        android:id="@+id/image_view"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:background="@android:color/black"
+	    android:layout_above="@id/toolbar"
+	/>
+
+</RelativeLayout>
