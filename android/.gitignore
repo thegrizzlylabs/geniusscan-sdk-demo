@@ -20,7 +20,10 @@ build/
 # Android studio files
 *.iml
 .gradle/
-.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/modules.xml
+.idea/libraries
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -38,3 +41,9 @@ obj/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+
+# Fastlane
+fastlane/report.xml
+fastlane/README.md
+
+google-credentials.json
