@@ -3,11 +3,11 @@ Genius Scan SDK demo applications
 
 # Description
 
-These sample scanning applications demonstrate the capability of the [Genius Scan SDK](https://www.thegrizzlylabs.com/document-scanner-sdk/) and how you can integrate it into your Android, Cordova, React Native and Flutter applications.
+These sample scanning applications demonstrate the capability of the [Genius Scan SDK](https://geniusscansdk.com) and how you can integrate it into your Android, Cordova, React Native and Flutter applications.
 
-**Developping an iOS application?**
+**Developing an iOS application?**
 
->Request a demo package from [our website](https://www.thegrizzlylabs.com/document-scanner-sdk/) to obtain a demo package containing the native iOS SDK (Objective-C libraries) and its demo applications.
+>Request a demo from [our website](https://geniusscansdk.com) to obtain a package containing the native iOS SDK (Objective-C libraries) and its demo applications.
 
 # Content
 
@@ -36,8 +36,8 @@ Please refer to the README of each application directory for instructions.
 
 The demo apps are provided in trial mode – i.e without a license key – so the SDK runs only for a minute.
 
-To test the document scanner without this time limit, request a free, 30-day Evaluation License for your own application identifier on [our website](https://www.thegrizzlylabs.com/document-scanner-sdk).
+To test the document scanner without this time limit, request a free, 30-day Evaluation License for your own application identifier on [our website](https://geniusscansdk.com).
 
 ### How can I get a Genius Scan SDK license for my application?
 
-You can purchase a production license of the Genius Scan SDK for your application by submitting a _Quote request_ on [our website](https://www.thegrizzlylabs.com/document-scanner-sdk).
+You can purchase a production license of the Genius Scan SDK for your application by submitting a _Quote request_ on [our website](https://geniusscansdk.com).
