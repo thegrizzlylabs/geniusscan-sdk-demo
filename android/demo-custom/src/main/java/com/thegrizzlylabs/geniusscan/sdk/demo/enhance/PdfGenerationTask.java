@@ -92,7 +92,7 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
 
                 TextLayout textLayout = null;
                 if (isOCREnabled) {
-                    OcrConfiguration ocrConfiguration = new OcrConfiguration(Arrays.asList("eng"), getTessdataDirectory(), false);
+                    OcrConfiguration ocrConfiguration = new OcrConfiguration(Arrays.asList("eng"), getTessdataDirectory());
                     try {
                         OcrResult result = ocrProcessor.processImage(image, ocrConfiguration, new OCREngineProgressListener() {
                             @Override
