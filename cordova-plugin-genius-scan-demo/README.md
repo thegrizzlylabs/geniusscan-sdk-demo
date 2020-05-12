@@ -37,4 +37,4 @@ To run the demo on a physical device, you first need to [sign code it in XCode](
 
 The Genius Scan SDK and plugins only work for **one minute per session** in trial mode. To test the scanner without restarting the demo application every minute, you must initialize it with a valid license key.
 
-You can obtain free, 30-day Evalution Licenses from [our website](https://www.thegrizzlylabs.com/document-scanner-sdk/) by submitting the demo request form. Make sure to indicate a valid [Bundle ID](https://help.apple.com/xcode/mac/current/#/dev9b66ae7df).
+You can obtain free, 30-day Evalution Licenses from [our website](https://geniusscansdk.com) by submitting the demo request form. Make sure to indicate a valid [Bundle ID](https://help.apple.com/xcode/mac/current/#/dev9b66ae7df).
