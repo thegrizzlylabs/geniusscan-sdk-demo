@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -112,7 +113,7 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
             }
 
         // Here we don't protect the PDF document with a password
-        PDFDocument pdfDocument = new PDFDocument("test", null, null, pdfPages);
+        PDFDocument pdfDocument = new PDFDocument("test", null, null, new Date(), new Date(), pdfPages);
 
         PDFGenerator generator = PDFGenerator.createWithDocument(pdfDocument, new PDFGeneratorConfiguration(null, false), new PDFNoopImageProcessor(), logger);
         PDFGeneratorError error = generator.generatePDF(outputFilePath);
