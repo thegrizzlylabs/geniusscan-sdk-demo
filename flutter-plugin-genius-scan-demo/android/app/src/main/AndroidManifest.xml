@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.thegrizzlylabs.geniusscan.sdk.flutter_genius_scan_example">
+    package="com.geniusscansdk.flutter_genius_scan_example">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.

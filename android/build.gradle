@@ -16,3 +16,10 @@ allprojects {
         maven { url 'https://s3.amazonaws.com/tgl.maven' }
     }
 }
+
+ext {
+    ndkVersion = '21.2.6472646'
+    compileSdkVersion = 30
+    targetSdkVersion = 30
+    minSdkVersion = 19
+}
