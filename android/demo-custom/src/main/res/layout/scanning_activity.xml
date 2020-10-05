@@ -10,7 +10,7 @@
 
 	<fragment
 		android:id="@+id/scan_fragment"
-		android:name="com.thegrizzlylabs.geniusscan.sdk.camera.ScanFragment"
+		android:name="com.geniusscansdk.camera.ScanFragment"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
@@ -19,7 +19,7 @@
 		tools:layout="@layout/scan_fragment"
 		/>
 
-	<com.thegrizzlylabs.geniusscan.sdk.camera.DefaultFocusIndicator
+	<com.geniusscansdk.camera.DefaultFocusIndicator
 		android:id="@+id/focus_indicator"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"

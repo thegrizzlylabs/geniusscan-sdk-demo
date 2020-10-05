@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -18,8 +18,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.thegrizzlylabs.geniusscan.sdk:gs-sdk:3.0.25'
-    implementation 'com.thegrizzlylabs.geniusscan.sdk:gs-sdk-ocr:3.0.25'
+    implementation 'com.geniusscansdk:gssdk-core:4.0.0-beta2'
+    implementation 'com.geniusscansdk:gssdk-ocr:4.0.0-beta2'
 
     def supportLibraryVersion = '28.0.0'
     implementation "com.android.support:support-fragment:$supportLibraryVersion"
