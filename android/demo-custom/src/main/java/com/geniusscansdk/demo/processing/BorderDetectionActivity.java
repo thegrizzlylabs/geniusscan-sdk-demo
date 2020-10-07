@@ -8,12 +8,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.geniusscansdk.core.Quadrangle;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.enhance.ImageProcessingActivity;
 import com.geniusscansdk.demo.model.Page;
-import com.geniusscansdk.scanflow.BorderDetectionImageView;
-import com.geniusscansdk.scanflow.MagnifierBorderDetectionListener;
-import com.geniusscansdk.scanflow.MagnifierView;
+import com.geniusscansdk.ui.BorderDetectionImageView;
+import com.geniusscansdk.ui.MagnifierBorderDetectionListener;
+import com.geniusscansdk.ui.MagnifierView;
 
 public class BorderDetectionActivity extends AppCompatActivity {
 
@@ -59,29 +60,27 @@ public class BorderDetectionActivity extends AppCompatActivity {
       progressDialog.show();
       new AnalyzeAsyncTask(this) {
          @Override
-         protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            endAnalyze();
+         protected void onPostExecute(Quadrangle quadrangle) {
+            super.onPostExecute(quadrangle);
+            progressDialog.dismiss();
+            addQuadrangleToView(quadrangle);
+
          }
       }.execute(page);
    }
 
-   protected void endAnalyze() {
-      progressDialog.dismiss();
-      addQuadrangleToView();
-   }
-
-   void addQuadrangleToView() {
-      imageView.setQuad(page.getQuadrangle());
+   void addQuadrangleToView(Quadrangle quadrangle) {
+      imageView.setQuad(quadrangle);
       imageView.invalidate();
    }
 
    public void setQuadrangleToFullImage(View view) {
-      page.getQuadrangle().setToFullImage();
+      imageView.setQuad(Quadrangle.createFullQuadrangle());
       imageView.invalidate();
    }
 
    public void select(View view) {
+      page.setQuadrangle(imageView.getQuad());
       Intent intent = new Intent(this, ImageProcessingActivity.class);
       intent.putExtra(ImageProcessingActivity.EXTRA_PAGE, page);
       startActivity(intent);

@@ -7,11 +7,12 @@ import android.os.AsyncTask;
 import com.geniusscansdk.core.CnnDocumentDetection;
 import com.geniusscansdk.core.DocumentDetection;
 import com.geniusscansdk.core.LicenseException;
+import com.geniusscansdk.core.Quadrangle;
 import com.geniusscansdk.demo.model.Page;
 
 import java.io.File;
 
-class AnalyzeAsyncTask extends AsyncTask<Page, Void, Void> {
+class AnalyzeAsyncTask extends AsyncTask<Page, Void, Quadrangle> {
 
    private final Context context;
    private Exception error;
@@ -23,19 +24,19 @@ class AnalyzeAsyncTask extends AsyncTask<Page, Void, Void> {
    }
 
    @Override
-   protected Void doInBackground(Page... params) {
+   protected Quadrangle doInBackground(Page... params) {
       try {
          Page scanContainer = params[0];
          File imageFile = new File(scanContainer.getOriginalImage().getAbsolutePath(context));
-         scanContainer.setQuadrangle(documentDetection.detectDocument(imageFile));
+         return documentDetection.detectDocument(imageFile);
       } catch (Exception e) {
          error = e;
+         return null;
       }
-      return null;
    }
 
    @Override
-   protected void onPostExecute(Void aVoid) {
+   protected void onPostExecute(Quadrangle quadrangle) {
       if (error instanceof LicenseException) {
          new AlertDialog.Builder(context)
                  .setMessage(error.getMessage())
