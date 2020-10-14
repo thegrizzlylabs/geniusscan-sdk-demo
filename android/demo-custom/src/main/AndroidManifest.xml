@@ -1,7 +1,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.thegrizzlylabs.geniusscan.sdk.demo"
+    package="com.geniusscansdk.demo"
     >
     
     <uses-permission android:name="android.permission.CAMERA" />    
@@ -33,17 +33,17 @@
         </activity>
         
         <activity
-            android:name="com.thegrizzlylabs.geniusscan.sdk.demo.camera.ScanActivity" 
+            android:name=".camera.ScanActivity"
             android:screenOrientation="portrait"
 		    android:configChanges="orientation"
 		    android:theme="@style/Theme.AppCompat.NoActionBar"/>
 
-        <activity android:name="com.thegrizzlylabs.geniusscan.sdk.demo.processing.BorderDetectionActivity"
+        <activity android:name=".processing.BorderDetectionActivity"
             android:screenOrientation="portrait"
 		    android:configChanges="orientation"
             />
         
-    	<activity android:name="com.thegrizzlylabs.geniusscan.sdk.demo.enhance.ImageProcessingActivity" 
+    	<activity android:name=".enhance.ImageProcessingActivity"
     	    android:screenOrientation="portrait"
 		    android:configChanges="orientation"
     	    />

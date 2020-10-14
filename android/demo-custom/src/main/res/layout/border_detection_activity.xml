@@ -30,7 +30,7 @@
 
     </RelativeLayout>
 
-    <com.thegrizzlylabs.geniusscan.sdk.ui.BorderDetectionImageView
+    <com.geniusscansdk.ui.BorderDetectionImageView
         android:id="@+id/image_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.thegrizzlylabs.geniusscan.sdk.ui.MagnifierView
+        <com.geniusscansdk.ui.MagnifierView
             android:id="@+id/magnifier_view"
             android:layout_width="166dp"
             android:layout_height="166dp"
