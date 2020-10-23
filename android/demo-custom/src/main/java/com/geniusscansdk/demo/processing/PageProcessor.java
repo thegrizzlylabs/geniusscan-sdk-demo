@@ -2,40 +2,31 @@ package com.geniusscansdk.demo.processing;
 
 import android.content.Context;
 
-import com.geniusscansdk.core.ImageType;
 import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.core.ProcessingException;
-import com.geniusscansdk.core.Quadrangle;
 import com.geniusscansdk.core.ScanProcessor;
+import com.geniusscansdk.core.ScanProcessor.Configuration;
+import com.geniusscansdk.core.ScanProcessor.CurvatureCorrection;
+import com.geniusscansdk.core.ScanProcessor.Enhancement;
+import com.geniusscansdk.core.ScanProcessor.OutputParameters;
+import com.geniusscansdk.core.ScanProcessor.PerspectiveCorrection;
 import com.geniusscansdk.demo.model.Page;
 
-import java.io.IOException;
-
-/**
- * Created by pnollet on 04/10/2016.
- */
-
 public class PageProcessor {
-    private static final String TAG = PageProcessor.class.getSimpleName();
 
-    /**
-     * Generate the enhanced image for the given page
-     *
-     * @param context
-     * @param page
-     */
-    public void processPage(Context context, Page page) throws LicenseException, IOException, ProcessingException {
+    public void processPage(Context context, Page page) throws LicenseException, ProcessingException {
         String enhancedImagePath = page.getEnhancedImage().getAbsolutePath(context);
         String originalImagePath = page.getOriginalImage().getAbsolutePath(context);
 
-        ImageType imageType = page.getImageType();
-        Quadrangle quadrangle = page.getQuadrangle();
-        boolean distortionCorrectionEnabled = page.isDistortionCorrectionEnabled();
+        Configuration configuration = new Configuration(
+                PerspectiveCorrection.withQuadrangle(page.getQuadrangle()),
+                CurvatureCorrection.create(page.isDistortionCorrectionEnabled()),
+                page.getImageType() == null ? Enhancement.automatic() : Enhancement.withFilter(page.getImageType())
+        );
 
-        ScanProcessor.Parameters parameters = new ScanProcessor.Parameters(quadrangle, imageType, distortionCorrectionEnabled);
-        parameters = new ScanProcessor(context).process(originalImagePath, enhancedImagePath, parameters);
+        OutputParameters outputParameters = new ScanProcessor(context).process(originalImagePath, enhancedImagePath, configuration);
 
-        page.setQuadrangle(parameters.getQuadrangle());
-        page.setImageType(parameters.getImageType());
+        page.setQuadrangle(outputParameters.appliedQuadrangle);
+        page.setImageType(outputParameters.appliedFilter);
     }
 }
