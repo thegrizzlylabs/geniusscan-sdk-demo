@@ -14,10 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
-import com.geniusscansdk.scanflow.ScanFlow;
 import com.geniusscansdk.scanflow.ScanConfiguration;
+import com.geniusscansdk.scanflow.ScanFlow;
 import com.geniusscansdk.scanflow.ScanResult;
 
 import java.io.File;
@@ -25,6 +24,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.EnumSet;
+
+import static com.geniusscansdk.scanflow.ScanConfiguration.Action.EDIT_FILTER;
+import static com.geniusscansdk.scanflow.ScanConfiguration.Action.ROTATE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,80 +39,87 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button scanButton = findViewById(R.id.scan_button);
-        scanButton.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.scan_camera_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startScanning();
+                scanFromCamera();
+            }
+        });
+
+        findViewById(R.id.scan_image_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scanFromImage();
             }
         });
     }
 
-    private void startScanning() {
-        initSDK();
-
+    private ScanConfiguration createBaseConfiguration() {
         ScanConfiguration scanConfiguration = new ScanConfiguration();
-
-        boolean scanFromFile = false;
-        if (scanFromFile) {
-            scanConfiguration.source = ScanConfiguration.Source.IMAGE;
-            scanConfiguration.sourceImage = new File(getExternalCacheDir(), "temp.jpg");
-            try {
-                copyFileFromResource(R.raw.scan, scanConfiguration.sourceImage);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
         scanConfiguration.multiPage = true;
         scanConfiguration.pdfPageSize = ScanConfiguration.PdfPageSize.FIT;
         scanConfiguration.pdfMaxScanDimension = 2000;
         scanConfiguration.jpegQuality = 60;
-        scanConfiguration.postProcessingActions = EnumSet.of(ScanConfiguration.Action.EDIT_FILTER, ScanConfiguration.Action.ROTATE);
+        scanConfiguration.postProcessingActions = EnumSet.of(ROTATE, EDIT_FILTER);
         scanConfiguration.flashButtonHidden = false;
         scanConfiguration.defaultFlashMode = ScanConfiguration.FlashMode.AUTO;
         scanConfiguration.backgroundColor = Color.WHITE;
         scanConfiguration.foregroundColor = ContextCompat.getColor(this, R.color.colorPrimary);
         scanConfiguration.highlightColor = ContextCompat.getColor(this, R.color.colorAccent);
-
-        ScanFlow.scanWithConfiguration(MainActivity.this, scanConfiguration);
+        return scanConfiguration;
     }
 
-    private void initSDK() {
+    private void scanFromCamera() {
+        ScanConfiguration scanConfiguration = createBaseConfiguration();
+        scanConfiguration.source = ScanConfiguration.Source.CAMERA;
+        startScanning(scanConfiguration);
+    }
+
+    private void scanFromImage() {
+        ScanConfiguration scanConfiguration = createBaseConfiguration();
+        scanConfiguration.source = ScanConfiguration.Source.IMAGE;
+        scanConfiguration.sourceImage = new File(getExternalCacheDir(), "temp.jpg");
+        try {
+            copyFileFromResource(R.raw.scan, scanConfiguration.sourceImage);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        startScanning(scanConfiguration);
+    }
+
+    private void startScanning(ScanConfiguration scanConfiguration) {
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // This code shows how to initialize the SDK with a license key.
         // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
         //
-        // try {
-        //    // Replace this key by your key
-        //    GeniusScanSdkUI.init(this, "<Your license key>");
-        // } catch(LicenseException e) {
-        //    new AlertDialog.Builder(this)
-        //            .setMessage("This version is not valid anymore. Please update to the latest version.")
-        //            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-        //                @Override
-        //                public void onClick(DialogInterface dialog, int which) {
-        //                    finish();
-        //                }
-        //            })
-        //            .show();
-        // }
+        //         try {
+        //            // Replace this key by your key
+        //            ScanFlow.init(this, "<Your license key>");
+        //         } catch(LicenseException e) {
+        //            new AlertDialog.Builder(this)
+        //                    .setMessage("This version is not valid anymore. Please update to the latest version.")
+        //                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        //                        @Override
+        //                        public void onClick(DialogInterface dialog, int which) {
+        //                            finish();
+        //                        }
+        //                    })
+        //                    .show();
+        //         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        ScanFlow.scanWithConfiguration(MainActivity.this, scanConfiguration);
     }
 
     private void copyFileFromResource(@RawRes int fileResId, File destinationFile) throws IOException {
-        InputStream in = getResources().openRawResource(fileResId);
-        FileOutputStream out = new FileOutputStream(destinationFile);
         byte[] buff = new byte[1024];
         int read;
 
-        try {
+        try (InputStream in = getResources().openRawResource(fileResId);
+             FileOutputStream out = new FileOutputStream(destinationFile)) {
             while ((read = in.read(buff)) > 0) {
                 out.write(buff, 0, read);
             }
-        } finally {
-            in.close();
-            out.close();
         }
     }
 

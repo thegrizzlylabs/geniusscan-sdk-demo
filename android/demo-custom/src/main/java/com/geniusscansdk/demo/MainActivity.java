@@ -1,11 +1,9 @@
 package com.geniusscansdk.demo;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +12,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.geniusscansdk.core.GeniusScanSDK;
-import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.demo.camera.ScanActivity;
 import com.geniusscansdk.demo.enhance.PdfGenerationTask;
 import com.geniusscansdk.demo.model.DocumentManager;
@@ -79,20 +75,20 @@ public class MainActivity extends AppCompatActivity {
         // This code shows how to initialize the SDK with a license key.
         // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
         //
-         try {
-            // Replace this key by your key
-            GeniusScanSDK.init(this, "533c500656570807065c075739525a0e4a04570a5d43414a01575a1553531e5407590b3d090304065d0506065256");
-         } catch(LicenseException e) {
-            new AlertDialog.Builder(this)
-                    .setMessage("This version is not valid anymore. Please update to the latest version.")
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            finish();
-                        }
-                    })
-                    .show();
-         }
+        //         try {
+        //            // Replace this key by your key
+        //            GeniusScanSDK.init(this, "<Your license key>");
+        //         } catch(LicenseException e) {
+        //            new AlertDialog.Builder(this)
+        //                    .setMessage("This version is not valid anymore. Please update to the latest version.")
+        //                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        //                        @Override
+        //                        public void onClick(DialogInterface dialog, int which) {
+        //                            finish();
+        //                        }
+        //                    })
+        //                    .show();
+        //         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 

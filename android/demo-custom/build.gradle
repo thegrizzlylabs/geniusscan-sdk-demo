@@ -18,8 +18,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.geniusscansdk:gssdk-core:4.0.0-beta6'
-    implementation 'com.geniusscansdk:gssdk-ocr:4.0.0-beta6'
+    implementation 'com.geniusscansdk:gssdk-core:4.0.0-beta7'
+    implementation 'com.geniusscansdk:gssdk-ocr:4.0.0-beta7'
 
     def supportLibraryVersion = '28.0.0'
     implementation "com.android.support:support-fragment:$supportLibraryVersion"

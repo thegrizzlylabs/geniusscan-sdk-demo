@@ -30,12 +30,13 @@
         <icon density="xxhdpi" src="res/android/ic_launcher-xxhdpi.png" />
         <icon density="xxxhdpi" src="res/android/ic_launcher-xxxhdpi.png" />
     </platform>
-    <engine name="ios" spec="~4.5.0" />
+    <engine name="ios" spec="~6.1.1" />
+    <engine name="android" spec="~8.1.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.3">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="28.0.0" />
     </plugin>
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@4.0.0-beta6">
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@4.0.0-beta7">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
         <variable name="ANDROID_SUPPORT_VERSION" value="28.0.0" />
     </plugin>

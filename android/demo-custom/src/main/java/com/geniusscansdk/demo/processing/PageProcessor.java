@@ -19,7 +19,7 @@ public class PageProcessor {
         String originalImagePath = page.getOriginalImage().getAbsolutePath(context);
 
         Configuration configuration = new Configuration(
-                PerspectiveCorrection.withQuadrangle(page.getQuadrangle()),
+                page.getQuadrangle() == null ? PerspectiveCorrection.automatic() : PerspectiveCorrection.withQuadrangle(page.getQuadrangle()),
                 CurvatureCorrection.create(page.isDistortionCorrectionEnabled()),
                 page.getImageType() == null ? Enhancement.automatic() : Enhancement.withFilter(page.getImageType())
         );
