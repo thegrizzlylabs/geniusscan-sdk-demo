@@ -4,7 +4,7 @@ package com.geniusscansdk.demo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.geniusscansdk.core.ImageType;
+import com.geniusscansdk.core.FilterType;
 import com.geniusscansdk.core.Quadrangle;
 
 import java.util.UUID;
@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Page implements Parcelable {
 
     private Quadrangle quadrangle;
-    private ImageType imageType;
+    private FilterType filterType;
     private boolean distortionCorrectionEnabled = true;
 
     private Image originalImage;
@@ -44,12 +44,12 @@ public class Page implements Parcelable {
         return quadrangle;
     }
 
-    public void setImageType(ImageType imageType) {
-        this.imageType = imageType;
+    public void setFilterType(FilterType filterType) {
+        this.filterType = filterType;
     }
 
-    public ImageType getImageType() {
-        return imageType;
+    public FilterType getFilterType() {
+        return filterType;
     }
 
     public void setDistortionCorrectionEnabled(boolean distortionCorrectionEnabled) {
@@ -79,14 +79,14 @@ public class Page implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(quadrangle, 0);
-        dest.writeSerializable(imageType);
+        dest.writeSerializable(filterType);
         dest.writeParcelable(originalImage, 0);
         dest.writeParcelable(enhancedImage, 0);
     }
 
     private Page(Parcel in) {
         quadrangle = in.readParcelable(Quadrangle.class.getClassLoader());
-        imageType = (ImageType) in.readSerializable();
+        filterType = (FilterType) in.readSerializable();
         originalImage = in.readParcelable(Image.class.getClassLoader());
         enhancedImage = in.readParcelable(Image.class.getClassLoader());
     }

@@ -21,12 +21,12 @@ public class PageProcessor {
         Configuration configuration = new Configuration(
                 page.getQuadrangle() == null ? PerspectiveCorrection.automatic() : PerspectiveCorrection.withQuadrangle(page.getQuadrangle()),
                 CurvatureCorrection.create(page.isDistortionCorrectionEnabled()),
-                page.getImageType() == null ? Enhancement.automatic() : Enhancement.withFilter(page.getImageType())
+                page.getFilterType() == null ? Enhancement.automatic() : Enhancement.withFilter(page.getFilterType())
         );
 
         OutputParameters outputParameters = new ScanProcessor(context).process(originalImagePath, enhancedImagePath, configuration);
 
         page.setQuadrangle(outputParameters.appliedQuadrangle);
-        page.setImageType(outputParameters.appliedFilter);
+        page.setFilterType(outputParameters.appliedFilter);
     }
 }

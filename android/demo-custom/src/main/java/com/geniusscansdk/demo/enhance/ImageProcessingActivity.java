@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.geniusscansdk.core.ImageType;
+import com.geniusscansdk.core.FilterType;
 import com.geniusscansdk.core.RotationAngle;
 import com.geniusscansdk.demo.MainActivity;
 import com.geniusscansdk.demo.R;
@@ -78,13 +78,13 @@ public class ImageProcessingActivity extends AppCompatActivity {
               },new DialogInterface.OnClickListener() {
          @Override
          public void onClick(DialogInterface dialog, int which) {
-             ImageType imageType = new ImageType[] {
-                     ImageType.NONE,
-                     ImageType.PHOTO,
-                     ImageType.COLOR,
-                     ImageType.BLACK_WHITE
+             FilterType filterType = new FilterType[] {
+                     FilterType.NONE,
+                     FilterType.PHOTO,
+                     FilterType.COLOR,
+                     FilterType.BLACK_WHITE
              }[which];
-             page.setImageType(imageType);
+             page.setFilterType(filterType);
              progressDialog.show();
              enhance();
          }
