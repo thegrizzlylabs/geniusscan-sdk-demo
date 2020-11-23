@@ -75,7 +75,7 @@ packages:
       name: flutter_genius_scan
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0-beta8"
+    version: "4.0.0-beta9"
   flutter_test:
     dependency: "direct dev"
     description: flutter
