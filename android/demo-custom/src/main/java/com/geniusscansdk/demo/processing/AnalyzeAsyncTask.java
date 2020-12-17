@@ -4,8 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.geniusscansdk.core.CnnDocumentDetection;
-import com.geniusscansdk.core.DocumentDetection;
+import com.geniusscansdk.core.DocumentDetector;
 import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.core.Quadrangle;
 import com.geniusscansdk.demo.model.Page;
@@ -16,11 +15,11 @@ class AnalyzeAsyncTask extends AsyncTask<Page, Void, Quadrangle> {
 
    private final Context context;
    private Exception error;
-   private DocumentDetection documentDetection;
+   private DocumentDetector documentDetector;
 
    AnalyzeAsyncTask(Context context) {
       this.context = context;
-      documentDetection = new CnnDocumentDetection(context);
+      documentDetector = DocumentDetector.create(context);
    }
 
    @Override
@@ -28,7 +27,7 @@ class AnalyzeAsyncTask extends AsyncTask<Page, Void, Quadrangle> {
       try {
          Page scanContainer = params[0];
          File imageFile = new File(scanContainer.getOriginalImage().getAbsolutePath(context));
-         return documentDetection.detectDocument(imageFile);
+         return documentDetector.detectDocument(imageFile);
       } catch (Exception e) {
          error = e;
          return null;
