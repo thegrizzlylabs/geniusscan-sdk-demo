@@ -19,7 +19,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_genius_scan:
-    version: 3.0.27
+    version: 4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

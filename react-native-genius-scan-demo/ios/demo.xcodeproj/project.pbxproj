@@ -461,7 +461,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 67ZL68PX9A;
-				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/GSSDK";
 				INFOPLIST_FILE = demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -483,7 +482,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 67ZL68PX9A;
-				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/../node_modules/@thegrizzlylabs/react-native-genius-scan/ios/GSSDK";
 				INFOPLIST_FILE = demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

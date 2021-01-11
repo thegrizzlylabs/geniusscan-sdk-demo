@@ -10,13 +10,27 @@
     tools:showIn="@layout/activity_main">
 
     <Button
-        android:id="@+id/scan_button"
+        android:id="@+id/scan_camera_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start scanning"
+        android:text="Scan from camera"
+        app:layout_constraintBottom_toTopOf="@id/scan_image_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <Button
+        android:id="@+id/scan_image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Scan from image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/scan_camera_button"
+        />
 
 </android.support.constraint.ConstraintLayout>

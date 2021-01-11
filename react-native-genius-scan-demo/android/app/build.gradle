@@ -114,7 +114,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.thegrizzlylabs.geniusscan.sdk.reactnative.demo"
+        applicationId "com.geniusscansdk.reactnative.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -6,13 +6,13 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `Flutter`)
   - flutter_genius_scan (from `.symlinks/plugins/flutter_genius_scan/ios`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: Flutter
   flutter_genius_scan:
     :path: ".symlinks/plugins/flutter_genius_scan/ios"
   open_file:
@@ -20,9 +20,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_genius_scan: 1a44234deceb1ec32efaae474a60be629d7b8261
+  flutter_genius_scan: 5bf25c3d350de0b53025bb17674b9e6afdc71a9c
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
 
-PODFILE CHECKSUM: 7b9fa749ca536b70aa1cc1d7fc5bc6d281a901c5
+PODFILE CHECKSUM: e3a7453851ab1f1af8e0f73d75052ab21bd5eb4c
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.9.1
