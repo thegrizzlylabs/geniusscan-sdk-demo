@@ -1,0 +1,1 @@
+This project demoes how to use the GSSDK Framework in your app as well as how to use the UI elements.

@@ -3,16 +3,18 @@ Genius Scan SDK demo applications
 
 # Description
 
-These sample scanning applications demonstrate the capability of the [Genius Scan SDK](https://geniusscansdk.com) and how you can integrate it into your Android, Cordova, React Native and Flutter applications.
+These sample scanning applications demonstrate the capability of the [Genius Scan SDK](https://geniusscansdk.com) and how you can integrate it into your iOS, Android, Cordova, React Native and Flutter applications.
 
 **Developing an iOS application?**
 
->Request a demo from [our website](https://geniusscansdk.com) to obtain a package containing the native iOS SDK (Objective-C libraries) and its demo applications.
+>Request a demo from [our website](https://geniusscansdk.com) to obtain a package containing the native iOS SDK (Objective-C libraries).
 
 # Content
 
-- [Android Simple demo](./android), which shows how to add a document scanner to your app in one line of code 
+- [Android Simple demo](./android), which shows how to add a document scanner to your app in one line of code
 - [Android Custom demo](./android), which shows how to build a fully customized document scanner
+- [iOS Simple demo](./ios/GSSDKSimpleDemo), which shows how to add a document scanner to your app in one line of code
+- [iOS Custom demo](./ios/GSSDKCustomDemo), which shows how to build a fully customized document scanner
 - [React Native demo](./react-native-genius-scan-demo/README.md), which uses the [Genius Scan React Native component](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan)
 - [Cordova demo](./cordova-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Cordova plugin](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan)
 - [Flutter demo](./flutter-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Flutter plugin](https://pub.dev/packages/flutter_genius_scan)
