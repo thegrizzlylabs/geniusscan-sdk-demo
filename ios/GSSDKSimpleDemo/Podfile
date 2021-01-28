@@ -1,6 +1,6 @@
 platform :ios, '11.0'
 
-target 'GSSDKCustomDemo' do
+target 'GSSDKSimpleDemo' do
 
   pod 'GSSDK/Core', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-4.0.1.podspec'
   pod 'GSSDK/ScanFlow', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-4.0.1.podspec'

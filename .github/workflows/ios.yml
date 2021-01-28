@@ -1,0 +1,27 @@
+name: iOS
+
+on: push
+
+jobs:
+  build-custom-demo:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios/GSSDKCustomDemo
+    steps:
+    - uses: actions/checkout@v2
+    - run: pod install
+    - run: xcodebuild build -scheme GSSDKCustomDemo -workspace GSSDKCustomDemo.xcworkspace -configuration Debug -sdk iphoneos \
+           ONLY_ACTIVE_ARCH=YES \
+           CODE_SIGNING_ALLOWED="NO"
+  build-simple-demo:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ios/GSSDKSimpleDemo
+    steps:
+    - uses: actions/checkout@v2
+    - run: pod install
+    - run: xcodebuild build -scheme GSSDKSimpleDemo -workspace GSSDKSimpleDemo.xcworkspace -configuration Debug -sdk iphoneos \
+           ONLY_ACTIVE_ARCH=YES \
+           CODE_SIGNING_ALLOWED="NO"
