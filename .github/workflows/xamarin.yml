@@ -1,0 +1,25 @@
+name: Xamarin
+
+on: push
+
+jobs:
+  Android:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Android
+      run: |
+        cd xamarin
+        nuget restore
+        cd SimpleDemo.Forms.Android
+        msbuild SimpleDemo.Forms.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
+
+  iOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: iOS
+      run: |
+        cd xamarin
+        nuget restore
+        msbuild SimpleDemo.Forms.iOS/SimpleDemo.Forms.iOS.csproj /verbosity:normal /t:Rebuild /p:Platform=iPhone /p:Configuration=Debug
