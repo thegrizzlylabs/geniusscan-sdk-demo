@@ -25,7 +25,7 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 - Automatic document detection in real-time
 - Auto-trigger to capture document upon detection
 - Document perspective correction
-- Image enhancement with 4 different modes (Grayscale, Color, Black & white, Photo)
+- Image enhancement with 4 different modes (Black & white, Color, Photo and Monochrome)
 - PDF generation and sharing with password protection
 
 # Installation
