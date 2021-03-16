@@ -30,6 +30,13 @@ allprojects {
                 includeModule('org.jetbrains.trove4j', 'trove4j')
             }
         }
+        // Needed for public demo apps
+        maven {
+            url 'https://s3.amazonaws.com/tgl.maven'
+            content {
+                includeGroup('com.geniusscansdk')
+            }
+        }
     }
 }
 
