@@ -2,20 +2,34 @@
 buildscript {
     repositories {
         google()
-        jcenter()
-        maven { url 'https://repo.gradle.org/gradle/libs-releases' } // for apkscale
+        mavenCentral()
+        jcenter {
+            content {
+                includeModule('org.jetbrains.trove4j', 'trove4j')
+            }
+        }
+        maven {
+            url 'https://repo.gradle.org/gradle/libs-releases'
+            content {
+                includeModule('org.gradle', 'gradle-tooling-api') // for apkscale
+            }
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
-        classpath "com.twilio:apkscale:0.1.1"
+        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath "com.twilio:apkscale:0.1.2"
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
-        maven { url 'https://s3.amazonaws.com/tgl.maven' }
+        mavenCentral()
+        jcenter {
+            content {
+                includeModule('org.jetbrains.trove4j', 'trove4j')
+            }
+        }
     }
 }
 
