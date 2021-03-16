@@ -20,10 +20,7 @@ build/
 # Android studio files
 *.iml
 .gradle/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/modules.xml
-.idea/libraries
+.idea/
 
 # Local configuration file (sdk path, etc)
 local.properties
