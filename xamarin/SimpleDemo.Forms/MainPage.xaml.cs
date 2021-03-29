@@ -22,20 +22,9 @@ namespace SimpleDemo.Forms
 
         async void StartScanning(object sender, EventArgs args)
         {
-            //var configuration = new Dictionary<string, object>();
-            //configuration["source"] = "camera";
-            //configuration["multiPage"] = true;
-            //configuration["defaultFilter"] = "blackAndWhite";
-            //configuration["pdfMaxScanDimension"] = 2000;
-            //configuration["postProcessingActions"] = new String[] { "rotate", "editFilter" };
-            
             try
             {
                 var pdfUrl = await scanFlow.StartScanning();
-
-                //var jsonResult = await scanFlow.StartScanning(JsonSerializer.Serialize(configuration));
-                //var result = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonResult);
-                //var pdfUrl = (string)result["pdfUrl"];
 
                 await Share.RequestAsync(new ShareFileRequest
                 {

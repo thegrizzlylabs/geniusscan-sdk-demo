@@ -29,15 +29,6 @@ namespace SimpleDemo.Forms.iOS
             return StartScanning(configuration);
         }
 
-        //public Task<string> StartScanning(string jsonConfiguration)
-        //{
-        //    var outError = new NSError();
-
-        //    var nsData = new NSString(jsonConfiguration, NSStringEncoding.UTF8).Encode(NSStringEncoding.UTF8);
-        //    var dictionary = (NSDictionary)NSJsonSerialization.Deserialize(nsData, 0, out outError);
-        //    return startScanning(dictionary);
-        //}
-
         private Task<string> StartScanning(NSDictionary configurationDictionary)
         {
             var taskCompletionSource = new TaskCompletionSource<string>();
@@ -48,9 +39,6 @@ namespace SimpleDemo.Forms.iOS
             var viewController = UIApplication.SharedApplication.Delegate.GetWindow().RootViewController;
             scanFlow.StartFromViewController(viewController,
                 (GSKScanFlowResult result) => {
-                    //var resultData = NSJsonSerialization.Serialize(result.Dictionary(), 0, out outError);
-                    //taskCompletionSource.TrySetResult(resultData.ToString());
-
                     // To get enhanced pages
                     // var scans = (NSArray)result.Dictionary().ValueForKey(new NSString("scans"));
                     // var scanUrl = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("enhancedUrl"));

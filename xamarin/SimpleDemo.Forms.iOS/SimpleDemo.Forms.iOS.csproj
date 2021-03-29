@@ -94,11 +94,11 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-     <PackageReference Include="GeniusScanSDK.ScanFlow.iOS" Version="1.0.7" /> 
+     <PackageReference Include="GeniusScanSDK.ScanFlow.iOS" Version="4.0.6" /> 
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleDemo.Forms\SimpleDemo.Forms.csproj">
-      <Project>{CB9E13B4-B116-4769-980F-5ABE1341E90E}</Project>
+      <Project>{F413BE92-A069-46F8-A5C3-472E7FC98DC7}</Project>
       <Name>SimpleDemo.Forms</Name>
     </ProjectReference>
     <!-- <ProjectReference Include="..\..\GeniusScanSDK.ScanFlow.iOS\GeniusScanSDK.ScanFlow.iOS.csproj"> -->

@@ -32,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,10 +56,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1687" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-    <PackageReference Include="GoogleGson">
-      <Version>2.8.5</Version>
-    </PackageReference>
-     <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="1.0.7" /> 
+     <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="4.0.6" /> 
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -66,8 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -98,10 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+    <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleDemo.Forms\SimpleDemo.Forms.csproj">
-      <Project>{26208678-EE18-4A15-BB95-5C1DC2BFBD77}</Project>
+      <Project>{F413BE92-A069-46F8-A5C3-472E7FC98DC7}</Project>
       <Name>SimpleDemo.Forms</Name>
     </ProjectReference>
     <!-- <ProjectReference Include="..\..\GeniusScanSDK.ScanFlow.Android\GeniusScanSDK.ScanFlow.Android.csproj"> -->
