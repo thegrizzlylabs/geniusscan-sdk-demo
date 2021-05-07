@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_genius_scan/flutter_genius_scan.dart';
 
@@ -30,7 +28,7 @@ class MyScaffoldBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: RaisedButton(
+        child: ElevatedButton(
       onPressed: () {
         FlutterGeniusScan.scanWithConfiguration({
           'source': 'camera',
@@ -38,7 +36,7 @@ class MyScaffoldBody extends StatelessWidget {
         }).then((result) {
           String pdfUrl = result['pdfUrl'];
           OpenFile.open(pdfUrl.replaceAll("file://", '')).then(
-              (result) => debugPrint(result),
+              (result) => debugPrint(result.message),
               onError: (error) => displayError(context, error));
         }, onError: (error) => displayError(context, error));
       },
@@ -47,6 +45,6 @@ class MyScaffoldBody extends StatelessWidget {
   }
 
   void displayError(BuildContext context, PlatformException error) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(error.message)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
   }
 }
