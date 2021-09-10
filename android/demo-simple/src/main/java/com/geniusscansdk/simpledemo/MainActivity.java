@@ -6,12 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.annotation.RawRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -24,6 +18,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.EnumSet;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RawRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import static com.geniusscansdk.scanflow.ScanConfiguration.Action.EDIT_FILTER;
 import static com.geniusscansdk.scanflow.ScanConfiguration.Action.ROTATE;
@@ -138,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
                         .setMessage("An error occurred: " + e.getMessage())
                         .show();
             }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

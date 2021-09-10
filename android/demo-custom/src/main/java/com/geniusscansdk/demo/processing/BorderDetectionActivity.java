@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.geniusscansdk.core.Quadrangle;
@@ -15,6 +14,8 @@ import com.geniusscansdk.demo.model.Page;
 import com.geniusscansdk.ui.BorderDetectionImageView;
 import com.geniusscansdk.ui.MagnifierBorderDetectionListener;
 import com.geniusscansdk.ui.MagnifierView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class BorderDetectionActivity extends AppCompatActivity {
 

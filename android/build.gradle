@@ -3,11 +3,6 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        jcenter {
-            content {
-                includeModule('org.jetbrains.trove4j', 'trove4j')
-            }
-        }
         maven {
             url 'https://repo.gradle.org/gradle/libs-releases'
             content {
@@ -16,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath "com.twilio:apkscale:0.1.2"
     }
 }
@@ -25,11 +20,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter {
-            content {
-                includeModule('org.jetbrains.trove4j', 'trove4j')
-            }
-        }
         // Needed for public demo apps
         maven {
             url 'https://s3.amazonaws.com/tgl.maven'
@@ -42,7 +32,7 @@ allprojects {
 
 ext {
     ndkVersion = '21.4.7075529'
-    compileSdkVersion = 30
-    targetSdkVersion = 30
+    compileSdkVersion = 31
+    targetSdkVersion = 31
     minSdkVersion = 19
 }

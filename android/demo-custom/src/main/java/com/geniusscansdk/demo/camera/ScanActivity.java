@@ -8,10 +8,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -30,6 +26,11 @@ import com.geniusscansdk.demo.model.Page;
 import com.geniusscansdk.demo.processing.BorderDetectionActivity;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class ScanActivity extends AppCompatActivity implements ScanFragment.CameraCallbackProvider {
    private static final String TAG = ScanActivity.class.getSimpleName();
@@ -110,8 +111,12 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
    @Override
    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-      cameraPermissionGranted = requestCode == PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
-      // Camera will be initialized in onResume
+      if (requestCode == PERMISSION_REQUEST_CODE) {
+         cameraPermissionGranted =  grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
+         // Camera will be initialized in onResume
+      } else {
+         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+      }
    }
 
    private void takePicture() {

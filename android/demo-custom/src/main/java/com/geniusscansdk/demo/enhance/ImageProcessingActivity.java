@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -19,6 +18,8 @@ import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.model.DocumentManager;
 import com.geniusscansdk.demo.model.Image;
 import com.geniusscansdk.demo.model.Page;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ImageProcessingActivity extends AppCompatActivity {
 

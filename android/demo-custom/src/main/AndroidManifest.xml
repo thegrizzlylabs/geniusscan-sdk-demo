@@ -24,6 +24,7 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation"
+            android:exported="true"
             >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +50,7 @@
     	    />
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:grantUriPermissions="true"
             android:exported="false">
