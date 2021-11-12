@@ -25,13 +25,19 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import Share from 'react-native-share';
+import FileViewer from 'react-native-file-viewer';
 import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
+import RNFS from 'react-native-fs';
 
 const App = () => {
+  const languageFolder = Platform.OS === 'android' ? RNFS.ExternalDirectoryPath : RNFS.LibraryDirectoryPath;
   // Refer to the Genius Scan SDK demo README.md for a list of the available options
   const configuration = {
     source: 'camera',
+    ocrConfiguration: {
+      languages: ['eng'],
+      languagesDirectoryUrl: languageFolder
+    }
   }
   return (
     <Fragment>
@@ -49,17 +55,26 @@ const App = () => {
             <View style={styles.button}>
               <Button
                 onPress={() => {
-                  RNGeniusScan.scanWithConfiguration(configuration)
+
+                  const languageFile = languageFolder + '/eng.traineddata';
+                  const options = {
+                    fromUrl: 'https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata',
+                    toFile: languageFile
+                  };
+
+                  RNFS.downloadFile(options).promise
                     .then((result) => {
-                      // Here you can get the pdf file and the scans from the result
-                      // object.
-                      // As an example, we show here how you can share the resulting PDF:
-                      console.log(result);
-                      const shareOptions = { url: result.pdfUrl };
-                      console.log(shareOptions);
-                      Share.open(shareOptions)
-                        .then((res) => { console.log(res) })
-                        .catch(e => alert(e));
+                      RNGeniusScan.scanWithConfiguration(configuration)
+                        .then((result) => {
+                          // Here you can get the pdf file and the scans from the result
+                          // object.
+                          // As an example, we show here how you can share the resulting PDF:
+                          console.log(result);
+                          FileViewer.open(result.pdfUrl)
+                            .then((res) => { console.log(res) })
+                            .catch(e => alert(e));
+                        })
+                        .catch(e => alert(e))
                     })
                     .catch(e => alert(e))
                 }}

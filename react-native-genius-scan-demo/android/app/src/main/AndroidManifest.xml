@@ -3,6 +3,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- See https://github.com/vinzscam/react-native-file-viewer/issues/94 -->
+    <queries>
+      <intent>
+        <action android:name="android.intent.action.VIEW" />
+        <data android:mimeType="*/*" />
+      </intent>
+    </queries>
+
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"

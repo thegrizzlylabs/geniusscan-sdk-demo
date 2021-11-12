@@ -52,6 +52,8 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
     private OnPdfGeneratedListener listener;
     private ProgressDialog progressDialog;
 
+    private int pageProgress = 0;
+
     public PdfGenerationTask(Context context, List<Page> pages, String outputFilePath, boolean isOCREnabled, OnPdfGeneratedListener listener) {
         this.context = context;
         this.outputFilePath = outputFilePath;
@@ -75,42 +77,43 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
     @Override
     protected Exception doInBackground(Void... params) {
         Logger logger = GeniusScanSDK.getLogger();
+        OcrProcessor ocrProcessor = null;
 
-        OcrProcessor ocrProcessor = new OcrProcessor(context);
+        if (isOCREnabled) {
+            OcrConfiguration ocrConfiguration = new OcrConfiguration(Arrays.asList("eng"), getTessdataDirectory());
+            ocrProcessor = new OcrProcessor(context, ocrConfiguration, new OCREngineProgressListener() {
+                @Override
+                public void updateProgress(int progress) {
+                    publishProgress(pageProgress + progress / pages.size());
+                }
+            });
+            try {
+                copyTessdataFiles();
+            } catch (IOException e) {
+                return new IOException("Cannot copy tessdata", e);
+            }
+        }
+
+        ArrayList<PDFPage> pdfPages = new ArrayList<>();
+        int pageIndex = 0;
+        for (Page page : pages) {
+            pageProgress = pageIndex * 100 / pages.size();
+            File image = page.getEnhancedImage().getFile(context);
+
+            TextLayout textLayout = null;
             if (isOCREnabled) {
                 try {
-                    copyTessdataFiles();
-                } catch (IOException e) {
-                    return new IOException("Cannot copy tessdata", e);
+                    OcrResult result = ocrProcessor.processImage(image);
+                    textLayout = result.textLayout;
+                } catch (Exception e) {
+                    return new Exception("OCR processing failed", e);
                 }
             }
 
-            ArrayList<PDFPage> pdfPages = new ArrayList<>();
-            int pageIndex = 0;
-            for (Page page : pages) {
-                final int pageProgress = pageIndex * 100 / pages.size();
-                File image = page.getEnhancedImage().getFile(context);
-
-                TextLayout textLayout = null;
-                if (isOCREnabled) {
-                    OcrConfiguration ocrConfiguration = new OcrConfiguration(Arrays.asList("eng"), getTessdataDirectory());
-                    try {
-                        OcrResult result = ocrProcessor.processImage(image, ocrConfiguration, new OCREngineProgressListener() {
-                            @Override
-                            public void updateProgress(int progress) {
-                                publishProgress(pageProgress + progress / pages.size());
-                            }
-                        });
-                        textLayout = result.textLayout;
-                    } catch (Exception e) {
-                        return new Exception("OCR processing failed", e);
-                    }
-                }
-
-                // Export all pages in A4
-                pdfPages.add(new PDFPage(image.getAbsolutePath(), A4_SIZE, textLayout));
-                pageIndex++;
-            }
+            // Export all pages in A4
+            pdfPages.add(new PDFPage(image.getAbsolutePath(), A4_SIZE, textLayout));
+            pageIndex++;
+        }
 
         // Here we don't protect the PDF document with a password
         PDFDocument pdfDocument = new PDFDocument("test", null, null, new Date(), new Date(), pdfPages);

@@ -267,9 +267,11 @@ PODS:
     - React-cxxreact (= 0.64.2)
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
-  - RNGeniusScan (1.0.0):
+  - RNFileViewer (2.1.4):
+    - React-Core
+  - RNFS (2.18.0):
     - React
-  - RNShare (2.0.0):
+  - RNGeniusScan (1.0.0):
     - React
   - Yoga (1.14.0)
 
@@ -303,8 +305,9 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNFileViewer (from `../node_modules/react-native-file-viewer`)
+  - RNFS (from `../node_modules/react-native-fs`)
   - "RNGeniusScan (from `../node_modules/@thegrizzlylabs/react-native-genius-scan/ios`)"
-  - RNShare (from `../node_modules/react-native-share`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -366,10 +369,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNFileViewer:
+    :path: "../node_modules/react-native-file-viewer"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNGeniusScan:
     :path: "../node_modules/@thegrizzlylabs/react-native-genius-scan/ios"
-  RNShare:
-    :path: "../node_modules/react-native-share"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -402,10 +407,11 @@ SPEC CHECKSUMS:
   React-RCTVibration: 24600e3b1aaa77126989bc58b6747509a1ba14f3
   React-runtimeexecutor: a9904c6d0218fb9f8b19d6dd88607225927668f9
   ReactCommon: 149906e01aa51142707a10665185db879898e966
-  RNGeniusScan: 0846fbca62c295a56140380e598dce8d27478596
-  RNShare: 8b171d4b43c1d886917fdd303bf7a4b87167b05c
+  RNFileViewer: 83cc066ad795b1f986791d03b56fe0ee14b6a69f
+  RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
+  RNGeniusScan: f3ed4ac943fd1e6d7386d3270fbfff3806664c51
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: 9fa9b4d9590ccc7c341ab0b9879e645dd5fbfaa8
+PODFILE CHECKSUM: b131cc9e63459b0f8d5cc6e8cf70ceba9d773b43
 
 COCOAPODS: 1.10.1

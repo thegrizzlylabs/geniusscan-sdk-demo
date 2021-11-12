@@ -9,13 +9,16 @@
 /* Begin PBXBuildFile section */
 		1539342C2273396B00BFC6BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1539342B2273396B00BFC6BE /* Main.storyboard */; };
 		1542127F1B3606F400237CB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1542127E1B3606F400237CB2 /* Images.xcassets */; };
-		15598023252217DD0008D8DE /* GSSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15598022252217DD0008D8DE /* GSSDKCore.framework */; };
 		1573312B229D7642003D1B98 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1573312D229D7642003D1B98 /* Localizable.strings */; };
 		15789C9D1B369FD200954EAA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15789C9C1B369FD200954EAA /* AssetsLibrary.framework */; };
+		157DA875270F45C900558135 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 157DA874270F45C900558135 /* tessdata */; };
+		157DA877270F79B800558135 /* GSSDKOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 157DA876270F79B800558135 /* GSSDKOCR.framework */; };
+		157DA879270F7A8100558135 /* GSSDKCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15598022252217DD0008D8DE /* GSSDKCore.framework */; };
 		15A6250625C1C7C10048419B /* GSSDKScanFlow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A6250525C1C7C10048419B /* GSSDKScanFlow.framework */; };
 		15C1058E2292D9210097E469 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 15C1058D2292D9200097E469 /* image.jpg */; };
 		15FF278B2281680C00577EC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF278A2281680C00577EC2 /* ViewController.swift */; };
 		15FF278D2281984600577EC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FF278C2281984600577EC2 /* AppDelegate.swift */; };
+		C7F57B222710866600F73BC6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 154212801B3606F400237CB2 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,6 +65,8 @@
 		15733141229D76AB003D1B98 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15789C9A1B369FCB00954EAA /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		15789C9C1B369FD200954EAA /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		157DA874270F45C900558135 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		157DA876270F79B800558135 /* GSSDKOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GSSDKOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15A6250525C1C7C10048419B /* GSSDKScanFlow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GSSDKScanFlow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15C1058D2292D9200097E469 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		15FF278A2281680C00577EC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,8 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				157DA879270F7A8100558135 /* GSSDKCore.framework in Frameworks */,
+				157DA877270F79B800558135 /* GSSDKOCR.framework in Frameworks */,
 				15A6250625C1C7C10048419B /* GSSDKScanFlow.framework in Frameworks */,
-				15598023252217DD0008D8DE /* GSSDKCore.framework in Frameworks */,
 				15789C9D1B369FD200954EAA /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +118,7 @@
 		154212711B3606F400237CB2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				157DA874270F45C900558135 /* tessdata */,
 				15C1058D2292D9200097E469 /* image.jpg */,
 				152538A82272FC5F00688670 /* Info.plist */,
 				1542127E1B3606F400237CB2 /* Images.xcassets */,
@@ -134,6 +141,7 @@
 		BCB7FA713763F52122C579E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				157DA876270F79B800558135 /* GSSDKOCR.framework */,
 				15A6250525C1C7C10048419B /* GSSDKScanFlow.framework */,
 				15598022252217DD0008D8DE /* GSSDKCore.framework */,
 				1559801E2522179C0008D8DE /* GSSDKScanFlow.framework */,
@@ -223,8 +231,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7F57B222710866600F73BC6 /* LaunchScreen.xib in Resources */,
 				1542127F1B3606F400237CB2 /* Images.xcassets in Resources */,
 				1573312B229D7642003D1B98 /* Localizable.strings in Resources */,
+				157DA875270F45C900558135 /* tessdata in Resources */,
 				1539342C2273396B00BFC6BE /* Main.storyboard in Resources */,
 				15C1058E2292D9210097E469 /* image.jpg in Resources */,
 			);

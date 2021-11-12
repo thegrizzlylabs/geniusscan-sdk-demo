@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import com.geniusscansdk.scanflow.ScanConfiguration;
 import com.geniusscansdk.scanflow.ScanFlow;
@@ -17,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.EnumSet;
 
 import androidx.annotation.Nullable;
@@ -40,19 +40,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        findViewById(R.id.scan_camera_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scanFromCamera();
-            }
-        });
-
-        findViewById(R.id.scan_image_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scanFromImage();
-            }
-        });
+        findViewById(R.id.scan_camera_button).setOnClickListener(view -> scanFromCamera());
+        findViewById(R.id.scan_image_button).setOnClickListener(view -> scanFromImage());
     }
 
     private ScanConfiguration createBaseConfiguration() {
@@ -67,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
         scanConfiguration.backgroundColor = Color.WHITE;
         scanConfiguration.foregroundColor = ContextCompat.getColor(this, R.color.colorPrimary);
         scanConfiguration.highlightColor = ContextCompat.getColor(this, R.color.colorAccent);
+
+        ScanConfiguration.OcrConfiguration ocrConfiguration = new ScanConfiguration.OcrConfiguration();
+        ocrConfiguration.languages = Arrays.asList("eng");
+        ocrConfiguration.languagesDirectory = getTessdataDirectory();
+
+        scanConfiguration.ocrConfiguration = ocrConfiguration;
+        // FIXME : Avoid copying tessdata files in every demo apps.
+        copyFileFromResource(R.raw.eng, new File(getTessdataDirectory(), "eng.traineddata"));
+
         return scanConfiguration;
     }
 
@@ -79,12 +77,10 @@ public class MainActivity extends AppCompatActivity {
     private void scanFromImage() {
         ScanConfiguration scanConfiguration = createBaseConfiguration();
         scanConfiguration.source = ScanConfiguration.Source.IMAGE;
+
         scanConfiguration.sourceImage = new File(getExternalCacheDir(), "temp.jpg");
-        try {
-            copyFileFromResource(R.raw.scan, scanConfiguration.sourceImage);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        copyFileFromResource(R.raw.scan, scanConfiguration.sourceImage);
+
         startScanning(scanConfiguration);
     }
 
@@ -112,7 +108,11 @@ public class MainActivity extends AppCompatActivity {
         ScanFlow.scanWithConfiguration(MainActivity.this, scanConfiguration);
     }
 
-    private void copyFileFromResource(@RawRes int fileResId, File destinationFile) throws IOException {
+    private void copyFileFromResource(@RawRes int fileResId, File destinationFile) {
+        if (destinationFile.exists()) {
+            return;
+        }
+
         byte[] buff = new byte[1024];
         int read;
 
@@ -121,7 +121,15 @@ public class MainActivity extends AppCompatActivity {
             while ((read = in.read(buff)) > 0) {
                 out.write(buff, 0, read);
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    private File getTessdataDirectory() {
+        File directory = new File(getExternalFilesDir(null), "tessdata");
+        directory.mkdirs();
+        return directory;
     }
 
     @Override

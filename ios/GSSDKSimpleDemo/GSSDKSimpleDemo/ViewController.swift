@@ -53,6 +53,10 @@ final class ViewController: UIViewController, UIDocumentInteractionControllerDel
         let configuration = GSKScanFlowConfiguration()
         configuration.backgroundColor = .white
         configuration.foregroundColor = .red
+        let ocrConfiguration = GSKOCRConfiguration()
+        ocrConfiguration.languageCodes = ["eng"]
+        ocrConfiguration.trainedDataPath = (Bundle.main.resourcePath! as NSString).appendingPathComponent("tessdata")
+        configuration.ocrConfiguration = ocrConfiguration
         return configuration;
     }
 

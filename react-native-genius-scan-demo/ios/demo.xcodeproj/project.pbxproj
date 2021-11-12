@@ -298,11 +298,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKCore/GSSDKCore.framework/GSSDKCore",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKScanFlow/GSSDKScanFlow.framework/GSSDKScanFlow",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKOCR/GSSDKOCR.framework/GSSDKOCR",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -318,11 +320,13 @@
 				"${PODS_ROOT}/Target Support Files/Pods-demo-demoTests/Pods-demo-demoTests-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKCore/GSSDKCore.framework/GSSDKCore",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKScanFlow/GSSDKScanFlow.framework/GSSDKScanFlow",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKOCR/GSSDKOCR.framework/GSSDKOCR",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
