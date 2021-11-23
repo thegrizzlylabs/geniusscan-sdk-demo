@@ -8,9 +8,8 @@
 	android:background="@android:color/black"
     >
 
-	<fragment
-		android:id="@+id/scan_fragment"
-		android:name="com.geniusscansdk.camera.ScanFragment"
+	<FrameLayout
+		android:id="@+id/scan_fragment_layout"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
@@ -23,10 +22,10 @@
 		android:id="@+id/focus_indicator"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignTop="@+id/scan_fragment"
-		android:layout_alignBottom="@+id/scan_fragment"
-		android:layout_alignLeft="@+id/scan_fragment"
-		android:layout_alignRight="@+id/scan_fragment"
+		android:layout_alignTop="@+id/scan_fragment_layout"
+		android:layout_alignBottom="@+id/scan_fragment_layout"
+		android:layout_alignLeft="@+id/scan_fragment_layout"
+		android:layout_alignRight="@+id/scan_fragment_layout"
 		/>
 
 	<TextView

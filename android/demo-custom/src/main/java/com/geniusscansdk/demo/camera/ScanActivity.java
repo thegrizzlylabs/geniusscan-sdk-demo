@@ -3,7 +3,6 @@ package com.geniusscansdk.demo.camera;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -13,9 +12,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.geniusscansdk.camera.CameraManager;
 import com.geniusscansdk.camera.FocusIndicator;
 import com.geniusscansdk.camera.ScanFragment;
+import com.geniusscansdk.camera.ScanFragmentLegacy;
 import com.geniusscansdk.camera.realtime.BorderDetector;
 import com.geniusscansdk.core.GeniusScanSDK;
 import com.geniusscansdk.core.LicenseException;
@@ -50,19 +49,15 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       setContentView(R.layout.scanning_activity);
 
       Button captureButton = findViewById(R.id.captureButton);
-      captureButton.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            takePicture();
-         }
-      });
+      captureButton.setOnClickListener(view -> takePicture());
 
       userGuidanceTextView = findViewById(R.id.user_guidance);
 
       FocusIndicator focusIndicator = findViewById(R.id.focus_indicator);
 
-      scanFragment = (ScanFragment) getSupportFragmentManager().findFragmentById(R.id.scan_fragment);
-      scanFragment.setOverlayColorResource(R.color.blue);
+      scanFragment = new ScanFragmentLegacy(); // Or use ScanFragmentX for a CameraX implementation
+      getSupportFragmentManager().beginTransaction().replace(R.id.scan_fragment_layout, scanFragment).commit();
+
       scanFragment.setPreviewAspectFill(false);
       scanFragment.setRealTimeDetectionEnabled(true);
       scanFragment.setFocusIndicator(focusIndicator);
@@ -82,12 +77,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
             new AlertDialog.Builder(ScanActivity.this)
                     .setMessage(e.getMessage())
                     .setCancelable(false)
-                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                       @Override
-                       public void onClick(DialogInterface dialog, int which) {
-                          finish();
-                       }
-                    })
+                    .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> finish())
                     .show();
          }
       });
@@ -143,8 +133,8 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
    }
 
    @Override
-   public CameraManager.Callback getCameraManagerCallback() {
-      return new CameraManager.Callback() {
+   public ScanFragment.Callback getCameraCallback() {
+      return new ScanFragment.Callback() {
          @Override
          public void onCameraReady() {}
 
@@ -167,8 +157,8 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
    class RotateTask extends AsyncTask<Void, Void, Void> {
 
-      private RotationAngle rotationAngle;
-      private Page page;
+      private final RotationAngle rotationAngle;
+      private final Page page;
       private ProgressDialog progressDialog;
       private Exception exception = null;
 
