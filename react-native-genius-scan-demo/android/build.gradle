@@ -8,7 +8,7 @@ buildscript {
     }
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath('com.android.tools.build:gradle:4.2.1')
@@ -31,10 +31,6 @@ allprojects {
         }
 
         google()
-        jcenter()
-
-        flatDir {
-            dirs "$rootDir/../node_modules/@thegrizzlylabs/react-native-genius-scan/android/libs"
-        }
+        mavenCentral()
     }
 }
