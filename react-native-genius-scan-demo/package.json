@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@thegrizzlylabs/react-native-genius-scan": "^4.4.1",
-    "react": "17.0.1",
+    "react": "17.0.2",
     "react-native": "0.66.0",
     "react-native-file-viewer": "^2.1.4",
     "react-native-fs": "^2.17"
