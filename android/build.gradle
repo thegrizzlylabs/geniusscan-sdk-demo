@@ -9,10 +9,17 @@ buildscript {
                 includeModule('org.gradle', 'gradle-tooling-api') // for apkscale
             }
         }
+        maven {
+            url 'https://s3.amazonaws.com/tgl.maven'
+            content {
+                includeModule('com.twilio', 'apkscale')
+            }
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.3'
-        classpath "com.twilio:apkscale:0.1.3"
+        // Patch until apkscale is fixed: https://github.com/twilio/apkscale/issues/10
+        classpath "com.twilio:apkscale:0.0.100"
         classpath "androidx.benchmark:benchmark-gradle-plugin:1.0.0"
     }
 }
@@ -32,7 +39,7 @@ allprojects {
 }
 
 ext {
-    ndkVersion = '21.4.7075529'
+    ndkVersion = '23.1.7779620'
     compileSdkVersion = 31
     targetSdkVersion = 31
     minSdkVersion = 21
