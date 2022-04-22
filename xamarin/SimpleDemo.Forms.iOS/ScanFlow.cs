@@ -43,8 +43,8 @@ namespace SimpleDemo.Forms.iOS
                     // var scans = (NSArray)result.Dictionary().ValueForKey(new NSString("scans"));
                     // var scanUrl = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("enhancedUrl"));
 
-                    var pdfUrl = result.Dictionary().ValueForKey(new NSString("pdfUrl"));
-                    taskCompletionSource.TrySetResult(pdfUrl.ToString());
+                    var multiPageDocumentUrl = result.Dictionary().ValueForKey(new NSString("multiPageDocumentUrl"));
+                    taskCompletionSource.TrySetResult(multiPageDocumentUrl.ToString());
 
                 },
                 (NSError error) => { taskCompletionSource.TrySetException(new NSErrorException(error)); }

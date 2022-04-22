@@ -53,6 +53,7 @@ final class ViewController: UIViewController, UIDocumentInteractionControllerDel
         let configuration = GSKScanFlowConfiguration()
         configuration.backgroundColor = .white
         configuration.foregroundColor = .red
+        configuration.multiPageFormat = .PDF
         let ocrConfiguration = GSKOCRConfiguration()
         ocrConfiguration.languageCodes = ["eng"]
         ocrConfiguration.trainedDataPath = (Bundle.main.resourcePath! as NSString).appendingPathComponent("tessdata")
@@ -64,13 +65,13 @@ final class ViewController: UIViewController, UIDocumentInteractionControllerDel
         scanner = GSKScanFlow(configuration: configuration)
         scanner.start(from: self, onSuccess: { [weak self] result in
 
-            NSLog("Here is the PDF file: \(result.pdfURL)")
+            NSLog("Here is the document: \(result.multiPageDocumentURL)")
 
             /**
              Do what you need with the PDF. As an example, we display it:
              */
 
-            let previewController = UIDocumentInteractionController(url: result.pdfURL)
+            let previewController = UIDocumentInteractionController(url: result.multiPageDocumentURL!)
             previewController.delegate = self
             previewController.presentPreview(animated: true)
 

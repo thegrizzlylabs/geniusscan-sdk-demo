@@ -41,8 +41,8 @@ class MyScaffoldBody extends StatelessWidget {
               'languagesDirectoryUrl': folder.path
             }
           }).then((result) {
-            String pdfUrl = result['pdfUrl'];
-            OpenFile.open(pdfUrl.replaceAll("file://", '')).then(
+            String documentUrl = result['multiPageDocumentUrl'];
+            OpenFile.open(documentUrl.replaceAll("file://", '')).then(
                     (result) => debugPrint(result.message),
                 onError: (error) => displayError(context, error));
           }, onError: (error) => displayError(context, error));

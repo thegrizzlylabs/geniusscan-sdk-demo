@@ -70,7 +70,7 @@ const App = () => {
                           // object.
                           // As an example, we show here how you can share the resulting PDF:
                           console.log(result);
-                          FileViewer.open(result.pdfUrl)
+                          FileViewer.open(result.multiPageDocumentUrl)
                             .then((res) => { console.log(res) })
                             .catch(e => alert(e));
                         })

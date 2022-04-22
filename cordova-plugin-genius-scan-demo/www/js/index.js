@@ -60,7 +60,7 @@ var app = {
           window.PreviewAnyFile.previewPath(
             function(result) { console.log("Successful share " + result); },
             function(error) { console.log("Error sharing document: " + error); },
-            result.pdfUrl
+            result.multiPageDocumentUrl
           );
         }, onError);
       });

@@ -143,7 +143,7 @@ final class PostProcessingViewController: UIViewController {
                 let configuration = GSKProcessingConfiguration(perspectiveCorrectionConfiguration: perspectiveCorrectionConfiguration,
                                                                curvatureCorrectionConfiguration: curvatureCorrectionConfiguration,
                                                                enhancementConfiguration: enhancementConfiguration,
-                                                               rotationConfiguration: nil,
+                                                               rotationConfiguration: .automatic(),
                                                                outputConfiguration: .default())
                 result = try GSKScanProcessor().processImage(self.scan.image, configuration: configuration)
             } catch {

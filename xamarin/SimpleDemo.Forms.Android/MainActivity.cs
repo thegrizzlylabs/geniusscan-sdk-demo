@@ -78,8 +78,8 @@ namespace SimpleDemo.Forms.Droid
                     currentTask?.TrySetException(new Exception(result.ErrorMessage));
                 } else
                 {
-                    var pdfUrl = result.Result["pdfUrl"].ToString();
-                    currentTask?.TrySetResult(pdfUrl);
+                    var multiPageDocumentUrl = result.Result["multiPageDocumentUrl"].ToString();
+                    currentTask?.TrySetResult(multiPageDocumentUrl);
                 }
                 
             }

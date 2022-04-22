@@ -28,6 +28,7 @@ final class EditFrameViewController: GSKEditFrameViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .black
+        frameView.magnifierView.centerStyle = .quadrangle
     }
 
     override func viewWillAppear(_ animated: Bool) {

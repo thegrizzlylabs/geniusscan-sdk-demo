@@ -18,6 +18,7 @@ public class Page implements Parcelable {
     private Quadrangle quadrangle;
     private FilterType filterType;
     private boolean distortionCorrectionEnabled = true;
+    private boolean automaticallyOriented = false;
 
     private Image originalImage;
     private Image enhancedImage;
@@ -58,6 +59,14 @@ public class Page implements Parcelable {
 
     public boolean isDistortionCorrectionEnabled() {
         return distortionCorrectionEnabled;
+    }
+
+    public boolean isAutomaticallyOriented() {
+        return automaticallyOriented;
+    }
+
+    public void setAutomaticallyOriented(boolean automaticallyOriented) {
+        this.automaticallyOriented = automaticallyOriented;
     }
 
     @Override

@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private ScanConfiguration createBaseConfiguration() {
         ScanConfiguration scanConfiguration = new ScanConfiguration();
         scanConfiguration.multiPage = true;
+        scanConfiguration.multiPageFormat = ScanConfiguration.MultiPageFormat.PDF;
         scanConfiguration.pdfPageSize = ScanConfiguration.PdfPageSize.FIT;
         scanConfiguration.pdfMaxScanDimension = 2000;
         scanConfiguration.jpegQuality = 60;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == ScanFlow.SCAN_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
             try {
                 ScanResult result = ScanFlow.getScanResultFromActivityResult(data);
-                Uri uri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".fileprovider", result.pdfFile);
+                Uri uri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".fileprovider", result.multiPageDocument);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);

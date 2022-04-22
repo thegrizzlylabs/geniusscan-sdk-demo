@@ -24,11 +24,11 @@ namespace SimpleDemo.Forms
         {
             try
             {
-                var pdfUrl = await scanFlow.StartScanning();
+                var documentUrl = await scanFlow.StartScanning();
 
                 await Share.RequestAsync(new ShareFileRequest
                 {
-                    File = new ShareFile(new Uri(pdfUrl).AbsolutePath),
+                    File = new ShareFile(new Uri(documentUrl).AbsolutePath),
                     Title = "Share PDF document"
                 });
             } catch (Exception e)

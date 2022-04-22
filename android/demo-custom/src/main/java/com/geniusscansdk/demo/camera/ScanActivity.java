@@ -7,11 +7,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.geniusscansdk.camera.FileImageCaptureCallback;
 import com.geniusscansdk.camera.FocusIndicator;
 import com.geniusscansdk.camera.ScanFragment;
 import com.geniusscansdk.camera.ScanFragmentLegacy;
@@ -110,7 +113,19 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
    }
 
    private void takePicture() {
-      scanFragment.takePicture(new File(page.getOriginalImage().getAbsolutePath(this)));
+      File outputFile = new File(page.getOriginalImage().getAbsolutePath(this));
+      scanFragment.takePicture(new FileImageCaptureCallback(outputFile) {
+         @Override
+         public void onImageCaptured(RotationAngle imageOrientation) {
+            new RotateTask(page, imageOrientation).execute();
+         }
+
+         @Override
+         public void onError(Exception e) {
+            Toast.makeText(ScanActivity.this, "Capture failed", Toast.LENGTH_SHORT).show();
+            Log.e(TAG, "Capture failed", e);
+         }
+      });
    }
 
    private void updateUserGuidance(QuadStreamAnalyzer.Result result) {
@@ -143,11 +158,6 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
          @Override
          public void onShutterTriggered() {}
-
-         @Override
-         public void onPictureTaken(int cameraOrientation, File outputFile) {
-            new RotateTask(page, RotationAngle.fromDegrees(cameraOrientation)).execute();
-         }
 
          @Override
          public void onPreviewFrame(byte[] bytes, int width, int height, int format) {
