@@ -38,7 +38,7 @@
     <engine name="android" spec="~10.1.1" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-preview-any-file" spec="^0.2.9" />
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@4.5.1">
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@4.5.2">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
     </plugin>
 </widget>
