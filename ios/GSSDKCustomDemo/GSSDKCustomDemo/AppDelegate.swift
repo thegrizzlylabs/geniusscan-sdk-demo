@@ -36,6 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cameraViewController = CameraViewController(cameraSession: cameraSession)!
 
         let navigationController = UINavigationController(rootViewController: cameraViewController)
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = appearance
+        }
+
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 

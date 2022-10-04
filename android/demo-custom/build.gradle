@@ -19,8 +19,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.geniusscansdk:gssdk-core:4.5.3'
-    implementation 'com.geniusscansdk:gssdk-ocr:4.5.3'
+    implementation 'com.geniusscansdk:gssdk-core:4.6.0'
+    implementation 'com.geniusscansdk:gssdk-ocr:4.6.0'
 
     implementation 'androidx.fragment:fragment:1.3.0'
     implementation 'androidx.appcompat:appcompat:1.2.0'

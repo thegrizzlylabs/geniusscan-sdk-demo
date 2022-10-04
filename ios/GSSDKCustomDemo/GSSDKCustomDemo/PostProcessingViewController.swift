@@ -46,11 +46,17 @@ final class PostProcessingViewController: UIViewController {
 
         view.backgroundColor = .black
 
-        imageView = UIImageView(frame: view.bounds)
-        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
+
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
 
         enhancementBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(edit))
 

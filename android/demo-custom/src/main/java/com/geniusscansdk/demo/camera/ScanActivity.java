@@ -17,7 +17,6 @@ import android.widget.Toast;
 import com.geniusscansdk.camera.FileImageCaptureCallback;
 import com.geniusscansdk.camera.FocusIndicator;
 import com.geniusscansdk.camera.ScanFragment;
-import com.geniusscansdk.camera.ScanFragmentLegacy;
 import com.geniusscansdk.camera.realtime.BorderDetector;
 import com.geniusscansdk.core.GeniusScanSDK;
 import com.geniusscansdk.core.LicenseException;
@@ -58,7 +57,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
       FocusIndicator focusIndicator = findViewById(R.id.focus_indicator);
 
-      scanFragment = new ScanFragmentLegacy(); // Or use ScanFragmentX for a CameraX implementation
+      scanFragment = ScanFragment.createBestForDevice();
       getSupportFragmentManager().beginTransaction().replace(R.id.scan_fragment_layout, scanFragment).commit();
 
       scanFragment.setPreviewAspectFill(false);
