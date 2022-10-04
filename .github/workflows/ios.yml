@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build-custom-demo:
-    runs-on: macos-latest
+    runs-on: macos-12
     defaults:
       run:
         working-directory: ios/GSSDKCustomDemo
@@ -15,7 +15,7 @@ jobs:
            ONLY_ACTIVE_ARCH=YES \
            CODE_SIGNING_ALLOWED="NO"
   build-simple-demo:
-    runs-on: macos-latest
+    runs-on: macos-12
     defaults:
       run:
         working-directory: ios/GSSDKSimpleDemo
