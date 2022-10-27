@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-12
     defaults:
       run:
         working-directory: cordova-plugin-genius-scan-demo

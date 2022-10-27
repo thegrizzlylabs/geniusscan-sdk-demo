@@ -4,7 +4,7 @@ on: push
 
 jobs:
   Android:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v1
     - name: Android
@@ -15,7 +15,7 @@ jobs:
         msbuild SimpleDemo.Forms.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
 
   iOS:
-    runs-on: macos-latest
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v1
     - name: iOS
