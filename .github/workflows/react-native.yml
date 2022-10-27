@@ -2,12 +2,13 @@ name: ReactNative
 
 on: push
 
+defaults:
+  run:
+    working-directory: react-native-genius-scan-demo
+
 jobs:
-  build:
-    runs-on: macos-12
-    defaults:
-      run:
-        working-directory: react-native-genius-scan-demo
+  android:
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-java@v1
@@ -16,5 +17,11 @@ jobs:
     - uses: actions/setup-node@v2
     - run: npm install
     - run: cd android && ./gradlew assembleRelease
+  ios:
+    runs-on: macos-12
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
+    - run: npm install
     - run: cd ios && pod install
     - run: cd ios && xcodebuild archive -workspace demo.xcworkspace -scheme demo CODE_SIGNING_ALLOWED=NO

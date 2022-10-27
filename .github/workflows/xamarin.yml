@@ -3,7 +3,7 @@ name: Xamarin
 on: push
 
 jobs:
-  Android:
+  android:
     runs-on: macos-12
     steps:
     - uses: actions/checkout@v1
@@ -14,7 +14,7 @@ jobs:
         cd SimpleDemo.Forms.Android
         msbuild SimpleDemo.Forms.Android.csproj /verbosity:normal /t:Rebuild /p:Configuration=Debug
 
-  iOS:
+  ios:
     runs-on: macos-12
     steps:
     - uses: actions/checkout@v1
