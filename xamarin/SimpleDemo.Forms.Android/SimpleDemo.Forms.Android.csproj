@@ -16,7 +16,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -56,7 +56,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-     <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="4.6.0" /> 
+     <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="4.7.0" /> 
     <PackageReference Include="Xamarin.AndroidX.Core">
       <Version>1.6.0.1</Version>
     </PackageReference>
@@ -112,6 +112,10 @@
       <Project>{F413BE92-A069-46F8-A5C3-472E7FC98DC7}</Project>
       <Name>SimpleDemo.Forms</Name>
     </ProjectReference>
+    <!-- <ProjectReference Include="..\..\GeniusScanSDK.Core.Android\GeniusScanSDK.Core.Android.csproj"> -->
+      <!-- <Project>{CE3EFF06-F399-4540-99F0-AF54C1ADFBC2}</Project> -->
+      <!-- <Name>GeniusScanSDK.Core.Android</Name> -->
+    <!-- </ProjectReference> -->
     <!-- <ProjectReference Include="..\..\GeniusScanSDK.ScanFlow.Android\GeniusScanSDK.ScanFlow.Android.csproj"> -->
       <!-- <Project>{C8518039-86C2-4310-B89B-8B5EF42A6614}</Project> -->
       <!-- <Name>GeniusScanSDK.ScanFlow.Android</Name> -->

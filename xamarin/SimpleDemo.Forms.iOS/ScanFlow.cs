@@ -2,6 +2,8 @@
 using UIKit;
 using Foundation;
 using GeniusScanSDK.ScanFlow;
+using System;
+using System.IO;
 
 // Register ScanFlow into Xamarin.Forms's Dependency Service
 [assembly: Xamarin.Forms.Dependency(typeof(SimpleDemo.Forms.iOS.ScanFlow))]
@@ -39,12 +41,36 @@ namespace SimpleDemo.Forms.iOS
             var viewController = UIApplication.SharedApplication.Delegate.GetWindow().RootViewController;
             scanFlow.StartFromViewController(viewController,
                 (GSKScanFlowResult result) => {
-                    // To get enhanced pages
-                    // var scans = (NSArray)result.Dictionary().ValueForKey(new NSString("scans"));
-                    // var scanUrl = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("enhancedUrl"));
+                    // Here is how you can access the resulting document:
 
                     var multiPageDocumentUrl = result.Dictionary().ValueForKey(new NSString("multiPageDocumentUrl"));
                     taskCompletionSource.TrySetResult(multiPageDocumentUrl.ToString());
+
+                    // You can also generate your document separately from selected pages:
+
+                    //var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    //var outputFileUrl = new NSString("file://" + Path.Combine(documents, "output.pdf"));
+                    //var generatorConfigurationDictionary = new NSMutableDictionary();
+                    //generatorConfigurationDictionary.Add(new NSString("outputFileUrl"), outputFileUrl);
+
+                    //var scans = (NSArray)result.Dictionary().ValueForKey(new NSString("scans"));
+                    //var scanUrl = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("enhancedUrl"));
+                    //var pageDictionary = new NSMutableDictionary();
+                    //pageDictionary.Add(new NSString("imageUrl"), scanUrl);
+
+                    //var pages = new NSMutableArray();
+                    //pages.Add(pageDictionary);
+
+                    //var documentDictionary = new NSMutableDictionary();
+                    //documentDictionary.Add(new NSString("pages"), pages);
+
+                    //var document = new GSKPDFDocument(documentDictionary, out outError);
+                    //var generatorConfiguration = new GSKDocumentGeneratorConfiguration(generatorConfigurationDictionary, out outError);
+                    //new GSKDocumentGenerator().Generate(document, generatorConfiguration, (NSError error) => {
+                    //        taskCompletionSource.TrySetException(new NSErrorException(error));
+                    //});
+
+                    //taskCompletionSource.TrySetResult(outputFileUrl);
 
                 },
                 (NSError error) => { taskCompletionSource.TrySetException(new NSErrorException(error)); }

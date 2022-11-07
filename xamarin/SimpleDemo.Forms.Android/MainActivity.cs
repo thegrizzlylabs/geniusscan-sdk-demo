@@ -7,8 +7,14 @@ using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
 using System.Threading.Tasks;
+using Com.Geniusscansdk;
+using Com.Geniusscansdk.Pdf;
+using GeniusScanSDK.Core;
 using GeniusScanSDK.Scanflow;
 using System.Collections.Generic;
+using Android.Nfc;
+using Android.Util;
+using System.IO;
 
 // Register MainActivity into Xamarin.Forms's Dependency Service
 [assembly: Xamarin.Forms.Dependency(typeof(SimpleDemo.Forms.Droid.MainActivity))]
@@ -53,39 +59,44 @@ namespace SimpleDemo.Forms.Droid
 
         public Task<string> StartScanning()
         {
-            var configuration = new Dictionary<string, Java.Lang.Object>
-            {
-                { "source", "camera" }
-            };
-            return StartScanning(configuration);
-        }
+            var configuration = new ScanConfiguration();
+            configuration.ScanSource = ScanConfiguration.Source.Camera;
 
-        private Task<string> StartScanning(IDictionary<string, Java.Lang.Object> configuration)
-        {
             currentTask = new TaskCompletionSource<string>();
-            PluginBridge.ScanWithConfiguration(Xamarin.Essentials.Platform.CurrentActivity, configuration);
-
+            ScanFlow.ScanWithConfiguration(Xamarin.Essentials.Platform.CurrentActivity, configuration);
             return currentTask.Task;
         }
 
         protected override void OnActivityResult(Int32 requestCode, Result resultCode, Intent data)
         {
-            try
+            if (requestCode == ScanFlow.ScanRequest && resultCode == Result.Ok && data != null)
             {
-                PromiseResult result = PluginBridge.GetPromiseResultFromActivityResult(this, requestCode, (int)resultCode, data);
-                if (result.IsError)
+                try
                 {
-                    currentTask?.TrySetException(new Exception(result.ErrorMessage));
-                } else
-                {
-                    var multiPageDocumentUrl = result.Result["multiPageDocumentUrl"].ToString();
-                    currentTask?.TrySetResult(multiPageDocumentUrl);
+                    // Here is how you can access the resulting document:
+
+                    ScanResult result = ScanFlow.GetScanResultFromActivityResult(data);
+                    currentTask?.TrySetResult(result.MultiPageDocument.AbsolutePath);
+
+                    // You can also generate your document separately from selected pages:
+                    //var imagePath = (result.Scans[0] as ScanResult.Scan).EnhancedImageFile.Path;
+                    //var pages = new List<PDFPage> { new PDFPage(imagePath, ScanConfiguration.PdfPageSize.Fit.ToPDFSize(), null) };
+                    //var document = new PDFDocument("title", null, null, new Java.Util.Date(), new Java.Util.Date(), pages);
+                    //var outputFilePath = Path.Combine(GetExternalFilesDir(null).Path, "output.pdf");
+                    //var configuration = new DocumentGenerator.Configuration();
+                    //configuration.OutputFile = new Java.IO.File(outputFilePath);
+                    //new DocumentGenerator().GenerateDocument(document, configuration);
+                    //currentTask?.TrySetResult(outputFilePath);
+
                 }
-                
+                catch (Exception e)
+                {
+                    currentTask?.TrySetException(new Exception(e.Message));
+                }
             }
-            catch (Exception e)
+            else
             {
-                currentTask?.TrySetException(e);
+                currentTask?.TrySetException(new Exception("Scan was cancelled"));
             }
         }
     }

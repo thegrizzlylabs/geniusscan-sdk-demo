@@ -76,7 +76,7 @@ const App = () => {
                     console.log(scanResult);
 
                     // Here is how you can display the resulting document:
-                    await FileViewer.open(result.multiPageDocumentUrl)
+                    await FileViewer.open(scanResult.multiPageDocumentUrl)
 
                     // You can also generate your document separately from selected pages:
                     /*
