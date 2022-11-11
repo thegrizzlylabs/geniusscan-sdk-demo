@@ -10,9 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@thegrizzlylabs/react-native-genius-scan": "^4.7.1",
-    "react": "17.0.2",
-    "react-native": "0.66.0",
+    "@thegrizzlylabs/react-native-genius-scan": "^4.7.2",
+    "react": "18.1.0",
+    "react-native": "^0.70.5",
     "react-native-file-viewer": "^2.1.4",
     "react-native-fs": "^2.17"
   },
@@ -21,10 +21,10 @@
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
-    "eslint": "7.14.0",
+    "eslint": "^7.32.0",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.64.0",
-    "react-test-renderer": "17.0.1"
+    "metro-react-native-babel-preset": "0.72.3",
+    "react-test-renderer": "18.1.0"
   },
   "jest": {
     "preset": "react-native"

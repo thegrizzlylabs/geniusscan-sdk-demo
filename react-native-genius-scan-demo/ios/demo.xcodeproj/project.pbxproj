@@ -180,8 +180,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				3A991617E1C2F7EBAC7E2C06 /* [CP] Embed Pods Frameworks */,
 				F305202AF87FA2BC2659DC9D /* [CP] Copy Pods Resources */,
+				F10D7995C11728F8BD0D3FFC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -204,8 +204,8 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				F0D5372622CE37C600281EE9 /* Embed Frameworks */,
-				072F8CB0129F32B0466F3213 /* [CP] Embed Pods Frameworks */,
 				442CFCB1A50A042D0A462D8C /* [CP] Copy Pods Resources */,
+				86B58A3A15772BA025A6605A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -289,50 +289,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		072F8CB0129F32B0466F3213 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKCore/GSSDKCore.framework/GSSDKCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKScanFlow/GSSDKScanFlow.framework/GSSDKScanFlow",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKOCR/GSSDKOCR.framework/GSSDKOCR",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3A991617E1C2F7EBAC7E2C06 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-demo-demoTests/Pods-demo-demoTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKCore/GSSDKCore.framework/GSSDKCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKScanFlow/GSSDKScanFlow.framework/GSSDKScanFlow",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKOCR/GSSDKOCR.framework/GSSDKOCR",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo-demoTests/Pods-demo-demoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		442CFCB1A50A042D0A462D8C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,6 +305,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		86B58A3A15772BA025A6605A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKCore.framework/GSSDKCore",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKScanFlow.framework/GSSDKScanFlow",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKOCR.framework/GSSDKOCR",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BBC6F0B456ABDC32BD6DB363 /* [CP] Check Pods Manifest.lock */ = {
@@ -371,6 +351,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F10D7995C11728F8BD0D3FFC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-demo-demoTests/Pods-demo-demoTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKCore.framework/GSSDKCore",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKScanFlow.framework/GSSDKScanFlow",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKOCR.framework/GSSDKOCR",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-demo-demoTests/Pods-demo-demoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F305202AF87FA2BC2659DC9D /* [CP] Copy Pods Resources */ = {
