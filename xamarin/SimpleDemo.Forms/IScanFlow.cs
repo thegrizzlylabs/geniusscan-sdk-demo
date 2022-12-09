@@ -6,6 +6,6 @@ namespace SimpleDemo.Forms
 
         Task Init(string licenseKey);
 
-        Task<string> StartScanning();
+        Task<string> StartScanning(string languagesDirectoryUrl);
     }
 }

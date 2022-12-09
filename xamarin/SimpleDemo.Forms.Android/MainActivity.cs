@@ -12,9 +12,6 @@ using Com.Geniusscansdk.Pdf;
 using GeniusScanSDK.Core;
 using GeniusScanSDK.Scanflow;
 using System.Collections.Generic;
-using Android.Nfc;
-using Android.Util;
-using System.IO;
 
 // Register MainActivity into Xamarin.Forms's Dependency Service
 [assembly: Xamarin.Forms.Dependency(typeof(SimpleDemo.Forms.Droid.MainActivity))]
@@ -57,10 +54,15 @@ namespace SimpleDemo.Forms.Droid
             }
         }
 
-        public Task<string> StartScanning()
+        public Task<string> StartScanning(string languagesDirectoryUrl)
         {
+            var ocrConfiguration = new ScanConfiguration.OcrConfiguration();
+            ocrConfiguration.Languages = new List<String> { "eng" };
+            ocrConfiguration.LanguagesDirectory = new Java.IO.File(Android.Net.Uri.Parse(languagesDirectoryUrl).Path);
+
             var configuration = new ScanConfiguration();
             configuration.ScanSource = ScanConfiguration.Source.Camera;
+            configuration.ScanOcrConfiguration = ocrConfiguration;
 
             currentTask = new TaskCompletionSource<string>();
             ScanFlow.ScanWithConfiguration(Xamarin.Essentials.Platform.CurrentActivity, configuration);

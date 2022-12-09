@@ -24,10 +24,16 @@ namespace SimpleDemo.Forms.iOS
             return taskCompletionSource.Task;
         }
 
-        public Task<string> StartScanning()
+        public Task<string> StartScanning(string languagesDirectoryUrl)
         {
+            var ocrConfiguration = new NSMutableDictionary();
+            ocrConfiguration.Add(new NSString("languages"), NSArray.FromStrings(new string[] { "eng" }));
+            ocrConfiguration.Add(new NSString("languagesDirectoryUrl"), new NSString(languagesDirectoryUrl));
+
             var configuration = new NSMutableDictionary();
             configuration.Add(new NSString("source"), new NSString("camera"));
+            configuration.Add(new NSString("ocrConfiguration"), ocrConfiguration);
+
             return StartScanning(configuration);
         }
 

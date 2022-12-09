@@ -186,12 +186,11 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       @Override
       protected Void doInBackground(Void... params) {
          String path = page.getOriginalImage().getAbsolutePath(ScanActivity.this);
-         if (rotationAngle != RotationAngle.ROTATION_0) {
-            try {
-               GeniusScanSDK.rotateImage(path, path, rotationAngle);
-            } catch (Exception e) {
-               exception = e;
-            }
+         // Even if rotation angle is 0, we perform a rotation to apply exif orientation
+         try {
+            GeniusScanSDK.rotateImage(path, path, rotationAngle);
+         } catch (Exception e) {
+            exception = e;
          }
 
          return null;

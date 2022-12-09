@@ -56,11 +56,10 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-     <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="4.7.3" /> 
+     <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="4.7.4" /> 
     <!-- The packages below need to be added manually because of a version conflict between the ScanFlow and Xamarin.Forms -->
     <PackageReference Include="Xamarin.AndroidX.Core" Version="1.8.0.1" />
     <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData" Version="2.5.0" />
-
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -116,6 +115,10 @@
     <!-- <ProjectReference Include="..\..\GeniusScanSDK.Core.Android\GeniusScanSDK.Core.Android.csproj"> -->
       <!-- <Project>{CE3EFF06-F399-4540-99F0-AF54C1ADFBC2}</Project> -->
       <!-- <Name>GeniusScanSDK.Core.Android</Name> -->
+    <!-- </ProjectReference> -->
+    <!-- <ProjectReference Include="..\..\GeniusScanSDK.OCR.Android\GeniusScanSDK.OCR.Android.csproj"> -->
+      <!-- <Project>{A594DD98-1E41-4FF6-9AD3-6AA43DC7F0E2}</Project> -->
+      <!-- <Name>GeniusScanSDK.OCR.Android</Name> -->
     <!-- </ProjectReference> -->
     <!-- <ProjectReference Include="..\..\GeniusScanSDK.ScanFlow.Android\GeniusScanSDK.ScanFlow.Android.csproj"> -->
       <!-- <Project>{C8518039-86C2-4310-B89B-8B5EF42A6614}</Project> -->

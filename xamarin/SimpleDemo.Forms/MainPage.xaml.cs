@@ -1,6 +1,10 @@
 ﻿using System;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace SimpleDemo.Forms
 {
@@ -24,17 +28,35 @@ namespace SimpleDemo.Forms
         {
             try
             {
-                var documentUrl = await scanFlow.StartScanning();
-
-                await Share.RequestAsync(new ShareFileRequest
+                var appFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                var languageFilePath = Path.Combine(appFolder, "eng.traineddata");
+                Console.WriteLine(languageFilePath);
+                if (!File.Exists(languageFilePath))
                 {
-                    File = new ShareFile(new Uri(documentUrl).AbsolutePath),
-                    Title = "Share PDF document"
+                    await DownloadFileAsync("https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata", languageFilePath);
+                }
+
+                var documentUrl = await scanFlow.StartScanning("file://" + appFolder);
+
+                await Launcher.OpenAsync(new OpenFileRequest
+                {
+                    File = new ReadOnlyFile(new Uri(documentUrl).AbsolutePath)
                 });
             } catch (Exception e)
             {
                 await DisplayAlert("Alert", "Error: " + e.Message, "OK");
             }
+        }
+
+        private async Task DownloadFileAsync(string fileUrl, string downloadedFilePath)
+        {
+            var client = new HttpClient();
+
+            var downloadStream = await client.GetStreamAsync(fileUrl);
+
+            var fileStream = File.Create(downloadedFilePath);
+
+            await downloadStream.CopyToAsync(fileStream);
         }
     }
 }
