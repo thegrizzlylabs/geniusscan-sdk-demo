@@ -1,40 +1,38 @@
 package com.geniusscansdk.demo.model;
 
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.geniusscansdk.core.FilterType;
 import com.geniusscansdk.core.Quadrangle;
 
-import java.util.UUID;
+import java.io.File;
+import java.io.Serializable;
 
-/**
- * Created by guillaume on 29/09/16.
- */
+public class Page implements Serializable {
 
-public class Page implements Parcelable {
+    public Page(File originalImage) {
+        this.originalImage = originalImage;
+    }
 
+    private final File originalImage;
+    private File enhancedImage;
     private Quadrangle quadrangle;
     private FilterType filterType;
     private boolean distortionCorrectionEnabled = true;
     private boolean automaticallyOriented = false;
 
-    private Image originalImage;
-    private Image enhancedImage;
-
-    public Page() {
-        String uuid = UUID.randomUUID().toString();
-        originalImage = new Image(uuid + "original.jpg");
-        enhancedImage = new Image(uuid + "enhanced.jpg");
-    }
-
-    public Image getOriginalImage() {
+    public File getOriginalImage() {
         return originalImage;
     }
 
-    public Image getEnhancedImage() {
+    public File getEnhancedImage() {
         return enhancedImage;
+    }
+
+    public void setEnhancedImage(File enhancedImage) {
+        if (this.enhancedImage != null) {
+            this.enhancedImage.delete();
+        }
+        this.enhancedImage = enhancedImage;
     }
 
     public void setQuadrangle(Quadrangle quadrangle) {
@@ -67,36 +65,5 @@ public class Page implements Parcelable {
 
     public void setAutomaticallyOriented(boolean automaticallyOriented) {
         this.automaticallyOriented = automaticallyOriented;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Parcelable.Creator<Page> CREATOR
-            = new Parcelable.Creator<Page>() {
-        public Page createFromParcel(Parcel in) {
-            return new Page(in);
-        }
-
-        public Page[] newArray(int size) {
-            return new Page[size];
-        }
-    };
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(quadrangle, 0);
-        dest.writeSerializable(filterType);
-        dest.writeParcelable(originalImage, 0);
-        dest.writeParcelable(enhancedImage, 0);
-    }
-
-    private Page(Parcel in) {
-        quadrangle = in.readParcelable(Quadrangle.class.getClassLoader());
-        filterType = (FilterType) in.readSerializable();
-        originalImage = in.readParcelable(Image.class.getClassLoader());
-        enhancedImage = in.readParcelable(Image.class.getClassLoader());
     }
 }

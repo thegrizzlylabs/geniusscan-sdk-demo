@@ -26,7 +26,7 @@ class AnalyzeAsyncTask extends AsyncTask<Page, Void, Quadrangle> {
    protected Quadrangle doInBackground(Page... params) {
       try {
          Page scanContainer = params[0];
-         File imageFile = new File(scanContainer.getOriginalImage().getAbsolutePath(context));
+         File imageFile = scanContainer.getOriginalImage();
          return documentDetector.detectDocument(imageFile);
       } catch (Exception e) {
          error = e;

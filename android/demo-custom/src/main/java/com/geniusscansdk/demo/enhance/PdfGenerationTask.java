@@ -98,7 +98,7 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
         int pageIndex = 0;
         for (Page page : pages) {
             pageProgress = pageIndex * 100 / pages.size();
-            File image = page.getEnhancedImage().getFile(context);
+            File image = page.getEnhancedImage();
 
             TextLayout textLayout = null;
             if (isOCREnabled) {

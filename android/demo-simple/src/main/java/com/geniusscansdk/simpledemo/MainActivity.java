@@ -17,7 +17,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.EnumSet;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RawRes;
@@ -25,9 +24,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-
-import static com.geniusscansdk.scanflow.ScanConfiguration.Action.EDIT_FILTER;
-import static com.geniusscansdk.scanflow.ScanConfiguration.Action.ROTATE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         scanConfiguration.pdfPageSize = ScanConfiguration.PdfPageSize.FIT;
         scanConfiguration.pdfMaxScanDimension = 2000;
         scanConfiguration.jpegQuality = 60;
-        scanConfiguration.postProcessingActions = EnumSet.of(ROTATE, EDIT_FILTER);
+        scanConfiguration.postProcessingActions = ScanConfiguration.Action.ALL;
         scanConfiguration.flashButtonHidden = false;
         scanConfiguration.defaultFlashMode = ScanConfiguration.FlashMode.AUTO;
         scanConfiguration.backgroundColor = Color.WHITE;

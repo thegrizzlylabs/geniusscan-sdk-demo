@@ -48,7 +48,7 @@ public class BorderDetectionActivity extends AppCompatActivity {
    @Override
    protected void onResume() {
       super.onResume();
-      String filename = page.getOriginalImage().getAbsolutePath(this);
+      String filename = page.getOriginalImage().getAbsolutePath();
       BitmapFactory.Options opts = new BitmapFactory.Options();
       opts.inSampleSize = 2;
 

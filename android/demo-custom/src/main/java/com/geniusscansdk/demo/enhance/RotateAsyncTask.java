@@ -28,7 +28,8 @@ class RotateAsyncTask extends AsyncTask<Page, Void, Void> {
          if (scanContainer.getQuadrangle() != null) {
             scanContainer.setQuadrangle(scanContainer.getQuadrangle().rotate(angle));
          }
-         GeniusScanSDK.rotateImage(scanContainer.getOriginalImage().getAbsolutePath(context), scanContainer.getOriginalImage().getAbsolutePath(context), angle);
+         String imagePath = scanContainer.getOriginalImage().getAbsolutePath();
+         GeniusScanSDK.rotateImage(imagePath, imagePath, angle);
 
 
          // original image was rotated, let's reprocess it

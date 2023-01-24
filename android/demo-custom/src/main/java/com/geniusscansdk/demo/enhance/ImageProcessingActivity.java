@@ -16,8 +16,9 @@ import com.geniusscansdk.core.RotationAngle;
 import com.geniusscansdk.demo.MainActivity;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.model.DocumentManager;
-import com.geniusscansdk.demo.model.Image;
 import com.geniusscansdk.demo.model.Page;
+
+import java.io.File;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -55,7 +56,7 @@ public class ImageProcessingActivity extends AppCompatActivity {
    }
 
    private void updateDistortionCorrectionButton() {
-      distortionCorrectionButton.setImageResource(page.isDistortionCorrectionEnabled() ? R.drawable.ic_grid_on_white_24dp : R.drawable.ic_grid_off_white_24dp);
+      distortionCorrectionButton.setImageResource(page.isDistortionCorrectionEnabled() ? R.drawable.straightened_distortion_grid : R.drawable.distortion_grid);
    }
 
    private void endEnhance() {
@@ -124,10 +125,10 @@ public class ImageProcessingActivity extends AppCompatActivity {
       displayScan(page.getEnhancedImage());
    }
 
-   private void displayScan(Image scan) {
+   private void displayScan(File imageFile) {
       Options opts = new Options();
       opts.inSampleSize = 2;
-      Bitmap bitmap = BitmapFactory.decodeFile(scan.getAbsolutePath(this), opts);
+      Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath(), opts);
       imageView.setImageBitmap(bitmap);
       imageView.invalidate();
    }

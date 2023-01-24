@@ -27,6 +27,7 @@ import com.geniusscansdk.demo.model.Page;
 import com.geniusscansdk.demo.processing.BorderDetectionActivity;
 
 import java.io.File;
+import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +40,6 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
    private ScanFragment scanFragment;
    private TextView userGuidanceTextView;
-   private Page page;
 
    private boolean cameraPermissionGranted = false;
 
@@ -84,8 +84,6 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
          }
       });
 
-      page = new Page();
-
       cameraPermissionGranted = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
       if (!cameraPermissionGranted) {
          ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, PERMISSION_REQUEST_CODE);
@@ -112,10 +110,11 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
    }
 
    private void takePicture() {
-      File outputFile = new File(page.getOriginalImage().getAbsolutePath(this));
+      File outputFile = new File(getExternalFilesDir(null), UUID.randomUUID().toString() + ".jpeg");
       scanFragment.takePicture(new FileImageCaptureCallback(outputFile) {
          @Override
          public void onImageCaptured(RotationAngle imageOrientation) {
+            Page page = new Page(outputFile);
             new RotateTask(page, imageOrientation).execute();
          }
 
@@ -185,7 +184,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
       @Override
       protected Void doInBackground(Void... params) {
-         String path = page.getOriginalImage().getAbsolutePath(ScanActivity.this);
+         String path = page.getOriginalImage().getAbsolutePath();
          // Even if rotation angle is 0, we perform a rotation to apply exif orientation
          try {
             GeniusScanSDK.rotateImage(path, path, rotationAngle);
