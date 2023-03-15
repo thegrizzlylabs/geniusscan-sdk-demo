@@ -12,6 +12,7 @@ using Com.Geniusscansdk.Pdf;
 using GeniusScanSDK.Core;
 using GeniusScanSDK.Scanflow;
 using System.Collections.Generic;
+using System.IO;
 
 // Register MainActivity into Xamarin.Forms's Dependency Service
 [assembly: Xamarin.Forms.Dependency(typeof(SimpleDemo.Forms.Droid.MainActivity))]
@@ -81,14 +82,17 @@ namespace SimpleDemo.Forms.Droid
                     currentTask?.TrySetResult(result.MultiPageDocument.AbsolutePath);
 
                     // You can also generate your document separately from selected pages:
-                    //var imagePath = (result.Scans[0] as ScanResult.Scan).EnhancedImageFile.Path;
-                    //var pages = new List<PDFPage> { new PDFPage(imagePath, ScanConfiguration.PdfPageSize.Fit.ToPDFSize(), null) };
-                    //var document = new PDFDocument("title", null, null, new Java.Util.Date(), new Java.Util.Date(), pages);
-                    //var outputFilePath = Path.Combine(GetExternalFilesDir(null).Path, "output.pdf");
-                    //var configuration = new DocumentGenerator.Configuration();
-                    //configuration.OutputFile = new Java.IO.File(outputFilePath);
-                    //new DocumentGenerator().GenerateDocument(document, configuration);
-                    //currentTask?.TrySetResult(outputFilePath);
+                    /*
+                    var imagePath = (result.Scans[0] as ScanResult.Scan).EnhancedImageFile.Path;
+                    var hocr = (result.Scans[0] as ScanResult.Scan).OcrResult.HocrTextLayout;
+                    var pages = new List<PDFPage> { new PDFPage(imagePath, ScanConfiguration.PdfPageSize.Fit.ToPDFSize(), new TextLayout(hocr)) };
+                    var document = new PDFDocument("title", null, null, new Java.Util.Date(), new Java.Util.Date(), pages);
+                    var outputFilePath = Path.Combine(GetExternalFilesDir(null).Path, "output.pdf");
+                    var configuration = new DocumentGenerator.Configuration();
+                    configuration.OutputFile = new Java.IO.File(outputFilePath);
+                    new DocumentGenerator().GenerateDocument(document, configuration);
+                    currentTask?.TrySetResult(outputFilePath);
+                    */
 
                 }
                 catch (Exception e)

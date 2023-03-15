@@ -1,0 +1,14 @@
+apply plugin: 'firebase.test.lab'
+
+firebaseTestLab {
+    keyFile = file("$rootProject.projectDir/google-credentials.json")
+    googleProjectId = "genius-scan-sdk"
+
+    devices {
+        pixel2 {
+            deviceIds = ["Pixel2"]
+            androidApiLevels = [30]
+            isUseOrchestrator = true
+        }
+    }
+}

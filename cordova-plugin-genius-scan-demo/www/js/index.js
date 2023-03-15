@@ -8,8 +8,10 @@ function copy(filepath, toDirectory, filename, callback) {
       dirEntry.getFile(filename, { create: true, exclusive: false }, function(targetFileEntry) {
         fileEntry.file(function(file) {
           targetFileEntry.createWriter(function(fileWriter) {
+            fileWriter.onwriteend = function() {
+                callback();
+            };
             fileWriter.write(file);
-            callback();
           });
         });
       }, onError);
@@ -70,7 +72,10 @@ var app = {
           /*
           const documentUrl = appFolder + 'mydocument.pdf'
           const document = {
-            pages: [{ imageUrl: result.scans[0].enhancedUrl }]
+            pages: [{
+              imageUrl: result.scans[0].enhancedUrl,
+              hocrTextLayout: scanResult.scans[0].ocrResult.hocrTextLayout
+            }]
           };
           const documentGenerationConfiguration = { outputFileUrl: documentUrl };
           cordova.plugins.GeniusScan.generateDocument(document, documentGenerationConfiguration, function onSuccess(result) {

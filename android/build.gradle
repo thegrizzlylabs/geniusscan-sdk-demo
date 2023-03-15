@@ -10,6 +10,12 @@ buildscript {
             }
         }
         maven {
+            url "https://plugins.gradle.org/m2/"
+            content {
+                includeModule('firebase.test.lab', 'plugin')
+            }
+        }
+        maven {
             url 'https://s3.amazonaws.com/tgl.maven'
             content {
                 includeModule('com.twilio', 'apkscale')
@@ -21,6 +27,7 @@ buildscript {
         // Patch until apkscale is fixed: https://github.com/twilio/apkscale/issues/10
         classpath "com.twilio:apkscale:0.0.100"
         classpath "androidx.benchmark:benchmark-gradle-plugin:1.0.0"
+        classpath "firebase.test.lab:plugin:2.6.2"
     }
 }
 
@@ -40,7 +47,7 @@ allprojects {
 
 ext {
     ndkVersion = '25.1.8937393'
-    compileSdkVersion = 31
-    targetSdkVersion = 31
+    compileSdkVersion = 33
+    targetSdkVersion = 33
     minSdkVersion = 21
 }

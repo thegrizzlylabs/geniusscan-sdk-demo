@@ -60,7 +60,10 @@ class MyScaffoldBody extends StatelessWidget {
           var appFolder = await getApplicationDocumentsDirectory();
           var documentUrl = appFolder.path + '/mydocument.pdf';
           var document = {
-            'pages': [{ 'imageUrl': scanResult['scans'][0]['enhancedUrl'] }]
+            'pages': [{
+              'imageUrl': scanResult['scans'][0]['enhancedUrl'] ,
+              'hocrTextLayout': scanResult.['scans'][0].['ocrResult'].['hocrTextLayout']
+            }]
           };
           var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };
           await FlutterGeniusScan.generateDocument(document, documentGenerationConfiguration);

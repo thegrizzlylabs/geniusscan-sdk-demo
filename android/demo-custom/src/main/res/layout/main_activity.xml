@@ -24,7 +24,7 @@
         android:text="@string/open_camera"
         />
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/ocr_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -82,7 +82,10 @@ const App = () => {
                     /*
                     const documentUrl = 'file://' + appFolder + '/mydocument.pdf'
                     const document = {
-                      pages: [{ imageUrl: scanResult.scans[0].enhancedUrl }]
+                      pages: [{
+                        imageUrl: scanResult.scans[0].enhancedUrl,
+                        hocrTextLayout: scanResult.scans[0].ocrResult.hocrTextLayout
+                      }]
                     }
                     const generationConfiguration = { outputFileUrl: documentUrl };
                     await RNGeniusScan.generateDocument(document, generationConfiguration)

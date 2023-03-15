@@ -1,13 +1,15 @@
 package com.geniusscansdk.demo.model;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.geniusscansdk.core.FilterType;
 import com.geniusscansdk.core.Quadrangle;
 
 import java.io.File;
-import java.io.Serializable;
 
-public class Page implements Serializable {
+public class Page implements Parcelable {
 
     public Page(File originalImage) {
         this.originalImage = originalImage;
@@ -66,4 +68,41 @@ public class Page implements Serializable {
     public void setAutomaticallyOriented(boolean automaticallyOriented) {
         this.automaticallyOriented = automaticallyOriented;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(originalImage.getAbsolutePath());
+        dest.writeString(enhancedImage == null ? "" : enhancedImage.getAbsolutePath());
+        dest.writeParcelable(quadrangle, flags);
+        dest.writeSerializable(filterType);
+        dest.writeByte((byte) (distortionCorrectionEnabled ? 1 : 0));
+        dest.writeByte((byte) (automaticallyOriented ? 1 : 0));
+    }
+
+    protected Page(Parcel in) {
+        originalImage = new File(in.readString());
+        String enhancedImagePath = in.readString();
+        enhancedImage = enhancedImagePath.isEmpty() ? null : new File(enhancedImagePath);
+        quadrangle = in.readParcelable(Quadrangle.class.getClassLoader());
+        filterType = (FilterType) in.readSerializable();
+        distortionCorrectionEnabled = in.readByte() != 0;
+        automaticallyOriented = in.readByte() != 0;
+    }
+
+    public static final Parcelable.Creator<Page> CREATOR = new Parcelable.Creator<Page>() {
+        @Override
+        public Page createFromParcel(Parcel in) {
+            return new Page(in);
+        }
+
+        @Override
+        public Page[] newArray(int size) {
+            return new Page[size];
+        }
+    };
 }

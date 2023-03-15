@@ -7,7 +7,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
+import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.scanflow.ScanConfiguration;
 import com.geniusscansdk.scanflow.ScanFlow;
 import com.geniusscansdk.scanflow.ScanResult;
@@ -35,9 +37,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("GS SDK Simple Demo");
 
         findViewById(R.id.scan_camera_button).setOnClickListener(view -> scanFromCamera());
         findViewById(R.id.scan_image_button).setOnClickListener(view -> scanFromImage());
+        findViewById(R.id.photo_picker_button).setOnClickListener(view -> scanFromPicker());
+
+        TextView appVersionView = findViewById(R.id.app_version);
+        appVersionView.setText("v" + BuildConfig.VERSION_NAME + " (" + BuildConfig.VERSION_CODE + ")");
     }
 
     private ScanConfiguration createBaseConfiguration() {
@@ -59,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         ocrConfiguration.languagesDirectory = getTessdataDirectory();
 
         scanConfiguration.ocrConfiguration = ocrConfiguration;
-        // FIXME : Avoid copying tessdata files in every demo apps.
         copyFileFromResource(R.raw.eng, new File(getTessdataDirectory(), "eng.traineddata"));
 
         return scanConfiguration;
@@ -78,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
         scanConfiguration.sourceImage = new File(getExternalCacheDir(), "temp.jpg");
         copyFileFromResource(R.raw.scan, scanConfiguration.sourceImage);
 
+        startScanning(scanConfiguration);
+    }
+
+    private void scanFromPicker() {
+        ScanConfiguration scanConfiguration = createBaseConfiguration();
+        scanConfiguration.source = ScanConfiguration.Source.GALLERY;
         startScanning(scanConfiguration);
     }
 
@@ -138,6 +150,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
+            } catch (LicenseException e) {
+                new AlertDialog.Builder(this)
+                        .setMessage(e.getMessage())
+                        .setPositiveButton("Restart", (dialog, which) -> restartApp())
+                        .show();
             } catch (Exception e) {
                 Log.e(TAG, "Error during scan flow", e);
                 new AlertDialog.Builder(this)
@@ -147,5 +164,14 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void restartApp() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+
+        Runtime.getRuntime().exit(0);
     }
 }

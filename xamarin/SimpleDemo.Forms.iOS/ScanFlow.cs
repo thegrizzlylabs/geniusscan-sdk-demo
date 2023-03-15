@@ -54,29 +54,33 @@ namespace SimpleDemo.Forms.iOS
 
                     // You can also generate your document separately from selected pages:
 
-                    //var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                    //var outputFileUrl = new NSString("file://" + Path.Combine(documents, "output.pdf"));
-                    //var generatorConfigurationDictionary = new NSMutableDictionary();
-                    //generatorConfigurationDictionary.Add(new NSString("outputFileUrl"), outputFileUrl);
+                    /*
+                    var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    var outputFileUrl = new NSString("file://" + Path.Combine(documents, "output.pdf"));
+                    var generatorConfigurationDictionary = new NSMutableDictionary();
+                    generatorConfigurationDictionary.Add(new NSString("outputFileUrl"), outputFileUrl);
 
-                    //var scans = (NSArray)result.Dictionary().ValueForKey(new NSString("scans"));
-                    //var scanUrl = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("enhancedUrl"));
-                    //var pageDictionary = new NSMutableDictionary();
-                    //pageDictionary.Add(new NSString("imageUrl"), scanUrl);
+                    var scans = (NSArray)result.Dictionary().ValueForKey(new NSString("scans"));
+                    var scanUrl = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("enhancedUrl"));
+                    var hocr = scans.GetItem<NSDictionary>(0).ValueForKey(new NSString("ocrResult")).ValueForKey(new NSString("hocrTextLayout"));
+                    var pageDictionary = new NSMutableDictionary();
+                    pageDictionary.Add(new NSString("imageUrl"), scanUrl);
+                    pageDictionary.Add(new NSString("hocrTextLayout"), hocr);
 
-                    //var pages = new NSMutableArray();
-                    //pages.Add(pageDictionary);
+                    var pages = new NSMutableArray();
+                    pages.Add(pageDictionary);
 
-                    //var documentDictionary = new NSMutableDictionary();
-                    //documentDictionary.Add(new NSString("pages"), pages);
+                    var documentDictionary = new NSMutableDictionary();
+                    documentDictionary.Add(new NSString("pages"), pages);
 
-                    //var document = new GSKPDFDocument(documentDictionary, out outError);
-                    //var generatorConfiguration = new GSKDocumentGeneratorConfiguration(generatorConfigurationDictionary, out outError);
-                    //new GSKDocumentGenerator().Generate(document, generatorConfiguration, (NSError error) => {
-                    //        taskCompletionSource.TrySetException(new NSErrorException(error));
-                    //});
+                    var document = new GSKPDFDocument(documentDictionary, out outError);
+                    var generatorConfiguration = new GSKDocumentGeneratorConfiguration(generatorConfigurationDictionary, out outError);
+                    new GSKDocumentGenerator().Generate(document, generatorConfiguration, (NSError error) => {
+                           taskCompletionSource.TrySetException(new NSErrorException(error));
+                    });
 
-                    //taskCompletionSource.TrySetResult(outputFileUrl);
+                    taskCompletionSource.TrySetResult(outputFileUrl);
+                    */
 
                 },
                 (NSError error) => { taskCompletionSource.TrySetException(new NSErrorException(error)); }

@@ -80,6 +80,11 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
         OcrProcessor ocrProcessor = null;
 
         if (isOCREnabled) {
+            try {
+                copyTessdataFiles();
+            } catch (IOException e) {
+                return new IOException("Cannot copy tessdata", e);
+            }
             OcrConfiguration ocrConfiguration = new OcrConfiguration(Arrays.asList("eng"), getTessdataDirectory());
             ocrProcessor = new OcrProcessor(context, ocrConfiguration, new OCREngineProgressListener() {
                 @Override
@@ -87,11 +92,6 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
                     publishProgress(pageProgress + progress / pages.size());
                 }
             });
-            try {
-                copyTessdataFiles();
-            } catch (IOException e) {
-                return new IOException("Cannot copy tessdata", e);
-            }
         }
 
         ArrayList<PDFPage> pdfPages = new ArrayList<>();

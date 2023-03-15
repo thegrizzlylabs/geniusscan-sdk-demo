@@ -2,7 +2,7 @@
     package="com.geniusscansdk.flutter_genius_scan_example">
     
     <application
-        android:label="GS SDK Flutter"
+        android:label="Flutter Demo"
         android:icon="@mipmap/ic_launcher">
 
         <activity
