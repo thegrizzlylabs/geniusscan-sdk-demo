@@ -82,7 +82,7 @@ packages:
       name: flutter_genius_scan
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.9.0"
+    version: "4.10.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
