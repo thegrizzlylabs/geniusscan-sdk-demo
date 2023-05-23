@@ -37,15 +37,20 @@ class MyScaffoldBody extends StatelessWidget {
           // Copy OCR language file
           var languageFolder = await copyLanguageFile();
 
+          var imageFile = await copyImage();
+          var fontFile = await copyFont();
+
           // Initialize with your licence key
           // await FlutterGeniusScan.setLicenceKey('REPLACE_WITH_YOUR_LICENCE_KEY')
 
           // Start scan flow
           var scanConfiguration = {
-            'source': 'camera',
+            'source': 'image',
+            'sourceImageUrl': imageFile.path,
             'multiPage': true,
+            'pdfFontFileUrl': fontFile.path,
             'ocrConfiguration': {
-              'languages': ['eng'],
+              'languages': ['hun'],
               'languagesDirectoryUrl': languageFolder.path
             }
           };
@@ -80,13 +85,35 @@ class MyScaffoldBody extends StatelessWidget {
 
   Future<Directory> copyLanguageFile() async {
     Directory languageFolder = await getApplicationSupportDirectory();
-    File languageFile = File(languageFolder.path + "/eng.traineddata");
+    File languageFile = File(languageFolder.path + "/hun.traineddata");
     if (!languageFile.existsSync()) {
-      ByteData data = await rootBundle.load("assets/eng.traineddata");
+      ByteData data = await rootBundle.load("assets/hun.traineddata");
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await languageFile.writeAsBytes(bytes);
     }
     return languageFolder;
+  }
+
+  Future<File> copyImage() async {
+    Directory folder = await getApplicationSupportDirectory();
+    File imageFile = File(folder.path + "/hun_image.png");
+    if (!imageFile.existsSync()) {
+      ByteData data = await rootBundle.load("assets/hun_image.png");
+      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      await imageFile.writeAsBytes(bytes);
+    }
+    return imageFile;
+  }
+
+  Future<File> copyFont() async {
+    Directory folder = await getApplicationSupportDirectory();
+    File fontFile = File(folder.path + "/font.ttf");
+    if (!fontFile.existsSync()) {
+      ByteData data = await rootBundle.load("assets/font.ttf");
+      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+      await fontFile.writeAsBytes(bytes);
+    }
+    return fontFile;
   }
 
   void displayError(BuildContext context, PlatformException error) {
