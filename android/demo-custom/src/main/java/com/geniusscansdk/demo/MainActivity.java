@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     private void shareDocument() {
         List<Page> pages = DocumentManager.getInstance(this).getPages();
         final File outputFile = new File(getExternalCacheDir(), "test.pdf");
-        new PdfGenerationTask(this, pages, outputFile.getAbsolutePath(), ocrSwitch.isChecked(), (isSuccess, error) -> {
+        new PdfGenerationTask(this, pages, outputFile, ocrSwitch.isChecked(), (isSuccess, error) -> {
             if (!isSuccess) {
                 Log.e(TAG, "Error generating PDF", error);
                 Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();

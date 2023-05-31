@@ -150,7 +150,7 @@ final class PostProcessingViewController: UIViewController {
                                                                curvatureCorrectionConfiguration: curvatureCorrectionConfiguration,
                                                                enhancementConfiguration: enhancementConfiguration,
                                                                rotationConfiguration: .automatic(),
-                                                               outputConfiguration: .default())
+                                                               outputConfiguration: .png())
                 result = try GSKScanProcessor().processImage(self.scan.image, configuration: configuration)
             } catch {
                 print("Error while processing scan: \(error)")

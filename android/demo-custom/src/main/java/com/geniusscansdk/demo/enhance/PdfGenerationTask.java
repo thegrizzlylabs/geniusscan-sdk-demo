@@ -4,8 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.geniusscansdk.core.GeniusScanSDK;
-import com.geniusscansdk.core.Logger;
+import com.geniusscansdk.pdf.DocumentGenerator;
 import com.geniusscansdk.core.TextLayout;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.model.Page;
@@ -14,9 +13,6 @@ import com.geniusscansdk.ocr.OcrConfiguration;
 import com.geniusscansdk.ocr.OcrProcessor;
 import com.geniusscansdk.ocr.OcrResult;
 import com.geniusscansdk.pdf.PDFDocument;
-import com.geniusscansdk.pdf.PDFGenerator;
-import com.geniusscansdk.pdf.PDFGeneratorConfiguration;
-import com.geniusscansdk.pdf.PDFGeneratorError;
 import com.geniusscansdk.pdf.PDFImageProcessor;
 import com.geniusscansdk.pdf.PDFPage;
 import com.geniusscansdk.pdf.PDFSize;
@@ -46,7 +42,7 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
     private final static PDFSize A4_SIZE = new PDFSize(8.27f, 11.69f); // Size of A4 in inches
 
     private Context context;
-    private String outputFilePath;
+    private File outputFile;
     private List<Page> pages;
     private boolean isOCREnabled;
     private OnPdfGeneratedListener listener;
@@ -54,9 +50,9 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
 
     private int pageProgress = 0;
 
-    public PdfGenerationTask(Context context, List<Page> pages, String outputFilePath, boolean isOCREnabled, OnPdfGeneratedListener listener) {
+    public PdfGenerationTask(Context context, List<Page> pages, File outputFile, boolean isOCREnabled, OnPdfGeneratedListener listener) {
         this.context = context;
-        this.outputFilePath = outputFilePath;
+        this.outputFile = outputFile;
         this.pages = pages;
         this.isOCREnabled = isOCREnabled;
         this.listener = listener;
@@ -76,7 +72,6 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
 
     @Override
     protected Exception doInBackground(Void... params) {
-        Logger logger = GeniusScanSDK.getLogger();
         OcrProcessor ocrProcessor = null;
 
         if (isOCREnabled) {
@@ -117,13 +112,12 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
 
         // Here we don't protect the PDF document with a password
         PDFDocument pdfDocument = new PDFDocument("test", null, null, new Date(), new Date(), pdfPages);
-
-        PDFGenerator generator = PDFGenerator.createWithDocument(pdfDocument, new PDFGeneratorConfiguration(null, false), new PDFNoopImageProcessor(), logger);
-        PDFGeneratorError error = generator.generatePDF(outputFilePath);
-        if (error == PDFGeneratorError.SUCCESS) {
+        try {
+            DocumentGenerator.Configuration configuration = new DocumentGenerator.Configuration(outputFile);
+            new DocumentGenerator(context).generatePDFDocument(pdfDocument, configuration);
             return null;
-        } else {
-            return new Exception("PDF generation failed with code: " + error);
+        } catch (Exception e) {
+            return e;
         }
     }
 

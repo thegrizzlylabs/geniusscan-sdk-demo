@@ -62,7 +62,7 @@ class MyScaffoldBody extends StatelessWidget {
           var document = {
             'pages': [{
               'imageUrl': scanResult['scans'][0]['enhancedUrl'] ,
-              'hocrTextLayout': scanResult.['scans'][0].['ocrResult'].['hocrTextLayout']
+              'hocrTextLayout': scanResult['scans'][0]['ocrResult']['hocrTextLayout']
             }]
           };
           var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };

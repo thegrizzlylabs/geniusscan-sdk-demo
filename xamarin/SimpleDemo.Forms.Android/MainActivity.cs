@@ -90,7 +90,7 @@ namespace SimpleDemo.Forms.Droid
                     var outputFilePath = Path.Combine(GetExternalFilesDir(null).Path, "output.pdf");
                     var configuration = new DocumentGenerator.Configuration();
                     configuration.OutputFile = new Java.IO.File(outputFilePath);
-                    new DocumentGenerator().GenerateDocument(document, configuration);
+                    new DocumentGenerator().GenerateDocument(Xamarin.Essentials.Platform.CurrentActivity, document, configuration);
                     currentTask?.TrySetResult(outputFilePath);
                     */
 
