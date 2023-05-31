@@ -94,17 +94,17 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <!--## <PackageReference Include="GeniusScanSDK.ScanFlow.iOS" Version="VERSION" /> ##-->
+    <PackageReference Include="GeniusScanSDK.ScanFlow.iOS" Version="4.11.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleDemo.Forms\SimpleDemo.Forms.csproj">
       <Project>{F413BE92-A069-46F8-A5C3-472E7FC98DC7}</Project>
       <Name>SimpleDemo.Forms</Name>
     </ProjectReference>
-    <!-- ##--><ProjectReference Include="..\..\GeniusScanSDK.ScanFlow.iOS\GeniusScanSDK.ScanFlow.iOS.csproj"><!--## -->
-      <!-- ##--><Project>{816B55AE-7035-494F-95EB-9AE533984351}</Project><!--## -->
-      <!-- ##--><Name>GeniusScanSDK.ScanFlow.iOS</Name><!--## -->
-    <!-- ##--></ProjectReference><!--## -->
+    <!-- <ProjectReference Include="..\..\GeniusScanSDK.ScanFlow.iOS\GeniusScanSDK.ScanFlow.iOS.csproj"> -->
+      <!-- <Project>{816B55AE-7035-494F-95EB-9AE533984351}</Project> -->
+      <!-- <Name>GeniusScanSDK.ScanFlow.iOS</Name> -->
+    <!-- </ProjectReference> -->
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
