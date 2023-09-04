@@ -1,4 +1,4 @@
-﻿using Com.Geniusscansdk.Scanflow;
+﻿using GeniusScanSDK.Scanflow;
 namespace SimpleDemo
 {
     public partial class ScanFlowService

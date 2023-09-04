@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.Content.PM;
-using Com.Geniusscansdk.Scanflow;
+using GeniusScanSDK.Scanflow;
 
 namespace SimpleDemo;
 

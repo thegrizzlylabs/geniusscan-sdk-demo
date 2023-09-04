@@ -1,0 +1,435 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		011C5D8D4D5264B8B7BEBFF7 /* TuistAssets+GSSDKCustomDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65987A8054338986F8D1DFC4 /* TuistAssets+GSSDKCustomDemo.swift */; };
+		23C928FD96400455B3282506 /* EditFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */; };
+		4659278AD634AAFBAFA97085 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBD0F1A1BD45B4F77E001F1D /* Images.xcassets */; };
+		488961074694470F56BE4FB8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF59C71ECBEFAFDD89775FD /* CameraViewController.swift */; };
+		5BA92C7DCC90BD577868FC45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759990AC6F73BB9A5408BB50 /* AppDelegate.swift */; };
+		734DBB2DF8CFDDA561559FB6 /* TuistBundle+GSSDKCustomDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF056FBD86CF23C776AA92 /* TuistBundle+GSSDKCustomDemo.swift */; };
+		748EB10FA927326A5DB68005 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8048CD53CD1C215ACF2DC28 /* Storage.swift */; };
+		AE0716229DB4DF5242AE050F /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743144979A0BD2F8FA8E14D /* PDFViewController.swift */; };
+		BC50B46F4BED217510953817 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 569A467E712923206483FCAB /* tessdata */; };
+		C1E488DA4207F1D4E4DBE56D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799A45B63B71F03B50134F7 /* LaunchScreen.xib */; };
+		C5BC5FC168E832AF832E6916 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976987E6BF3B9D0190972025 /* PDFViewController.xib */; };
+		C6FC26776D2F42AC1DA4E4CA /* PostProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8884B45A5A5C93153B545E86 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFrameViewController.swift; sourceTree = "<group>"; };
+		3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProcessingViewController.swift; sourceTree = "<group>"; };
+		569A467E712923206483FCAB /* tessdata */ = {isa = PBXFileReference; path = tessdata; sourceTree = "<group>"; };
+		5743144979A0BD2F8FA8E14D /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		65987A8054338986F8D1DFC4 /* TuistAssets+GSSDKCustomDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+GSSDKCustomDemo.swift"; sourceTree = "<group>"; };
+		759990AC6F73BB9A5408BB50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		976987E6BF3B9D0190972025 /* PDFViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PDFViewController.xib; sourceTree = "<group>"; };
+		97AF056FBD86CF23C776AA92 /* TuistBundle+GSSDKCustomDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+GSSDKCustomDemo.swift"; sourceTree = "<group>"; };
+		A799A45B63B71F03B50134F7 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		A8048CD53CD1C215ACF2DC28 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		AE36E25358A0A3034086F28F /* GSSDKCustomDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSSDKCustomDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAF59C71ECBEFAFDD89775FD /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		BBD0F1A1BD45B4F77E001F1D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C505F34E7478C46513F9A959 /* GSSDKCustomDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GSSDKCustomDemo-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D25D11AEB583A00F20273E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1081880C2668C04EF6007AA9 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				759990AC6F73BB9A5408BB50 /* AppDelegate.swift */,
+				BAF59C71ECBEFAFDD89775FD /* CameraViewController.swift */,
+				1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */,
+				5743144979A0BD2F8FA8E14D /* PDFViewController.swift */,
+				3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */,
+				A8048CD53CD1C215ACF2DC28 /* Storage.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		17B50AE61912A6C693F0DE00 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BBD0F1A1BD45B4F77E001F1D /* Images.xcassets */,
+				A799A45B63B71F03B50134F7 /* LaunchScreen.xib */,
+				976987E6BF3B9D0190972025 /* PDFViewController.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1EBC2C78602E9C246D3163E3 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				C505F34E7478C46513F9A959 /* GSSDKCustomDemo-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		78BF78F985222760C513348E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				65987A8054338986F8D1DFC4 /* TuistAssets+GSSDKCustomDemo.swift */,
+				97AF056FBD86CF23C776AA92 /* TuistBundle+GSSDKCustomDemo.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		92BB97558E14EE341F2AD970 /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				1EBC2C78602E9C246D3163E3 /* InfoPlists */,
+				78BF78F985222760C513348E /* Sources */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		9369322A90A048AB0D599E8F /* GSSDKCustomDemo */ = {
+			isa = PBXGroup;
+			children = (
+				AE348958324DA1F8E923ECC1 /* ResourceBundles */,
+				17B50AE61912A6C693F0DE00 /* Resources */,
+				1081880C2668C04EF6007AA9 /* Sources */,
+			);
+			path = GSSDKCustomDemo;
+			sourceTree = "<group>";
+		};
+		AE348958324DA1F8E923ECC1 /* ResourceBundles */ = {
+			isa = PBXGroup;
+			children = (
+				569A467E712923206483FCAB /* tessdata */,
+			);
+			path = ResourceBundles;
+			sourceTree = "<group>";
+		};
+		BC7FF8569C7A90E69A89591C /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				92BB97558E14EE341F2AD970 /* Derived */,
+				9369322A90A048AB0D599E8F /* GSSDKCustomDemo */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		C96CB49B46D39FD74EDB3B3D = {
+			isa = PBXGroup;
+			children = (
+				BC7FF8569C7A90E69A89591C /* Project */,
+				F715E43F100C2A39D1111A3C /* Frameworks */,
+				CF38E1BE1A331EA70717E25E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CF38E1BE1A331EA70717E25E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE36E25358A0A3034086F28F /* GSSDKCustomDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F715E43F100C2A39D1111A3C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A80DAB380D5E5C816A9E2D02 /* GSSDKCustomDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9EBE19B2B8C59F137C865A7 /* Build configuration list for PBXNativeTarget "GSSDKCustomDemo" */;
+			buildPhases = (
+				EC3FEA3B0A5DAB14073612D9 /* Sources */,
+				14E36C91F2A9201582D82463 /* Resources */,
+				8884B45A5A5C93153B545E86 /* Embed Frameworks */,
+				8D25D11AEB583A00F20273E7 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GSSDKCustomDemo;
+			productName = GSSDKCustomDemo;
+			productReference = AE36E25358A0A3034086F28F /* GSSDKCustomDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF2A81FEF4AF47B5C02E628D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				ORGANIZATIONNAME = "The Grizzly Labs";
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 4189473C558DD66074CC7F72 /* Build configuration list for PBXProject "GSSDKCustomDemo" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = C96CB49B46D39FD74EDB3B3D;
+			productRefGroup = CF38E1BE1A331EA70717E25E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A80DAB380D5E5C816A9E2D02 /* GSSDKCustomDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		14E36C91F2A9201582D82463 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC50B46F4BED217510953817 /* tessdata in Resources */,
+				4659278AD634AAFBAFA97085 /* Images.xcassets in Resources */,
+				C1E488DA4207F1D4E4DBE56D /* LaunchScreen.xib in Resources */,
+				C5BC5FC168E832AF832E6916 /* PDFViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC3FEA3B0A5DAB14073612D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				011C5D8D4D5264B8B7BEBFF7 /* TuistAssets+GSSDKCustomDemo.swift in Sources */,
+				734DBB2DF8CFDDA561559FB6 /* TuistBundle+GSSDKCustomDemo.swift in Sources */,
+				5BA92C7DCC90BD577868FC45 /* AppDelegate.swift in Sources */,
+				488961074694470F56BE4FB8 /* CameraViewController.swift in Sources */,
+				23C928FD96400455B3282506 /* EditFrameViewController.swift in Sources */,
+				AE0716229DB4DF5242AE050F /* PDFViewController.swift in Sources */,
+				C6FC26776D2F42AC1DA4E4CA /* PostProcessingViewController.swift in Sources */,
+				748EB10FA927326A5DB68005 /* Storage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3B462BBA23B425496DFFF05F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/GSSDKCustomDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = GSSDKCustomDemo;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3F3F1AA1CB93ABED1D08ABC1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		44A9A48E4EA3B56CAAFFB144 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/GSSDKCustomDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = GSSDKCustomDemo;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		59ED6CCA8C16BC1813285006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4189473C558DD66074CC7F72 /* Build configuration list for PBXProject "GSSDKCustomDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F3F1AA1CB93ABED1D08ABC1 /* Debug */,
+				59ED6CCA8C16BC1813285006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9EBE19B2B8C59F137C865A7 /* Build configuration list for PBXNativeTarget "GSSDKCustomDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B462BBA23B425496DFFF05F /* Debug */,
+				44A9A48E4EA3B56CAAFFB144 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF2A81FEF4AF47B5C02E628D /* Project object */;
+}
