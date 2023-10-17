@@ -34,11 +34,11 @@
         <resource-file src="res/android/ic_launcher.xml" target="/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
         <preference name="AndroidXEnabled" value="true" />
     </platform>
-    <engine name="ios" spec="~6.1.1" />
-    <engine name="android" spec="~11.0.0" />
+    <engine name="ios" spec="~7.0.1" />
+    <engine name="android" spec="~12.0.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-preview-any-file" spec="^0.2.9" />
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@4.13.0">
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@4.14.0">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
     </plugin>
 </widget>

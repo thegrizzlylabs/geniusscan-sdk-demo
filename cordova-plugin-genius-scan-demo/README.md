@@ -18,7 +18,7 @@ For the demo app installation you will require:
 
 ## Building and deployment
 
-If you have trouble deploying your application after upgrading the plugin to a newer version, try removing the `node_modules/` `platforms/` and `plugins/` directories from your project before running `cordova prepare` and `cordova run <platform>` again.
+If you have trouble deploying your application after upgrading the plugin to a newer version, try removing the `node_modules/` `platforms/` and `plugins/` directories and `package.json` file from your project before running `cordova prepare` and `cordova run <platform>` again.
 
 ### iOS
 
@@ -30,8 +30,6 @@ To run the demo on a physical device, you first need to [sign code it in XCode](
 4. Set your own [Bundle ID](https://help.apple.com/xcode/mac/current/#/dev9b66ae7df) under Identity
 5. Enable [Automatic Signing](https://help.apple.com/xcode/mac/current/#/dev80cc24546) and select a Team you are a member of (personal or organization)
 6. Press _Build and run the current scheme_
-
-**Xcode 10**: [Cordova-ios is not fully compatible with Xcode 10 yet](https://github.com/apache/cordova-ios/issues/407). You may need to use `cordova run ios --buildFlag="-UseModernBuildSystem=0"` command to build the project properly.
 
 ## Licensing
 

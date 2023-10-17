@@ -54,7 +54,7 @@ final class ViewController: UIViewController, UIDocumentInteractionControllerDel
         configuration.backgroundColor = .white
         configuration.foregroundColor = .red
         configuration.multiPageFormat = .PDF
-        let ocrConfiguration = GSKOCRConfiguration()
+        let ocrConfiguration = GSKScanFlowOCRConfiguration()
         ocrConfiguration.languageCodes = ["eng"]
         ocrConfiguration.trainedDataPath = (Bundle.main.resourcePath! as NSString).appendingPathComponent("tessdata")
         configuration.ocrConfiguration = ocrConfiguration

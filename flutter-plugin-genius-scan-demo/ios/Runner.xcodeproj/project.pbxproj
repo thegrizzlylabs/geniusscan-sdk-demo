@@ -218,9 +218,9 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKCore/GSSDKCore.framework/GSSDKCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKScanFlow/GSSDKScanFlow.framework/GSSDKScanFlow",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GSSDKOCR/GSSDKOCR.framework/GSSDKOCR",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDKCore.framework/GSSDKCore",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDKScanFlow.framework/GSSDKScanFlow",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDKOCR.framework/GSSDKOCR",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -240,6 +240,7 @@
 			files = (
 			);
 			inputPaths = (
+				"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}",
 			);
 			name = "Thin Binary";
 			outputPaths = (
@@ -381,7 +382,10 @@
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -506,7 +510,10 @@
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
@@ -531,7 +538,10 @@
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",

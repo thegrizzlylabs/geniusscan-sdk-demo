@@ -50,6 +50,7 @@ class MyScaffoldBody extends StatelessWidget {
             }
           };
           var scanResult = await FlutterGeniusScan.scanWithConfiguration(scanConfiguration);
+          debugPrint('scanResult: $scanResult');
 
           // Here is how you can display the resulting document:
           String documentUrl = scanResult['multiPageDocumentUrl'];

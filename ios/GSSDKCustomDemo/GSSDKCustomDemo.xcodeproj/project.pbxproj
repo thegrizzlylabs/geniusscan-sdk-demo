@@ -195,7 +195,7 @@
 				};
 			};
 			buildConfigurationList = 4189473C558DD66074CC7F72 /* Build configuration list for PBXProject "GSSDKCustomDemo" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
