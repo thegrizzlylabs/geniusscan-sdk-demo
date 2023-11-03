@@ -1,6 +1,10 @@
 name: Android
 
-on: push
+# Note: using the `branches` selector excludes all tags
+on:
+  push:
+    branches:
+      - '**'
 
 jobs:
   build:
