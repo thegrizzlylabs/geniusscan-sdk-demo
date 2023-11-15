@@ -23,10 +23,10 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.1.2'
         // Patch until apkscale is fixed: https://github.com/twilio/apkscale/issues/10
-        classpath "com.twilio:apkscale:0.0.100"
-        classpath "androidx.benchmark:benchmark-gradle-plugin:1.1.1"
+        classpath "com.twilio:apkscale:0.0.101"
+        classpath "androidx.benchmark:benchmark-gradle-plugin:1.2.0"
         classpath "firebase.test.lab:plugin:2.6.2"
     }
 }

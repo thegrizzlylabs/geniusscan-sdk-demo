@@ -18,16 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        do {
-            try GSK.initWithLicenseKey("<YOUR LICENSE KEY - MAKE SURE TO CHANGE YOUR BUNDLE ID TO MATCH THE KEY - WITHOUT LICENSE KEY THE DEMO WILL RUN FOR ONLY 60 SECONDS>")
-        } catch {
-            /**
-             If the SDK is not properly initialized, the SDK method will return errors. This will help you setup the SDK properly. After that, the only reason why this may return an error would be if the license expires.
-             All the SDK errors return proper errors in that case and you can handle them to ensure you provide a good "degraded" experience. For instance, you can prompt them to update the application to use the scanning
-             feature.
-             */
-            print("Error while initializing the Genius Scan SDK: \(error)")
-        }
+
+        // Set the SDK license key as early as possible to give it a chance to refresh
+        // the license key in case it's expired (auto-refresh behavior can also be disabled with
+        // setLicenseKey(_:autoRefresh:).
+
+        // GSK.setLicenseKey("<YOUR LICENSE KEY - MAKE SURE TO CHANGE YOUR BUNDLE ID TO MATCH THE KEY - WITHOUT LICENSE KEY THE DEMO WILL RUN FOR ONLY 60 SECONDS>")
 
         let configuration = GSKCameraSessionConfiguration()
 

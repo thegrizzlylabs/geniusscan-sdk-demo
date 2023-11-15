@@ -17,6 +17,6 @@ For iOS, run the command `pod install` from the `ios` folder.
 
 Run the app in a simulator or on a phone
 ```
-react-native run-ios
-react-native run-android
+npx react-native run-ios
+npx react-native run-android
 ```

@@ -12,21 +12,6 @@ import GSSDKScanFlow
 final class ViewController: UIViewController, UIDocumentInteractionControllerDelegate {
     private var scanner: GSKScanFlow!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        do {
-            try GSK.initWithLicenseKey("<YOUR LICENSE KEY - MAKE SURE TO CHANGE YOUR BUNDLE ID TO MATCH THE KEY - WITHOUT LICENSE KEY THE DEMO WILL RUN FOR ONLY 60 SECONDS>")
-        } catch {
-            /**
-             If the SDK is not properly initialized, the SDK method will return errors. This will help you setup the SDK properly. After that, the only reason why this may return an error would be if the license expires.
-             All the SDK errors return proper errors in that case and you can handle them to ensure you provide a good "degraded" experience. For instance, you can prompt them to update the application to use the scanning
-             feature.
-             */
-            NSLog("Error while initializing the Genius Scan SDK: \(error)")
-        }
-    }
-
     @objc @IBAction func scan(_ sender: UIButton) {
         let configuration = baseScannerConfiguration()
         configuration.source = .camera

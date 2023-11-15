@@ -5,7 +5,9 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        // Not possible to update to gradle 8 until open_file fixes its namespace
+        // https://github.com/crazecoder/open_file/issues/257
+        classpath 'com.android.tools.build:gradle:7.4.1'
     }
 }
 

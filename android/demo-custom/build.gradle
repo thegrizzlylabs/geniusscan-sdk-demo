@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    namespace 'com.geniusscansdk.demo'
+    compileSdk rootProject.ext.compileSdkVersion
     ndkVersion rootProject.ext.ndkVersion
 
     defaultConfig {
@@ -9,6 +10,10 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+    }
+
+    buildFeatures {
+        buildConfig true
     }
 
     buildTypes {
@@ -19,10 +24,10 @@ android {
 }
 
 dependencies {
-    implementation 'com.geniusscansdk:gssdk-core:4.16.0'
-    implementation 'com.geniusscansdk:gssdk-ocr:4.16.0'
+    implementation 'com.geniusscansdk:gssdk-core:4.17.0'
+    implementation 'com.geniusscansdk:gssdk-ocr:4.17.0'
 
-    implementation 'androidx.fragment:fragment:1.6.1'
+    implementation 'androidx.fragment:fragment:1.6.2'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 }
 
