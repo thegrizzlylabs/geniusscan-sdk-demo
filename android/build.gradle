@@ -28,6 +28,7 @@ buildscript {
         classpath "com.twilio:apkscale:0.0.101"
         classpath "androidx.benchmark:benchmark-gradle-plugin:1.2.0"
         classpath "firebase.test.lab:plugin:2.6.2"
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21'
     }
 }
 

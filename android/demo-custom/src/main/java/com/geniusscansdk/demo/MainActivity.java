@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.geniusscansdk.core.GeniusScanSDK;
 import com.geniusscansdk.demo.camera.ScanActivity;
 import com.geniusscansdk.demo.enhance.PdfGenerationTask;
 import com.geniusscansdk.demo.model.DocumentManager;
@@ -39,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("GS SDK Custom Demo");
 
-        initSDK();
+        // This code shows how to initialize the SDK with a license key.
+        // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
+        //
+        // GeniusScanSDK.setLicenseKey(this, "<Your license key>");
 
         pageCountView = findViewById(R.id.page_count);
 
@@ -60,28 +64,6 @@ public class MainActivity extends AppCompatActivity {
         pageCountView.setText(getResources().getQuantityString(R.plurals.page_count, pageCount, pageCount));
         shareButton.setEnabled(pageCount > 0);
         ocrSwitch.setEnabled(pageCount > 0);
-    }
-
-    private void initSDK() {
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This code shows how to initialize the SDK with a license key.
-        // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
-        //
-        //         try {
-        //            // Replace this key by your key
-        //            GeniusScanSDK.init(this, "<Your license key>");
-        //         } catch(LicenseException e) {
-        //            new AlertDialog.Builder(this)
-        //                    .setMessage("This version is not valid anymore. Please update to the latest version.")
-        //                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-        //                        @Override
-        //                        public void onClick(DialogInterface dialog, int which) {
-        //                            finish();
-        //                        }
-        //                    })
-        //                    .show();
-        //         }
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     private void shareDocument() {

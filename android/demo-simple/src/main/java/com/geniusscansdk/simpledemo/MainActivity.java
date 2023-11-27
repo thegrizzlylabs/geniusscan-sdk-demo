@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.geniusscansdk.core.GeniusScanSDK;
 import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.scanflow.ScanConfiguration;
 import com.geniusscansdk.scanflow.ScanFlow;
@@ -38,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("GS SDK Simple Demo");
+
+        // This code shows how to initialize the SDK with a license key.
+        // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
+        //
+        // GeniusScanSDK.setLicenseKey(this, "<Your license key>");
 
         findViewById(R.id.scan_camera_button).setOnClickListener(view -> scanFromCamera());
         findViewById(R.id.scan_image_button).setOnClickListener(view -> scanFromImage());
@@ -94,26 +100,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startScanning(ScanConfiguration scanConfiguration) {
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        // This code shows how to initialize the SDK with a license key.
-        // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
-        //
-        //         try {
-        //            // Replace this key by your key
-        //            ScanFlow.init(this, "<Your license key>");
-        //         } catch(LicenseException e) {
-        //            new AlertDialog.Builder(this)
-        //                    .setMessage("This version is not valid anymore. Please update to the latest version.")
-        //                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-        //                        @Override
-        //                        public void onClick(DialogInterface dialog, int which) {
-        //                            finish();
-        //                        }
-        //                    })
-        //                    .show();
-        //         }
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-
         ScanFlow.scanWithConfiguration(MainActivity.this, scanConfiguration);
     }
 
@@ -151,10 +137,17 @@ public class MainActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 startActivity(intent);
             } catch (LicenseException e) {
-                new AlertDialog.Builder(this)
-                        .setMessage(e.getMessage())
-                        .setPositiveButton("Restart", (dialog, which) -> restartApp())
-                        .show();
+                if (e.errorCode == LicenseException.ErrorCode.ExpiredDemo) {
+                    new AlertDialog.Builder(this)
+                            .setMessage(e.getMessage())
+                            .setPositiveButton("Restart", (dialog, which) -> restartApp())
+                            .show();
+                } else {
+                    // The license key is invalid or expired, either ask the user to update the app or provide a fallback
+                    new AlertDialog.Builder(this)
+                            .setMessage("Please update to the latest version.")
+                            .show();
+                }
             } catch (Exception e) {
                 Log.e(TAG, "Error during scan flow", e);
                 new AlertDialog.Builder(this)
