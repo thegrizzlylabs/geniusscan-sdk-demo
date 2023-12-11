@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02691254BE6E2FB4A81C72BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B06D576B024C3F4006693249 /* Main.storyboard */; };
+		01E25D56CD2C1338F0CC4C1F /* DocumentScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC643C8DABF3A3535512FCA8 /* DocumentScanningView.swift */; };
 		0A6C17149369BDB603F34730 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3BF42E97960DC68CF95707C /* Images.xcassets */; };
 		0B9CBB00DC9404778DD240E2 /* TuistAssets+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CE4724ECFA4F6A6F20E0F /* TuistAssets+GSSDKSimpleDemo.swift */; };
 		0DC6E49F947F5411CB3B8BE8 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BB2F9F74C7BF72AA8DB479D /* image.jpg */; };
 		134D5FE28DA30523445C5D0C /* TuistStrings+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCFF3DB59E733E7284379A4 /* TuistStrings+GSSDKSimpleDemo.swift */; };
-		3BB97A1867947E979F2B78C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D793617BCE7F72AB2ED6FC5 /* AppDelegate.swift */; };
+		386A751C92D7002B39011B7A /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */; };
+		412FCEE1096C707F3079811B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE96A239EB93C2D5DBA98512 /* ResultView.swift */; };
 		510D7171B193B7B6BC72D1E7 /* TuistBundle+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB28EC5B6B64022328511C8 /* TuistBundle+GSSDKSimpleDemo.swift */; };
+		51E533825C95FF0AD1044E0B /* StructuredDataScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */; };
+		5273282D4E1E64E040379343 /* bank-identity-document.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */; };
 		539095FA740250434D91BF43 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CB1AFDBE110DB72354424916 /* tessdata */; };
 		57C5DC280360BAB3D9290769 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268CF675925FBC65F14D7341 /* LaunchScreen.xib */; };
-		5A9D310E1CE0E6507E67064F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042CAB8C9DD464D9222B9FF9 /* ViewController.swift */; };
+		5DF026B3D191DEDD348DF992 /* DocumentScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B62238444DCC510A6AFED1 /* DocumentScanningViewController.swift */; };
 		850761A76B6F363AB1A58AA2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC97AD698336C7CEB29563E8 /* Localizable.strings */; };
+		9F690F5166A0626689867D02 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63053890F5889186041B68A0 /* MainView.swift */; };
+		E96867F8A4D2BD789606C10B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133A7E624B6779BFB5DE516 /* App.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,34 +39,39 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		042CAB8C9DD464D9222B9FF9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		268CF675925FBC65F14D7341 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		3457F076C2305900F7CFB57C /* GSSDKSimpleDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GSSDKSimpleDemo-Info.plist"; sourceTree = "<group>"; };
 		363602DFFCADF5F6ECE2A6FB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FA8DA3AD6F5C6BE870F64FA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4D793617BCE7F72AB2ED6FC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bank-identity-document.jpg"; sourceTree = "<group>"; };
 		58CA63038A460FDD9F50ED73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5FB28EC5B6B64022328511C8 /* TuistBundle+GSSDKSimpleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+GSSDKSimpleDemo.swift"; sourceTree = "<group>"; };
+		63053890F5889186041B68A0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		65FEAE748794BB2A5899BE70 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		69052FA5E4F67D335F446A3B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6BB2F9F74C7BF72AA8DB479D /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredDataScanningView.swift; sourceTree = "<group>"; };
 		81235439599CB95FEEF1BB0D /* GSSDKSimpleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSSDKSimpleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		870CE4724ECFA4F6A6F20E0F /* TuistAssets+GSSDKSimpleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+GSSDKSimpleDemo.swift"; sourceTree = "<group>"; };
 		995119CB28285242FE55E523 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99683A20ADC97017330520C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9E1676537CAAB50A9795B624 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A565096D961D41F7A285F5E1 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
+		A9B62238444DCC510A6AFED1 /* DocumentScanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanningViewController.swift; sourceTree = "<group>"; };
 		ABCCF0E80167BF5D141D6345 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B06D576B024C3F4006693249 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AE96A239EB93C2D5DBA98512 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		B244AC51FE47CF9C0919307E /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3BF42E97960DC68CF95707C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B811891A290F878EE9756EF8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B8AF5095AFE5E473A6F594FC /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BE22CBC77A42DC4D358F7892 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C133A7E624B6779BFB5DE516 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C7DE7A97144495067A582965 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA944F538970CB7915E8E651 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CB1AFDBE110DB72354424916 /* tessdata */ = {isa = PBXFileReference; path = tessdata; sourceTree = "<group>"; };
 		D547086910C4CFB6F7095332 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DC643C8DABF3A3535512FCA8 /* DocumentScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanningView.swift; sourceTree = "<group>"; };
 		DCD108A5770F912CDB2C64D0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DEE5799B361ABFF962654E4C /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DFCA08EDBAF6D8C6FC3595B0 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -84,8 +94,13 @@
 		51A4AAB265659D17B0D1D349 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				4D793617BCE7F72AB2ED6FC5 /* AppDelegate.swift */,
-				042CAB8C9DD464D9222B9FF9 /* ViewController.swift */,
+				C133A7E624B6779BFB5DE516 /* App.swift */,
+				DC643C8DABF3A3535512FCA8 /* DocumentScanningView.swift */,
+				A9B62238444DCC510A6AFED1 /* DocumentScanningViewController.swift */,
+				63053890F5889186041B68A0 /* MainView.swift */,
+				AE96A239EB93C2D5DBA98512 /* ResultView.swift */,
+				79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */,
+				A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -144,10 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				DC97AD698336C7CEB29563E8 /* Localizable.strings */,
+				569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */,
 				6BB2F9F74C7BF72AA8DB479D /* image.jpg */,
 				B3BF42E97960DC68CF95707C /* Images.xcassets */,
 				268CF675925FBC65F14D7341 /* LaunchScreen.xib */,
-				B06D576B024C3F4006693249 /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -259,8 +274,8 @@
 				539095FA740250434D91BF43 /* tessdata in Resources */,
 				0A6C17149369BDB603F34730 /* Images.xcassets in Resources */,
 				57C5DC280360BAB3D9290769 /* LaunchScreen.xib in Resources */,
-				02691254BE6E2FB4A81C72BB /* Main.storyboard in Resources */,
 				850761A76B6F363AB1A58AA2 /* Localizable.strings in Resources */,
+				5273282D4E1E64E040379343 /* bank-identity-document.jpg in Resources */,
 				0DC6E49F947F5411CB3B8BE8 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,8 +290,13 @@
 				0B9CBB00DC9404778DD240E2 /* TuistAssets+GSSDKSimpleDemo.swift in Sources */,
 				510D7171B193B7B6BC72D1E7 /* TuistBundle+GSSDKSimpleDemo.swift in Sources */,
 				134D5FE28DA30523445C5D0C /* TuistStrings+GSSDKSimpleDemo.swift in Sources */,
-				3BB97A1867947E979F2B78C5 /* AppDelegate.swift in Sources */,
-				5A9D310E1CE0E6507E67064F /* ViewController.swift in Sources */,
+				E96867F8A4D2BD789606C10B /* App.swift in Sources */,
+				01E25D56CD2C1338F0CC4C1F /* DocumentScanningView.swift in Sources */,
+				5DF026B3D191DEDD348DF992 /* DocumentScanningViewController.swift in Sources */,
+				9F690F5166A0626689867D02 /* MainView.swift in Sources */,
+				412FCEE1096C707F3079811B /* ResultView.swift in Sources */,
+				51E533825C95FF0AD1044E0B /* StructuredDataScanningView.swift in Sources */,
+				386A751C92D7002B39011B7A /* UIApplication+TopViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

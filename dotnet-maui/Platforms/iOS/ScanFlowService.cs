@@ -6,14 +6,10 @@ namespace SimpleDemo
 {
 	public partial class ScanFlowService
 	{
-        public partial Task Init(string licenseKey)
+
+        public partial void SetLicenseKey(string licenseKey)
         {
-            var taskCompletionSource = new TaskCompletionSource<bool>();
-            GSK.InitWithLicenseKey(licenseKey, (NSError error) => {
-                taskCompletionSource.TrySetException(new NSErrorException(error));
-            });
-            taskCompletionSource.TrySetResult(true);
-            return taskCompletionSource.Task;
+            GSK.SetLicenseKey(licenseKey, /* autoRefresh = */ true);
         }
 
         public partial Task<string> StartScanning(string languagesDirectoryUrl)

@@ -39,6 +39,12 @@ const App = () => {
       languagesDirectoryUrl: appFolder
     }
   }
+
+  // This code shows how to initialize the SDK with a license key.
+  // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
+  //
+  // RNGeniusScan.setLicenseKey("<Your license key>", /* autoRefresh = */ true)
+
   return (
     <Fragment>
       <StatusBar barStyle="dark-content" />
@@ -65,9 +71,6 @@ const App = () => {
                   try {
                     // Download OCR language file
                     await RNFS.downloadFile(options)
-
-                    // Initialize with your licence key
-                    //await RNGeniusScan.setLicenceKey('REPLACE_WITH_YOUR_LICENCE_KEY')
 
                     // Start scan flow
                     let scanResult = await RNGeniusScan.scanWithConfiguration(configuration)

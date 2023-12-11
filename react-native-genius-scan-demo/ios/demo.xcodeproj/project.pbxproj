@@ -533,14 +533,14 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 67ZL68PX9A;
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thegrizzlylabs.geniusscan.sdk.reactnative.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geniusscansdk.reactnative.demo;
 				PRODUCT_NAME = demo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -554,14 +554,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 67ZL68PX9A;
 				INFOPLIST_FILE = demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thegrizzlylabs.geniusscan.sdk.reactnative.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.geniusscansdk.reactnative.demo;
 				PRODUCT_NAME = demo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

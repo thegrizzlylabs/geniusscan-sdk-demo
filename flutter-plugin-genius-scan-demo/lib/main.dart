@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_genius_scan/flutter_genius_scan.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_filex/open_filex.dart';
 
 void main() => runApp(MyApp());
 
@@ -16,6 +16,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
+
+    // This code shows how to initialize the SDK with a license key.
+    // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
+    //
+    // FlutterGeniusScan.setLicenseKey('<Your license key>');
+
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
@@ -37,9 +43,6 @@ class MyScaffoldBody extends StatelessWidget {
           // Copy OCR language file
           var languageFolder = await copyLanguageFile();
 
-          // Initialize with your licence key
-          // await FlutterGeniusScan.setLicenceKey('REPLACE_WITH_YOUR_LICENCE_KEY')
-
           // Start scan flow
           var scanConfiguration = {
             'source': 'camera',
@@ -54,7 +57,7 @@ class MyScaffoldBody extends StatelessWidget {
 
           // Here is how you can display the resulting document:
           String documentUrl = scanResult['multiPageDocumentUrl'];
-          await OpenFile.open(documentUrl.replaceAll("file://", ''));
+          await OpenFilex.open(documentUrl.replaceAll("file://", ''));
 
           // You can also generate your document separately from selected pages:
           /*
@@ -68,7 +71,7 @@ class MyScaffoldBody extends StatelessWidget {
           };
           var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };
           await FlutterGeniusScan.generateDocument(document, documentGenerationConfiguration);
-          await OpenFile.open(documentUrl);
+          await OpenFilex.open(documentUrl);
           */
 
         } on PlatformException catch (error) {

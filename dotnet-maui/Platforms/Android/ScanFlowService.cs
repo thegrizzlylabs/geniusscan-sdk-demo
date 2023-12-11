@@ -3,17 +3,10 @@ namespace SimpleDemo
 {
     public partial class ScanFlowService
     {
-        public partial Task Init(string licenseKey)
+
+        public partial void SetLicenseKey(string licenseKey)
         {
-            try
-            {
-                ScanFlow.Init(Platform.CurrentActivity, licenseKey);
-                return Task.FromResult(true);
-            }
-            catch (Exception e)
-            {
-                return Task.FromException(e);
-            }
+            ScanFlow.SetLicenseKey(Platform.CurrentActivity, licenseKey, /* autoRefresh = */ true);
         }
 
         public partial Task<string> StartScanning(string languagesDirectoryUrl)

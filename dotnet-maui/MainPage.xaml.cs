@@ -9,14 +9,10 @@ public partial class MainPage : ContentPage
 	{
 		InitializeComponent();
 
-        try
-        {
-            scanFlowService.Init("REPLACE WITH YOUR LICENSE");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Error initialising Genius Scan SDK: " + e.Message);
-        }
+        // This code shows how to initialize the SDK with a license key.
+        // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
+        //
+        // scanFlowService.SetLicenseKey("<Your license key>");
     }
 
     async void StartScanning(object sender, EventArgs args)
