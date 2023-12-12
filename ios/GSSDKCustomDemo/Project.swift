@@ -10,7 +10,7 @@ let project = Project(
             product: .app,
             productName: "GSSDKCustomDemo",
             bundleId: "com.thegrizzlylabs.$(PRODUCT_NAME:rfc1034identifier)",
-            deploymentTarget: .iOS(targetVersion: "11.0", devices: [.ipad, .iphone]),
+            deploymentTarget: .iOS(targetVersion: "13.0", devices: [.ipad, .iphone]),
             infoPlist: .extendingDefault(with:
                 [
                     "NSCameraUsageDescription": "The Genius Scan SDK Simple Demo uses the camera for scanning documents.",

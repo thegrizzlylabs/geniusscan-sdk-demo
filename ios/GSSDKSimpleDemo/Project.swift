@@ -10,7 +10,7 @@ let project = Project(
             product: .app,
             productName: "GSSDKSimpleDemo",
             bundleId: "com.thegrizzlylabs.$(PRODUCT_NAME:rfc1034identifier)",
-            deploymentTarget: .iOS(targetVersion: "11.0", devices: [.ipad, .iphone]),
+            deploymentTarget: .iOS(targetVersion: "15.0", devices: [.ipad, .iphone]),
             infoPlist: .extendingDefault(with:
                 [
                     "UIMainStoryboardFile": "Main",

@@ -25,9 +25,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.geniusscansdk:gssdk-core:4.20.0'
-    implementation 'com.geniusscansdk:gssdk-ocr:4.20.0'
-    implementation 'com.geniusscansdk:gssdk-scanflow:4.20.0'
+    implementation 'com.geniusscansdk:gssdk-core:4.20.1'
+    implementation 'com.geniusscansdk:gssdk-ocr:4.20.1'
+    implementation 'com.geniusscansdk:gssdk-scanflow:4.20.1'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
