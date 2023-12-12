@@ -4,7 +4,8 @@ These are demo apps for the Genius Scan iOS SDK. Check out the [SDK documentatio
 
 ## Requirements
 
-The demo apps support iOS 11 and above.
+The Custom demo app supports iOS 13 and above.
+The Simple demo app supports iOS 15 and above.
 
 ## Installation
 
