@@ -1,0 +1,18 @@
+name: DotNetMaui
+
+# Note: using the `branches` selector excludes all tags
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: macos-13
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build demo
+      run: |
+        cd dotnet-maui
+        sudo dotnet workload restore
+        dotnet build SimpleDemo.csproj
