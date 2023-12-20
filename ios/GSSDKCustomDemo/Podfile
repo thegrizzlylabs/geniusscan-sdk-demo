@@ -2,7 +2,7 @@ platform :ios, '13.0'
 
 target 'GSSDKCustomDemo' do
 
-  pod 'GSSDK/Core', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-4.20.1.podspec'
-  pod 'GSSDK/OCR', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-4.20.1.podspec'
+  pod 'GSSDK/Core', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-4.21.0.podspec'
+  pod 'GSSDK/OCR', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-4.21.0.podspec'
 
 end
