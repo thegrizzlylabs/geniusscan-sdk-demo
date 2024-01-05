@@ -67,7 +67,7 @@ const App = () => {
                     await RNFS.downloadFile(options)
 
                     // Initialize with your licence key
-                    //await RNGeniusScan.setLicenceKey('REPLACE_WITH_YOUR_LICENCE_KEY')
+                    await RNGeniusScan.setLicenceKey('533c50075554020204510f5239525a0e4a04570a5d43414a01575a1553531e42075507165654425e13571f56070f5e6a5354500256560508035d')
 
                     // Start scan flow
                     let scanResult = await RNGeniusScan.scanWithConfiguration(configuration)
