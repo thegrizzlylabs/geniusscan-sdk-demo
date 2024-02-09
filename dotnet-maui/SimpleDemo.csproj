@@ -59,10 +59,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
-	  <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="5.0.0-beta3" />
+	  <PackageReference Include="GeniusScanSDK.ScanFlow.Android" Version="5.0.0-beta4" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
-	  <PackageReference Include="GeniusScanSDK.ScanFlow.iOS" Version="5.0.0-beta3" />
+	  <PackageReference Include="GeniusScanSDK.ScanFlow.iOS" Version="5.0.0-beta4" />
 	</ItemGroup>
 </Project>
