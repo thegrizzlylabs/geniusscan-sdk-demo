@@ -39,17 +39,12 @@ class MyScaffoldBody extends StatelessWidget {
         child: ElevatedButton(
       onPressed: () async {
         try {
-
-          // Copy OCR language file
-          var languageFolder = await copyLanguageFile();
-
           // Start scan flow
           var scanConfiguration = {
             'source': 'camera',
             'multiPage': true,
             'ocrConfiguration': {
-              'languages': ['eng'],
-              'languagesDirectoryUrl': languageFolder.path
+              'languages': ['en-US']
             }
           };
           var scanResult = await FlutterGeniusScan.scanWithConfiguration(scanConfiguration);
@@ -80,17 +75,6 @@ class MyScaffoldBody extends StatelessWidget {
       },
       child: Text("START SCANNING"),
     ));
-  }
-
-  Future<Directory> copyLanguageFile() async {
-    Directory languageFolder = await getApplicationSupportDirectory();
-    File languageFile = File(languageFolder.path + "/eng.traineddata");
-    if (!languageFile.existsSync()) {
-      ByteData data = await rootBundle.load("assets/eng.traineddata");
-      List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-      await languageFile.writeAsBytes(bytes);
-    }
-    return languageFolder;
   }
 
   void displayError(BuildContext context, PlatformException error) {

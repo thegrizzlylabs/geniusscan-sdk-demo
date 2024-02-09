@@ -8,7 +8,7 @@
 //
 
 import Foundation
-import GSSDKScanFlow
+import GSSDK
 import SwiftUI
 
 /**
@@ -22,26 +22,56 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink {
+                Row(
+                    title: "Document scanning",
+                    subtitle: "Default scan flow",
+                    imageName: "doc.viewfinder"
+                ) {
                     DocumentScanningView()
-                        .edgesIgnoringSafeArea(.all)
-                        .navigationBarTitle("Document scanning")
-                } label: {
-                    HStack {
-                        Image(systemName: "doc.viewfinder")
-                        Text("Document scanning")
-                    }
                 }
 
-                NavigationLink {
+                Row(
+                    title: "Document scanning",
+                    subtitle: "Customizable scan flow",
+                    imageName: "doc.viewfinder.fill"
+                ) {
+                    CustomDocumentScanningView()
+                }
+
+                Row(
+                    title: "Structured data scanning",
+                    imageName: "creditcard.viewfinder"
+                ) {
                     StructuredDataScanningView()
-                        .navigationBarTitle("Structured data scanning")
-                } label: {
-                    Image(systemName: "creditcard.viewfinder")
-                    Text("Structured data scanning")
                 }
             }
             .navigationBarTitle("Genius Scan SDK Simple Demo", displayMode: .inline)
+        }
+    }
+
+    private struct Row<DetailView: View>: View {
+        var title: String
+        var subtitle: String?
+        var imageName: String
+
+        @ViewBuilder var content: DetailView
+
+        var body: some View {
+            NavigationLink {
+                content
+                    .navigationBarTitle(title)
+            } label: {
+                HStack {
+                    Image(systemName: imageName)
+                    VStack(alignment: .leading) {
+                        Text(title)
+                        if let subtitle {
+                            Text(subtitle).foregroundStyle(.gray).font(.caption)
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

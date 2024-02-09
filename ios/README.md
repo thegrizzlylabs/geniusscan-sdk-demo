@@ -1,20 +1,14 @@
 # Genius Scan SDK iOS demo apps
 
-These are demo apps for the Genius Scan iOS SDK. Check out the [SDK documentation](https://geniusscansdk.com/docs/ios/) to see how to integrate it into your own application.
+The demos apps available in our [demo repository](https://github.com/thegrizzlylabs/geniusscan-sdk-demo/tree/master/ios) demonstrate how to integrate the SDK.
 
-## Requirements
+## Simple demo
 
-The demo apps support iOS 11 and above.
+The simple demo demonstrates the ``GSKScanFlow`` integration that lets you integrate a scanning module in your app with just a few lines of code. Customization of the scan flow is possible with ``GSKScanFlowConfiguration``.
 
-## Installation
+## Custom demo
 
-1. Open one of the demo projects.
-
-2. Run `pod install` to install the SDK frameworks.
-
-3. Run `xed .` to open the workspace in XCode.
-
-4. Build and run on a device or a simulator.
+The custom demo demonstrates how to build an entirely custom scanning experience by relying on lower-level components such as our ``GSKCameraViewController`` (a view controller that lets you scan a document), ``GSKEditFrameViewController`` (a view controller that lets you edit the cropping of a document) and ``GSKScanProcessor`` which lets you process scans as you want. The custom demo also shows the usage of ``GSKOCR`` if you want to perform text recognition on your scans.
 
 ## Licensing
 

@@ -12,12 +12,11 @@ namespace SimpleDemo
             GSK.SetLicenseKey(licenseKey, /* autoRefresh = */ true);
         }
 
-        public partial Task<string> StartScanning(string languagesDirectoryUrl)
+        public partial Task<string> StartScanning()
         {
             var ocrConfiguration = new NSMutableDictionary
             {
-                { new NSString("languages"), NSArray.FromStrings(new string[] { "eng" }) },
-                { new NSString("languagesDirectoryUrl"), new NSString(languagesDirectoryUrl) }
+                { new NSString("languages"), NSArray.FromStrings(new string[] { "en-US" }) }
             };
 
             var configuration = new NSMutableDictionary

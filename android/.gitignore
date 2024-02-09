@@ -49,8 +49,7 @@ fastlane/README.md
 
 google-credentials.json
 
-# Exclude model files as they are copied from root assets
-gssdk-core/src/main/assets/*.png
-
-# Exclude language files as they are copied from root assets
+# Exclude these assets as they are copied from root assets
+gssdk/src/main/assets/*.png
+gssdk/src/main/res/raw/ocr_languages.csv
 *.traineddata

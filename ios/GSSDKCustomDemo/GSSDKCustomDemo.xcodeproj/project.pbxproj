@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		011C5D8D4D5264B8B7BEBFF7 /* TuistAssets+GSSDKCustomDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65987A8054338986F8D1DFC4 /* TuistAssets+GSSDKCustomDemo.swift */; };
+		2103EF6108AC2AB656A8EE76 /* GSSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 757CB8252E9230816D48949F /* GSSDK */; };
 		23C928FD96400455B3282506 /* EditFrameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */; };
 		4659278AD634AAFBAFA97085 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBD0F1A1BD45B4F77E001F1D /* Images.xcassets */; };
 		488961074694470F56BE4FB8 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF59C71ECBEFAFDD89775FD /* CameraViewController.swift */; };
@@ -15,7 +16,6 @@
 		734DBB2DF8CFDDA561559FB6 /* TuistBundle+GSSDKCustomDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97AF056FBD86CF23C776AA92 /* TuistBundle+GSSDKCustomDemo.swift */; };
 		748EB10FA927326A5DB68005 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8048CD53CD1C215ACF2DC28 /* Storage.swift */; };
 		AE0716229DB4DF5242AE050F /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5743144979A0BD2F8FA8E14D /* PDFViewController.swift */; };
-		BC50B46F4BED217510953817 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 569A467E712923206483FCAB /* tessdata */; };
 		C1E488DA4207F1D4E4DBE56D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799A45B63B71F03B50134F7 /* LaunchScreen.xib */; };
 		C5BC5FC168E832AF832E6916 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976987E6BF3B9D0190972025 /* PDFViewController.xib */; };
 		C6FC26776D2F42AC1DA4E4CA /* PostProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */; };
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFrameViewController.swift; sourceTree = "<group>"; };
 		3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProcessingViewController.swift; sourceTree = "<group>"; };
-		569A467E712923206483FCAB /* tessdata */ = {isa = PBXFileReference; path = tessdata; sourceTree = "<group>"; };
 		5743144979A0BD2F8FA8E14D /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		65987A8054338986F8D1DFC4 /* TuistAssets+GSSDKCustomDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+GSSDKCustomDemo.swift"; sourceTree = "<group>"; };
 		759990AC6F73BB9A5408BB50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2103EF6108AC2AB656A8EE76 /* GSSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,19 +114,10 @@
 		9369322A90A048AB0D599E8F /* GSSDKCustomDemo */ = {
 			isa = PBXGroup;
 			children = (
-				AE348958324DA1F8E923ECC1 /* ResourceBundles */,
 				17B50AE61912A6C693F0DE00 /* Resources */,
 				1081880C2668C04EF6007AA9 /* Sources */,
 			);
 			path = GSSDKCustomDemo;
-			sourceTree = "<group>";
-		};
-		AE348958324DA1F8E923ECC1 /* ResourceBundles */ = {
-			isa = PBXGroup;
-			children = (
-				569A467E712923206483FCAB /* tessdata */,
-			);
-			path = ResourceBundles;
 			sourceTree = "<group>";
 		};
 		BC7FF8569C7A90E69A89591C /* Project */ = {
@@ -179,6 +170,9 @@
 			dependencies = (
 			);
 			name = GSSDKCustomDemo;
+			packageProductDependencies = (
+				757CB8252E9230816D48949F /* GSSDK */,
+			);
 			productName = GSSDKCustomDemo;
 			productReference = AE36E25358A0A3034086F28F /* GSSDKCustomDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -203,6 +197,9 @@
 				en,
 			);
 			mainGroup = C96CB49B46D39FD74EDB3B3D;
+			packageReferences = (
+				49294DD01D4FD28862D6CFE5 /* XCRemoteSwiftPackageReference "geniusscan-sdk-spm" */,
+			);
 			productRefGroup = CF38E1BE1A331EA70717E25E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,7 +214,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC50B46F4BED217510953817 /* tessdata in Resources */,
 				4659278AD634AAFBAFA97085 /* Images.xcassets in Resources */,
 				C1E488DA4207F1D4E4DBE56D /* LaunchScreen.xib in Resources */,
 				C5BC5FC168E832AF832E6916 /* PDFViewController.xib in Resources */,
@@ -430,6 +426,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49294DD01D4FD28862D6CFE5 /* XCRemoteSwiftPackageReference "geniusscan-sdk-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		757CB8252E9230816D48949F /* GSSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GSSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DF2A81FEF4AF47B5C02E628D /* Project object */;
 }

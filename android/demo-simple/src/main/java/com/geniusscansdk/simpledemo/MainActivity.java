@@ -9,7 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.geniusscansdk.core.GeniusScanSDK;
+import androidx.annotation.Nullable;
+import androidx.annotation.RawRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
 import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.scanflow.ScanConfiguration;
 import com.geniusscansdk.scanflow.ScanFlow;
@@ -20,13 +26,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RawRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -68,11 +67,9 @@ public class MainActivity extends AppCompatActivity {
         scanConfiguration.highlightColor = ContextCompat.getColor(this, R.color.colorAccent);
 
         ScanConfiguration.OcrConfiguration ocrConfiguration = new ScanConfiguration.OcrConfiguration();
-        ocrConfiguration.languages = Arrays.asList("eng");
-        ocrConfiguration.languagesDirectory = getTessdataDirectory();
+        ocrConfiguration.languages = Arrays.asList("en-US");
 
         scanConfiguration.ocrConfiguration = ocrConfiguration;
-        copyFileFromResource(R.raw.eng, new File(getTessdataDirectory(), "eng.traineddata"));
 
         return scanConfiguration;
     }
@@ -121,12 +118,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private File getTessdataDirectory() {
-        File directory = new File(getExternalFilesDir(null), "tessdata");
-        directory.mkdirs();
-        return directory;
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == ScanFlow.SCAN_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
@@ -146,12 +137,14 @@ public class MainActivity extends AppCompatActivity {
                     // The license key is invalid or expired, either ask the user to update the app or provide a fallback
                     new AlertDialog.Builder(this)
                             .setMessage("Please update to the latest version.")
+                            .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {})
                             .show();
                 }
             } catch (Exception e) {
                 Log.e(TAG, "Error during scan flow", e);
                 new AlertDialog.Builder(this)
                         .setMessage("An error occurred: " + e.getMessage())
+                        .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {})
                         .show();
             }
         } else {

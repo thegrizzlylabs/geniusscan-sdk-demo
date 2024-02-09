@@ -7,10 +7,8 @@
 // sdk@thegrizzlylabs.com
 //
 
-
-
 import UIKit
-import GSSDKCore
+import GSSDK
 
 final class EditFrameViewController: GSKEditFrameViewController {
 
@@ -56,7 +54,7 @@ final class EditFrameViewController: GSKEditFrameViewController {
                 // We update the display quadrangle
                 if let quadrangle = result?.quadrangle, !quadrangle.isEmpty() {
                     self.quadrangle = quadrangle
-                } else  {
+                } else {
                     self.quadrangle = GSKQuadrangle.full()
                 }
             }

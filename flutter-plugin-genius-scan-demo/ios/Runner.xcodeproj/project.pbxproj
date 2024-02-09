@@ -218,15 +218,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDKCore.framework/GSSDKCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDKScanFlow.framework/GSSDKScanFlow",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDKOCR.framework/GSSDKOCR",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/flutter_genius_scan/GSSDK.framework/GSSDK",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

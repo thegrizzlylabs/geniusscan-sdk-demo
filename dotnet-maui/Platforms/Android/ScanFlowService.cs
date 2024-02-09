@@ -9,10 +9,10 @@ namespace SimpleDemo
             ScanFlow.SetLicenseKey(Platform.CurrentActivity, licenseKey, /* autoRefresh = */ true);
         }
 
-        public partial Task<string> StartScanning(string languagesDirectoryUrl)
+        public partial Task<string> StartScanning()
         {
             var mainActivity = (MainActivity)Platform.CurrentActivity;
-            return mainActivity.StartScanning(languagesDirectoryUrl);
+            return mainActivity.StartScanning();
         }
     }
 }

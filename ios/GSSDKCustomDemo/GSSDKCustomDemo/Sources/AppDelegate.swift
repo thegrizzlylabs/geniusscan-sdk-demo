@@ -7,10 +7,8 @@
 // sdk@thegrizzlylabs.com
 //
 
-
-
 import UIKit
-import GSSDKCore
+import GSSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

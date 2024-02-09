@@ -10,11 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@thegrizzlylabs/react-native-genius-scan": "^4.21.0",
+    "@thegrizzlylabs/react-native-genius-scan": "^5.0.0-beta3",
     "react": "18.2.0",
     "react-native": "0.71.14",
-    "react-native-file-viewer": "^2.1.4",
-    "react-native-fs": "^2.20"
+    "react-native-file-viewer": "^2.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

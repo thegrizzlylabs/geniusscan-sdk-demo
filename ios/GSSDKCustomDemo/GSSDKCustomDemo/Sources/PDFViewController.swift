@@ -7,11 +7,8 @@
 // sdk@thegrizzlylabs.com
 //
 
-
-
+import GSSDK
 import UIKit
-import GSSDKCore
-import GSSDKOCR
 
 final class PDFViewController: UIViewController {
 
@@ -34,14 +31,18 @@ final class PDFViewController: UIViewController {
     }
 
     @IBAction func share(_ sender: Any) {
-        guard let url = generatePDF(nil) else {
-            print("Cannot generate url")
-            return
-        }
+        Task {
+            guard let url = await generatePDF(nil) else {
+                print("Cannot generate url")
+                return
+            }
 
-        previewController = UIDocumentInteractionController(url: url)
-        previewController?.delegate = self
-        previewController?.presentPreview(animated: true)
+            await MainActor.run {
+                previewController = UIDocumentInteractionController(url: url)
+                previewController?.delegate = self
+                previewController?.presentPreview(animated: true)
+            }
+        }
     }
 
     // MARK: - Private
@@ -49,25 +50,17 @@ final class PDFViewController: UIViewController {
     /// This is where the PDF generation happens
     /// - First, create the information to generate the PDF document
     /// - Then generate the PDF document
-    private func generatePDF(_ ocrResult: GSKOCRResult?) -> URL? {
+    private func generatePDF(_ ocrResult: GSKOCRResult?) async -> URL? {
         var textLayouts = [String: GSKTextLayout]()
 
         // Perform OCR if requested
         if ocrSwitch.isOn {
-            let ocrConfiguration = GSKOCRConfiguration()
-
-            // Indicate where the tessdata/ folder is located. This contains
-            // trained language data.
-            ocrConfiguration.trainedDataPath = (Bundle.main.resourcePath! as NSString).appendingPathComponent("tessdata")
-
-            // Which language your want to OCR. There must be the corresponding
-            // <language>.traineddata in the tessdata/ folder.
-            ocrConfiguration.languageCodes = ["eng"]
+            let ocrConfiguration: GSKOCRConfiguration = .configuration(languageTags: ["en-US"])
 
             for filePath in Storage.shared.filePaths {
                 do {
-                    let result = try GSKOCR.recognizeTextForImage(atPath: filePath, ocrConfiguration: ocrConfiguration, onProgress: { progress in
-                        print("OCR engine progress: %f", progress);
+                    let result = try await GSKOCR().recognizeText(forImageAtPath: filePath, ocrConfiguration: ocrConfiguration, onProgress: { progress in
+                        print("OCR engine progress: %f", progress)
                     })
 
                     textLayouts[filePath] = result.textLayout

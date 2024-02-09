@@ -10,12 +10,11 @@ public class MainActivity : MauiAppCompatActivity
 {
     private static TaskCompletionSource<string> currentTask = null;
 
-    public Task<string> StartScanning(string languagesDirectoryUrl)
+    public Task<string> StartScanning()
     {
         var ocrConfiguration = new ScanConfiguration.OcrConfiguration
         {
-            Languages = new List<String> { "eng" },
-            LanguagesDirectory = new Java.IO.File(Android.Net.Uri.Parse(languagesDirectoryUrl).Path)
+            Languages = new List<String> { "en-US" },
         };
 
         var configuration = new ScanConfiguration
