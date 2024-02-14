@@ -1,5 +1,5 @@
 platform :ios, '15.0'
 
 target 'GSSDKSimpleDemo' do
-  pod 'GSSDK', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-5.0.0.podspec'
+  pod 'GSSDK', :podspec => 'https://s3.amazonaws.com/tgl.geniusscan.sdk/GSSDK-5.0.0-beta5.podspec'
 end

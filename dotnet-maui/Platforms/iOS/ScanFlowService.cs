@@ -33,7 +33,7 @@ namespace SimpleDemo
             var taskCompletionSource = new TaskCompletionSource<string>();
             var outError = new NSError();
 
-            var configuration = GSKScanFlowConfiguration_Dictionary.ConfigurationWithDictionary(new GSKScanFlowConfiguration(), configurationDictionary, out outError);
+            var configuration = GSKScanFlowConfiguration.ConfigurationWithDictionary(configurationDictionary, out outError);
             var scanFlow = GSKScanFlow.ScanFlowWithConfiguration(configuration);
             var viewController = UIApplication.SharedApplication.Delegate.GetWindow().RootViewController;
             scanFlow.StartFromViewController(viewController,
