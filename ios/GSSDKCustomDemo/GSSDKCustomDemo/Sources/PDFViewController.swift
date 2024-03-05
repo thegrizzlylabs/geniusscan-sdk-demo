@@ -8,6 +8,7 @@
 //
 
 import GSSDK
+import SwiftUI
 import UIKit
 
 final class PDFViewController: UIViewController {
@@ -32,16 +33,24 @@ final class PDFViewController: UIViewController {
 
     @IBAction func share(_ sender: Any) {
         Task {
-            guard let url = await generatePDF(nil) else {
-                print("Cannot generate url")
-                return
-            }
+            let result = try await generatePDF()
 
-            await MainActor.run {
-                previewController = UIDocumentInteractionController(url: url)
-                previewController?.delegate = self
-                previewController?.presentPreview(animated: true)
-            }
+            present(
+                UINavigationController(rootViewController: UIHostingController(
+                    rootView: ScanResultsView(
+                        pageResults: result.pages,
+                        onShowPDF: { [weak self] in
+                            self?.dismiss(animated: true) {
+                                self?.showPreviewController(forFileURL: result.fileURL)
+                            }
+                        },
+                        onDismiss: { [weak self] in
+                            self?.dismiss(animated: true)
+                        }
+                    )
+                )),
+                animated: true
+            )
         }
     }
 
@@ -50,12 +59,12 @@ final class PDFViewController: UIViewController {
     /// This is where the PDF generation happens
     /// - First, create the information to generate the PDF document
     /// - Then generate the PDF document
-    private func generatePDF(_ ocrResult: GSKOCRResult?) async -> URL? {
-        var textLayouts = [String: GSKTextLayout]()
+    private func generatePDF() async throws -> GenerationResult {
+        var ocrResults = [String: GSKOCRResult]()
 
         // Perform OCR if requested
         if ocrSwitch.isOn {
-            let ocrConfiguration: GSKOCRConfiguration = .configuration(languageTags: ["en-US"])
+            let ocrConfiguration = GSKOCRConfiguration.configuration(languageTags: ["en-US"])
 
             for filePath in Storage.shared.filePaths {
                 do {
@@ -63,7 +72,7 @@ final class PDFViewController: UIViewController {
                         print("OCR engine progress: %f", progress)
                     })
 
-                    textLayouts[filePath] = result.textLayout
+                    ocrResults[filePath] = result
                 } catch {
                     print("Error while OCR'ing page: \(error)")
                 }
@@ -75,8 +84,11 @@ final class PDFViewController: UIViewController {
         // First we generate a list of pages.
         let pages = Storage.shared.filePaths.map { filePath -> GSKPDFPage in
             // For each page, we specify the document and a size in inches.
-            let page = GSKPDFPage(filePath: filePath, inchesSize: GSKPDFSize(width: 8.27, height: 11.69), textLayout: textLayouts[filePath])
-            return page
+            GSKPDFPage(
+                filePath: filePath,
+                inchesSize: GSKPDFSize(width: 8.27, height: 11.69),
+                textLayout: ocrResults[filePath]?.textLayout
+            )
         }
 
         // We then create a GSKPDFDocument which holds the general information about the PDF document to generate
@@ -89,22 +101,33 @@ final class PDFViewController: UIViewController {
         let documentsDirectory = paths[0] as NSString
         let outputFilePath = documentsDirectory.appendingPathComponent("output.pdf")
 
-        do {
-            // Remove before creating.
-            try FileManager.default.removeItem(atPath: outputFilePath)
-        } catch {
-            // Swallow error
-        }
+        // Remove before creating.
+        try? FileManager.default.removeItem(atPath: outputFilePath)
 
         do {
             try GSKPDF.generate(document, toPath: outputFilePath)
-            return URL(fileURLWithPath: outputFilePath)
+
+            var result = GenerationResult(fileURL: URL(fileURLWithPath: outputFilePath))
+
+            for filePath in Storage.shared.filePaths {
+                guard let previewImage = UIImage(contentsOfFile: filePath) else {
+                    continue
+                }
+
+                try await result.pages.append(PageGenerationResult(
+                    id: filePath,
+                    title: "Page \(result.pages.count + 1)",
+                    previewImage: previewImage,
+                    structuredData: structuredData(fromOCRResult: ocrResults[filePath])
+                ))
+            }
+
+            return result
         } catch {
             print("Error while generating the PDF document: \(error)")
-            return nil
+            throw error
         }
     }
-
 }
 
 extension PDFViewController: UIDocumentInteractionControllerDelegate {
@@ -121,5 +144,29 @@ extension PDFViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+}
 
+private extension PDFViewController {
+    struct GenerationResult {
+        var fileURL: URL
+        var pages = [PageGenerationResult]()
+    }
+
+    func structuredData(fromOCRResult ocrResult: GSKOCRResult?) async throws -> StructuredData? {
+        guard let ocrResult else { return nil }
+
+        let dataExtractor = GSKStructuredDataExtractor()
+
+        return try await StructuredData(
+            bankDetails: dataExtractor.bankDetailsFromOCRResult(ocrResult),
+            businessCardContact: dataExtractor.businessCardContactFromOCRResult(ocrResult),
+            receipt: dataExtractor.receiptFromOCRResult(ocrResult)
+        )
+    }
+
+    func showPreviewController(forFileURL fileURL: URL) {
+        previewController = UIDocumentInteractionController(url: fileURL)
+        previewController?.delegate = self
+        previewController?.presentPreview(animated: true)
+    }
 }
