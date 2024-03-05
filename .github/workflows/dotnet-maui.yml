@@ -11,6 +11,9 @@ jobs:
     runs-on: macos-13
     steps:
     - uses: actions/checkout@v1
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '15.1'
     - name: Build demo
       run: |
         cd dotnet-maui
