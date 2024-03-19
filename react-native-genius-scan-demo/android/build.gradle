@@ -7,7 +7,7 @@ buildscript {
         // Cannot target Android API 34 until RN 0.73: https://github.com/facebook/react-native/issues/37769
         targetSdkVersion = 33
 
-        ndkVersion = "25.1.8937393"
+        ndkVersion = "26.2.11394342"
     }
     repositories {
         google()

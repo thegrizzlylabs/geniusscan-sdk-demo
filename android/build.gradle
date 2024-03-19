@@ -47,7 +47,7 @@ allprojects {
 }
 
 ext {
-    ndkVersion = '25.1.8937393'
+    ndkVersion = '26.2.11394342'
     compileSdkVersion = 34
     targetSdkVersion = 34
     minSdkVersion = 21
