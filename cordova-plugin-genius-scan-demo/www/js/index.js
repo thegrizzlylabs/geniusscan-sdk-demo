@@ -2,23 +2,6 @@ function onError(error) {
   alert("Error: " + JSON.stringify(error));
 }
 
-function copy(filepath, toDirectory, filename, callback) {
-  window.resolveLocalFileSystemURL(filepath, function(fileEntry) {
-    window.resolveLocalFileSystemURL(toDirectory, function(dirEntry) {
-      dirEntry.getFile(filename, { create: true, exclusive: false }, function(targetFileEntry) {
-        fileEntry.file(function(file) {
-          targetFileEntry.createWriter(function(fileWriter) {
-            fileWriter.onwriteend = function() {
-                callback();
-            };
-            fileWriter.write(file);
-          });
-        });
-      }, onError);
-    }, onError);
-  }, onError);
-}
-
 var app = {
   initialize: function() {
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
@@ -55,18 +38,13 @@ var app = {
 };
 
 function startScanFlow() {
-  var assetLanguageUri = `${cordova.file.applicationDirectory}www/eng.traineddata`
-  var appFolder = window.cordova.platformId == 'android' ? cordova.file.externalDataDirectory : cordova.file.dataDirectory;
-  copy(assetLanguageUri, appFolder, 'eng.traineddata', function() {
-    var configuration = {
-      source: 'camera',
-      ocrConfiguration: {
-        languages: ['eng'],
-        languagesDirectoryUrl: appFolder
-      }
-    };
-    cordova.plugins.GeniusScan.scanWithConfiguration(configuration, onScanFlowResult, onError);
-  });
+  var configuration = {
+    source: 'camera',
+    ocrConfiguration: {
+      languages: ['en-US']
+    }
+  };
+  cordova.plugins.GeniusScan.scanWithConfiguration(configuration, onScanFlowResult, onError);
 }
 
 function onScanFlowResult(result) {

@@ -1,7 +1,9 @@
 import Foundation
-import GSSDKScanFlow
+import GSSDK
 import SwiftUI
 
+/// - Demonstrates a configuration for structured data scanning.
+/// - Demonstrates how to present the scan flow from SwiftUI with `GSKScanFlowButton`.
 struct StructuredDataScanningView: View {
     @State private var scanFlowResult: Result<GSKScanFlowScan, Error>?
 
@@ -9,7 +11,7 @@ struct StructuredDataScanningView: View {
         if let result = scanFlowResult {
             switch result {
             case .failure(let error):
-                List  {
+                List {
                     Section {
                         Text(error.localizedDescription)
                     }
@@ -21,12 +23,12 @@ struct StructuredDataScanningView: View {
                     }
                 }
             case .success(let scan):
-                ResultView(scan: scan, onRetry: clear)
+                StructuredDataResultsView(scan: scan, onRetry: clear)
             }
         } else {
             List {
                 Section(
-                    footer: Text("This view demonstrates how to start a scan flow in structured data scanning extraction mode, and how to integrate the scan flow with SwiftUI.")
+                    footer: Text("This view demonstrates how to start a scan flow in structured data scanning extraction mode, and how to integrate the scan flow with the SwiftUI view GSKScanFlowButton.")
                 ) {
                     GSKScanFlowButton(
                         "Scan with camera",
@@ -70,7 +72,7 @@ private extension StructuredDataScanningView {
 
         configuration.multiPage = false
         configuration.skipPostProcessingScreen = true
-        configuration.structuredData = .bankDetails
+        configuration.structuredData = [.bankDetails, .businessCard, .receipt]
 
         return configuration
     }

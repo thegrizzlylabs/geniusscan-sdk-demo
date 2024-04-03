@@ -12,12 +12,11 @@ namespace SimpleDemo
             GSK.SetLicenseKey(licenseKey, /* autoRefresh = */ true);
         }
 
-        public partial Task<string> StartScanning(string languagesDirectoryUrl)
+        public partial Task<string> StartScanning()
         {
             var ocrConfiguration = new NSMutableDictionary
             {
-                { new NSString("languages"), NSArray.FromStrings(new string[] { "eng" }) },
-                { new NSString("languagesDirectoryUrl"), new NSString(languagesDirectoryUrl) }
+                { new NSString("languages"), NSArray.FromStrings(new string[] { "en-US" }) }
             };
 
             var configuration = new NSMutableDictionary
@@ -34,7 +33,7 @@ namespace SimpleDemo
             var taskCompletionSource = new TaskCompletionSource<string>();
             var outError = new NSError();
 
-            var configuration = GSKScanFlowConfiguration_Dictionary.ConfigurationWithDictionary(new GSKScanFlowConfiguration(), configurationDictionary, out outError);
+            var configuration = GSKScanFlowConfiguration.ConfigurationWithDictionary(configurationDictionary, out outError);
             var scanFlow = GSKScanFlow.ScanFlowWithConfiguration(configuration);
             var viewController = UIApplication.SharedApplication.Delegate.GetWindow().RootViewController;
             scanFlow.StartFromViewController(viewController,

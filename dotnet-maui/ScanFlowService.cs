@@ -4,7 +4,7 @@
 	{
         public partial void SetLicenseKey(string licenseKey);
 
-        public partial Task<string> StartScanning(string languagesDirectoryUrl);
+        public partial Task<string> StartScanning();
     }
 }
 

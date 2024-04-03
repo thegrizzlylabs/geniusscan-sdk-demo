@@ -4,7 +4,7 @@
 //
 
 import Foundation
-import GSSDKScanFlow
+import GSSDK
 import UIKit
 import SwiftUI
 
@@ -23,7 +23,7 @@ struct GSKSDKStructuredDemoApp: App {
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
 
         // Set the SDK license key as early as possible to give it a chance to refresh
         // the license key in case it's expired (auto-refresh behavior can also be disabled with

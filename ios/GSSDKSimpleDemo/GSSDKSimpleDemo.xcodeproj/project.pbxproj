@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		01E25D56CD2C1338F0CC4C1F /* DocumentScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC643C8DABF3A3535512FCA8 /* DocumentScanningView.swift */; };
+		077619EFCCA6CB81C233DDCD /* DocumentScanningConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184255C73C44BA77E7B7822E /* DocumentScanningConfigurationViewModel.swift */; };
 		0A6C17149369BDB603F34730 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3BF42E97960DC68CF95707C /* Images.xcassets */; };
 		0B9CBB00DC9404778DD240E2 /* TuistAssets+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870CE4724ECFA4F6A6F20E0F /* TuistAssets+GSSDKSimpleDemo.swift */; };
+		0CBAF2DA059AFE32B0F62D03 /* CustomDocumentScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6345984E9436898218ECCDA4 /* CustomDocumentScanningView.swift */; };
 		0DC6E49F947F5411CB3B8BE8 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BB2F9F74C7BF72AA8DB479D /* image.jpg */; };
 		134D5FE28DA30523445C5D0C /* TuistStrings+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCFF3DB59E733E7284379A4 /* TuistStrings+GSSDKSimpleDemo.swift */; };
 		386A751C92D7002B39011B7A /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */; };
-		412FCEE1096C707F3079811B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE96A239EB93C2D5DBA98512 /* ResultView.swift */; };
 		510D7171B193B7B6BC72D1E7 /* TuistBundle+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB28EC5B6B64022328511C8 /* TuistBundle+GSSDKSimpleDemo.swift */; };
 		51E533825C95FF0AD1044E0B /* StructuredDataScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */; };
 		5273282D4E1E64E040379343 /* bank-identity-document.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */; };
-		539095FA740250434D91BF43 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = CB1AFDBE110DB72354424916 /* tessdata */; };
+		53254D0AE0632DBB5DAF659B /* image-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C973478885A44879F20E8A2 /* image-2.jpg */; };
 		57C5DC280360BAB3D9290769 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 268CF675925FBC65F14D7341 /* LaunchScreen.xib */; };
 		5DF026B3D191DEDD348DF992 /* DocumentScanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B62238444DCC510A6AFED1 /* DocumentScanningViewController.swift */; };
 		850761A76B6F363AB1A58AA2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC97AD698336C7CEB29563E8 /* Localizable.strings */; };
+		887A913B5767CE572C4A7230 /* GSSDK in Frameworks */ = {isa = PBXBuildFile; productRef = B525BC1A500E8B66A37DF425 /* GSSDK */; };
 		9F690F5166A0626689867D02 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63053890F5889186041B68A0 /* MainView.swift */; };
+		CE4D3D98107A762391BC32F5 /* StructuredDataResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695B2A0710043579CEE25045 /* StructuredDataResultsView.swift */; };
 		E96867F8A4D2BD789606C10B /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133A7E624B6779BFB5DE516 /* App.swift */; };
+		F0698068F5587C8ECE5B0E9B /* DocumentScanningConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7406FC75659CD9AA46A22265 /* DocumentScanningConfigurationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		184255C73C44BA77E7B7822E /* DocumentScanningConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanningConfigurationViewModel.swift; sourceTree = "<group>"; };
 		268CF675925FBC65F14D7341 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		3457F076C2305900F7CFB57C /* GSSDKSimpleDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GSSDKSimpleDemo-Info.plist"; sourceTree = "<group>"; };
 		363602DFFCADF5F6ECE2A6FB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -47,12 +52,16 @@
 		58CA63038A460FDD9F50ED73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5FB28EC5B6B64022328511C8 /* TuistBundle+GSSDKSimpleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+GSSDKSimpleDemo.swift"; sourceTree = "<group>"; };
 		63053890F5889186041B68A0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		6345984E9436898218ECCDA4 /* CustomDocumentScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDocumentScanningView.swift; sourceTree = "<group>"; };
 		65FEAE748794BB2A5899BE70 /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
 		69052FA5E4F67D335F446A3B /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		695B2A0710043579CEE25045 /* StructuredDataResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredDataResultsView.swift; sourceTree = "<group>"; };
 		6BB2F9F74C7BF72AA8DB479D /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
+		7406FC75659CD9AA46A22265 /* DocumentScanningConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanningConfigurationView.swift; sourceTree = "<group>"; };
 		79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredDataScanningView.swift; sourceTree = "<group>"; };
 		81235439599CB95FEEF1BB0D /* GSSDKSimpleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GSSDKSimpleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		870CE4724ECFA4F6A6F20E0F /* TuistAssets+GSSDKSimpleDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+GSSDKSimpleDemo.swift"; sourceTree = "<group>"; };
+		8C973478885A44879F20E8A2 /* image-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "image-2.jpg"; sourceTree = "<group>"; };
 		995119CB28285242FE55E523 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		99683A20ADC97017330520C1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9E1676537CAAB50A9795B624 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -60,7 +69,6 @@
 		A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+TopViewController.swift"; sourceTree = "<group>"; };
 		A9B62238444DCC510A6AFED1 /* DocumentScanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanningViewController.swift; sourceTree = "<group>"; };
 		ABCCF0E80167BF5D141D6345 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AE96A239EB93C2D5DBA98512 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		B244AC51FE47CF9C0919307E /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3BF42E97960DC68CF95707C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B811891A290F878EE9756EF8 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -69,7 +77,6 @@
 		C133A7E624B6779BFB5DE516 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		C7DE7A97144495067A582965 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA944F538970CB7915E8E651 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		CB1AFDBE110DB72354424916 /* tessdata */ = {isa = PBXFileReference; path = tessdata; sourceTree = "<group>"; };
 		D547086910C4CFB6F7095332 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DC643C8DABF3A3535512FCA8 /* DocumentScanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanningView.swift; sourceTree = "<group>"; };
 		DCD108A5770F912CDB2C64D0 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -85,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887A913B5767CE572C4A7230 /* GSSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,10 +103,13 @@
 			isa = PBXGroup;
 			children = (
 				C133A7E624B6779BFB5DE516 /* App.swift */,
+				6345984E9436898218ECCDA4 /* CustomDocumentScanningView.swift */,
+				7406FC75659CD9AA46A22265 /* DocumentScanningConfigurationView.swift */,
+				184255C73C44BA77E7B7822E /* DocumentScanningConfigurationViewModel.swift */,
 				DC643C8DABF3A3535512FCA8 /* DocumentScanningView.swift */,
 				A9B62238444DCC510A6AFED1 /* DocumentScanningViewController.swift */,
 				63053890F5889186041B68A0 /* MainView.swift */,
-				AE96A239EB93C2D5DBA98512 /* ResultView.swift */,
+				695B2A0710043579CEE25045 /* StructuredDataResultsView.swift */,
 				79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */,
 				A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */,
 			);
@@ -108,7 +119,6 @@
 		86990752452927AB74BBF23A /* GSSDKSimpleDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9B84625F91C1873081BC724A /* ResourceBundles */,
 				E82A30F9FB7410B604DF38E0 /* Resources */,
 				51A4AAB265659D17B0D1D349 /* Sources */,
 			);
@@ -120,14 +130,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9B84625F91C1873081BC724A /* ResourceBundles */ = {
-			isa = PBXGroup;
-			children = (
-				CB1AFDBE110DB72354424916 /* tessdata */,
-			);
-			path = ResourceBundles;
 			sourceTree = "<group>";
 		};
 		AEFA0EEB94E4B4A7A2504575 = {
@@ -160,6 +162,7 @@
 			children = (
 				DC97AD698336C7CEB29563E8 /* Localizable.strings */,
 				569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */,
+				8C973478885A44879F20E8A2 /* image-2.jpg */,
 				6BB2F9F74C7BF72AA8DB479D /* image.jpg */,
 				B3BF42E97960DC68CF95707C /* Images.xcassets */,
 				268CF675925FBC65F14D7341 /* LaunchScreen.xib */,
@@ -212,6 +215,9 @@
 			dependencies = (
 			);
 			name = GSSDKSimpleDemo;
+			packageProductDependencies = (
+				B525BC1A500E8B66A37DF425 /* GSSDK */,
+			);
 			productName = GSSDKSimpleDemo;
 			productReference = 81235439599CB95FEEF1BB0D /* GSSDKSimpleDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -257,6 +263,9 @@
 				"zh-Hant",
 			);
 			mainGroup = AEFA0EEB94E4B4A7A2504575;
+			packageReferences = (
+				A3B41AE94C68FF7FE45D07F0 /* XCRemoteSwiftPackageReference "geniusscan-sdk-spm" */,
+			);
 			productRefGroup = D34D1866954E4B5E6ECE14D9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -271,11 +280,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				539095FA740250434D91BF43 /* tessdata in Resources */,
 				0A6C17149369BDB603F34730 /* Images.xcassets in Resources */,
 				57C5DC280360BAB3D9290769 /* LaunchScreen.xib in Resources */,
 				850761A76B6F363AB1A58AA2 /* Localizable.strings in Resources */,
 				5273282D4E1E64E040379343 /* bank-identity-document.jpg in Resources */,
+				53254D0AE0632DBB5DAF659B /* image-2.jpg in Resources */,
 				0DC6E49F947F5411CB3B8BE8 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,10 +300,13 @@
 				510D7171B193B7B6BC72D1E7 /* TuistBundle+GSSDKSimpleDemo.swift in Sources */,
 				134D5FE28DA30523445C5D0C /* TuistStrings+GSSDKSimpleDemo.swift in Sources */,
 				E96867F8A4D2BD789606C10B /* App.swift in Sources */,
+				0CBAF2DA059AFE32B0F62D03 /* CustomDocumentScanningView.swift in Sources */,
+				F0698068F5587C8ECE5B0E9B /* DocumentScanningConfigurationView.swift in Sources */,
+				077619EFCCA6CB81C233DDCD /* DocumentScanningConfigurationViewModel.swift in Sources */,
 				01E25D56CD2C1338F0CC4C1F /* DocumentScanningView.swift in Sources */,
 				5DF026B3D191DEDD348DF992 /* DocumentScanningViewController.swift in Sources */,
 				9F690F5166A0626689867D02 /* MainView.swift in Sources */,
-				412FCEE1096C707F3079811B /* ResultView.swift in Sources */,
+				CE4D3D98107A762391BC32F5 /* StructuredDataResultsView.swift in Sources */,
 				51E533825C95FF0AD1044E0B /* StructuredDataScanningView.swift in Sources */,
 				386A751C92D7002B39011B7A /* UIApplication+TopViewController.swift in Sources */,
 			);
@@ -520,6 +532,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A3B41AE94C68FF7FE45D07F0 /* XCRemoteSwiftPackageReference "geniusscan-sdk-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B525BC1A500E8B66A37DF425 /* GSSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GSSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AF930071A425450AEC267751 /* Project object */;
 }

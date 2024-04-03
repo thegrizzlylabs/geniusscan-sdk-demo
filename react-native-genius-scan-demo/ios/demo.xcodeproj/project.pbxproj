@@ -314,16 +314,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-demo/Pods-demo-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKCore.framework/GSSDKCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKScanFlow.framework/GSSDKScanFlow",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKOCR.framework/GSSDKOCR",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDK.framework/GSSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,16 +356,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-demo-demoTests/Pods-demo-demoTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKCore.framework/GSSDKCore",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKScanFlow.framework/GSSDKScanFlow",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDKOCR.framework/GSSDKOCR",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/RNGeniusScan/GSSDK.framework/GSSDK",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKScanFlow.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDKOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GSSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

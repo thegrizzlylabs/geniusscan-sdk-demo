@@ -27,16 +27,13 @@ import {
 
 import FileViewer from 'react-native-file-viewer';
 import RNGeniusScan from '@thegrizzlylabs/react-native-genius-scan';
-import RNFS from 'react-native-fs';
 
 const App = () => {
-  const appFolder = Platform.OS === 'android' ? RNFS.ExternalDirectoryPath : RNFS.LibraryDirectoryPath;
   // Refer to the Genius Scan SDK demo README.md for a list of the available options
   const configuration = {
     source: 'camera',
     ocrConfiguration: {
-      languages: ['eng'],
-      languagesDirectoryUrl: appFolder
+      languages: ['en-US']
     }
   }
 
@@ -61,17 +58,7 @@ const App = () => {
             <View style={styles.button}>
               <Button
                 onPress={async () => {
-
-                  const languageFile = appFolder + '/eng.traineddata';
-                  const options = {
-                    fromUrl: 'https://github.com/tesseract-ocr/tessdata_fast/raw/main/eng.traineddata',
-                    toFile: languageFile
-                  };
-
                   try {
-                    // Download OCR language file
-                    await RNFS.downloadFile(options)
-
                     // Start scan flow
                     let scanResult = await RNGeniusScan.scanWithConfiguration(configuration)
 

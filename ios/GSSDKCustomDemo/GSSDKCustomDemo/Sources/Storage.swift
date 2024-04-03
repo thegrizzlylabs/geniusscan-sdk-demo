@@ -7,8 +7,6 @@
 // sdk@thegrizzlylabs.com
 //
 
-
-
 import Foundation
 
 final class Storage {

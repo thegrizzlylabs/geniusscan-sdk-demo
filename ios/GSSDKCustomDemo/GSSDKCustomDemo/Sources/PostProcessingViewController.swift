@@ -7,10 +7,8 @@
 // sdk@thegrizzlylabs.com
 //
 
-
-
 import UIKit
-import GSSDKCore
+import GSSDK
 
 final class PostProcessingViewController: UIViewController {
 
@@ -55,7 +53,7 @@ final class PostProcessingViewController: UIViewController {
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
         enhancementBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(edit))
@@ -83,27 +81,27 @@ final class PostProcessingViewController: UIViewController {
         let alertController = UIAlertController(title: NSLocalizedString("Choose a filter to apply", comment: ""), message: nil, preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.barButtonItem = enhancementBarButtonItem
 
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("None", comment: ""), style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("None", comment: ""), style: .default, handler: { _ in
             self.filterType = GSKFilterType.none
             self.processImage(autodetect: false)
         }))
 
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Monochrome", comment: ""), style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Monochrome", comment: ""), style: .default, handler: { _ in
             self.filterType = GSKFilterType.monochrome
             self.processImage(autodetect: false)
         }))
 
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Black & White", comment: ""), style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Black & White", comment: ""), style: .default, handler: { _ in
             self.filterType = GSKFilterType.blackAndWhite
             self.processImage(autodetect: false)
         }))
 
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Color", comment: ""), style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Color", comment: ""), style: .default, handler: { _ in
             self.filterType = GSKFilterType.color
             self.processImage(autodetect: false)
         }))
 
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Photo", comment: ""), style: .default, handler: { action in
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("Photo", comment: ""), style: .default, handler: { _ in
             self.filterType = GSKFilterType.photo
             self.processImage(autodetect: false)
         }))

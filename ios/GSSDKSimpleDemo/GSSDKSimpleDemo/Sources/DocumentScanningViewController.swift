@@ -8,7 +8,7 @@
 //
 
 import Foundation
-import GSSDKScanFlow
+import GSSDK
 import UIKit
 
 final class DocumentScanningViewController: UITableViewController, UIDocumentInteractionControllerDelegate {
@@ -23,12 +23,12 @@ final class DocumentScanningViewController: UITableViewController, UIDocumentInt
     init() {
         super.init(style: .insetGrouped)
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,8 +85,7 @@ final class DocumentScanningViewController: UITableViewController, UIDocumentInt
         configuration.foregroundColor = .red
         configuration.multiPageFormat = .PDF
         let ocrConfiguration = GSKScanFlowOCRConfiguration()
-        ocrConfiguration.languageCodes = ["eng"]
-        ocrConfiguration.trainedDataPath = (Bundle.main.resourcePath! as NSString).appendingPathComponent("tessdata")
+        ocrConfiguration.languageTags = ["en-US"]
         configuration.ocrConfiguration = ocrConfiguration
 
         // Instantiate a scan flow with the configuration
@@ -111,7 +110,11 @@ final class DocumentScanningViewController: UITableViewController, UIDocumentInt
         }, failure: { [weak self] error in
             print("An error happened: \(error)")
 
-            let alert = UIAlertController(title: error.localizedDescription, message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(
+                title: error.localizedDescription,
+                message: (error as NSError).localizedRecoverySuggestion,
+                preferredStyle: .alert
+            )
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         })

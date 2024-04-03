@@ -16,7 +16,7 @@ buildscript {
             }
         }
         maven {
-            url 'https://s3.amazonaws.com/tgl.maven'
+            url 'https://repo.gradle.org/gradle/libs-releases'
             content {
                 includeModule('com.twilio', 'apkscale')
             }
@@ -24,11 +24,11 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.1.2'
-        // Patch until apkscale is fixed: https://github.com/twilio/apkscale/issues/10
-        classpath "com.twilio:apkscale:0.0.101"
+        classpath "com.twilio:apkscale:0.1.6"
         classpath "androidx.benchmark:benchmark-gradle-plugin:1.2.0"
         classpath "firebase.test.lab:plugin:2.6.2"
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21'
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.9.10'
     }
 }
 
@@ -47,7 +47,7 @@ allprojects {
 }
 
 ext {
-    ndkVersion = '25.1.8937393'
+    ndkVersion = '26.2.11394342'
     compileSdkVersion = 34
     targetSdkVersion = 34
     minSdkVersion = 21

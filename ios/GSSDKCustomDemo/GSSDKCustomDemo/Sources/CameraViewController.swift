@@ -7,10 +7,8 @@
 // sdk@thegrizzlylabs.com
 //
 
-
-
 import UIKit
-import GSSDKCore
+import GSSDK
 
 /**
  A very simple camera view.
@@ -92,21 +90,6 @@ final class CameraViewController: GSKCameraViewController {
         }
     }
 
-    // MARK: - Camera Session Auto Trigger Related Callbacks
-
-    //
-    // The following callbacks are part of the document identification.
-    // You can rely on them to indicate to the user that a document has been detected or
-    // that the photo is about to be snapped automatically.
-    //
-    // This is just a question of UX. The photo will be taken automatically unless you disable
-    // the auto trigger by setting `autoTrigger = NO` on the camera session.
-    //
-
-    override func cameraSessionIsSearchingQuadrangle(_ cameraSession: GSKCameraSession) {
-        super.cameraSessionIsSearchingQuadrangle(cameraSession)
-    }
-
     override func cameraSessionFailed(toFindQuadrangle cameraSession: GSKCameraSession) {
         super.cameraSessionFailed(toFindQuadrangle: cameraSession)
 
@@ -164,7 +147,6 @@ final class CameraViewController: GSKCameraViewController {
             self.userGuidanceLabel.isHidden = message == nil
         }
     }
-
 
     private func setupConstraints() {
         cameraView.translatesAutoresizingMaskIntoConstraints = false

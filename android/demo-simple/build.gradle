@@ -25,17 +25,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.geniusscansdk:gssdk-core:4.21.1'
-    implementation 'com.geniusscansdk:gssdk-ocr:4.21.1'
-    implementation 'com.geniusscansdk:gssdk-scanflow:4.21.1'
+    implementation 'com.geniusscansdk:gssdk:5.0.0'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
 }
-
-task copyLanguageFile(type: Copy) {
-    from "../../assets/eng.traineddata"
-    into "src/main/res/raw"
-}
-
-preBuild.dependsOn copyLanguageFile
