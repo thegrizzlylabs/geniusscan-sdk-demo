@@ -21,9 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>The Genius Scan SDK Simple Demo uses the camera for scanning documents.</string>
-	<key>NSLibraryUsageDescription</key>
-	<string>The Genius Scan SDK Custom Demo uses the photo library for importing documents.</string>
+	<string>The Genius Scan SDK Custom Demo uses the camera for scanning documents.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

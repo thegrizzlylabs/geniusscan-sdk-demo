@@ -92,27 +92,6 @@ struct CustomDocumentScanningView: View {
     }
 }
 
-extension CustomDocumentScanningView {
-    private enum AlertError {
-        case noError
-        case error(String)
-
-        var isError: Bool {
-            switch self {
-            case .noError: false
-            case .error: true
-            }
-        }
-
-        var message: String? {
-            switch self {
-            case .noError: nil
-            case .error(let message): message
-            }
-        }
-    }
-}
-
 private class DocumentInteractionControllerDelegate: NSObject, UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         guard let topViewController = UIApplication.shared.topViewController else {

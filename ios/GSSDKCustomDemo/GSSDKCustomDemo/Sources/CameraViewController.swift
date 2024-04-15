@@ -93,14 +93,14 @@ final class CameraViewController: GSKCameraViewController {
     override func cameraSessionFailed(toFindQuadrangle cameraSession: GSKCameraSession) {
         super.cameraSessionFailed(toFindQuadrangle: cameraSession)
 
-        userGuidance(with: NSLocalizedString("Searching for document…", comment: ""))
+        showUserGuidance(with: NSLocalizedString("Searching for document…", comment: ""))
         removePulseAnimation()
     }
 
     override func cameraSession(_ cameraSession: GSKCameraSession, didFind quadrangle: GSKQuadrangle) {
         super.cameraSession(cameraSession, didFind: quadrangle)
 
-        userGuidance(with: NSLocalizedString("Document found. Remain steady.", comment: ""))
+        showUserGuidance(with: NSLocalizedString("Document found. Remain steady.", comment: ""))
     }
 
     override func cameraSessionIsAbout(toChooseQuadrangle cameraSession: GSKCameraSession) {
@@ -141,7 +141,7 @@ final class CameraViewController: GSKCameraViewController {
         }
     }
 
-    private func userGuidance(with message: String?) {
+    private func showUserGuidance(with message: String?) {
         DispatchQueue.main.async {
             self.userGuidanceLabel.text = message
             self.userGuidanceLabel.isHidden = message == nil
