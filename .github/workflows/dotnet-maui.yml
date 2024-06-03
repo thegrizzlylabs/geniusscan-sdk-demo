@@ -14,8 +14,13 @@ jobs:
     - uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '15.1'
-    - name: Build demo
-      run: |
-        cd dotnet-maui
-        sudo dotnet workload restore
-        dotnet build SimpleDemo.csproj
+    # Retry in case plugin is not yet available on nuget
+    - uses: nick-fields/retry@v3
+      with:
+        timeout_minutes: 30
+        max_attempts: 2
+        retry_wait_seconds: 300
+        command: |
+          cd dotnet-maui
+          sudo dotnet workload restore
+          dotnet build SimpleDemo.csproj
