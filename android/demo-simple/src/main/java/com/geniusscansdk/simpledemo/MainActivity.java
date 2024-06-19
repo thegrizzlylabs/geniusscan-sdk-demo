@@ -1,5 +1,7 @@
 package com.geniusscansdk.simpledemo;
 
+import static com.geniusscansdk.scanflow.ScanConfiguration.Filter.*;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
         scanConfiguration.backgroundColor = Color.WHITE;
         scanConfiguration.foregroundColor = ContextCompat.getColor(this, R.color.colorPrimary);
         scanConfiguration.highlightColor = ContextCompat.getColor(this, R.color.colorAccent);
+        scanConfiguration.availableFilters = Arrays.asList(NONE, AUTOMATIC, AUTOMATIC_BLACK_AND_WHITE,
+                AUTOMATIC_COLOR, PHOTO, SOFT_GRAYSCALE, SOFT_COLOR, STRONG_MONOCHROME
+        );
 
         ScanConfiguration.OcrConfiguration ocrConfiguration = new ScanConfiguration.OcrConfiguration();
         ocrConfiguration.languages = Arrays.asList("en-US");

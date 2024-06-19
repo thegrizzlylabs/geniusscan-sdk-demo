@@ -26,7 +26,7 @@ public class PageProcessor {
         Configuration<File> configuration = new Configuration<>(
                 page.getQuadrangle() == null ? PerspectiveCorrection.automatic() : PerspectiveCorrection.withQuadrangle(page.getQuadrangle()),
                 CurvatureCorrection.create(page.isDistortionCorrectionEnabled()),
-                page.getFilterType() == null ? Enhancement.automatic() : Enhancement.withFilter(page.getFilterType()),
+                page.getFilter() == null ? Enhancement.automatic() : page.getFilter().toEnhancement(),
                 page.isAutomaticallyOriented() ? Rotation.none() : Rotation.automatic(),
                 OutputConfiguration.file(context.getExternalFilesDir(null))
         );
@@ -46,7 +46,6 @@ public class PageProcessor {
         }
 
         page.setQuadrangle(appliedQuadrangle);
-        page.setFilterType(result.appliedFilter);
         if (!page.isAutomaticallyOriented()) {
             page.setAutomaticallyOriented(true);
         }

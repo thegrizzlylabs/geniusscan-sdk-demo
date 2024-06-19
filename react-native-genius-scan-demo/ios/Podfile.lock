@@ -352,8 +352,6 @@ PODS:
     - React-perflogger (= 0.71.14)
   - RNFileViewer (2.1.4):
     - React-Core
-  - RNFS (2.20.0):
-    - React-Core
   - RNGeniusScan (1.0.0):
     - React
   - Yoga (1.14.0)
@@ -395,7 +393,6 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNFileViewer (from `../node_modules/react-native-file-viewer`)
-  - RNFS (from `../node_modules/react-native-fs`)
   - "RNGeniusScan (from `../node_modules/@thegrizzlylabs/react-native-genius-scan`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -473,8 +470,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNFileViewer:
     :path: "../node_modules/react-native-file-viewer"
-  RNFS:
-    :path: "../node_modules/react-native-fs"
   RNGeniusScan:
     :path: "../node_modules/@thegrizzlylabs/react-native-genius-scan"
   Yoga:
@@ -517,7 +512,6 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: ffe826b7b1cfbc32a35ed5b64d5886c0ff75f501
   ReactCommon: 7f3dd5e98a9ec627c6b03d26c062bf37ea9fc888
   RNFileViewer: 83cc066ad795b1f986791d03b56fe0ee14b6a69f
-  RNFS: 4ac0f0ea233904cb798630b3c077808c06931688
   RNGeniusScan: d9ffb40cb8ebf416612aae9668ae9a448a89ca93
   Yoga: e71803b4c1fff832ccf9b92541e00f9b873119b9
 

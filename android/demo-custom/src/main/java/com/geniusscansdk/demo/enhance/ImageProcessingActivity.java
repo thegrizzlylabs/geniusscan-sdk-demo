@@ -2,7 +2,6 @@ package com.geniusscansdk.demo.enhance;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,7 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.geniusscansdk.core.FilterType;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.geniusscansdk.core.RotationAngle;
 import com.geniusscansdk.demo.MainActivity;
 import com.geniusscansdk.demo.R;
@@ -19,8 +19,6 @@ import com.geniusscansdk.demo.model.DocumentManager;
 import com.geniusscansdk.demo.model.Page;
 
 import java.io.File;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class ImageProcessingActivity extends AppCompatActivity {
 
@@ -74,23 +72,16 @@ public class ImageProcessingActivity extends AppCompatActivity {
               .setTitle(R.string.enhancement_dialog_title)
               .setItems(new CharSequence[]{
                       getString(R.string.image_type_none),
+                      getString(R.string.image_type_auto),
+                      getString(R.string.image_type_black_white),
                       getString(R.string.image_type_color),
-                      getString(R.string.image_type_whiteboard),
-                      getString(R.string.image_type_black_white)
-              },new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int which) {
-             FilterType filterType = new FilterType[] {
-                     FilterType.NONE,
-                     FilterType.PHOTO,
-                     FilterType.COLOR,
-                     FilterType.BLACK_WHITE
-             }[which];
-             page.setFilterType(filterType);
-             progressDialog.show();
-             enhance();
-         }
-      }).show();
+                      getString(R.string.image_type_photo)
+              }, (dialog, which) -> {
+                  Filter filterType = Filter.values()[which];
+                  page.setFilter(filterType);
+                  progressDialog.show();
+                  enhance();
+              }).show();
    }
 
    public void toggleDistortionCorrection(View view) {

@@ -7,8 +7,9 @@
     <string name="capture">Capture</string>
     <string name="enhancement_dialog_title">Please select the enhancement to apply</string>
     <string name="image_type_none">None</string>
+    <string name="image_type_auto">Automatic</string>
     <string name="image_type_color">Color</string>
-    <string name="image_type_whiteboard">Whiteboard</string>
+    <string name="image_type_photo">Photo</string>
     <string name="image_type_black_white">Black &amp; White</string>
 
     <plurals name="page_count">

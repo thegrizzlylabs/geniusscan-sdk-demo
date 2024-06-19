@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let cameraSession = GSKCameraSession(configuration: configuration)
         window = UIWindow(frame: UIScreen.main.bounds)
-        let cameraViewController = CameraViewController(cameraSession: cameraSession)!
+        let cameraViewController = CameraViewController(cameraSession: cameraSession)
 
         let navigationController = UINavigationController(rootViewController: cameraViewController)
         if #available(iOS 13.0, *) {

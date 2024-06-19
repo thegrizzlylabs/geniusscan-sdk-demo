@@ -44,7 +44,7 @@ final class CameraViewController: GSKCameraViewController {
         userGuidanceLabel.textColor = UIColor.white
         userGuidanceLabel.textAlignment = NSTextAlignment.center
         userGuidanceLabel.adjustsFontSizeToFitWidth = true
-        cameraView.addSubview(userGuidanceLabel)
+        captureView.addSubview(userGuidanceLabel)
         return userGuidanceLabel
     }()
 
@@ -77,8 +77,8 @@ final class CameraViewController: GSKCameraViewController {
     /**
      We just received a photo from the camera. We could do some post-processing immediately but here we choose to immediately show the interface that lets the user edit the crop area.
      */
-    override func cameraSession(_ cameraSession: GSKCameraSession, didGenerate scan: GSKScan) {
-        super.cameraSession(cameraSession, didGenerate: scan)
+    override func cameraSession(_ cameraSession: GSKCameraSession, didGenerateScan scan: GSKScan) {
+        super.cameraSession(cameraSession, didGenerateScan: scan)
 
         DispatchQueue.main.async {
             // We re-enable the camera button
@@ -90,29 +90,29 @@ final class CameraViewController: GSKCameraViewController {
         }
     }
 
-    override func cameraSessionFailed(toFindQuadrangle cameraSession: GSKCameraSession) {
-        super.cameraSessionFailed(toFindQuadrangle: cameraSession)
+    override func cameraSessionFailedToFindQuadrangle(_ cameraSession: GSKCameraSession) {
+        super.cameraSessionFailedToFindQuadrangle(cameraSession)
 
         showUserGuidance(with: NSLocalizedString("Searching for document…", comment: ""))
         removePulseAnimation()
     }
 
-    override func cameraSession(_ cameraSession: GSKCameraSession, didFind quadrangle: GSKQuadrangle) {
-        super.cameraSession(cameraSession, didFind: quadrangle)
+    override func cameraSession(_ cameraSession: GSKCameraSession, didFindQuadrangle quadrangle: GSKQuadrangle) {
+        super.cameraSession(cameraSession, didFindQuadrangle: quadrangle)
 
         showUserGuidance(with: NSLocalizedString("Document found. Remain steady.", comment: ""))
     }
 
-    override func cameraSessionIsAbout(toChooseQuadrangle cameraSession: GSKCameraSession) {
-        super.cameraSessionIsAbout(toChooseQuadrangle: cameraSession)
+    override func cameraSessionIsAboutToChooseQuadrangle(_ cameraSession: GSKCameraSession) {
+        super.cameraSessionIsAboutToChooseQuadrangle(cameraSession)
 
         // We are indicating to the user that the photo will be taken momentarily by
         // making the shutter button pulse.
         addPulseAnimation()
     }
 
-    override func cameraSession(_ cameraSession: GSKCameraSession, willAutoTriggerWith quadrangle: GSKQuadrangle) {
-        super.cameraSession(cameraSession, willAutoTriggerWith: quadrangle)
+    override func cameraSession(_ cameraSession: GSKCameraSession, willAutoTriggerWithQuadrangle quadrangle: GSKQuadrangle) {
+        super.cameraSession(cameraSession, willAutoTriggerWithQuadrangle: quadrangle)
 
         removePulseAnimation()
     }
@@ -149,24 +149,24 @@ final class CameraViewController: GSKCameraViewController {
     }
 
     private func setupConstraints() {
-        cameraView.translatesAutoresizingMaskIntoConstraints = false
+        captureView.translatesAutoresizingMaskIntoConstraints = false
 
         let topMargin: CGFloat = 40
         let bottomToolbarHeight: CGFloat = 124
 
         NSLayoutConstraint.activate([
-            cameraView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            cameraView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cameraView.topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin),
-            cameraView.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
+            captureView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            captureView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            captureView.topAnchor.constraint(equalTo: view.topAnchor, constant: topMargin),
+            captureView.bottomAnchor.constraint(equalTo: toolbar.topAnchor),
             toolbar.heightAnchor.constraint(equalToConstant: bottomToolbarHeight),
             toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cameraButton.centerXAnchor.constraint(equalTo: toolbar.centerXAnchor),
             cameraButton.centerYAnchor.constraint(equalTo: toolbar.centerYAnchor),
-            userGuidanceLabel.centerXAnchor.constraint(equalTo: cameraView.centerXAnchor),
-            userGuidanceLabel.leadingAnchor.constraint(equalTo: cameraView.layoutMarginsGuide.leadingAnchor),
+            userGuidanceLabel.centerXAnchor.constraint(equalTo: captureView.centerXAnchor),
+            userGuidanceLabel.leadingAnchor.constraint(equalTo: captureView.layoutMarginsGuide.leadingAnchor),
             toolbar.topAnchor.constraint(equalToSystemSpacingBelow: userGuidanceLabel.bottomAnchor, multiplier: 1)
         ])
     }

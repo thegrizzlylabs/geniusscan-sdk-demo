@@ -4,8 +4,8 @@ package com.geniusscansdk.demo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.geniusscansdk.core.FilterType;
 import com.geniusscansdk.core.Quadrangle;
+import com.geniusscansdk.demo.enhance.Filter;
 
 import java.io.File;
 
@@ -18,7 +18,7 @@ public class Page implements Parcelable {
     private final File originalImage;
     private File enhancedImage;
     private Quadrangle quadrangle;
-    private FilterType filterType;
+    private Filter filter;
     private boolean distortionCorrectionEnabled = true;
     private boolean automaticallyOriented = false;
 
@@ -45,12 +45,12 @@ public class Page implements Parcelable {
         return quadrangle;
     }
 
-    public void setFilterType(FilterType filterType) {
-        this.filterType = filterType;
+    public void setFilter(Filter filter) {
+        this.filter = filter;
     }
 
-    public FilterType getFilterType() {
-        return filterType;
+    public Filter getFilter() {
+        return filter;
     }
 
     public void setDistortionCorrectionEnabled(boolean distortionCorrectionEnabled) {
@@ -79,7 +79,7 @@ public class Page implements Parcelable {
         dest.writeString(originalImage.getAbsolutePath());
         dest.writeString(enhancedImage == null ? "" : enhancedImage.getAbsolutePath());
         dest.writeParcelable(quadrangle, flags);
-        dest.writeSerializable(filterType);
+        dest.writeSerializable(filter);
         dest.writeByte((byte) (distortionCorrectionEnabled ? 1 : 0));
         dest.writeByte((byte) (automaticallyOriented ? 1 : 0));
     }
@@ -89,7 +89,7 @@ public class Page implements Parcelable {
         String enhancedImagePath = in.readString();
         enhancedImage = enhancedImagePath.isEmpty() ? null : new File(enhancedImagePath);
         quadrangle = in.readParcelable(Quadrangle.class.getClassLoader());
-        filterType = (FilterType) in.readSerializable();
+        filter = (Filter) in.readSerializable();
         distortionCorrectionEnabled = in.readByte() != 0;
         automaticallyOriented = in.readByte() != 0;
     }
