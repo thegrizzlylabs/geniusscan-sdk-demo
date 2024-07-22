@@ -37,7 +37,7 @@ Please refer to the README of each application directory for instructions.
 
 ### Why does the application stop working after some time?
 
-The demo apps are provided in trial mode – i.e without a license key – so the SDK runs for only a minute.
+The demo apps are provided in trial mode – i.e without a license key – so the SDK runs for only one minute.
 
 To test the document scanner without this time limit, request a free, 30-day Evaluation License for your own application identifier on [our website](https://geniusscansdk.com).
 
