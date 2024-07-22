@@ -3,11 +3,7 @@ Genius Scan SDK demo applications
 
 # Description
 
-These sample scanning applications demonstrate the capability of the [Genius Scan SDK](https://geniusscansdk.com) and how you can integrate it into your iOS, Android, Cordova, React Native and Flutter applications.
-
-**Developing an iOS application?**
-
->Request a demo from [our website](https://geniusscansdk.com) to obtain a package containing the native iOS SDK (Objective-C libraries).
+These sample scanning applications demonstrate the capability of the [Genius Scan SDK](https://geniusscansdk.com) and how you can integrate it into your iOS, Android, Cordova, React Native, Flutter and .NET MAUI applications.
 
 # Content
 
@@ -18,6 +14,8 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 - [React Native demo](./react-native-genius-scan-demo/README.md), which uses the [Genius Scan React Native component](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan)
 - [Cordova demo](./cordova-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Cordova plugin](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan)
 - [Flutter demo](./flutter-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Flutter plugin](https://pub.dev/packages/flutter_genius_scan)
+- [.NET MAUI demo](./dotnet-maui), which uses the Genius Scan SDK [.NET Android plugin](https://www.nuget.org/packages/GeniusScanSDK.ScanFlow.Android) and [.NET iOS plugin](https://www.nuget.org/packages/GeniusScanSDK.ScanFlow.iOS)
+- [Xamarin demo](./xamarin), which shows how to use the Genius Scan SDK in a Xamarin app, but which is not maintained anymore
 
 # Features
 
@@ -25,8 +23,11 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 - Automatic document detection in real-time
 - Auto-trigger to capture document upon detection
 - Document perspective correction
-- Image enhancement with 4 different modes (Black & white, Color, Photo and Monochrome)
-- PDF generation and sharing with password protection
+- Image enhancement with various filters (Black & white, Color, Photo, Monochrome…)
+- Distortion correction
+- Text recognition
+- Multi-page PDF and TIFF generation
+- Structured data extraction from receipts, business cards, bank details…
 
 # Installation
 
@@ -34,9 +35,9 @@ Please refer to the README of each application directory for instructions.
 
 # FAQ
 
-### Why does the application crash or stop working after some time?
+### Why does the application stop working after some time?
 
-The demo apps are provided in trial mode – i.e without a license key – so the SDK runs only for a minute.
+The demo apps are provided in trial mode – i.e without a license key – so the SDK runs for only one minute.
 
 To test the document scanner without this time limit, request a free, 30-day Evaluation License for your own application identifier on [our website](https://geniusscansdk.com).
 
