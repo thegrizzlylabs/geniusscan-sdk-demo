@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         scanConfiguration.pdfMaxScanDimension = 2000;
         scanConfiguration.jpegQuality = 60;
         scanConfiguration.postProcessingActions = ScanConfiguration.Action.ALL;
+        scanConfiguration.photoLibraryButtonHidden = false;
         scanConfiguration.flashButtonHidden = false;
         scanConfiguration.defaultFlashMode = ScanConfiguration.FlashMode.AUTO;
         scanConfiguration.backgroundColor = Color.WHITE;

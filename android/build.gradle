@@ -23,11 +23,11 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.1.2'
+        classpath 'com.android.tools.build:gradle:8.5.0'
         classpath "com.twilio:apkscale:0.1.6"
-        classpath "androidx.benchmark:benchmark-gradle-plugin:1.2.0"
+        classpath "androidx.benchmark:benchmark-gradle-plugin:1.2.4"
         classpath "firebase.test.lab:plugin:2.6.2"
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.21'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24'
         classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.9.10'
     }
 }

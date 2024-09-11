@@ -21,16 +21,22 @@ struct DocumentScanningConfigurationView: View {
                 ForEach(GSKScanFlowSource.allCases, id: \.self) { source in
                     Text(source.description).tag(source)
                 }
-
             }
         }
 
         Section("Camera screen") {
+            Toggle("Display photo library button", isOn: Binding(get: {
+                !viewModel.photoLibraryButtonHidden
+            }, set: { displayed in
+                viewModel.photoLibraryButtonHidden = !displayed
+            }))
+
             Toggle("Display flash button", isOn: Binding(get: {
                 !viewModel.flashButtonHidden
             }, set: { displayed in
                 viewModel.flashButtonHidden = !displayed
             }))
+
             Picker("Default flash mode", selection: $viewModel.defaultFlashMode) {
                 ForEach(GSKScanFlowFlashMode.allCases, id: \.self) { mode in
                     Text(mode.description).tag(mode)
