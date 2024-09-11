@@ -21,13 +21,13 @@ jobs:
         distribution: 'zulu'
         java-version: 11
     - uses: actions/setup-node@v2
-    - run: npm install --force # To solve a conflict with react-native-fs
+    - run: npm install
     - run: cd android && ./gradlew assembleRelease
   ios:
     runs-on: macos-14
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
-    - run: npm install --force # To solve a conflict with react-native-fs
+    - run: npm install
     - run: cd ios && pod install
     - run: cd ios && xcodebuild archive -workspace demo.xcworkspace -scheme demo CODE_SIGNING_ALLOWED=NO
