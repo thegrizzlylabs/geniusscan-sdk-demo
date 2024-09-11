@@ -24,7 +24,7 @@ jobs:
     - run: npm install --force # To solve a conflict with react-native-fs
     - run: cd android && ./gradlew assembleRelease
   ios:
-    runs-on: macos-12
+    runs-on: macos-14
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
