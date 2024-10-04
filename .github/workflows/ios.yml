@@ -13,7 +13,7 @@ jobs:
       run:
         working-directory: ios/GSSDKCustomDemo
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - run: xcodebuild build -scheme GSSDKCustomDemo -workspace GSSDKCustomDemo.xcworkspace -configuration Debug -sdk iphoneos \
            ONLY_ACTIVE_ARCH=YES \
            CODE_SIGNING_ALLOWED="NO"
@@ -23,7 +23,7 @@ jobs:
       run:
         working-directory: ios/GSSDKSimpleDemo
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - run: xcodebuild build -scheme GSSDKSimpleDemo -workspace GSSDKSimpleDemo.xcworkspace -configuration Debug -sdk iphoneos \
            ONLY_ACTIVE_ARCH=YES \
            CODE_SIGNING_ALLOWED="NO"
