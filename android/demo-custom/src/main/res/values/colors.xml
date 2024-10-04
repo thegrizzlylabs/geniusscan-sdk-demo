@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#008577</color>
     <color name="blue">#00F</color>
     <color name="launcher_color">#629ED6</color>
 </resources>

@@ -9,10 +9,15 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.geniusscansdk.camera.FileImageCaptureCallback;
 import com.geniusscansdk.camera.FocusIndicator;
@@ -29,11 +34,6 @@ import com.geniusscansdk.demo.processing.BorderDetectionActivity;
 import java.io.File;
 import java.util.UUID;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 public class ScanActivity extends AppCompatActivity implements ScanFragment.CameraCallbackProvider {
    private static final String TAG = ScanActivity.class.getSimpleName();
    private static final int PERMISSION_REQUEST_CODE = 1;
@@ -46,8 +46,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-      // Go full screen
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+      EdgeToEdge.enable(this);
       setContentView(R.layout.scanning_activity);
 
       Button captureButton = findViewById(R.id.captureButton);

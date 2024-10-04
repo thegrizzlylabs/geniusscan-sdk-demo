@@ -8,7 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.geniusscansdk.core.GeniusScanSDK;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.FileProvider;
+
 import com.geniusscansdk.demo.camera.ScanActivity;
 import com.geniusscansdk.demo.enhance.PdfGenerationTask;
 import com.geniusscansdk.demo.model.DocumentManager;
@@ -16,10 +21,6 @@ import com.geniusscansdk.demo.model.Page;
 
 import java.io.File;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
-import androidx.core.content.FileProvider;
 
 /**
  * Created by guillaume on 29/09/16.
@@ -36,8 +37,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.main_activity);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("GS SDK Custom Demo");
 
         // This code shows how to initialize the SDK with a license key.

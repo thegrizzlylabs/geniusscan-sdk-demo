@@ -28,6 +28,7 @@ struct MainView: View {
                     imageName: "doc.viewfinder"
                 ) {
                     DocumentScanningView()
+                        .edgesIgnoringSafeArea(.all)
                 }
 
                 Row(
@@ -47,6 +48,7 @@ struct MainView: View {
             }
             .navigationBarTitle("Genius Scan SDK Simple Demo", displayMode: .inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 
     private struct Row<DetailView: View>: View {

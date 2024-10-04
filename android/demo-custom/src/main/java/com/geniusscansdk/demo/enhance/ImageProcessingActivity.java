@@ -10,7 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.geniusscansdk.core.RotationAngle;
 import com.geniusscansdk.demo.MainActivity;
@@ -35,9 +40,21 @@ public class ImageProcessingActivity extends AppCompatActivity {
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      EdgeToEdge.enable(this);
       page = getIntent().getParcelableExtra(EXTRA_PAGE);
 
       setContentView(R.layout.image_processing_activity);
+
+      Toolbar toolbar = findViewById(R.id.toolbar);
+      setSupportActionBar(toolbar);
+      getSupportActionBar().setTitle("GS SDK Custom Demo");
+
+      ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottom_bar), (v, insets) -> {
+         Insets systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+         v.setPadding(0, 0, 0, systemBarsInsets.bottom);
+         return WindowInsetsCompat.CONSUMED;
+      });
+
       imageView = findViewById(R.id.image_view);
       distortionCorrectionButton = findViewById(R.id.distortion_correction_button);
    }

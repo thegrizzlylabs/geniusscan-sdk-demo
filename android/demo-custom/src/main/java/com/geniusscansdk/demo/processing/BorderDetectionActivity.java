@@ -7,6 +7,13 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.geniusscansdk.core.Quadrangle;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.enhance.ImageProcessingActivity;
@@ -14,8 +21,6 @@ import com.geniusscansdk.demo.model.Page;
 import com.geniusscansdk.ui.BorderDetectionImageView;
 import com.geniusscansdk.ui.MagnifierBorderDetectionListener;
 import com.geniusscansdk.ui.MagnifierView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class BorderDetectionActivity extends AppCompatActivity {
 
@@ -33,8 +38,19 @@ public class BorderDetectionActivity extends AppCompatActivity {
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
+      EdgeToEdge.enable(this);
 
       setContentView(R.layout.border_detection_activity);
+
+      Toolbar toolbar = findViewById(R.id.toolbar);
+      setSupportActionBar(toolbar);
+      getSupportActionBar().setTitle("GS SDK Custom Demo");
+
+      ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.bottom_bar), (v, insets) -> {
+         Insets systemBarsInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+         v.setPadding(0, 0, 0, systemBarsInsets.bottom);
+         return WindowInsetsCompat.CONSUMED;
+      });
 
       imageView = findViewById(R.id.image_view);
       imageView.setOverlayColorResource(R.color.blue);

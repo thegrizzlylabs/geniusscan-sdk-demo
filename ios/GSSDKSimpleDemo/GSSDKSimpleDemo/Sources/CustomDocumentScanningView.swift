@@ -25,21 +25,19 @@ struct CustomDocumentScanningView: View {
     @State private var documentInteractionControllerDelegate = DocumentInteractionControllerDelegate()
 
     var body: some View {
-        NavigationView {
-            Form {
-                Text(
+        Form {
+            Text(
                     """
                     This view demonstrates the various customizations of the scan flow.
 
                     Check the GSKScanFlowConfiguration documentation for all of the possible customizations.
                     """
-                )
-                .listRowBackground(Color.clear)
-                .font(.footnote)
-                .foregroundColor(.gray)
+            )
+            .listRowBackground(Color.clear)
+            .font(.footnote)
+            .foregroundColor(.gray)
 
-                DocumentScanningConfigurationView(viewModel: viewModel)
-            }
+            DocumentScanningConfigurationView(viewModel: viewModel)
         }
         .navigationBarItems(trailing: Button("Scan", action: scan))
         .alert(
