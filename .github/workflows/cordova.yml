@@ -29,7 +29,6 @@ jobs:
         node-version: 20
     - run: npm install -g cordova
     - run: npm i
-    - run: npx patch-package
     - run: cordova prepare
     - run: cordova build android
     - run: du -h platforms/android/app/build/outputs/apk/debug/app-debug.apk
