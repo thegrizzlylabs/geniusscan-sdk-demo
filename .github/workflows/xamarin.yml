@@ -10,7 +10,7 @@ jobs:
   android:
     runs-on: macos-12
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Android
       run: |
         cd xamarin
@@ -21,7 +21,7 @@ jobs:
   ios:
     runs-on: macos-12
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: iOS
       run: |
         cd xamarin
