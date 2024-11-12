@@ -435,7 +435,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.geniusscansdk.reactnative.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.geniusscansdk.reactnative.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/demo.app/demo";
 			};
@@ -459,7 +459,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.geniusscansdk.reactnative.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.geniusscansdk.reactnative.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/demo.app/demo";
 			};
@@ -484,7 +484,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.geniusscansdk.reactnative.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.geniusscansdk.reactnative.demo;
 				PRODUCT_NAME = demo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -510,7 +510,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.geniusscansdk.reactnative.demo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.geniusscansdk.reactnative.demo;
 				PRODUCT_NAME = demo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
