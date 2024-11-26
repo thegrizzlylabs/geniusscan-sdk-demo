@@ -26,10 +26,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_genius_scan: cfd11a652f735f92fedfd257fedee150af48c8c9
-  open_filex: 6e26e659846ec990262224a12ef1c528bb4edbe4
-  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  flutter_genius_scan: 6c2b2b2ebb78be512c20e90fb7c18e5aa3e02499
+  open_filex: 432f3cd11432da3e39f47fcc0df2b1603854eff1
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
 
 PODFILE CHECKSUM: 3ce3a3b82c5cf6a622cb22850b0afa4ee279bea6
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.16.2
