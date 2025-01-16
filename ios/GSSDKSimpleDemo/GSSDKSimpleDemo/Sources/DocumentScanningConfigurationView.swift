@@ -44,11 +44,16 @@ struct DocumentScanningConfigurationView: View {
             }
         }
 
+        Picker("Default scan orientation", selection: $viewModel.configuration.defaultScanOrientation) {
+            ForEach(GSKScanOrientation.allCases, id: \.self) { orientation in
+                Text(orientation.description).tag(orientation)
+            }
+        }
+
         Picker("Default filter", selection: $viewModel.defaultFilter) {
             ForEach(GSKScanFlowFilterType.allCases, id: \.self) { type in
                 Text(type.description).tag(type)
             }
-            
         }
 
         Section("Enabled post-processing actions") {

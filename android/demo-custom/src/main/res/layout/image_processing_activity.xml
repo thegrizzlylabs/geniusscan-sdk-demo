@@ -45,8 +45,8 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:layout_marginHorizontal="10dp"
-			android:src="@drawable/ic_rotate_left_white_24dp"
-			android:onClick="rotateLeft"
+			android:src="@drawable/baseline_photo_filter_24"
+			android:onClick="changeEnhancement"
 			/>
 
 		<ImageButton
@@ -67,8 +67,8 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:layout_marginHorizontal="10dp"
-			android:src="@drawable/ic_tune_white_24dp"
-			android:onClick="changeEnhancement"
+			android:src="@drawable/ic_rotate_left_white_24dp"
+			android:onClick="rotateLeft"
 			/>
 
 		<ImageButton

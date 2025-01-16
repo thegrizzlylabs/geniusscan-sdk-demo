@@ -13,6 +13,10 @@ import SwiftUI
 final class DocumentScanningViewModel: ObservableObject {
     @Published var configuration = GSKScanFlowConfiguration()
 
+    init() {
+        configuration.sourceImageURL = Bundle.main.url(forResource: "bank-identity-document", withExtension: "jpg")
+    }
+
     subscript<T>(dynamicMember keyPath: WritableKeyPath<GSKScanFlowConfiguration, T>) -> T {
         get { configuration[keyPath: keyPath] }
         set { configuration[keyPath: keyPath] = newValue }
