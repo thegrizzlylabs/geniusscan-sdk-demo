@@ -61,6 +61,16 @@ struct StructuredDataResultsView: View {
                         ContentUnavailableLabel(text: "No receipt detected")
                     }
                 }
+
+                Section("Readable codes") {
+                    if !result.readableCodes.isEmpty {
+                        ForEach(result.readableCodes, id: \.self) { readableCode in
+                            Row(label: readableCode.type.rawValue, value: readableCode.value)
+                        }
+                    } else {
+                        ContentUnavailableLabel(text: "No readable codes detected")
+                    }
+                }
             } else {
                 ContentUnavailableLabel(text: "No structured data detected")
             }

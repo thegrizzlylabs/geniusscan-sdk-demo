@@ -39,6 +39,12 @@ struct StructuredDataResultsView: View {
                     ContentUnavailableLabel(text: "No receipt detected")
                 }
             }
+
+            Section(title: "Readable codes") {
+                ForEach(data.readableCodes, id: \.self) { readableCode in
+                    Row(label: readableCode.type.rawValue, value: readableCode.value)
+                }
+            }
         }
         .navigationBarTitle("Structured data")
     }

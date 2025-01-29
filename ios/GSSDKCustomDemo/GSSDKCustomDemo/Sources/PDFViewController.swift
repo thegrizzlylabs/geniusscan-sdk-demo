@@ -17,6 +17,7 @@ final class PDFViewController: UIViewController {
     @IBOutlet private(set) var passwordField: UITextField!
     @IBOutlet private(set) var pageCountLabel: UILabel!
     @IBOutlet private(set) var ocrSwitch: UISwitch!
+    @IBOutlet private(set) var readableCodesSwitch: UISwitch!
     private var previewController: UIDocumentInteractionController?
 
     override func viewWillAppear(_ animated: Bool) {
@@ -79,6 +80,22 @@ final class PDFViewController: UIViewController {
             }
         }
 
+        var readableCodesResults = [String: [GSKStructuredDataReadableCode]]()
+        if #available(iOS 17.0, *), readableCodesSwitch.isOn {
+            for filePath in Storage.shared.filePaths {
+                do {
+                    let result = try await GSKReadableCodeDetector()
+                        .detectReadableCodes(
+                            inFileAt: URL(fileURLWithPath: filePath),
+                            codeTypes: GSKStructuredDataReadableCodeType.allCases
+                        )
+                    readableCodesResults[filePath] = result
+                } catch {
+                    print("Error while OCR'ing page: \(error)")
+                }
+            }
+        }
+
         // Prepare document for PDF generator
 
         // First we generate a list of pages.
@@ -114,12 +131,17 @@ final class PDFViewController: UIViewController {
                     continue
                 }
 
-                try await result.pages.append(PageGenerationResult(
-                    id: filePath,
-                    title: "Page \(result.pages.count + 1)",
-                    previewImage: previewImage,
-                    structuredData: structuredData(fromOCRResult: ocrResults[filePath])
-                ))
+                try await result.pages.append(
+                    PageGenerationResult(
+                        id: filePath,
+                        title: "Page \(result.pages.count + 1)",
+                        previewImage: previewImage,
+                        structuredData: makeStructuredData(
+                            ocrResult: ocrResults[filePath],
+                            readableCodes: readableCodesResults[filePath]
+                        )
+                    )
+                )
             }
 
             return result
@@ -152,7 +174,10 @@ private extension PDFViewController {
         var pages = [PageGenerationResult]()
     }
 
-    func structuredData(fromOCRResult ocrResult: GSKOCRResult?) async throws -> StructuredData? {
+    func makeStructuredData(
+        ocrResult: GSKOCRResult?,
+        readableCodes: [GSKStructuredDataReadableCode]?
+    ) async throws -> StructuredData? {
         guard let ocrResult else { return nil }
 
         let dataExtractor = GSKStructuredDataExtractor()
@@ -160,7 +185,8 @@ private extension PDFViewController {
         return try await StructuredData(
             bankDetails: dataExtractor.bankDetailsFromOCRResult(ocrResult),
             businessCardContact: dataExtractor.businessCardContactFromOCRResult(ocrResult),
-            receipt: dataExtractor.receiptFromOCRResult(ocrResult)
+            receipt: dataExtractor.receiptFromOCRResult(ocrResult),
+            readableCodes: readableCodes ?? []
         )
     }
 
