@@ -13,6 +13,7 @@ import com.geniusscansdk.core.ScanProcessor.CurvatureCorrection;
 import com.geniusscansdk.core.ScanProcessor.Enhancement;
 import com.geniusscansdk.core.ScanProcessor.OutputConfiguration;
 import com.geniusscansdk.core.ScanProcessor.PerspectiveCorrection;
+import com.geniusscansdk.core.ScanProcessor.Readability;
 import com.geniusscansdk.core.ScanProcessor.Result;
 import com.geniusscansdk.core.ScanProcessor.Rotation;
 import com.geniusscansdk.demo.model.Page;
@@ -28,6 +29,7 @@ public class PageProcessor {
                 CurvatureCorrection.create(page.isDistortionCorrectionEnabled()),
                 page.getFilter() == null ? Enhancement.automatic() : page.getFilter().toEnhancement(),
                 page.isAutomaticallyOriented() ? Rotation.none() : Rotation.automatic(),
+                Readability.disabled(),
                 OutputConfiguration.file(context.getExternalFilesDir(null))
         );
 

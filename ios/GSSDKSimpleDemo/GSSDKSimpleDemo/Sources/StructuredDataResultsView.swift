@@ -57,6 +57,14 @@ struct StructuredDataResultsView: View {
                         Row(label: "Currency", value: receipt.currency)
                         Row(label: "Date", value: receipt.date.flatMap(Self.dateFormatter.string))
                         Row(label: "Category", value: receipt.category?.description.capitalized)
+
+                        ForEach(receipt.vatValues, id: \.rate) { vatValue in
+                            Row(
+                                prefix: "VAT",
+                                label: Self.percentageFormatter.string(from: NSNumber(value: vatValue.rate))!,
+                                value: Self.numberFormatter.string(from: NSNumber(value: vatValue.amount))
+                            )
+                        }
                     } else {
                         ContentUnavailableLabel(text: "No receipt detected")
                     }
@@ -82,11 +90,18 @@ struct StructuredDataResultsView: View {
 
 private extension StructuredDataResultsView {
     struct Row: View {
+        var prefix: String?
         var label: String
         var value: String?
 
         var body: some View {
             HStack {
+                if let prefix {
+                    Text(prefix + ":")
+                        .fontWeight(.medium)
+                        .foregroundStyle(.secondary)
+                }
+
                 Text(label).fontWeight(.medium)
 
                 if let value {
@@ -128,6 +143,12 @@ private extension StructuredDataResultsView {
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
         formatter.alwaysShowsDecimalSeparator = true
+        return formatter
+    }()
+
+    static let percentageFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
         return formatter
     }()
 

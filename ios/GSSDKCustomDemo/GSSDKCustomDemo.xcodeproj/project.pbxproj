@@ -145,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				BC7FF8569C7A90E69A89591C /* Project */,
-				F715E43F100C2A39D1111A3C /* Frameworks */,
 				CF38E1BE1A331EA70717E25E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -158,13 +157,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F715E43F100C2A39D1111A3C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,8 +166,8 @@
 			buildPhases = (
 				EC3FEA3B0A5DAB14073612D9 /* Sources */,
 				14E36C91F2A9201582D82463 /* Resources */,
-				8884B45A5A5C93153B545E86 /* Embed Frameworks */,
 				8D25D11AEB583A00F20273E7 /* Frameworks */,
+				8884B45A5A5C93153B545E86 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,8 +189,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = "The Grizzly Labs";
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 4189473C558DD66074CC7F72 /* Build configuration list for PBXProject "GSSDKCustomDemo" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -273,9 +263,12 @@
 				PRODUCT_NAME = GSSDKCustomDemo;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -358,7 +351,7 @@
 				PRODUCT_NAME = GSSDKCustomDemo;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -449,7 +442,7 @@
 			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.6.1;
+				minimumVersion = 5.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
