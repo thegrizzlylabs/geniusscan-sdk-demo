@@ -56,6 +56,8 @@ struct DocumentScanningConfigurationView: View {
             }
         }
 
+        Toggle("Detect readability", isOn: viewModel.bindingForReadabilityEnabled())
+
         Section("Enabled post-processing actions") {
             Toggle("Change filter", isOn: viewModel.bindingForPostProcessingAction(.editFilter))
             Toggle("Rotate", isOn: viewModel.bindingForPostProcessingAction(.rotate))

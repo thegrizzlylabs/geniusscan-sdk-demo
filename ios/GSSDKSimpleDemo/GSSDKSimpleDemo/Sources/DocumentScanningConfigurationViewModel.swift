@@ -22,6 +22,14 @@ final class DocumentScanningViewModel: ObservableObject {
         set { configuration[keyPath: keyPath] = newValue }
     }
 
+    func bindingForReadabilityEnabled() -> Binding<Bool> {
+        Binding(get: {
+            self.requiredReadabilityLevel > .lowest
+        }, set: { isEnabled in
+            self.requiredReadabilityLevel = isEnabled ? .medium : .lowest
+        })
+    }
+
     func bindingForPostProcessingAction(_ action: GSKScanFlowPostProcessingActions) -> Binding<Bool> {
         Binding(get: {
             self.postProcessingActions.contains(action)
