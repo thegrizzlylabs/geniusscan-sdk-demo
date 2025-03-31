@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 // swiftlint:disable all
 // swift-format-ignore-file
 // swiftformat:disable all
@@ -12,7 +11,7 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name
-public enum GSSDKSimpleDemoStrings: Sendable {
+public enum GSSDKSimpleDemoStrings {
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name

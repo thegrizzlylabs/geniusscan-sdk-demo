@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import GSSDK
+@preconcurrency import GSSDK
 
 final class EditFrameViewController: GSKEditFrameViewController {
 
@@ -38,17 +38,17 @@ final class EditFrameViewController: GSKEditFrameViewController {
         print("Detecting quadrangle…")
 
         // We use the SDK method to autodetect the quadrangle and show the result to the user
-        DispatchQueue.global(qos: .userInitiated).async {
+        Task.detached(priority: .userInitiated) {
             var result: GSKDocumentDetectionResult?
 
             do {
-                result = try self.documentDetector.detectDocument(in: self.image)
+                result = try await self.documentDetector.detectDocument(in: self.image)
             } catch {
                 print("Error while detecting document frame: \(error)")
                 result = nil
             }
 
-            DispatchQueue.main.async {
+            await MainActor.run {
                 print("Quadrangle analysis finished. Found: \(String(describing: result?.quadrangle))")
 
                 // We update the display quadrangle

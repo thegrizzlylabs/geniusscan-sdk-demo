@@ -7,7 +7,7 @@
 // sdk@thegrizzlylabs.com
 //
 
-import GSSDK
+@preconcurrency import GSSDK
 import SwiftUI
 import UIKit
 
@@ -69,7 +69,7 @@ final class PDFViewController: UIViewController {
 
             for filePath in Storage.shared.filePaths {
                 do {
-                    let result = try await GSKOCR().recognizeText(forImageAtPath: filePath, ocrConfiguration: ocrConfiguration, onProgress: { progress in
+                    let result = try await GSKOCR().recognizeText(forImageAtPath: filePath, ocrConfiguration: ocrConfiguration, onProgress: { @Sendable progress in
                         print("OCR engine progress: %f", progress)
                     })
 

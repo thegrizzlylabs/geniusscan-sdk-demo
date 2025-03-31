@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import GSSDK
+@preconcurrency import GSSDK
 
 final class PostProcessingViewController: UIViewController {
 
@@ -131,15 +131,15 @@ final class PostProcessingViewController: UIViewController {
     /// - enhance the image according to this post-processing
     /// - optionally correct the image distortion (book/folded receipt curvature,).
     private func processImage(autodetect: Bool) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            let perspectiveCorrectionConfiguration = GSKPerspectiveCorrectionConfiguration(quadrangle: self.quadrangle)
-            let curvatureCorrectionConfiguration = GSKCurvatureCorrectionConfiguration(curvatureCorrection: self.curvatureCorrectionEnabled)
+        Task.detached(priority: .userInitiated) {
+            let perspectiveCorrectionConfiguration = await GSKPerspectiveCorrectionConfiguration(quadrangle: self.quadrangle)
+            let curvatureCorrectionConfiguration = await GSKCurvatureCorrectionConfiguration(curvatureCorrection: self.curvatureCorrectionEnabled)
 
             let enhancementConfiguration: GSKEnhancementConfiguration
             if autodetect {
                 enhancementConfiguration = GSKEnhancementConfiguration.automatic()
             } else {
-                enhancementConfiguration = GSKEnhancementConfiguration(filter: self.filterType)
+                enhancementConfiguration = await GSKEnhancementConfiguration(filter: self.filterType)
             }
 
             let result: GSKProcessingResult
@@ -149,22 +149,22 @@ final class PostProcessingViewController: UIViewController {
                                                                enhancementConfiguration: enhancementConfiguration,
                                                                rotationConfiguration: .automatic(),
                                                                outputConfiguration: .png())
-                result = try GSKScanProcessor().processImage(self.scan.image, configuration: configuration)
+                result = try await GSKScanProcessor().processImage(self.scan.image, configuration: configuration)
             } catch {
                 print("Error while processing scan: \(error)")
                 return
             }
 
-            if let currentProcessedImagePath = self.currentProcessedImagePath {
+            if let currentProcessedImagePath = await self.currentProcessedImagePath {
                 do {
                     try FileManager.default.removeItem(atPath: currentProcessedImagePath)
                 } catch {
                     print("Unable to remove previous enhanced file")
                 }
             }
-            self.currentProcessedImagePath = result.processedImagePath
 
-            DispatchQueue.main.async {
+            await MainActor.run {
+                self.currentProcessedImagePath = result.processedImagePath
                 self.refreshImageView()
             }
         }

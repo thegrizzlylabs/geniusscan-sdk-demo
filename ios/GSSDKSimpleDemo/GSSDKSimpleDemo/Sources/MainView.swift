@@ -47,6 +47,12 @@ struct MainView: View {
                 }
             }
             .navigationBarTitle("Genius Scan SDK Simple Demo", displayMode: .inline)
+            .toolbar {
+                ToolbarItemGroup(placement: .status) {
+                    Text(appVersion)
+                        .foregroundStyle(.secondary)
+                }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -75,5 +81,13 @@ struct MainView: View {
                 }
             }
         }
+    }
+
+    private var appVersion: String {
+        guard let sdkVersion = Bundle(for: GSKScanFlow.self).infoDictionary?["CFBundleShortVersionString"] as? String,
+              let appBuild = Bundle.main.infoDictionary?["CFBundleVersion"] as? String else {
+            return "App version unavailable."
+        }
+        return "SDK: \(sdkVersion) • App build: \(appBuild)"
     }
 }

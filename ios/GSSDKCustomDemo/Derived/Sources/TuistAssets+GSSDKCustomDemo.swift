@@ -1,4 +1,3 @@
-// swiftlint:disable:this file_name
 // swiftlint:disable all
 // swift-format-ignore-file
 // swiftformat:disable all
@@ -20,7 +19,7 @@
 // MARK: - Asset Catalogs
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
-public enum GSSDKCustomDemoAsset: Sendable {
+public enum GSSDKCustomDemoAsset {
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

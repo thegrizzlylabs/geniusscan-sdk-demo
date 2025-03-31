@@ -9,7 +9,7 @@
 
 import Foundation
 
-final class Storage {
+@MainActor final class Storage {
 
     static let shared = Storage()
     private(set) var filePaths = [String]()

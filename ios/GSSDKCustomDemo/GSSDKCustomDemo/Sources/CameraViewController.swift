@@ -8,7 +8,7 @@
 //
 
 import UIKit
-import GSSDK
+@preconcurrency import GSSDK
 
 /**
  A very simple camera view.
@@ -65,87 +65,89 @@ final class CameraViewController: GSKCameraViewController {
     /**
      We use the delegate methods of the GSKCameraSession to react to the different states of taking the photo.
      */
-    override func cameraSessionWillSnapPhoto(_ cameraSession: GSKCameraSession) {
+    override nonisolated func cameraSessionWillSnapPhoto(_ cameraSession: GSKCameraSession) {
         super.cameraSessionWillSnapPhoto(cameraSession)
 
         // For instance, here we disable the camera button so that the user doesn't take multiple photos at the same time.
-        DispatchQueue.main.async {
-            self.cameraButton.isEnabled = false
+        Task { @MainActor in
+            cameraButton.isEnabled = false
         }
     }
 
     /**
      We just received a photo from the camera. We could do some post-processing immediately but here we choose to immediately show the interface that lets the user edit the crop area.
      */
-    override func cameraSession(_ cameraSession: GSKCameraSession, didGenerateScan scan: GSKScan) {
+    override nonisolated func cameraSession(_ cameraSession: GSKCameraSession, didGenerateScan scan: GSKScan) {
         super.cameraSession(cameraSession, didGenerateScan: scan)
 
-        DispatchQueue.main.async {
+        Task { @MainActor in
             // We re-enable the camera button
-            self.cameraButton.isEnabled = true
+            cameraButton.isEnabled = true
 
             // … and we let the user edit the frame of the detected document.
             let editFrameViewController = EditFrameViewController(scan: scan)
-            self.navigationController?.pushViewController(editFrameViewController, animated: true)
+            navigationController?.pushViewController(editFrameViewController, animated: true)
         }
     }
 
-    override func cameraSessionFailedToFindQuadrangle(_ cameraSession: GSKCameraSession) {
+    override nonisolated func cameraSessionFailedToFindQuadrangle(_ cameraSession: GSKCameraSession) {
         super.cameraSessionFailedToFindQuadrangle(cameraSession)
 
-        showUserGuidance(with: NSLocalizedString("Searching for document…", comment: ""))
-        removePulseAnimation()
+        Task { @MainActor in
+            showUserGuidance(with: NSLocalizedString("Searching for document…", comment: ""))
+            removePulseAnimation()
+        }
     }
 
-    override func cameraSession(_ cameraSession: GSKCameraSession, didFindQuadrangle quadrangle: GSKQuadrangle) {
+    override nonisolated func cameraSession(_ cameraSession: GSKCameraSession, didFindQuadrangle quadrangle: GSKQuadrangle) {
         super.cameraSession(cameraSession, didFindQuadrangle: quadrangle)
 
-        showUserGuidance(with: NSLocalizedString("Document found. Remain steady.", comment: ""))
+        Task { @MainActor in
+            showUserGuidance(with: NSLocalizedString("Document found. Remain steady.", comment: ""))
+        }
     }
 
-    override func cameraSessionIsAboutToChooseQuadrangle(_ cameraSession: GSKCameraSession) {
+    override nonisolated func cameraSessionIsAboutToChooseQuadrangle(_ cameraSession: GSKCameraSession) {
         super.cameraSessionIsAboutToChooseQuadrangle(cameraSession)
 
-        // We are indicating to the user that the photo will be taken momentarily by
-        // making the shutter button pulse.
-        addPulseAnimation()
+        Task { @MainActor in
+            // We are indicating to the user that the photo will be taken momentarily by
+            // making the shutter button pulse.
+            addPulseAnimation()
+        }
     }
 
-    override func cameraSession(_ cameraSession: GSKCameraSession, willAutoTriggerWithQuadrangle quadrangle: GSKQuadrangle) {
+    override nonisolated func cameraSession(_ cameraSession: GSKCameraSession, willAutoTriggerWithQuadrangle quadrangle: GSKQuadrangle) {
         super.cameraSession(cameraSession, willAutoTriggerWithQuadrangle: quadrangle)
 
-        removePulseAnimation()
+        Task { @MainActor in
+            removePulseAnimation()
+        }
     }
 
     // MARK: - Private
 
     private func addPulseAnimation() {
-        DispatchQueue.main.async {
-            guard self.captureView.layer.animation(forKey: "pulse") == nil else {
-                return
-            }
-
-            let pulseAnimation = CABasicAnimation(keyPath: "opacity")
-            pulseAnimation.duration = 0.1
-            pulseAnimation.repeatCount = .greatestFiniteMagnitude
-            pulseAnimation.autoreverses = true
-            pulseAnimation.fromValue = 1
-            pulseAnimation.toValue = 0
-            self.cameraButton.layer.add(pulseAnimation, forKey: "pulse")
+        guard captureView.layer.animation(forKey: "pulse") == nil else {
+            return
         }
+
+        let pulseAnimation = CABasicAnimation(keyPath: "opacity")
+        pulseAnimation.duration = 0.1
+        pulseAnimation.repeatCount = .greatestFiniteMagnitude
+        pulseAnimation.autoreverses = true
+        pulseAnimation.fromValue = 1
+        pulseAnimation.toValue = 0
+        cameraButton.layer.add(pulseAnimation, forKey: "pulse")
     }
 
     private func removePulseAnimation() {
-        DispatchQueue.main.async {
-            self.cameraButton.layer.removeAnimation(forKey: "pulse")
-        }
+        cameraButton.layer.removeAnimation(forKey: "pulse")
     }
 
     private func showUserGuidance(with message: String?) {
-        DispatchQueue.main.async {
-            self.userGuidanceLabel.text = message
-            self.userGuidanceLabel.isHidden = message == nil
-        }
+        userGuidanceLabel.text = message
+        userGuidanceLabel.isHidden = message == nil
     }
 
     private func setupConstraints() {

@@ -166,8 +166,8 @@
 			buildPhases = (
 				EC3FEA3B0A5DAB14073612D9 /* Sources */,
 				14E36C91F2A9201582D82463 /* Resources */,
-				8D25D11AEB583A00F20273E7 /* Frameworks */,
 				8884B45A5A5C93153B545E86 /* Embed Frameworks */,
+				8D25D11AEB583A00F20273E7 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +189,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = "The Grizzly Labs";
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 4189473C558DD66074CC7F72 /* Build configuration list for PBXProject "GSSDKCustomDemo" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -442,7 +444,7 @@
 			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.8.0;
+				minimumVersion = 5.9.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

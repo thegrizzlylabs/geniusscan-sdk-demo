@@ -73,12 +73,15 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
         int pageIndex = 0;
         for (Page page : pages) {
             pageProgress = pageIndex * 100 / pages.size();
-            File image = page.getEnhancedImage();
 
             TextLayout textLayout = null;
             if (isOCREnabled) {
                 try {
-                    OcrResult result = ocrProcessor.processImage(image);
+                    OcrProcessor.Input ocrInput = new OcrProcessor.Input(
+                            page.getOriginalImage(),
+                            page.getQuadrangle()
+                    );
+                    OcrResult result = ocrProcessor.processImage(ocrInput);
                     textLayout = result.textLayout;
                 } catch (Exception e) {
                     return new Exception("OCR processing failed", e);
@@ -86,7 +89,7 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
             }
 
             // Export all pages in A4
-            pdfPages.add(new PDFPage(image, A4_SIZE, textLayout));
+            pdfPages.add(new PDFPage(page.getEnhancedImage(), A4_SIZE, textLayout));
             pageIndex++;
         }
 
