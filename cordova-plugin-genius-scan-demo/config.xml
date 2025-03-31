@@ -35,8 +35,8 @@
         <resource-file src="res/android/ic_launcher.xml" target="/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
         <preference name="AndroidXEnabled" value="true" />
     </platform>
-    <engine name="ios" spec="~7.0.1" />
-    <engine name="android" spec="~13.0.0" />
+    <engine name="ios" spec="~7.1.1" />
+    <engine name="android" spec="~14.0.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-preview-any-file" spec="^0.2.9" />
     <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@5.9.0">
