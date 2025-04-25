@@ -26,7 +26,7 @@ final class DocumentScanningViewModel: ObservableObject {
         Binding(get: {
             self.requiredReadabilityLevel > .lowest
         }, set: { isEnabled in
-            self.requiredReadabilityLevel = isEnabled ? .medium : .lowest
+            self.requiredReadabilityLevel = isEnabled ? .high : .lowest
         })
     }
 
@@ -71,6 +71,14 @@ final class DocumentScanningViewModel: ObservableObject {
             } else {
                 self.ocrConfiguration = nil
             }
+        })
+    }
+
+    func bindingForJPEGQuality() -> Binding<Float> {
+        Binding(get: {
+            Float(self.jpegQuality)
+        }, set: { quality in
+            self.jpegQuality = Int(quality)
         })
     }
 }

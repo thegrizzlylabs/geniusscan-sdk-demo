@@ -87,6 +87,8 @@ struct DocumentScanningConfigurationView: View {
                 Text("Letter").tag(GSKScanFlowPDFPageSize.letter)
                 Text("A4").tag(GSKScanFlowPDFPageSize.A4)
             }
+
+            Slider(value: viewModel.bindingForJPEGQuality(), in: 0...100)
         }
 
         Section("UI") {
