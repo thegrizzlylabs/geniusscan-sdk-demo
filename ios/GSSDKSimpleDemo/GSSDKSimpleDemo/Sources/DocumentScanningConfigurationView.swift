@@ -58,6 +58,12 @@ struct DocumentScanningConfigurationView: View {
 
         Toggle("Detect readability", isOn: viewModel.bindingForReadabilityEnabled())
 
+        Toggle("Default curvature correction", isOn: Binding(get: {
+            viewModel.defaultCurvatureCorrectionMode == .enabled
+        }, set: { isOn in
+            viewModel.defaultCurvatureCorrectionMode = isOn ? .enabled : .disabled
+        }))
+
         Section("Enabled post-processing actions") {
             Toggle("Change filter", isOn: viewModel.bindingForPostProcessingAction(.editFilter))
             Toggle("Rotate", isOn: viewModel.bindingForPostProcessingAction(.rotate))

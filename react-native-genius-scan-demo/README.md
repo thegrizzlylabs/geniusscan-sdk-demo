@@ -1,4 +1,4 @@
-and# Genius Scan SDK for React Native demo
+# Genius Scan SDK for React Native demo
 
 ## Installation
 

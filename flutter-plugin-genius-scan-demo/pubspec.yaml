@@ -19,7 +19,7 @@ dependencies:
       ref: 7ec56421afc37bb2cc3cb751b9775999cd2d9a61
 
   flutter_genius_scan:
-    version: 5.9.1
+    version: 5.10.0
   path_provider: ^2.1.1
 
 dev_dependencies:

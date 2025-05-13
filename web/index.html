@@ -2,15 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Genius Scan Web SDK - Demo</title>
-    <script src="src/index.js" type="module"></script>
-    <script defer data-domain="geniusscansdk.com" src="https://plausible.io/js/script.js"></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genius Scan - Simple demo</title>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div id="root" class="font-sans"></div>
+    <main>
+      <h1>Genius Scan Web SDK demo</h1>
+      <div id="container">
+        <button id="scan">
+          <span class="button-text">Scan document</span>
+          <span class="loading-spinner" style="display: none">⌛</span>
+        </button>
+        <div class="scanned-images"></div>
+      </div>
+    </main>
   </body>
 </html>

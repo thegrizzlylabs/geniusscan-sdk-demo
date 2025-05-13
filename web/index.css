@@ -1,0 +1,83 @@
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    Noto Sans,
+    sans-serif,
+    Apple Color Emoji,
+    Segoe UI Emoji,
+    Segoe UI Symbol,
+    Noto Color Emoji;
+  margin: 1rem;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #222;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#container {
+  margin: auto;
+  max-width: 700px;
+}
+
+button#scan {
+  margin: auto;
+  display: block;
+  background-color: #ff9100;
+  color: white;
+  border: none;
+  padding: 1rem 2.2rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(255, 145, 0, 0.08);
+  font-weight: 600;
+  margin-bottom: 3rem;
+}
+
+#scan:hover {
+  background-color: #ff6600;
+}
+
+#scan:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.scanned-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+
+.scanned-images img {
+  display: block;
+  max-width: 100%;
+  margin: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.scanned-images img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  #container {
+    max-width: 100%;
+  }
+}
