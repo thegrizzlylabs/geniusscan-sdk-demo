@@ -74,7 +74,8 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_genius_scan
-      url: "https://pub.dartlang.org"
+      sha256: "5aa211d10722ef192abd51194d7b4ee2a1e6468265d299e139879466a00157af"
+      url: "https://pub.dev"
     source: hosted
     version: "5.11.0"
   flutter_test:
@@ -133,12 +134,11 @@ packages:
   open_filex:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "7ec56421afc37bb2cc3cb751b9775999cd2d9a61"
-      resolved-ref: "7ec56421afc37bb2cc3cb751b9775999cd2d9a61"
-      url: "https://github.com/mufassalhussain/open_filex"
-    source: git
-    version: "4.6.0"
+      name: open_filex
+      sha256: "9976da61b6a72302cf3b1efbce259200cd40232643a467aac7370addf94d6900"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.7.0"
   path:
     dependency: transitive
     description:
