@@ -1,0 +1,13 @@
+fuel:
+gas
+gazole
+diesel
+essence
+carburant
+SP95-E10
+pump
+pump:
+pomp
+pompe
+gallon
+/gal

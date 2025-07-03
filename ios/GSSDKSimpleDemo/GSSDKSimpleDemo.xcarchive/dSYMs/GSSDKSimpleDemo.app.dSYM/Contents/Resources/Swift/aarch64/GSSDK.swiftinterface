@@ -1,0 +1,987 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name GSSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import AVFoundation
+import Combine
+import Contacts
+import ContactsUI
+import CoreGraphics
+import CoreLocation
+import CryptoKit
+import DeveloperToolsSupport
+import Foundation
+@_exported import GSSDK
+import MapKit
+import NaturalLanguage
+import QuartzCore
+import Swift
+import SwiftUI
+import UIKit
+import Vision
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc public protocol CGImageRepresentable {
+  @objc(CGImageRepresentation) func cgImageRepresentation() -> CoreGraphics.CGImage?
+}
+extension AVFoundation.AVCapturePhoto : GSSDK.CGImageRepresentable {
+}
+@_inheritsConvenienceInitializers @objc final public class GSK : ObjectiveC.NSObject {
+  @objc public static var sdkVersion: Swift.String {
+    @objc get
+  }
+  @objc public static func setLicenseKey(_ licenseKey: Swift.String)
+  @objc public static func setLicenseKey(_ licenseKey: Swift.String, autoRefresh: Swift.Bool)
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension GSSDK.GSKBackgroundKind : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers public class GSKCameraSession : ObjectiveC.NSObject {
+  @objc public static let minDurationInAboutToTriggerForTrigger: Foundation.TimeInterval
+  @objc dynamic public var captureDevice: AVFoundation.AVCaptureDevice?
+  @objc public var captureSession: AVFoundation.AVCaptureSession?
+  @objc public var flashStatus: GSSDK.GSKCameraSessionFlashStatus
+  @objc dynamic public var activeDocumentDetection: GSSDK.GSKCameraSessionDocumentDetection {
+    @objc get
+    @objc set
+  }
+  @objc dynamic public var isTakingPhoto: Swift.Bool {
+    @objc get
+  }
+  @objc public var supportsFlash: Swift.Bool {
+    @objc get
+  }
+  @objc public var captureSessionQueue: Dispatch.DispatchQueue? {
+    get
+  }
+  @objc public var takePhotoQueue: Dispatch.DispatchQueue {
+    get
+  }
+  @objc convenience public init(configuration: GSSDK.GSKCameraSessionConfiguration)
+  @objc deinit
+  @objc(pauseSession) public func pause()
+  @objc(resumeSession) public func resume()
+}
+extension GSSDK.GSKCameraSession {
+  @objc dynamic public func takePhoto()
+}
+extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
+  @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
+  @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
+  @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didCapturePhotoFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
+  @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVFoundation.AVCapturePhoto, error: (any Swift.Error)?)
+  @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings, error: (any Swift.Error)?)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKCameraSessionConfiguration : ObjectiveC.NSObject {
+  @objc public init(documentDetection: GSSDK.GSKCameraSessionDocumentDetection)
+  @objc override convenience dynamic public init()
+  @objc deinit
+}
+@objc public enum GSKCameraSessionDocumentDetection : Swift.Int {
+  case none
+  case highlight
+  case highlightAndTrigger
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum GSKCameraSessionError : Swift.Int {
+  case other = -1
+  case notAuthorized = -2
+  case lockDevice = -3
+  case noDevice = -4
+  case invalidSetupDependency = -5
+  case noVideoCaptureConnection = -6
+  case invalidData = -7
+  case badInput = -8
+  case warnLockDevice = -1003
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum GSKCameraSessionFlashStatus : Swift.Int {
+  case auto
+  case on
+  case off
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_Concurrency.MainActor @preconcurrency open class GSKCameraViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency public var captureView: GSSDK.GSKView {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var shutterView: GSSDK.GSKShutterView {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var overlayColor: UIKit.UIColor {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var cameraView: UIKit.UIView {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency final public let cameraSession: GSSDK.GSKCameraSession
+  @available(*, unavailable)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc @_Concurrency.MainActor @preconcurrency public init(cameraSession: GSSDK.GSKCameraSession)
+  @objc deinit
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var prefersStatusBarHidden: Swift.Bool {
+    @objc get
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func loadView()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillAppear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillDisappear(_ animated: Swift.Bool)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewWillTransition(to size: CoreFoundation.CGSize, with coordinator: any UIKit.UIViewControllerTransitionCoordinator)
+}
+extension GSSDK.GSKCameraViewController {
+  @objc @_Concurrency.MainActor @preconcurrency dynamic open func takePhoto()
+}
+extension GSSDK.GSKCameraViewController {
+  @objc nonisolated dynamic open func cameraSessionDidSetup(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, setupFailedWithError error: any Swift.Error)
+  @objc nonisolated dynamic open func cameraSessionWillSnapPhoto(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSessionDidSnapPhoto(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, didFailToSnapPhotoWithError error: any Swift.Error)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, didGenerateScan scan: GSSDK.GSKScan)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, didEncounterFailureWithError error: any Swift.Error)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, didFailWithError error: any Swift.Error)
+  @objc nonisolated dynamic open func cameraSessionIsSearchingQuadrangle(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSessionIsAboutToChooseQuadrangle(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, willAutoTriggerWithQuadrangle quadrangle: GSSDK.GSKQuadrangle)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, didFindQuadrangle quadrangle: GSSDK.GSKQuadrangle)
+  @objc nonisolated dynamic open func cameraSessionFailedToFindQuadrangle(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSessionDidStart(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSessionDidStop(_ cameraSession: GSSDK.GSKCameraSession)
+  @objc nonisolated dynamic open func cameraSession(_ cameraSession: GSSDK.GSKCameraSession, wasInterruptedWithReason reason: AVFoundation.AVCaptureSession.InterruptionReason)
+  @objc nonisolated dynamic open func cameraSessionInterruptionEnded(_ cameraSession: GSSDK.GSKCameraSession)
+}
+extension GSSDK.GSKCameraViewController : GSSDK.GSKViewDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func cameraView(_ cameraView: GSSDK.GSKView, requestedFocusAt focusPoint: CoreFoundation.CGPoint)
+}
+extension GSSDK.GSKDocumentComposition : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objcMembers final public class GSKDocumentFinderResult {
+  @objc final public let imageType: GSSDK.GSKDocumentFinderImageType
+  @objc public init(imageType: GSSDK.GSKDocumentFinderImageType)
+  @objc deinit
+}
+@objcMembers final public class GSKDocumentFinder {
+  @objc public init()
+  final public func findDocument(inImage image: UIKit.UIImage) throws -> GSSDK.GSKDocumentFinderResult
+  @objc deinit
+}
+@objc @frozen public enum GSKDocumentFinderImageType : Swift.Int {
+  case noDocument
+  case unwarped
+  case warped
+  case enhanced
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension GSSDK.GSKEdgeCleaning : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc @objcMembers final public class GSKFilterBackgroundCleaningConfiguration : ObjectiveC.NSObject {
+  @objc final public let edgeCleaning: GSSDK.GSKEdgeCleaning
+  @objc final public let backgroundKind: GSSDK.GSKBackgroundKind
+  @objc final public let documentComposition: GSSDK.GSKDocumentComposition
+  @objc final public let strength: CoreFoundation.CGFloat
+  @objc public init(edgeCleaning: GSSDK.GSKEdgeCleaning, backgroundKind: GSSDK.GSKBackgroundKind, documentComposition: GSSDK.GSKDocumentComposition, strength: CoreFoundation.CGFloat)
+  @objc deinit
+}
+extension GSSDK.GSKFilterBackgroundCleaningConfiguration {
+  @objc override final public var hash: Swift.Int {
+    @objc get
+  }
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+}
+extension GSSDK.GSKFilterBackgroundCleaningConfiguration {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+}
+@objc @objcMembers final public class GSKFilterColorConfiguration : ObjectiveC.NSObject {
+  @objc public static let monochrome: GSSDK.GSKFilterColorConfiguration
+  @objc public static let grayscale: GSSDK.GSKFilterColorConfiguration
+  @objc public static let color: GSSDK.GSKFilterColorConfiguration
+  @objc final public let palette: GSSDK.GSKFilterColorPalette
+  @objc public init(palette: GSSDK.GSKFilterColorPalette)
+  @objc deinit
+}
+extension GSSDK.GSKFilterColorConfiguration {
+  @objc override final public var hash: Swift.Int {
+    @objc get
+  }
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+}
+extension GSSDK.GSKFilterColorConfiguration {
+  @objc override final public var description: Swift.String {
+    @objc get
+  }
+}
+extension GSSDK.GSKFilterColorPalette : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc extension GSSDK.GSKFilterConfiguration {
+  @objc public static var softGrayscale: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+  @objc public static var softColor: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+  @objc public static var strongMonochrome: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+  @objc public static var strongGrayscale: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+  @objc public static var strongColor: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+  @objc public static var photo: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+  @objc public static var darkBackground: GSSDK.GSKFilterConfiguration {
+    @objc get
+  }
+}
+@objc @objcMembers final public class GSKFilterConfiguration : ObjectiveC.NSObject {
+  @objc public static let noOp: GSSDK.GSKFilterConfiguration
+  @objc public static func photo(lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?, colorConfiguration: GSSDK.GSKFilterColorConfiguration?) -> GSSDK.GSKFilterConfiguration
+  @objc public static func configurationWithLightingCorrectionConfiguration(_ lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?, backgroundCleaningConfiguration: GSSDK.GSKFilterBackgroundCleaningConfiguration?, colorConfiguration: GSSDK.GSKFilterColorConfiguration?) -> GSSDK.GSKFilterConfiguration
+  @objc final public let lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?
+  @objc final public let backgroundCleaningConfiguration: GSSDK.GSKFilterBackgroundCleaningConfiguration?
+  @objc final public let colorConfiguration: GSSDK.GSKFilterColorConfiguration?
+  @objc public init(lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?, backgroundCleaningConfiguration: GSSDK.GSKFilterBackgroundCleaningConfiguration?, colorConfiguration: GSSDK.GSKFilterColorConfiguration?)
+  @objc deinit
+}
+extension GSSDK.GSKFilterConfiguration {
+  @objc override final public var hash: Swift.Int {
+    @objc get
+  }
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+}
+@objc @objcMembers public class GSKFilterLightingCorrectionConfiguration : ObjectiveC.NSObject {
+  @objc public static let noOp: GSSDK.GSKFilterLightingCorrectionConfiguration
+  @objc public static let textDocument: GSSDK.GSKFilterLightingCorrectionConfiguration
+  @objc public static let photos: GSSDK.GSKFilterLightingCorrectionConfiguration
+  @objc final public let minThreshold: CoreFoundation.CGFloat
+  @objc final public let maxThreshold: CoreFoundation.CGFloat
+  @objc public init(minThreshold: CoreFoundation.CGFloat, maxThreshold: CoreFoundation.CGFloat)
+  @objc deinit
+}
+extension GSSDK.GSKFilterLightingCorrectionConfiguration {
+  @objc override dynamic public var hash: Swift.Int {
+    @objc get
+  }
+  @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+}
+extension GSSDK.GSKFilterLightingCorrectionConfiguration {
+  @objc override dynamic public var description: Swift.String {
+    @objc get
+  }
+}
+@_hasMissingDesignatedInitializers final public class GSKLicenseKeyRefresher {
+  public typealias LicenseKey = Swift.String
+  final public var cachedLicenseKey: GSSDK.GSKLicenseKeyRefresher.LicenseKey? {
+    get
+  }
+  @objc convenience public init(sdkVersion: Swift.String)
+  @objc deinit
+}
+extension GSSDK.GSKReadabilityLevel : Swift.Comparable {
+  public static func < (lhs: GSSDK.GSKReadabilityLevel, rhs: GSSDK.GSKReadabilityLevel) -> Swift.Bool
+}
+@objc public enum GSKReceiptCategory : Swift.Int, Swift.CaseIterable {
+  case gas
+  case transportation
+  case accomodation
+  case restaurant
+  case supermarket
+  case other
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [GSSDK.GSKReceiptCategory]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [GSSDK.GSKReceiptCategory] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension GSSDK.GSKReceiptCategory : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers @objc final public class GSKReceiptVAT : ObjectiveC.NSObject {
+  final public let rate: Swift.Double
+  final public let amount: Swift.Double
+  @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class GSKDocumentGenerator : ObjectiveC.NSObject {
+  @objc public func generate(_ document: GSSDK.GSKPDFDocument, imageProcessor: any GSSDK.GSKDocumentImageProcessor, configuration: GSSDK.GSKDocumentGeneratorConfiguration) throws
+  @objc public func generate(_ document: GSSDK.GSKPDFDocument, configuration: GSSDK.GSKDocumentGeneratorConfiguration) throws
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension GSSDK.GSKDocumentGeneratorError : Swift.Error {
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+}
+@objc public enum GSKDocumentGeneratorFileFormat : Swift.Int {
+  @objc(GSKDocumentGeneratorFileFormatPDF) case pdf
+  @objc(GSKDocumentGeneratorFileFormatTIFF) case tiff
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @objcMembers public class GSKDocumentGeneratorDebugConfiguration : ObjectiveC.NSObject {
+  @objc final public let isOCRTextShownOnPDF: Swift.Bool
+  @objc public init(isOCRTextShownOnPDF: Swift.Bool)
+  @objc deinit
+}
+@objc public class GSKDocumentGeneratorConfiguration : ObjectiveC.NSObject {
+  @objc public static func pdfConfiguration(withOutputFilePath outputFilePath: Swift.String) -> GSSDK.GSKDocumentGeneratorConfiguration
+  @objc public static func tiffConfiguration(withOutputFilePath outputFilePath: Swift.String) -> GSSDK.GSKDocumentGeneratorConfiguration
+  @objc final public let outputFileFormat: GSSDK.GSKDocumentGeneratorFileFormat
+  @objc final public let outputFilePath: Swift.String
+  @objc final public let pdfFontFilePath: Swift.String?
+  @objc final public let shouldGeneratePDFA: Swift.Bool
+  @objc final public let debugConfiguration: GSSDK.GSKDocumentGeneratorDebugConfiguration?
+  @objc public init(outputFileFormat: GSSDK.GSKDocumentGeneratorFileFormat = .pdf, outputFilePath: Swift.String, pdfFontFilePath: Swift.String? = nil, shouldGeneratePDFA: Swift.Bool = false, debugConfiguration: GSSDK.GSKDocumentGeneratorDebugConfiguration? = nil)
+  @objc deinit
+}
+extension GSSDK.GSKDocumentGeneratorConfiguration {
+  @objc convenience dynamic public init(dictionary: [Swift.String : Any]) throws
+}
+@objc public enum GSKDocumentGeneratorError : Swift.Int {
+  @objc(GSKDocumentGeneratorErrorInternal) case `internal`
+  @objc(GSKDocumentGeneratorErrorFileNotFound) case fileNotFound
+  @objc(GSKDocumentGeneratorErrorInvalidPassword) case invalidPassword
+  @objc(GSKDocumentGeneratorErrorInvalidPageSize) case invalidPageSize
+  @objc(GSKDocumentGeneratorErrorProcessorError) case processorError
+  @objc(GSKDocumentGeneratorErrorInvalidInput) case invalidInput
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol GSKDocumentImageProcessor {
+  @objc func process(_ inputFilePath: Swift.String) -> Swift.String?
+}
+@_inheritsConvenienceInitializers @objc final public class GSKNoopDocumentImageProcessor : ObjectiveC.NSObject, GSSDK.GSKDocumentImageProcessor {
+  @objc final public func process(_ inputFilePath: Swift.String) -> Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension GSSDK.GSKPDFDocument {
+  @objc convenience dynamic public init(dictionary: [Swift.String : Any]) throws
+}
+@objc final public class GSKPDFDocument : ObjectiveC.NSObject {
+  @objc final public let title: Swift.String?
+  @objc final public let password: Swift.String?
+  @objc final public let keywords: Swift.String?
+  @objc final public let creationDate: Foundation.Date?
+  @objc final public let lastUpdateDate: Foundation.Date?
+  @objc final public let pages: [GSSDK.GSKPDFPage]
+  @objc public init(title: Swift.String? = nil, password: Swift.String?, keywords: Swift.String?, creationDate: Foundation.Date?, lastUpdate: Foundation.Date?, pages: [GSSDK.GSKPDFPage])
+  @objc deinit
+}
+@objc final public class GSKPDFPage : ObjectiveC.NSObject {
+  @objc final public let filePath: Swift.String
+  @objc final public let inchesSize: GSSDK.GSKPDFSize
+  @objc final public let textLayout: GSSDK.GSKTextLayout?
+  @objc public init(filePath: Swift.String, inchesSize: GSSDK.GSKPDFSize, textLayout: GSSDK.GSKTextLayout?)
+  @objc deinit
+}
+@objc final public class GSKPDFSize : ObjectiveC.NSObject {
+  @objc final public let width: Swift.Double
+  @objc final public let height: Swift.Double
+  @objc public init(width: Swift.Double, height: Swift.Double)
+  @objc deinit
+}
+@objc final public class GSKTextLayout : ObjectiveC.NSObject {
+  @objc final public let hocr: Swift.String?
+  @objc public init(hocr: Swift.String?)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKTextLayoutToTextConverter : ObjectiveC.NSObject {
+  @objc final public func convert(_ textLayout: GSSDK.GSKTextLayout) throws -> GSSDK.GSKTextLayoutToTextConverterResult
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKTextLayoutToTextConverterResult : ObjectiveC.NSObject {
+  @objc final public let text: Swift.String
+  @objc final public let averageWordConfidence: Swift.Int
+  @objc final public let wordCount: Swift.Int
+  @objc deinit
+}
+public enum GSSDKAsset {
+  public static let artboardExpand: GSSDK.GSSDKImages
+  public static let blurIndicator: GSSDK.GSSDKImages
+  public static let perspectiveGrid: GSSDK.GSSDKImages
+  public static let retouchLandscape: GSSDK.GSSDKImages
+  public static let rotateBack: GSSDK.GSSDKImages
+  public static let straightenedPerspectiveGrid: GSSDK.GSSDKImages
+}
+public struct GSSDKImages {
+  public var name: Swift.String {
+    get
+  }
+  public typealias Image = UIKit.UIImage
+  public var image: GSSDK.GSSDKImages.Image {
+    get
+  }
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
+  public var swiftUIImage: SwiftUICore.Image {
+    get
+  }
+}
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, visionOS 1.0, *)
+extension SwiftUICore.Image {
+  public init(asset: GSSDK.GSSDKImages)
+  public init(asset: GSSDK.GSSDKImages, label: SwiftUICore.Text)
+  public init(decorative asset: GSSDK.GSSDKImages)
+}
+@_inheritsConvenienceInitializers @objc public class GSSDKResources : ObjectiveC.NSObject {
+  @objc public class var bundle: Foundation.Bundle {
+    @objc get
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+public enum GSSDKStrings {
+  public enum Gssdk {
+    public static let gssdkSettings: Swift.String
+    public enum Action {
+      public static let addPage: Swift.String
+      public static let back: Swift.String
+      public static let cancel: Swift.String
+      public static let capture: Swift.String
+      public static let changeFilter: Swift.String
+      public static let crop: Swift.String
+      public static let discard: Swift.String
+      public static let distortionCorrection: Swift.String
+      public static let done: Swift.String
+      public static let next: Swift.String
+      public static let photoLibrary: Swift.String
+      public static let retry: Swift.String
+      public static let rotateLeft: Swift.String
+    }
+    public enum Crop {
+      public static let detect: Swift.String
+      public static let maximize: Swift.String
+    }
+    public enum Error {
+      public static func cameraPermissionDeniedMessage(_ p1: Any) -> Swift.String
+      public static func cameraPermissionDeniedTitle(_ p1: Any) -> Swift.String
+    }
+    public enum Filter {
+      public static let automatic: Swift.String
+      public static let automaticBlackAndWhite: Swift.String
+      public static let automaticColor: Swift.String
+      public static let automaticMonochrome: Swift.String
+      public static let darkBackground: Swift.String
+      public static let instructions: Swift.String
+      public static let none: Swift.String
+      public static let photo: Swift.String
+      public static let softBlackAndWhite: Swift.String
+      public static let softColor: Swift.String
+      public static let strongBlackAndWhite: Swift.String
+      public static let strongColor: Swift.String
+      public static let strongMonochrome: Swift.String
+    }
+    public enum Flash {
+      public static let mode: Swift.String
+      public enum Mode {
+        public static let auto: Swift.String
+        public static let off: Swift.String
+        public static let on: Swift.String
+      }
+    }
+    public enum Flow {
+      public static let addPage: Swift.String
+      public static let addPages: Swift.String
+      public static let cancel: Swift.String
+      public static func confirmCancellation(_ p1: Swift.Int) -> Swift.String
+      public static func done(_ p1: Swift.Int) -> Swift.String
+      public enum ConfirmCancellation {
+        public static let keepScanning: Swift.String
+      }
+      public enum Progress {
+        public static let generatingDocument: Swift.String
+        public static let recognizingText: Swift.String
+      }
+    }
+    public enum UserGuidance {
+      public static let documentFound: Swift.String
+      public static let readability: Swift.String
+      public static let searching: Swift.String
+    }
+  }
+  public enum Localizable {
+    public static let gssdkSettings: Swift.String
+  }
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKOCRResult : ObjectiveC.NSObject {
+  @objc final public let text: Swift.String
+  @objc final public let textLayout: GSSDK.GSKTextLayout
+  @objc convenience public init(text: Swift.String, textLayout: GSSDK.GSKTextLayout)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKOCRConfiguration : ObjectiveC.NSObject {
+  @objc public static func configuration(languageTags: [Swift.String]) -> GSSDK.GSKOCRConfiguration
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc final public class GSKOCR : ObjectiveC.NSObject {
+  @objc public init(logger: any GSSDK.GSKLogger)
+  @objc override convenience dynamic public init()
+  final public func recognizeText(in ocrInput: GSSDK.GSKOCRInput, ocrConfiguration configuration: GSSDK.GSKOCRConfiguration, onProgress progressBlock: ((Swift.Float) -> Swift.Void)?) async throws -> GSSDK.GSKOCRResult
+  @objc final public func recognizeText(forImageAtPath imagePath: Swift.String, ocrConfiguration configuration: GSSDK.GSKOCRConfiguration, onProgress progressBlock: ((Swift.Float) -> Swift.Void)?) async throws -> GSSDK.GSKOCRResult
+  @objc deinit
+}
+public struct GSKOCRInput {
+  public init(originalImagePath: Swift.String, quadrangle: GSSDK.GSKQuadrangle? = nil, rotation: GSSDK.GSKRotation? = nil)
+}
+public struct GSKOCRLanguage {
+  public static var allLanguages: [GSSDK.GSKOCRLanguage]
+  public let tag: Swift.String
+  public let displayName: Swift.String
+}
+extension GSSDK.GSKOCRLanguage : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+extension GSSDK.GSKOCRLanguage : Swift.Equatable, Swift.Hashable {
+  public static func == (lhs: GSSDK.GSKOCRLanguage, rhs: GSSDK.GSKOCRLanguage) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@objc extension GSSDK.GSKView {
+  @objc @_Concurrency.MainActor @preconcurrency dynamic public func startSearchAnimation()
+  @objc @_Concurrency.MainActor @preconcurrency dynamic public func startSnapAnimation(withDuration duration: Foundation.TimeInterval)
+  @objc @_Concurrency.MainActor @preconcurrency dynamic public func endSnapAnimation()
+}
+@objc extension UIKit.UIViewController {
+  @objc(gsk_statusBarStyleBasedOnContrast) @_Concurrency.MainActor @preconcurrency dynamic public var statusBarStyleBasedOnContrast: UIKit.UIStatusBarStyle {
+    @objc get
+  }
+  @objc(gsk_supportedInterfaceOrientations) @_Concurrency.MainActor @preconcurrency dynamic public var deviceSupportedInterfaceOrientations: UIKit.UIInterfaceOrientationMask {
+    @objc get
+  }
+}
+@objc @objcMembers @_Concurrency.MainActor final public class GSKScanFlow : ObjectiveC.NSObject {
+  @objc @_Concurrency.MainActor public init(configuration: GSSDK.GSKScanFlowConfiguration)
+  @nonobjc @_Concurrency.MainActor final public func resultByStarting(fromViewController viewController: UIKit.UIViewController) async throws -> GSSDK.GSKScanFlowResult
+  @objc deinit
+}
+@objc extension GSSDK.GSKScanFlow {
+  @objc @available(swift, obsoleted: 1.0, message: "Use init(configuration:) instead.")
+  @_Concurrency.MainActor public static func scanFlowWithConfiguration(_ configuration: GSSDK.GSKScanFlowConfiguration) -> Self
+  @objc(startFromViewController:onSuccess:failure:) nonisolated final public func start(from viewController: UIKit.UIViewController, onSuccess completionBlock: @escaping (GSSDK.GSKScanFlowResult) -> Swift.Void, failure errorBlock: @escaping (any Swift.Error) -> Swift.Void)
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKScanFlowConfiguration : ObjectiveC.NSObject {
+  @objc final public var source: GSSDK.GSKScanFlowSource
+  @objc final public var sourceImageURL: Foundation.URL?
+  @objc final public var multiPage: Swift.Bool
+  @objc final public var defaultScanOrientation: GSSDK.GSKScanOrientation
+  @objc final public var defaultFilter: GSSDK.GSKScanFlowFilterType
+  final public var availableFilters: [GSSDK.GSKScanFlowFilterType]
+  @objc final public var requiredReadabilityLevel: GSSDK.GSKReadabilityLevel
+  @objc final public var skipPostProcessingScreen: Swift.Bool
+  @objc final public var postProcessingActions: GSSDK.GSKScanFlowPostProcessingActions
+  final public var defaultCurvatureCorrectionMode: GSSDK.GSKScanFlowCurvatureCorrectionMode
+  @objc final public var pdfPageSize: GSSDK.GSKScanFlowPDFPageSize
+  @objc final public var flashButtonHidden: Swift.Bool
+  @objc final public var photoLibraryButtonHidden: Swift.Bool
+  @objc final public var defaultFlashMode: GSSDK.GSKScanFlowFlashMode
+  @objc final public var multiPageFormat: GSSDK.GSKScanFlowMultiPageFormat
+  @objc final public var pdfFontFileURL: Foundation.URL?
+  @objc final public var backgroundColor: UIKit.UIColor
+  @objc final public var foregroundColor: UIKit.UIColor
+  @objc final public var highlightColor: UIKit.UIColor
+  @objc final public var menuColor: UIKit.UIColor?
+  @objc final public var jpegQuality: Swift.Int
+  @objc final public var pdfMaxScanDimension: Swift.Int
+  @objc final public var ocrConfiguration: GSSDK.GSKScanFlowOCRConfiguration?
+  @objc final public var structuredData: GSSDK.GSKScanFlowStructuredData
+  final public var structuredDataReadableCodeTypes: [GSSDK.GSKStructuredDataReadableCodeType]
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension GSSDK.GSKScanFlowConfiguration {
+  @objc(validate:) final public func validate() throws
+}
+extension GSSDK.GSKScanFlowConfiguration {
+  @nonobjc convenience public init(dictionary: [Swift.String : Any]) throws
+}
+@objc extension GSSDK.GSKScanFlowConfiguration {
+  @objc public static func configurationWithDictionary(_ dictionary: Foundation.NSDictionary) throws -> Self
+}
+public enum GSKScanFlowCurvatureCorrectionMode : Swift.String {
+  case disabled
+  case enabled
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc public enum GSKScanFlowError : Swift.Int {
+  @objc(GSKScanFlowUserCancelationError) case userCancellation = 999
+  @objc(GSKScanFlowBadInputError) case badInput = 1000
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum GSKScanFlowFilterType : Swift.Int, Swift.CaseIterable {
+  @objc(GSKScanFlowFilterNone) case none
+  @objc(GSKScanFlowFilterAutomatic) case automatic
+  @objc(GSKScanFlowFilterAutomaticDocumentMonochrome) case automaticDocumentMonochrome
+  @objc(GSKScanFlowFilterAutomaticDocumentGrayscale) case automaticDocumentGrayscale
+  @objc(GSKScanFlowFilterAutomaticDocumentColor) case automaticDocumentColor
+  @objc(GSKScanFlowFilterSoftGrayscale) case softGrayscale
+  @objc(GSKScanFlowFilterSoftColor) case softColor
+  @objc(GSKScanFlowFilterStrongMonochrome) case strongMonochrome
+  @objc(GSKScanFlowFilterStrongGrayscale) case strongGrayscale
+  @objc(GSKScanFlowFilterStrongColor) case strongColor
+  @objc(GSKScanFlowFilterDarkBackground) case darkBackground
+  @objc(GSKScanFlowFilterPhoto) case photo
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [GSSDK.GSKScanFlowFilterType]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [GSSDK.GSKScanFlowFilterType] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension GSSDK.GSKScanFlowFilterType : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum GSKScanFlowFlashMode : Swift.UInt, Swift.CaseIterable {
+  case auto
+  case on
+  case off
+  public init?(rawValue: Swift.UInt)
+  public typealias AllCases = [GSSDK.GSKScanFlowFlashMode]
+  public typealias RawValue = Swift.UInt
+  nonisolated public static var allCases: [GSSDK.GSKScanFlowFlashMode] {
+    get
+  }
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+extension GSSDK.GSKScanFlowFlashMode : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc public enum GSKScanFlowMultiPageFormat : Swift.UInt {
+  @objc(GSKScanFlowNone) case none
+  @objc(GSKScanFlowPDF) case PDF
+  @objc(GSKScanFlowTIFF) case TIFF
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKScanFlowOCRConfiguration : ObjectiveC.NSObject {
+  @objc final public var languageTags: [Swift.String]
+  @objc final public var outputFormats: GSSDK.GSKScanFlowOCROutputFormats
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKScanFlowOCRResult : ObjectiveC.NSObject {
+  @objc final public var text: Swift.String?
+  @objc final public var hocrTextLayout: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum GSKScanFlowPDFPageSize : Swift.UInt, Swift.Sendable {
+  @objc(GSKScanFlowPDFPageFit) case fit
+  @objc(GSKScanFlowPDFPageA4) case A4
+  @objc(GSKScanFlowPDFPageLetter) case letter
+  public init?(rawValue: Swift.UInt)
+  public typealias RawValue = Swift.UInt
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKScanFlowResult : ObjectiveC.NSObject {
+  @objc final public var multiPageDocumentURL: Foundation.URL?
+  @objc final public var scans: [GSSDK.GSKScanFlowScan]
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc extension GSSDK.GSKScanFlowResult {
+  @objc final public var dictionary: [Swift.String : Any] {
+    @objc get
+  }
+}
+@objc @objcMembers final public class GSKScanFlowScan : ObjectiveC.NSObject {
+  @objc final public var originalFilePath: Swift.String
+  @objc final public var enhancedFilePath: Swift.String
+  @objc final public var ocrResult: GSSDK.GSKScanFlowOCRResult?
+  @objc final public var structuredDataResult: GSSDK.GSKScanFlowStructuredDataResult?
+  @objc public init(originalFilePath: Swift.String, enhancedFilePath: Swift.String)
+  @objc deinit
+}
+@objc public enum GSKScanFlowSource : Swift.UInt, Swift.CaseIterable {
+  case camera
+  case imageURL
+  case library
+  public init?(rawValue: Swift.UInt)
+  public typealias AllCases = [GSSDK.GSKScanFlowSource]
+  public typealias RawValue = Swift.UInt
+  nonisolated public static var allCases: [GSSDK.GSKScanFlowSource] {
+    get
+  }
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+extension GSSDK.GSKScanFlowSource : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKScanFlowStructuredDataResult : ObjectiveC.NSObject {
+  @objc final public var bankDetails: GSSDK.GSKStructuredDataBankDetails?
+  @objc final public var businessCardContact: GSSDK.GSKStructuredDataContact?
+  @objc final public var receipt: GSSDK.GSKStructuredDataReceipt?
+  final public var readableCodes: [GSSDK.GSKStructuredDataReadableCode]
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum GSKScanOrientation : Swift.Int, Swift.CaseIterable {
+  case original
+  case automatic
+  public init?(rawValue: Swift.Int)
+  public typealias AllCases = [GSSDK.GSKScanOrientation]
+  public typealias RawValue = Swift.Int
+  nonisolated public static var allCases: [GSSDK.GSKScanOrientation] {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension GSSDK.GSKScanOrientation : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc final public class GSKUIBackgroundProcessing : ObjectiveC.NSObject {
+  @objc public static let shared: GSSDK.GSKUIBackgroundProcessing
+  @objc final public let documentGenerationQueue: Dispatch.DispatchQueue
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_Concurrency.MainActor @preconcurrency public struct GSKScanFlowButton<Label> : SwiftUICore.View where Label : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var configuration: () -> GSSDK.GSKScanFlowConfiguration
+  @_Concurrency.MainActor @preconcurrency public var action: (Swift.Result<GSSDK.GSKScanFlowResult, any Swift.Error>) -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public var label: () -> Label
+  @_Concurrency.MainActor @preconcurrency public init(configuration: @escaping () -> GSSDK.GSKScanFlowConfiguration, action: @escaping (Swift.Result<GSSDK.GSKScanFlowResult, any Swift.Error>) -> Swift.Void, @SwiftUICore.ViewBuilder label: @escaping () -> Label)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s5GSSDK17GSKScanFlowButtonV4bodyQrvp", 0) __<Label>
+}
+extension GSSDK.GSKScanFlowButton where Label == SwiftUICore.Text {
+  @_Concurrency.MainActor @preconcurrency public init(_ label: Swift.String, configuration: @escaping () -> GSSDK.GSKScanFlowConfiguration, action: @escaping (Swift.Result<GSSDK.GSKScanFlowResult, any Swift.Error>) -> Swift.Void)
+}
+final public class GSKReadableCodeDetector {
+  public init(logger: any GSSDK.GSKLogger = GSKLog())
+  final public func detectReadableCodes(inFileAt url: Foundation.URL, codeTypes: [GSSDK.GSKStructuredDataReadableCodeType]) async throws -> [GSSDK.GSKStructuredDataReadableCode]
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKStructuredDataAddress : ObjectiveC.NSObject {
+  @objc final public let city: Swift.String?
+  @objc final public let postalCode: Swift.String?
+  @objc final public let street: Swift.String?
+  @objc final public let state: Swift.String?
+  @objc final public let country: Swift.String?
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKStructuredDataBankDetails : ObjectiveC.NSObject {
+  @objc final public var iban: Swift.String?
+  @objc final public var bic: Swift.String?
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKStructuredDataContact : ObjectiveC.NSObject {
+  @objc final public let name: Swift.String?
+  @objc final public let organization: Swift.String?
+  @objc final public let address: GSSDK.GSKStructuredDataAddress?
+  @objc final public let phoneNumbers: [GSSDK.GSKStructuredDataPhoneNumber]
+  @objc final public let links: [Foundation.URL]
+  @objc final public let emailAddresses: [Swift.String]
+  @objc final public func asCNContact() -> Contacts.CNContact
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class GSKStructuredDataExtractor : ObjectiveC.NSObject {
+  @objc override convenience dynamic public init()
+  @objc deinit
+}
+@objc extension GSSDK.GSKStructuredDataExtractor {
+  @objc final public func bankDetailsFromOCRResult(_ ocrResult: GSSDK.GSKOCRResult) async throws -> GSSDK.GSKStructuredDataBankDetails?
+  @objc final public func businessCardContactFromOCRResult(_ ocrResult: GSSDK.GSKOCRResult) async throws -> GSSDK.GSKStructuredDataContact?
+  @objc final public func receiptFromOCRResult(_ ocrResult: GSSDK.GSKOCRResult) async throws -> GSSDK.GSKStructuredDataReceipt?
+}
+@objc public enum GSKStructuredDataExtractorError : Swift.Int, Swift.Error {
+  case missingRequiredOCRMetadata = -1
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKStructuredDataPhoneNumber : ObjectiveC.NSObject {
+  @objc final public let label: Swift.String
+  @objc final public let number: Swift.String
+  @objc deinit
+}
+public struct GSKStructuredDataReadableCode : Swift.Hashable {
+  public let value: Swift.String
+  public let type: GSSDK.GSKStructuredDataReadableCodeType
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: GSSDK.GSKStructuredDataReadableCode, b: GSSDK.GSKStructuredDataReadableCode) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum GSKStructuredDataReadableCodeType : Swift.String, Swift.CaseIterable {
+  case aztec
+  case code39
+  case code93
+  case code128
+  case dataMatrix
+  case ean8
+  case ean13
+  case itf
+  case pdf417
+  case qr
+  case upce
+  case codabar
+  case gs1DataBar
+  case microPDF417
+  case microQR
+  case msiPlessey
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [GSSDK.GSKStructuredDataReadableCodeType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [GSSDK.GSKStructuredDataReadableCodeType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc @_hasMissingDesignatedInitializers @objcMembers final public class GSKStructuredDataReceipt : ObjectiveC.NSObject {
+  @objc final public let locale: Foundation.Locale?
+  @objc final public let merchant: Swift.String?
+  final public let amount: Swift.Double?
+  @objc final public let currency: Swift.String?
+  @objc final public let date: Foundation.Date?
+  final public let category: GSSDK.GSKReceiptCategory?
+  @objc final public let vatNumber: Swift.String?
+  @objc final public let vatValues: [GSSDK.GSKReceiptVAT]
+  @objc deinit
+}
+extension GSSDK.GSKCameraSessionFlashStatus : Swift.Equatable {}
+extension GSSDK.GSKCameraSessionFlashStatus : Swift.Hashable {}
+extension GSSDK.GSKCameraSessionFlashStatus : Swift.RawRepresentable {}
+extension GSSDK.GSKCameraSessionDocumentDetection : Swift.Equatable {}
+extension GSSDK.GSKCameraSessionDocumentDetection : Swift.Hashable {}
+extension GSSDK.GSKCameraSessionDocumentDetection : Swift.RawRepresentable {}
+extension GSSDK.GSKCameraSessionError : Swift.Equatable {}
+extension GSSDK.GSKCameraSessionError : Swift.Hashable {}
+extension GSSDK.GSKCameraSessionError : Swift.RawRepresentable {}
+extension GSSDK.GSKDocumentFinderImageType : Swift.Equatable {}
+extension GSSDK.GSKDocumentFinderImageType : Swift.Hashable {}
+extension GSSDK.GSKDocumentFinderImageType : Swift.RawRepresentable {}
+extension GSSDK.GSKDocumentFinderImageType : Swift.Sendable {}
+extension GSSDK.GSKDocumentFinderImageType : Swift.BitwiseCopyable {}
+extension GSSDK.GSKReceiptCategory : Swift.Equatable {}
+extension GSSDK.GSKReceiptCategory : Swift.Hashable {}
+extension GSSDK.GSKReceiptCategory : Swift.RawRepresentable {}
+extension GSSDK.GSKDocumentGeneratorError : Swift.Equatable {}
+extension GSSDK.GSKDocumentGeneratorError : Swift.Hashable {}
+extension GSSDK.GSKDocumentGeneratorError : Swift.RawRepresentable {}
+extension GSSDK.GSKDocumentGeneratorFileFormat : Swift.Equatable {}
+extension GSSDK.GSKDocumentGeneratorFileFormat : Swift.Hashable {}
+extension GSSDK.GSKDocumentGeneratorFileFormat : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowFilterType : Swift.Equatable {}
+extension GSSDK.GSKScanFlowFilterType : Swift.Hashable {}
+extension GSSDK.GSKScanFlowFilterType : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlow : Swift.Sendable {}
+extension GSSDK.GSKScanFlowCurvatureCorrectionMode : Swift.Equatable {}
+extension GSSDK.GSKScanFlowCurvatureCorrectionMode : Swift.Hashable {}
+extension GSSDK.GSKScanFlowCurvatureCorrectionMode : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowError : Swift.Equatable {}
+extension GSSDK.GSKScanFlowError : Swift.Hashable {}
+extension GSSDK.GSKScanFlowError : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowFlashMode : Swift.Equatable {}
+extension GSSDK.GSKScanFlowFlashMode : Swift.Hashable {}
+extension GSSDK.GSKScanFlowFlashMode : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowMultiPageFormat : Swift.Equatable {}
+extension GSSDK.GSKScanFlowMultiPageFormat : Swift.Hashable {}
+extension GSSDK.GSKScanFlowMultiPageFormat : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowPDFPageSize : Swift.Equatable {}
+extension GSSDK.GSKScanFlowPDFPageSize : Swift.Hashable {}
+extension GSSDK.GSKScanFlowPDFPageSize : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowSource : Swift.Equatable {}
+extension GSSDK.GSKScanFlowSource : Swift.Hashable {}
+extension GSSDK.GSKScanFlowSource : Swift.RawRepresentable {}
+extension GSSDK.GSKScanOrientation : Swift.Equatable {}
+extension GSSDK.GSKScanOrientation : Swift.Hashable {}
+extension GSSDK.GSKScanOrientation : Swift.RawRepresentable {}
+extension GSSDK.GSKScanFlowButton : Swift.Sendable {}
+extension GSSDK.GSKStructuredDataExtractorError : Swift.Equatable {}
+extension GSSDK.GSKStructuredDataExtractorError : Swift.Hashable {}
+extension GSSDK.GSKStructuredDataExtractorError : Swift.RawRepresentable {}
+extension GSSDK.GSKStructuredDataReadableCodeType : Swift.Equatable {}
+extension GSSDK.GSKStructuredDataReadableCodeType : Swift.Hashable {}
+extension GSSDK.GSKStructuredDataReadableCodeType : Swift.RawRepresentable {}

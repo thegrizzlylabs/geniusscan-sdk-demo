@@ -1,0 +1,372 @@
+241 Pizza
+85C Bakery Cafe
+A&W Food Services of Canada
+A&W Restaurants
+AMT Coffee
+Aberdeen Angus Steak Houses
+All Bar One
+America's Incredible Pizza Company
+Applebee's
+Arby's
+Arctic Circle Restaurants
+Arthur Treacher's
+Ask
+Atlanta Bread Company
+Auntie Anne's
+Autogrill
+BJ's Restaurants
+Bagelstein
+Bahama Breeze
+Baja Fresh
+Bakers Delight
+Bakers Square
+Banette
+Baskin-Robbins Australia
+Baton Rouge
+Baïla Pizza
+BeaverTails
+Beef O'Brady's
+Beefeater
+Bel Canto
+Bella Italia
+Ben & Florentine
+Benedetti's Pizza
+Benihana
+Bennigan's
+Bert's
+Bertucci's
+Big Boy
+Big Fernand
+Big Smoke Burger
+Bistro Régent
+Black Angus Steakhouse
+Black-eyed Pea
+Blake's Lotaburger
+Blimpie 
+Bob Evans Restaurants
+Bob's
+Bojangles'
+Bonchon Chicken
+Bonefish Grill
+Boston Market
+Boston Pizza
+Braum's
+Bravo Brio Restaurant Group
+Breadtop
+Brioche dorée
+Brumby's Bakeries
+Bubba Gump Shrimp Company
+Buca di Beppo
+Buffalo Grill
+Buffalo Wild Wings
+Burger Baron
+Burger King
+Burger Street
+Burgerville
+Burrito Brothers
+Cactus Club Cafe
+Cafe Coffee Day
+Caffè Nero
+Café Rouge
+California Burrito Co.
+California Pizza Kitchen
+California Tortilla
+Captain D's
+Captain Submarine
+Carino's Italian
+Carl's Jr.
+Carl’s Jr.
+Carrabba's Italian Grill
+Carrows
+Casino Cafétéria
+Cervecería 100 Montaditos
+Champps
+Charley's Grilled Sub
+Charley's Grilled Subs
+Charleys Philly Steaks
+Chatime
+Cheeburger Cheeburger
+Cheeseburger in Paradise
+Chevys Fresh Mex
+Chez Ashton
+Chez Clément
+Chez Cora
+Chez Léon
+Chic Chicken
+Chick-Fil-A
+Chicken Cottage
+Chicken Express
+Chicken in the Rough
+Chili's
+Chipotle Mexican Grill
+Chiquito
+Chronic Tacos
+Chuck E. Cheese
+Chuck-A-Rama
+Church's Chicken
+CiCi's
+Cinnabon
+Claim Jumper
+Class'Croute
+Coco's Bakery
+Comptoir libanais
+Copeland's
+Cora
+Corner Bakery Cafe
+Cosmos
+Costa Coffee
+Courtepaille
+Cracker Barrel
+Crepes & Waffles
+Crepes and Waffles
+Crescendo
+Culver's
+Dairy Queen
+Damon's Grill
+Dave & Buster's
+Del Taco
+Denny's
+Din Tai Fung
+Dixie Lee
+Dome
+Domino's Pizza
+Donut King
+Dunkin' Donuts
+Délifrance
+Désiré de Lille
+Dôme
+EAT.
+Eagle Boys Pizza
+Earls Kitchen + Bar
+East Side Mario's
+EasyPizza
+Eat Salad
+Edo Japan
+Exki
+Five Guys
+Five Pizza Original
+Flam's
+Flunch
+Frankie & Benny's
+Free Time
+Freshii
+Freshly Chopped
+Funky Chicken
+Gabriel Pizza
+Giraffas
+Giraffe World Kitchen
+Gloria Jean's Coffees
+Goody's Burger House
+Gourmet Burger Kitchen
+Greco Pizza Restaurant
+Greggs
+Habib's
+Hamburguesas El Corral
+Hard Rock Cafe
+Hardee's
+Harry Ramsden's
+Harvester
+Harvey's
+Hero Certified Burgers
+Hesburger
+Hippopotamus
+Hog's Breath Cafe
+Holy Cow! Gourmet Burger Company
+Hooters
+Hotcha
+Hungry Horse
+Hungry Howie's Pizza
+Hungry Jack's
+IHOP
+Il Ristorante
+Indiana Café
+Inglewood
+JOEY
+Jack Astor's Bar and Grill
+Jack in the Box
+Jamba Juice
+Jensen's Bøfhus
+Jimmy John's
+Joe & The Juice
+Joey's Seafood Restaurants
+Jollibee
+Juan Valdez Cafe
+KFC
+Kelseys Original Roadhouse
+Kenny Rogers Roasters
+Kentucky Fried Chicken
+King Marcel
+Kochlöffel
+Kotipizza
+Krispy Kreme
+Krystal
+La Belle Province
+La Boucherie
+La Boîte à Pizza
+La Cage
+La Croissanterie
+La Mie câline
+La Pataterie
+La Place
+La Porchetta
+La Taverne de Maître Kanter
+Lafleur
+Landry's Restaurant
+Le Kiosque à Pizzas
+Le Pain quotidien
+Le Paradis du Fruit
+Leon Restaurants
+Les 3 Brasseurs
+Les Comptoirs Casino
+Lina's
+Little Caesar's
+Little Chef
+Long John Silver's
+LongHorn Steakhouse
+Louisa Coffee
+Loving Hut
+Lunch Garden
+Léon
+MK Restaurant
+MOS Burger
+Mandarin Restaurant
+Marrybrown
+Martin's BBQ
+Mary Brown's
+Max Hamburgers
+McDonald's
+Memphis Coffee
+Mezzo di Pasta
+Mostaza
+Muzz Buzz
+My Little Warung
+Nando's
+Nathan's Famous
+New School Tacos
+Nooï
+Nordsee
+Normandin
+O'Tacos
+OK Diner
+Olive Garden
+Olives et Aromates
+Oncle Scott's
+Oporto
+Outback Steakhouse
+Pacini
+Panago
+Pancake Parlour
+Panda Express
+Panera Bread
+Papa John's Pizza
+Paris Baguette
+Pasta Cosy
+Paul
+Pepe Chicken FastGoodCuisine
+Perkins Restaurant and Bakery
+Pizza Del Arte
+Pizza Hut
+Pizza Nova
+Pizza Paï
+Pizza Pizza
+Pizza Showtime
+Pizza Sprint
+PizzaExpress
+Planet Hollywood
+Poivre Rouge
+Pollo Campero
+Pomme de Pain
+Ponderosa Steakhouse
+Ponderosa and Bonanza Steakhouses
+Popeyes
+Popeyes Chicken & Biscuits
+Portillo's
+Poulet Frit Kentucky
+Pret A Manger
+Prezzo
+Qdoba
+Quaker Steak & Lube
+Quick
+Quiznos
+Rainforest Cafe
+Red Lobster
+Red Robin
+Red Rooster
+Richtree Market
+Ricky's All Day Grill
+Rodilla
+Rolls
+Ruby Tuesday
+Salisbury House
+Sanborns Cafe
+Scores
+Secret Recipe
+Señor Frog's
+Shakey's Pizza
+Shingle Inn
+Shoeless Joe's
+Sizzler
+Smoke's Poutinerie
+Sonic Drive-In
+Speed Burger
+Speed Rabbit Pizza
+Spizzico
+Spudulike
+St-Hubert
+Starbucks
+Steak 'n Shake
+Strada
+Subway
+Superdawg
+Supreme Tacos
+Sushi Shop
+Swensen's
+Swiss Chalet
+Swiss Meal
+T.G.I. Friday's
+TGI Friday's
+TKK Fried Chicken
+Table Table
+Taco Bell
+Takinoa
+Telepizza
+Thaï Express
+The Capital Grille
+The Cheesecake Factory
+The Great Canadian Bagel
+The Keg
+The Old Spaghetti Factory
+The Original Pancake House
+The Pizza Company
+The West Cornwall Pasty Company
+The Wieners Circle
+The Works
+Tibits
+Tim Hortons
+Tony Roma's
+Topper's Pizza
+Toujours Mikes
+Tutti Pizza
+Upper Crust
+Valentine
+Valentino's
+Vapiano
+Village Inn
+Waffle House
+Wagamama
+Wendy's
+Wendy's Supa Sundaes
+Whataburger
+White Castle
+White Spot
+Wienerwald
+Wild Wing Restaurants
+Wimpy
+Wimpy's Diner
+Woko
+YO! Sushi
+York Steak House
+Yoshinoya
+Zaxby's
+Zip's Drive-in
+Zizzi

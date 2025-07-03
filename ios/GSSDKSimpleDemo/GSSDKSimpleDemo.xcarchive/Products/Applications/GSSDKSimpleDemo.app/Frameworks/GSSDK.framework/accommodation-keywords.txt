@@ -1,0 +1,4 @@
+room
+chambre
+hotel
+motel

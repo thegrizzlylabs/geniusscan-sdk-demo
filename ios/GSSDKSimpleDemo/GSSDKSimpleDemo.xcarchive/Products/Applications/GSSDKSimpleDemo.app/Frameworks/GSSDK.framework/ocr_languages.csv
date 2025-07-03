@@ -1,0 +1,97 @@
+af||afr|Afrikaans|de38639b908be28aea8927d81a171957|Latn
+am||amh|Amharic|c7110e87562b32a603db085f6df4f6e4|
+ar||ara|Arabic|5de9e65d1ee8fa9a4fd644cee2a7cbf9|
+as||asm|Assamese|e9d49944417ba92e5f04e022008b8722|
+az||aze|Azerbaijani|c1cf60ebe6639204300374ce3e384a26|
+be||bel|Belarusian|0fddbac6eac3b2dbe513f4ed9fe632e2|
+bn||ben|Bengali|4ded8631c91f5d70b5c01ab4d5a671c4|
+bo||bod|Tibetan|f06433452ec9d4c8db95e95288f9f682|
+bs||bos|Bosnian|47bbee68546bb27db6b42be3c771cd22|
+bg||bul|Bulgarian|7bfb6e0c991abe1d5e8dfda228823ff8|
+ca||cat|Catalan; Valencian|5c82d55d9ce73221be886d19e27403c1|Latn
+ceb||ceb|Cebuano|a5dc370dc75468041de66ec407f288fa|
+cs||ces|Czech|85f7177e5c83e78135fcf282f8f662f5|Latn
+zh-Hant|zh-Hant|chi_tra|Chinese (traditional)|c31bb817199706b7960781b88d358f05|Hans/Hant
+zh-Hans|zh-Hans|chi_sim|Chinese (simplified)|4eb930bcc52867e79c953fc0fe52bbde|Hans/Hant
+chr||chr|Cherokee|e92e0b015c483fabd2200048b775178f|
+cy||cym|Welsh|9758ea019ecfa1c1cca967b1ce520a96|
+da||dan|Danish|fbf5311d99820c8ccc7d942a4138efc8|Latn
+de-DE|de-DE|deu|German|eba405bc50826bf160000834c836ad64|Latn
+dzo||dzo|Dzongkha|e525d9029b74bea7b7060dffc47466e9|
+el||ell|Greek, Modern (1453-)|051ca58e14f8d18ceabeabb3103b3d98|
+en-US|en-US|eng|English|d1be414fbb296b3ad777bfca655e194e|Latn
+enm||enm|English, Middle (1100-1500)|6b28780347f6402e5777fa76347a446b|
+epo||epo|Esperanto|6e3987d0a8a54727631d36923c0ca765|
+et||est|Estonian|28e6359db53b46c8dee2d74dc1ecc1fb|Latn
+eu||eus|Basque|627c95e8ce151df9d0f5e6c4a552b3c6|
+fa||fas|Persian|c21b660eb8726e367895cc4ed41c4d78|
+fi||fin|Finnish|8eda17ed68216bd6da5947b2113e4e79|Latn
+fr-FR|fr-FR|fra|French|d9b7d4897b9093731f2e032f973c83fc|Latn
+frk||deu_latf|Frankish|aa3e6b56e449e5a23c70d6546157570b|
+frm||frm|French, Middle (ca. 1400-1600)|b310a8da386f7cff046a4ce33380f8fb|
+ga||gle|Irish|56e3060f8ad079e8542d24f24452bc95|
+gl||glg|Galician|3ce2ecb4c4e6b9437f7583382cc256c0|
+grc||grc|Greek, Ancient (-1453)|d1de6413873fa85d34947a1e1204ee8d|
+gu||guj|Gujarati|697ede60fe46434b6fc2d86b66e9e779|
+hat||hat|Haitian; Haitian Creole|6ca2e85f68bffd61c0839942aaade4f1|
+he||heb|Hebrew|935468444ded38098c86383ae0ae0a2b|
+hi||hin|Hindi|f7d08874dfd41e07744a42a541fd9e53|Deva
+hr||hrv|Croatian|b1e8c9686f2e80b7bb63f3b35e5c43fd|Latn
+hu||hun|Hungarian|0fa1b6242e9a5065f27ed3b0e589a072|Latn
+iu||iku|Inuktitut|79242bdf4c33a5a58630f70854c516b7|
+id||ind|Indonesian|1ce2b8a8927e65c694ccfa086002dc44|Latn
+is||isl|Icelandic|a263d196a0d3b7587531e640006f1d06|Latn
+it-IT|it-IT|ita|Italian|5844c81efa5c3388d7581210f8a02fbe|Latn
+jav||jav|Javanese|22a0ab1df279098c153b9d9e15222793|
+ja-JP|ja-JP|jpn|Japanese|182528e3ec6f0ea33704c4607ba3518d|Jpan
+kn||kan|Kannada|17c6d8fa4e866336013e256b0e97ca15|
+ka||kat|Georgian|704d887147aad9f8e6261c7d90a4e5e3|
+kk||kaz|Kazakh|64730898bbd4dc25816ad33d9f129242|
+km||khm|Central Khmer|fa7f6dfdd7ebce2ed23abd98c2515d15|
+ky||kir|Kirghiz; Kyrgyz|decb4f472c7f149e93172f1a13f13417|
+ko-KR|ko-KR|kor|Korean|83c518dd0430ed645278055c5475ad70|Kore
+lo||lao|Lao|0ef54cd020182b59b8894d0d856a8b0c|
+lat||lat|Latn|6a1a25ac2501ce2966aff281283ba605|
+lv||lav|Latvian|7106fc907deddb2531f8725bded787a7|Latn
+lt||lit|Lithuanian|c2deeeb2c5a37857067f5e3d7aa423ee|Latn
+micr_e13b||micr_e13b|MICR (E-13B)|68cd283af860666e41bdf6b3b8cfe646|
+ml||mal|Malayalam|e112494c76ceb470199647907da82808|
+mr||mar|Marathi|4383024566d23da31dde8daaa4586bcf|Deva
+mk||mkd|Macedonian|7fa6782fe10808c1ac7318fd662a3e9a|
+mt||mlt|Maltese|489e48ad739a928b90d8560d702d82de|
+ms||msa|Malay|fbe66ffcb34aa28f8bd2ba16ad0a70a8|Latn
+my||mya|Burmese|4f80f24b0ee6ee1316ec6b18b4847e49|
+ne||nep|Nepali|30feb607b57769eae08ea41925e30641|Deva
+nl||nld|Dutch; Flemish|6f11f12aafb7a79ed3601404deb7bf06|Latn
+no||nor|Norwegian|23beef8d32805239b7218410b34eb02d|Latn
+ori||ori|Oriya|031a159aea29f05212ed1cfa52588682|
+pa||pan|Panjabi; Punjabi|e46332cddb4357ac5ebc288004f132fe|
+pl||pol|Polish|617f21db57b65c087b7b45ffe5564c45|Latn
+pt-BR|pt-BR|por|Portuguese (Brazil)|ca0ca02805448ad3b8b3fdeeda05412f|Latn
+ps||pus|Pushto; Pashto|9a1f657509f9720b311dcc3717c05074|
+ro||ron|Romanian; Moldavian; Moldovan|a1edf0b5c6eb018d3d3c04b5f04afee1|Latn
+ru-RU|ru-RU|rus|Russian|002169acbee080e81c77b51fd312cb9b|
+sa||san|Sanskrit|cc93ab15726e1f541e87be545c59c7ae|
+si||sin|Sinhala; Sinhalese|13d7272f9051c390272eda892c89f8a6|
+sk||slk|Slovak|43c5b6b6d3e22aa62c4b30b5df100538|Latn
+sl||slv|Slovenian|9bd064d758ca1b927d492a06380e7e01|Latn
+es-ES|es-ES|spa|Spanish; Castilian|b1906fecc503a4aaabaa6a430f618a56|Latn
+sq||sqi|Albanian|4f24bad2e76a8a87d768d7ea98672f9b|Latn
+sr||srp|Serbian|bdd05c5c2c04f53f47aa371da98786f3|Latn
+sw||swa|Swahili|35a4377d27c6cccca5068760236b8765|
+sv||swe|Swedish|43670fb983aa37aaf2410c10af0fe95c|Latn
+syc||syr|Syriac|3641e9c5b626be522a0fdb3c6ed09f07|
+ta||tam|Tamil|031c0b39510051704ed064d5f0c9f15c|
+te||tel|Telugu|1c99068b6468e39c7a3ac837d7bc361d|
+tg||tgk|Tajik|625502080cefe842684a63f6395190e3|
+th-TH|th-TH|tha|Thai|85f7c7975c56303a208c43c2448901ad|
+tir||tir|Tigrinya|68807c43800b1277431b63697136e29f|
+tr||tur|Turkish|c64b41a58e69359e23a145cc279d4009|Latn
+ug||uig|Uighur; Uyghur|38933b4693e9681a482c741e9f9dd28c|
+uk-UA|uk-UA|ukr|Ukrainian|54f88050cb47e40c93f1c0ee821dfc5c|
+ur||urd|Urdu|6150d7b7397b6f67b888e429adc94ba9|
+uz||uzb|Uzbek|887f0b37c6cbde2334ff95f093b1b014|
+vi-VT|vi-VT|vie|Vietnamese|19159c2cbc91a2bf9f7cca853d8352f0|Latn
+yi||yid|Yiddish|54e6a2a8944c5fb5f5f71cd072542187|
+yue-Hans|yue-Hans||Cantonese (simplified)||
+yue-Hant|yue-Hant||Cantonese (simplified)||

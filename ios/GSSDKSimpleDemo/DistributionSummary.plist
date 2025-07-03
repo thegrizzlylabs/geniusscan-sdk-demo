@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GSSDKSimpleDemo.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>buildNumber</key>
+			<string>22753</string>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>E3F3D8CF9F6A7681E818921AD044317463D68CDC</string>
+				<key>dateExpires</key>
+				<string>3/5/26</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>buildNumber</key>
+					<string>22753</string>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>E3F3D8CF9F6A7681E818921AD044317463D68CDC</string>
+						<key>dateExpires</key>
+						<string>3/5/26</string>
+						<key>type</key>
+						<string>Apple Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>GSSDK.framework</string>
+					<key>symbols</key>
+					<true/>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>67ZL68PX9A</string>
+						<key>name</key>
+						<string></string>
+					</dict>
+					<key>versionNumber</key>
+					<string>5.11.1</string>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>67ZL68PX9A.com.thegrizzlylabs.geniusscansdk.GSSDKSimpleDemo</string>
+				<key>beta-reports-active</key>
+				<true/>
+				<key>com.apple.developer.team-identifier</key>
+				<string>67ZL68PX9A</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>GSSDKSimpleDemo.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>35f68735-5136-4a42-b1f6-498e9985a354</string>
+				<key>dateExpires</key>
+				<string>3/5/26</string>
+				<key>name</key>
+				<string>match AppStore com.thegrizzlylabs.geniusscansdk.GSSDKSimpleDemo</string>
+			</dict>
+			<key>symbols</key>
+			<true/>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>67ZL68PX9A</string>
+				<key>name</key>
+				<string></string>
+			</dict>
+			<key>versionNumber</key>
+			<string>5.11.1</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -57,6 +57,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -165,7 +166,8 @@ private fun CustomScreen(
         floatingActionButtonPosition = FabPosition.End
     ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
+                .padding(innerPadding)
                 .consumeWindowInsets(innerPadding)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
@@ -181,13 +183,10 @@ private fun CustomScreen(
 
             ConfigurationListItem(
                 label = stringResource(R.string.custom_scanning_source),
-                selectedOption = scanConfiguration.source.name.capitalize(),
-                options = ScanConfiguration.Source.entries.map { option -> option.name.capitalize() },
-                onOptionClick = { option ->
-                    scanConfiguration = scanConfiguration.copy(
-                        source = ScanConfiguration.Source.valueOf(option.uppercase(Locale.getDefault()))
-                    )
-                }
+                selectedOption = scanConfiguration.source,
+                options = ScanConfiguration.Source.entries,
+                formatOption = { option -> option.name.capitalize() },
+                onOptionSelected = { option -> scanConfiguration = scanConfiguration.copy(source = option) }
             )
 
             HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
@@ -259,13 +258,10 @@ private fun CameraScreen(
 
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_flash_mode),
-        selectedOption = scanConfiguration.defaultFlashMode.name.capitalize(),
-        options = ScanConfiguration.FlashMode.entries.map { option -> option.name.capitalize() },
-        onOptionClick = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                defaultFlashMode = ScanConfiguration.FlashMode.valueOf(option.uppercase(Locale.getDefault()))
-            ))
-        }
+        selectedOption = scanConfiguration.defaultFlashMode,
+        options = ScanConfiguration.FlashMode.entries,
+        formatOption = { option -> option.name.capitalize() },
+        onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(defaultFlashMode = option)) }
     )
 }
 
@@ -274,6 +270,7 @@ private fun PostProcessingScreen(
     scanConfiguration: ScanConfiguration,
     onScanConfigurationModified: (ScanConfiguration) -> Unit
 ) {
+    val context = LocalContext.current
     Text(
         stringResource(R.string.custom_scanning_post_processing_screen),
         style = sectionTitleStyle(),
@@ -282,36 +279,29 @@ private fun PostProcessingScreen(
 
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_scan_orientation),
-        selectedOption = scanConfiguration.defaultScanOrientation.name.capitalize(),
-        options = ScanConfiguration.Orientation.entries.map { option -> option.name.capitalize() },
-        onOptionClick = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                defaultScanOrientation = ScanConfiguration.Orientation.valueOf(option.uppercase(Locale.getDefault()))
-            ))
+        selectedOption = scanConfiguration.defaultScanOrientation,
+        options = ScanConfiguration.Orientation.entries,
+        formatOption = { option -> option.name.capitalize() },
+        onOptionSelected = { option ->
+            onScanConfigurationModified(scanConfiguration.copy(defaultScanOrientation = option))
         }
     )
 
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_filter),
-        selectedOption = stringResource(scanConfiguration.defaultFilter.labelResId),
-        options = ScanConfiguration.Filter.entries.map { option -> stringResource(option.labelResId) },
-        onOptionClick = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                defaultFilter = ScanConfiguration.Filter.valueOf(option.uppercase(Locale.getDefault()))
-            ))
-        }
+        selectedOption = scanConfiguration.defaultFilter,
+        options = ScanConfiguration.Filter.entries,
+        formatOption = { option -> context.getString(option.labelResId) },
+        onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(defaultFilter = option)) }
     )
 
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_readability),
-        selectedOption = scanConfiguration.requiredReadabilityLevel.name.capitalize(),
-        options = ScanProcessor.ReadabilityLevel.entries.map { option -> option.name.capitalize() },
-        onOptionClick = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                requiredReadabilityLevel = ScanProcessor.ReadabilityLevel.valueOf(
-                    option.uppercase(Locale.getDefault())
-                )
-            ))
+        selectedOption = scanConfiguration.requiredReadabilityLevel,
+        options = ScanProcessor.ReadabilityLevel.entries,
+        formatOption = { option -> option.name.capitalize() },
+        onOptionSelected = { option ->
+            onScanConfigurationModified(scanConfiguration.copy(requiredReadabilityLevel = option))
         }
     )
 
@@ -426,13 +416,10 @@ private fun Output(
 
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_format),
-        selectedOption = scanConfiguration.multiPageFormat.name.capitalize(),
-        options = ScanConfiguration.MultiPageFormat.entries.map { option -> option.name.capitalize() },
-        onOptionClick = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                multiPageFormat = ScanConfiguration.MultiPageFormat.valueOf(option.uppercase(Locale.getDefault())))
-            )
-        }
+        selectedOption = scanConfiguration.multiPageFormat,
+        options = ScanConfiguration.MultiPageFormat.entries,
+        formatOption = { option -> option.name.capitalize() },
+        onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(multiPageFormat = option)) }
     )
 
     ConfigurationBooleanItem(
@@ -481,15 +468,10 @@ private fun Output(
 
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_page_size),
-        selectedOption = scanConfiguration.pdfPageSize.name.capitalize(),
-        options = ScanConfiguration.PdfPageSize.entries.map { option ->
-            option.name.capitalize()
-        },
-        onOptionClick = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                pdfPageSize = ScanConfiguration.PdfPageSize.valueOf(option.uppercase(Locale.getDefault())))
-            )
-        }
+        selectedOption = scanConfiguration.pdfPageSize,
+        options = ScanConfiguration.PdfPageSize.entries,
+        formatOption = { option -> option.name.capitalize() },
+        onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(pdfPageSize = option)) }
     )
 }
 
@@ -678,17 +660,18 @@ private fun ConfigurationColorItem(
 }
 
 @Composable
-private fun ConfigurationListItem(
+private fun <E> ConfigurationListItem(
     label: String,
-    selectedOption: String,
-    options: List<String>,
-    onOptionClick: (String) -> Unit
+    selectedOption: E,
+    options: List<E>,
+    formatOption: (E) -> String,
+    onOptionSelected: (E) -> Unit
 ) {
     var showDialog by rememberSaveable { mutableStateOf(false) }
 
     ListItem(
         headlineContent = { Text(text = label) },
-        supportingContent = { Text(text = selectedOption) },
+        supportingContent = { Text(text = formatOption(selectedOption)) },
         modifier = Modifier.clickable { showDialog = true }
     )
     if (showDialog) {
@@ -697,13 +680,13 @@ private fun ConfigurationListItem(
             title = { Text(label) },
             text = {
                 Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    options.forEach { option: String ->
+                    options.forEach { option ->
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
                                     showDialog = false
-                                    onOptionClick(option)
+                                    onOptionSelected(option)
                                 },
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -711,11 +694,11 @@ private fun ConfigurationListItem(
                                 selected = selectedOption == option,
                                 onClick = {
                                     showDialog = false
-                                    onOptionClick(option)
+                                    onOptionSelected(option)
                                 }
                             )
 
-                            Text(text = option)
+                            Text(text = formatOption(option))
                         }
 
                     }
