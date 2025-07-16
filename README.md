@@ -11,13 +11,27 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 
 # Content
 
-- [Android Simple demo](./android), which shows how to add a document scanner to your app in one line of code
-- [Android Custom demo](./android), which shows how to build a fully customized document scanner
-- [iOS Simple demo](./ios/GSSDKSimpleDemo), which shows how to add a document scanner to your app in one line of code
-- [iOS Custom demo](./ios/GSSDKCustomDemo), which shows how to build a fully customized document scanner
-- [React Native demo](./react-native-genius-scan-demo/README.md), which uses the [Genius Scan React Native component](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan)
-- [Cordova demo](./cordova-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Cordova plugin](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan)
-- [Flutter demo](./flutter-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Flutter plugin](https://pub.dev/packages/flutter_genius_scan)
+- Android
+  - [Android Simple demo](./android), which shows how to add a document scanner to your app in one line of code
+  - [Android Custom demo](./android), which shows how to build a fully customized document scanner
+- iOS
+  - [iOS Simple demo](./ios/GSSDKSimpleDemo), which shows how to add a document scanner to your app in one line of code
+  - [iOS Custom demo](./ios/GSSDKCustomDemo), which shows how to build a fully customized document scanner
+- Hybrid apps
+  - [React Native demo](./react-native-genius-scan-demo/README.md), which uses the [Genius Scan React Native component](https://www.npmjs.com/package/@thegrizzlylabs/react-native-genius-scan)
+  - [Cordova demo](./cordova-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Cordova plugin](https://www.npmjs.com/package/@thegrizzlylabs/cordova-plugin-genius-scan)
+  - [Flutter demo](./flutter-plugin-genius-scan-demo/README.md), which uses the [Genius Scan SDK Flutter plugin](https://pub.dev/packages/flutter_genius_scan)
+- Web apps
+  - [Web demo](./web/README.md), which uses the [Genius Scan SDK for the Web](https://www.npmjs.com/package/@thegrizzlylabs/web-geniusscan-sdk)
+
+# Test before cloning
+
+You can try out the SDK directly from a mobile device without downloading and running the above sample apps on your machine.
+
+|                          **iOS**                         |                                        **Android**                                        |                            **Web**                            |
+|:--------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|:-------------------------------------------------------------:|
+|![TestFlight document scanning SDK](https://geniusscansdk.com/gssdk-simple-demo-google-play.png)|![Android document scanning SDK](https://geniusscansdk.com/gssdk-simple-demo-google-play.png)|![Web document scanning SDK](https://geniusscansdk.com/gssdk-web-simple-demo.png)|
+| [TestFlight](https://testflight.apple.com/join/2h543kR5) | [Google Play](https://play.google.com/store/apps/details?id=com.geniusscansdk.simpledemo) | [Web document scanning demo](https://demo.geniusscansdk.com/) |
 
 # Features
 
