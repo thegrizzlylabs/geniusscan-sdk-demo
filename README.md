@@ -9,7 +9,7 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 
 >Request a demo from [our website](https://geniusscansdk.com) to obtain a package containing the native iOS SDK (Objective-C libraries).
 
-# Content
+# Sample code
 
 - Android
   - [Android Simple demo](./android), which shows how to add a document scanner to your app in one line of code
@@ -24,14 +24,14 @@ These sample scanning applications demonstrate the capability of the [Genius Sca
 - Web apps
   - [Web demo](./web/README.md), which uses the [Genius Scan SDK for the Web](https://www.npmjs.com/package/@thegrizzlylabs/web-geniusscan-sdk)
 
-# Test before cloning
+# Test our demo builds
 
-You can try out the SDK directly from a mobile device without downloading and running the above sample apps on your machine.
+Want to see the SDK in action? You can try our Simple demo apps without needing to download and compile the source code.
 
-|                          **iOS**                         |                                        **Android**                                        |                            **Web**                            |
+|                          **iOS**                         |                                        **Android**                                        |                            **Web SDK**                            |
 |:--------------------------------------------------------:|:-----------------------------------------------------------------------------------------:|:-------------------------------------------------------------:|
-|![TestFlight document scanning SDK](https://geniusscansdk.com/gssdk-simple-demo-google-play.png)|![Android document scanning SDK](https://geniusscansdk.com/gssdk-simple-demo-google-play.png)|![Web document scanning SDK](https://geniusscansdk.com/gssdk-web-simple-demo.png)|
-| [TestFlight](https://testflight.apple.com/join/2h543kR5) | [Google Play](https://play.google.com/store/apps/details?id=com.geniusscansdk.simpledemo) | [Web document scanning demo](https://demo.geniusscansdk.com/) |
+|![Join with TestFlight](https://geniusscansdk.com/img/gssdk-simple-demo-google-play.png)|![Install on Google Play](https://geniusscansdk.com/img/gssdk-simple-demo-google-play.png)|![Run the Web demo](https://geniusscansdk.com/img/gssdk-web-simple-demo.png)|
+| [TestFlight](https://testflight.apple.com/join/2h543kR5) | [Google Play](https://play.google.com/store/apps/details?id=com.geniusscansdk.simpledemo) | [Web demo](https://demo.geniusscansdk.com/) |
 
 # Features
 
