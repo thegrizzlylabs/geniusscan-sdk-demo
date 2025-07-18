@@ -15,8 +15,8 @@
     <string name="custom_scanning_default_scan_orientation">Default scan orientation</string>
     <string name="custom_scanning_default_filter">Default filter</string>
     <string name="custom_scanning_post_processing_actions">Post-processing actions</string>
-    <string name="custom_scanning_enabled_post_processing_actions">Enabled post-processing actions</string>
-    <string name="custom_scanning_enabled_actions">Enabled actions</string>
+    <string name="custom_scanning_available_actions">Available actions</string>
+    <string name="custom_scanning_available_filters">Available filters</string>
     <string name="custom_scanning_change_filter">Change filter</string>
     <string name="custom_scanning_rotate">Rotate</string>
     <string name="custom_scanning_correct_distortion">Correct distortion</string>

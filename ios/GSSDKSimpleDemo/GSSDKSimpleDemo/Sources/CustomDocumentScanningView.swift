@@ -19,7 +19,7 @@ struct CustomDocumentScanningView: View {
     @State private var showAlert = false
     @State private var error: Error?
     @StateObject private var viewModel = DocumentScanningViewModel()
-    
+
     // We use the document interaction controller to show the result of the scanning
     // but you likely don't need that in your app.
     @State private var documentInteractionControllerDelegate = DocumentInteractionControllerDelegate()
@@ -46,7 +46,7 @@ struct CustomDocumentScanningView: View {
             actions: {
                 Button("OK") { error = nil }
             },
-            message: { 
+            message: {
                 if let suggestion = (error as NSError?)?.localizedRecoverySuggestion {
                     Text(suggestion)
                 }

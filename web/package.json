@@ -11,7 +11,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@thegrizzlylabs/web-geniusscan-sdk": "5.11.1"
+    "@thegrizzlylabs/web-geniusscan-sdk": "5.12.0"
   },
   "devDependencies": {
     "vite": "<7.0.0"

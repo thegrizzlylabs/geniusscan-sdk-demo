@@ -46,6 +46,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -324,72 +325,34 @@ private fun PostProcessingActions(
     scanConfiguration: ScanConfiguration,
     onScanConfigurationModified: (ScanConfiguration) -> Unit
 ) {
-    var showDialog by rememberSaveable { mutableStateOf(false) }
-
     Text(
         stringResource(R.string.custom_scanning_post_processing_actions),
         style = sectionTitleStyle(),
         modifier = Modifier.padding(horizontal = 16.dp)
     )
 
-    ListItem(
-        headlineContent = { Text(text = stringResource(R.string.custom_scanning_enabled_actions)) },
-        supportingContent = {
-            val actions = scanConfiguration.postProcessingActions
-            val displayedActions = if (actions.isEmpty()) {
-                stringResource(R.string.none)
-            } else {
-                actions.joinToString(", ") { it.name.capitalize().replace(oldValue = "_", newValue = " ") }
-            }
-            Text(displayedActions)
-        },
-        modifier = Modifier.clickable { showDialog = true }
+    ConfigurationMultiChoiceItem(
+        label = stringResource(R.string.custom_scanning_available_actions),
+        selectedOptions = scanConfiguration.postProcessingActions.toList(),
+        options = ScanConfiguration.Action.ALL.toList(),
+        formatOption = { option -> option.name.capitalize().replace(oldValue = "_", newValue = " ") },
+        saveSelectedOptions = { actions ->
+            onScanConfigurationModified(scanConfiguration.copy(
+                postProcessingActions = actions.toCollection(EnumSet.noneOf(ScanConfiguration.Action::class.java))
+            ))
+        }
     )
 
-    if (showDialog) {
-        AlertDialog(
-            onDismissRequest = { showDialog = false },
-            title = { Text(stringResource(R.string.custom_scanning_enabled_post_processing_actions)) },
-            text = {
-                val onActionClick: (ScanConfiguration.Action) -> Unit = { action ->
-                    val actions = scanConfiguration.postProcessingActions.toMutableList()
-                    val checked = scanConfiguration.postProcessingActions.contains(action)
-                    if (checked) {
-                        actions.remove(action)
-                    } else {
-                        actions.add(action)
-                    }
-
-                    onScanConfigurationModified(scanConfiguration.copy(
-                        postProcessingActions = EnumSet.noneOf(ScanConfiguration.Action::class.java).also { set ->
-                            set.addAll(actions)
-                        }
-                    ))
-                }
-
-                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-                    ScanConfiguration.Action.entries.forEach { action: ScanConfiguration.Action ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clickable { onActionClick(action) },
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Checkbox(
-                                checked = scanConfiguration.postProcessingActions.contains(action),
-                                onCheckedChange = { onActionClick(action) }
-                            )
-
-                            Text(text = action.name.capitalize().replace(oldValue = "_", newValue = " "))
-                        }
-
-                    }
-                }
-            },
-            confirmButton = {
-                TextButton(onClick = { showDialog = false }) {
-                    Text(stringResource(id = android.R.string.ok))
-                }
+    if (scanConfiguration.postProcessingActions.contains(ScanConfiguration.Action.EDIT_FILTER)) {
+        ConfigurationMultiChoiceItem(
+            label = stringResource(R.string.custom_scanning_available_filters),
+            selectedOptions = scanConfiguration.availableFilters,
+            options = ScanConfiguration.Filter.entries,
+            formatOption = { option -> option.name.capitalize().replace(oldValue = "_", newValue = " ") },
+            saveSelectedOptions = { filters ->
+                onScanConfigurationModified(scanConfiguration.copy(
+                    availableFilters = filters.takeIf { it.isNotEmpty() } ?: listOf(ScanConfiguration.Filter.NONE)
+                ))
             }
         )
     }
@@ -712,6 +675,86 @@ private fun <E> ConfigurationListItem(
         )
     }
 }
+
+@Composable
+private fun <E> ConfigurationMultiChoiceItem(
+    label: String,
+    selectedOptions: List<E>,
+    options: List<E>,
+    formatOption: (E) -> String,
+    saveSelectedOptions: (List<E>) -> Unit
+) {
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    val localSelectedOptions = remember(selectedOptions) {
+        mutableStateListOf<E>().apply { addAll(selectedOptions) }
+    }
+
+    ListItem(
+        headlineContent = { Text(text = label) },
+        supportingContent = {
+            val displayedOptions = if (selectedOptions.isEmpty()) {
+                stringResource(R.string.none)
+            } else {
+                selectedOptions.joinToString(", ") { formatOption(it) }
+            }
+            Text(displayedOptions)
+        },
+        modifier = Modifier.clickable { showDialog = true }
+    )
+
+    if (showDialog) {
+        val onOptionChecked = { option: E ->
+            val checked = localSelectedOptions.contains(option)
+            if (checked) {
+                localSelectedOptions.remove(option)
+            } else {
+                localSelectedOptions.add(option)
+            }
+        }
+        val dismissDialog = {
+            showDialog = false
+            localSelectedOptions.clear()
+            localSelectedOptions.addAll(selectedOptions)
+        }
+        AlertDialog(
+            onDismissRequest = { dismissDialog() },
+            title = { Text(label) },
+            text = {
+                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+                    options.forEach { option: E ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { onOptionChecked(option) },
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Checkbox(
+                                checked = localSelectedOptions.contains(option),
+                                onCheckedChange = { onOptionChecked(option) }
+                            )
+
+                            Text(text = formatOption(option))
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    showDialog = false
+                    saveSelectedOptions(localSelectedOptions)
+                }) {
+                    Text(stringResource(id = android.R.string.ok))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { dismissDialog() }) {
+                    Text(stringResource(id = android.R.string.cancel))
+                }
+            }
+        )
+    }
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

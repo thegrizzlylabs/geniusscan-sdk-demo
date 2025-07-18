@@ -46,6 +46,7 @@ extension GSSDK.GSKBackgroundKind : Swift.CustomStringConvertible {
   @objc dynamic public var captureDevice: AVFoundation.AVCaptureDevice?
   @objc public var captureSession: AVFoundation.AVCaptureSession?
   @objc public var flashStatus: GSSDK.GSKCameraSessionFlashStatus
+  @available(*, deprecated, message: "Use activeDetectionMode instead")
   @objc dynamic public var activeDocumentDetection: GSSDK.GSKCameraSessionDocumentDetection {
     @objc get
     @objc set
@@ -70,6 +71,9 @@ extension GSSDK.GSKBackgroundKind : Swift.CustomStringConvertible {
 extension GSSDK.GSKCameraSession {
   @objc dynamic public func takePhoto()
 }
+extension GSSDK.GSKCameraSession : AVFoundation.AVCaptureMetadataOutputObjectsDelegate {
+  @objc dynamic public func metadataOutput(_ output: AVFoundation.AVCaptureMetadataOutput, didOutput metadataObjects: [AVFoundation.AVMetadataObject], from connection: AVFoundation.AVCaptureConnection)
+}
 extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
@@ -77,8 +81,9 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVFoundation.AVCapturePhoto, error: (any Swift.Error)?)
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings, error: (any Swift.Error)?)
 }
-@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKCameraSessionConfiguration : ObjectiveC.NSObject {
-  @objc public init(documentDetection: GSSDK.GSKCameraSessionDocumentDetection)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers final public class GSKCameraSessionConfiguration : ObjectiveC.NSObject {
+  @objc @available(*, deprecated, message: "Use init(detectionMode:) instead")
+  public init(documentDetection: GSSDK.GSKCameraSessionDocumentDetection)
   @objc override convenience dynamic public init()
   @objc deinit
 }
@@ -542,6 +547,10 @@ public enum GSSDKStrings {
         public static let recognizingText: Swift.String
       }
     }
+    public enum ReadableCodeFlowBatch {
+      public static let empty: Swift.String
+      public static let scannedCodes: Swift.String
+    }
     public enum UserGuidance {
       public static let documentFound: Swift.String
       public static let readability: Swift.String
@@ -588,6 +597,53 @@ extension GSSDK.GSKOCRLanguage : Swift.Equatable, Swift.Hashable {
   public var hashValue: Swift.Int {
     get
   }
+}
+@objc @objcMembers @_Concurrency.MainActor final public class GSKReadableCodeFlow : ObjectiveC.NSObject {
+  @objc @_Concurrency.MainActor public init(configuration: GSSDK.GSKReadableCodeFlowConfiguration = GSKReadableCodeFlowConfiguration())
+  @objc @_Concurrency.MainActor final public func resultByStarting(fromViewController viewController: UIKit.UIViewController) async throws -> GSSDK.GSKReadableCodeFlowResult
+  @objc deinit
+}
+@objc extension GSSDK.GSKReadableCodeFlow {
+  @objc @available(swift, obsoleted: 1.0, message: "Use init(configuration:) instead.")
+  @_Concurrency.MainActor public static func readableCodeFlowWithConfiguration(_ configuration: GSSDK.GSKReadableCodeFlowConfiguration) -> Self
+  @available(swift, obsoleted: 1.0, message: "resultByStarting(fromViewController:) instead.")
+  @objc(startFromViewController:success:failure:) nonisolated final public func startFromViewController(_ viewController: UIKit.UIViewController, success successBlock: @escaping (GSSDK.GSKReadableCodeFlowResult) -> Swift.Void, failure failureBlock: @escaping (Foundation.NSError) -> Swift.Void)
+}
+@objc extension GSSDK.GSKReadableCodeFlowConfiguration {
+  @objc public static func configurationWithDictionary(_ dictionary: Foundation.NSDictionary) throws -> GSSDK.GSKReadableCodeFlowConfiguration
+}
+@objc @_inheritsConvenienceInitializers @objcMembers public class GSKReadableCodeFlowConfiguration : ObjectiveC.NSObject {
+  public var supportedCodeTypes: [GSSDK.GSKStructuredDataReadableCodeType]
+  @objc public var isBatchModeEnabled: Swift.Bool
+  @objc public var highlightColor: UIKit.UIColor
+  @objc public var menuColor: UIKit.UIColor?
+  public init(supportedCodeTypes: [GSSDK.GSKStructuredDataReadableCodeType] = [], isBatchModeEnabled: Swift.Bool = false, highlightColor: UIKit.UIColor = .green, menuColor: UIKit.UIColor? = nil)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum GSKReadableCodeFlowError : Swift.Int, Swift.Error {
+  @objc(GSKReadableCodeFlowUserCancelationError) case userCancellation
+  @objc(GSKReadableCodeFlowConfigurationError) case configuration
+  @objc(GSKReadableCodeFlowPermissionDeniedError) case permissionDenied
+  @objc(GSKReadableCodeFlowDetectorError) case detectorError
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public static var _nsErrorDomain: Swift.String {
+    get
+  }
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension GSSDK.GSKReadableCodeFlowResult {
+  @objc dynamic public var dictionary: [Swift.String : Any] {
+    @objc get
+  }
+}
+@objc @objcMembers public class GSKReadableCodeFlowResult : ObjectiveC.NSObject {
+  final public let readableCodes: [GSSDK.GSKStructuredDataReadableCode]
+  public init(readableCodes: [GSSDK.GSKStructuredDataReadableCode])
+  @objc deinit
 }
 @objc extension GSSDK.GSKView {
   @objc @_Concurrency.MainActor @preconcurrency dynamic public func startSearchAnimation()
@@ -886,11 +942,14 @@ final public class GSKReadableCodeDetector {
 public struct GSKStructuredDataReadableCode : Swift.Hashable {
   public let value: Swift.String
   public let type: GSSDK.GSKStructuredDataReadableCodeType
-  public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: GSSDK.GSKStructuredDataReadableCode, b: GSSDK.GSKStructuredDataReadableCode) -> Swift.Bool
+  public init(value: Swift.String, type: GSSDK.GSKStructuredDataReadableCodeType)
   public var hashValue: Swift.Int {
     get
   }
+}
+extension GSSDK.GSKStructuredDataReadableCode {
+  public static func == (lhs: GSSDK.GSKStructuredDataReadableCode, rhs: GSSDK.GSKStructuredDataReadableCode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
 }
 public enum GSKStructuredDataReadableCodeType : Swift.String, Swift.CaseIterable {
   case aztec
@@ -953,6 +1012,10 @@ extension GSSDK.GSKDocumentGeneratorError : Swift.RawRepresentable {}
 extension GSSDK.GSKDocumentGeneratorFileFormat : Swift.Equatable {}
 extension GSSDK.GSKDocumentGeneratorFileFormat : Swift.Hashable {}
 extension GSSDK.GSKDocumentGeneratorFileFormat : Swift.RawRepresentable {}
+extension GSSDK.GSKReadableCodeFlow : Swift.Sendable {}
+extension GSSDK.GSKReadableCodeFlowError : Swift.Equatable {}
+extension GSSDK.GSKReadableCodeFlowError : Swift.Hashable {}
+extension GSSDK.GSKReadableCodeFlowError : Swift.RawRepresentable {}
 extension GSSDK.GSKScanFlowFilterType : Swift.Equatable {}
 extension GSSDK.GSKScanFlowFilterType : Swift.Hashable {}
 extension GSSDK.GSKScanFlowFilterType : Swift.RawRepresentable {}

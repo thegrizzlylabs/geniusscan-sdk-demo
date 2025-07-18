@@ -128,6 +128,7 @@ class StructuredDataActivity: AppCompatActivity() {
     private fun scan() {
         val scanConfiguration = ScanConfiguration().apply {
             source = ScanConfiguration.Source.CAMERA
+            skipPostProcessingScreen = true
             structuredData = EnumSet.allOf(ScanConfiguration.StructuredData::class.java)
         }
         startScanFlow(scanConfiguration)
@@ -139,6 +140,7 @@ class StructuredDataActivity: AppCompatActivity() {
             sourceImage = File(externalCacheDir, fileName).apply {
                 FileHelper.copyFileFromResource(image, destinationFile = this, resources)
             }
+            skipPostProcessingScreen = true
             structuredData = EnumSet.of(structureData)
         }
         startScanFlow(scanConfiguration)
