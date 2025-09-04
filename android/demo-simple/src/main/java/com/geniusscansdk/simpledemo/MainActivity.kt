@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DocumentScanner
+import androidx.compose.material.icons.filled.QrCodeScanner
 import androidx.compose.material.icons.outlined.DocumentScanner
 import androidx.compose.material.icons.outlined.QrCodeScanner
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -34,6 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.scanflow.ScanConfiguration
 import com.geniusscansdk.scanflow.ScanFlow
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
@@ -51,8 +53,9 @@ class MainActivity: AppCompatActivity() {
 
         // This code shows how to initialize the SDK with a license key.
         // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
-        //
-        // GeniusScanSDK.setLicenseKey(this, "<Your license key>")
+        if (BuildConfig.GSSDK_LICENSE_KEY.isNotEmpty()) {
+            GeniusScanSDK.setLicenseKey(this, BuildConfig.GSSDK_LICENSE_KEY, autoRefresh = true)
+        }
 
         setContentView(ComposeView(this).apply {
             setContent {
@@ -61,6 +64,9 @@ class MainActivity: AppCompatActivity() {
                         defaultScanFlowClick = ::scanFromCamera,
                         customScanFlowClick = {
                             startActivity(Intent(this@MainActivity, CustomScanFlowActivity::class.java))
+                        },
+                        barcodeFlowClick = {
+                            startActivity(Intent(this@MainActivity, ReadableCodeActivity::class.java))
                         }
                     )
                 }
@@ -129,7 +135,8 @@ class MainActivity: AppCompatActivity() {
 @Composable
 private fun HomeScreen(
     defaultScanFlowClick: () -> Unit,
-    customScanFlowClick: () -> Unit
+    customScanFlowClick: () -> Unit,
+    barcodeFlowClick: () -> Unit
 ) {
     val context = LocalContext.current
     Scaffold(
@@ -175,6 +182,18 @@ private fun HomeScreen(
                         context.startActivity(Intent(context, StructuredDataActivity::class.java))
                     }
                 )
+
+                ListItem(
+                    headlineContent = { Text(text = stringResource(R.string.barcode_scanning)) },
+                    leadingContent = {
+                        Icon(
+                            imageVector = Icons.Filled.QrCodeScanner,
+                            contentDescription = stringResource(R.string.barcode_scanning_description)
+                        )
+                    },
+                    supportingContent = { Text(text = stringResource(R.string.barcode_scanning_description)) },
+                    modifier = Modifier.clickable { barcodeFlowClick() }
+                )
             }
 
             Text(
@@ -189,6 +208,6 @@ private fun HomeScreen(
 @Composable
 private fun HomeScreenPreview() {
     SimpleDemoTheme {
-        HomeScreen({}, {})
+        HomeScreen({}, {}, {})
     }
 }

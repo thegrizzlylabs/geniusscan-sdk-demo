@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Simple Demo</string>
     <string name="action_settings">Settings</string>
-    <string name="default_scanflow">Default scanflow</string>
-    <string name="custom_scanflow">Custom scanflow</string>
+    <string name="default_scanflow">Default scan flow</string>
+    <string name="custom_scanflow">Custom scan flow</string>
     <string name="structured_data_scanning">Structured data scanning</string>
     <string name="custom_scanning_title">Document scanning</string>
     <string name="custom_scanning_description">This view demonstrates the various customizations of the scan flow.\n\nCheck the GSKScanFlowConfiguration documentation for all of the possible customizations.</string>
@@ -31,6 +31,7 @@
     <string name="custom_scanning_foreground_color">Foreground color</string>
     <string name="custom_scanning_background_color">Background color</string>
     <string name="custom_scanning_highlight_color">Highlight color</string>
+    <string name="custom_scanning_menu_color">Menu color</string>
     <string name="custom_scanning_ocr">OCR</string>
     <string name="custom_scanning_readability">Required readability</string>
     <string name="custom_scanning_default_curvature_correction">Default curvature correction</string>
@@ -46,6 +47,15 @@
     <string name="structured_data_currency">Currency</string>
     <string name="structured_data_amount">Amount</string>
     <string name="structured_data_barcodes">Readable codes</string>
+    <string name="barcode_scanning">Readable code scanning</string>
+    <string name="barcode_scanning_description">Barcodes and QR codes</string>
+    <string name="barcode_batch_mode">Batch Mode</string>
+    <string name="barcode_batch_mode_description">Continuously scan multiple codes</string>
+    <string name="barcode_simple_mode_description">Stop after first code detected</string>
+    <string name="barcode_supported_types">Supported code types</string>
+    <string name="barcode_scan">Scan</string>
+    <string name="barcode_result_found">Detected codes</string>
+    <string name="barcode_result_error">Error</string>
     <string name="scan">Scan</string>
     <string name="none">None</string>
 </resources>

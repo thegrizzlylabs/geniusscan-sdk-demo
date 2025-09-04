@@ -67,6 +67,7 @@ import com.geniusscansdk.scanflow.ScanFlow
 import com.geniusscansdk.simpledemo.helpers.FileHelper
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.ui.theme.SimpleDemoTheme
+import com.geniusscansdk.simpledemo.ui.theme.sectionTitleStyle
 import com.geniusscansdk.structureddata.ReadableCode
 import com.geniusscansdk.structureddata.ReceiptCategory
 import com.geniusscansdk.structureddata.StructuredDataReceipt

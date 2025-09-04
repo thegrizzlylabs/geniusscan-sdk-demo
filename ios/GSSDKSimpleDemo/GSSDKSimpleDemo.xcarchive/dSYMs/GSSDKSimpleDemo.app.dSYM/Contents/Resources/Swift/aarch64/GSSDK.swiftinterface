@@ -550,6 +550,7 @@ public enum GSSDKStrings {
     public enum ReadableCodeFlowBatch {
       public static let empty: Swift.String
       public static let scannedCodes: Swift.String
+      public static func scannedCodesCount(_ p1: Swift.Int) -> Swift.String
     }
     public enum UserGuidance {
       public static let documentFound: Swift.String

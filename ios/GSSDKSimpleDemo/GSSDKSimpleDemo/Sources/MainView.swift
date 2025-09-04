@@ -56,8 +56,10 @@ struct MainView: View {
             }
             .navigationBarTitle("Genius Scan SDK Simple Demo", displayMode: .inline)
             .toolbar {
-                ToolbarItemGroup(placement: .status) {
+                ToolbarItem(placement: .status) {
                     Text(appVersion)
+                        .fixedSize()
+                        .padding(.horizontal)
                         .foregroundStyle(.secondary)
                 }
             }

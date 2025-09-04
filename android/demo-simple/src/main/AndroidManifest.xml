@@ -21,6 +21,8 @@
 
         <activity android:name=".CustomScanFlowActivity" android:theme="@style/AppTheme" />
 
+        <activity android:name=".ReadableCodeActivity" android:theme="@style/AppTheme" />
+
         <activity android:name=".StructuredDataActivity" android:theme="@style/AppTheme" />
 
         <provider

@@ -6,6 +6,9 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import com.geniusscansdk.simpledemo.R
 
 @Composable
@@ -83,3 +86,10 @@ fun SimpleDemoTheme(
         content = content
     )
 }
+
+@Composable
+fun sectionTitleStyle() = TextStyle(
+    color = MaterialTheme.colorScheme.primary,
+    fontWeight = FontWeight.Medium,
+    fontSize = 16.sp
+)

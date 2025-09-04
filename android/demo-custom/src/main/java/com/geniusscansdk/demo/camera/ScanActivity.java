@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.geniusscansdk.camera.DetectionMode;
 import com.geniusscansdk.camera.FileImageCaptureCallback;
 import com.geniusscansdk.camera.FocusIndicator;
 import com.geniusscansdk.camera.ScanFragment;
@@ -60,7 +61,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       getSupportFragmentManager().beginTransaction().replace(R.id.scan_fragment_layout, scanFragment).commit();
 
       scanFragment.setPreviewAspectFill(false);
-      scanFragment.setRealTimeDetectionEnabled(true);
+      scanFragment.setDetectionMode(DetectionMode.Document.INSTANCE);
       scanFragment.setFocusIndicator(focusIndicator);
       scanFragment.setAutoTriggerAnimationEnabled(true);
       scanFragment.setBorderDetectorListener(new BorderDetector.BorderDetectorListener() {
