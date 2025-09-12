@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Content.PM;
 using GeniusScanSDK.Scanflow;
+using GeniusScanSDK.ReadableCodeFlow;
 
 namespace SimpleDemo;
 
@@ -9,6 +10,7 @@ namespace SimpleDemo;
 public class MainActivity : MauiAppCompatActivity
 {
     private static TaskCompletionSource<string> currentTask = null;
+    private static TaskCompletionSource<string> currentReadableCodeTask = null;
 
     public Task<string> StartScanning()
     {
@@ -26,6 +28,50 @@ public class MainActivity : MauiAppCompatActivity
         currentTask = new TaskCompletionSource<string>();
         ScanFlow.ScanWithConfiguration(this, configuration);
         return currentTask.Task;
+    }
+
+    public Task<string> StartScanningReadableCodes(Dictionary<string, object> configuration)
+    {
+        var configurationMap = CreateReadableCodeConfigurationMap(configuration);
+
+        currentReadableCodeTask = new TaskCompletionSource<string>();
+        PluginBridge.ScanReadableCodesWithConfiguration(this, configurationMap);
+        return currentReadableCodeTask.Task;
+    }
+
+    private Dictionary<string, Java.Lang.Object> CreateReadableCodeConfigurationMap(Dictionary<string, object> configuration)
+    {
+        var configurationMap = new Dictionary<string, Java.Lang.Object>();
+
+        foreach (var kvp in configuration)
+        {
+            Java.Lang.Object value = null;
+
+            if (kvp.Value is bool boolValue)
+            {
+                value = Java.Lang.Boolean.ValueOf(boolValue);
+            }
+            else if (kvp.Value is string[] stringArray)
+            {
+                var javaList = new Java.Util.ArrayList();
+                foreach (var str in stringArray)
+                {
+                    javaList.Add(str);
+                }
+                value = javaList;
+            }
+            else if (kvp.Value is string stringValue)
+            {
+                value = new Java.Lang.String(stringValue);
+            }
+
+            if (value != null)
+            {
+                configurationMap.Add(kvp.Key, value);
+            }
+        }
+
+        return configurationMap;
     }
 
     protected override void OnActivityResult(Int32 requestCode, Result resultCode, Intent data)
@@ -58,9 +104,45 @@ public class MainActivity : MauiAppCompatActivity
                 currentTask?.TrySetException(new Exception(e.Message));
             }
         }
+        else if (requestCode == ReadableCodeFlow.RequestCode && resultCode == Result.Ok && data != null)
+        {
+            var readableCodeResult = ReadableCodeFlow.GetResultFromActivityResult(data);
+
+            if (readableCodeResult is IReadableCodeFlowResult.Success)
+            {
+                // Create result dictionary matching the iOS format
+                var resultDict = new Dictionary<string, object>
+                {
+                    ["readableCodes"] = ((IReadableCodeFlowResult.Success)readableCodeResult).Codes.Select(code => new Dictionary<string, string>
+                    {
+                        ["value"] = code.Value,
+                        ["type"] = code.GetType().ToString().ToLowerInvariant()
+                    }).ToList()
+                };
+
+                var jsonResult = System.Text.Json.JsonSerializer.Serialize(resultDict, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+                currentReadableCodeTask?.TrySetResult(jsonResult);
+            }
+            else if (readableCodeResult is IReadableCodeFlowResult.Canceled)
+            {
+                currentReadableCodeTask?.TrySetException(new Exception("ReadableCode scan was cancelled"));
+            }
+            else
+            {
+                var erroMessage = ((IReadableCodeFlowResult.Error)readableCodeResult).Message;
+                currentReadableCodeTask?.TrySetException(new Exception(erroMessage));
+            }
+        }
         else
         {
-            currentTask?.TrySetException(new Exception("Scan was cancelled"));
+            if (requestCode == ScanFlow.ScanRequest)
+            {
+                currentTask?.TrySetException(new Exception("Scan was cancelled"));
+            }
+            else if (requestCode == ReadableCodeFlow.RequestCode)
+            {
+                currentReadableCodeTask?.TrySetException(new Exception("ReadableCode scan was cancelled"));
+            }
         }
     }
 }

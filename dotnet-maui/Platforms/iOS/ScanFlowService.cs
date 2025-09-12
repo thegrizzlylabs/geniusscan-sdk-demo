@@ -78,6 +78,80 @@ namespace SimpleDemo
             );
             return taskCompletionSource.Task;
         }
+
+        public partial Task<string> StartScanningReadableCodes(Dictionary<string, object> configuration)
+        {
+            var configurationDictionary = CreateReadableCodeConfigurationDictionary(configuration);
+            return StartScanningReadableCodes(configurationDictionary);
+        }
+
+        private NSMutableDictionary CreateReadableCodeConfigurationDictionary(Dictionary<string, object> configuration)
+        {
+            var configurationDictionary = new NSMutableDictionary();
+            
+            foreach (var kvp in configuration)
+            {
+                NSObject value = null;
+                
+                if (kvp.Value is bool boolValue)
+                {
+                    value = NSNumber.FromBoolean(boolValue);
+                }
+                else if (kvp.Value is string[] stringArray)
+                {
+                    value = NSArray.FromStrings(stringArray);
+                }
+                else if (kvp.Value is string stringValue)
+                {
+                    value = new NSString(stringValue);
+                }
+                
+                if (value != null)
+                {
+                    configurationDictionary.SetValueForKey(value, new NSString(kvp.Key));
+                }
+            }
+
+            return configurationDictionary;
+        }
+
+        private Task<string> StartScanningReadableCodes(NSDictionary configurationDictionary)
+        {
+            var taskCompletionSource = new TaskCompletionSource<string>();
+            var outError = new NSError();
+
+            var configuration = GSKReadableCodeFlowConfiguration.ConfigurationWithDictionary(configurationDictionary, out outError);
+            if (configuration == null)
+            {
+                taskCompletionSource.TrySetException(new NSErrorException(outError));
+                return taskCompletionSource.Task;
+            }
+
+            var readableCodeFlow = new GSKReadableCodeFlow(configuration);
+            var viewController = UIApplication.SharedApplication.Delegate.GetWindow().RootViewController;
+            
+            readableCodeFlow.StartFromViewController(viewController,
+                (GSKReadableCodeFlowResult result) => {
+                    // Return the result as JSON string
+                    var resultDictionary = result.Dictionary();
+                    var jsonData = NSJsonSerialization.Serialize(resultDictionary, NSJsonWritingOptions.PrettyPrinted, out var error);
+                    if (jsonData != null)
+                    {
+                        var jsonString = new NSString(jsonData, NSStringEncoding.UTF8);
+                        taskCompletionSource.TrySetResult(jsonString.ToString());
+                    }
+                    else
+                    {
+                        taskCompletionSource.TrySetException(new NSErrorException(error));
+                    }
+                },
+                (NSError error) => { 
+                    taskCompletionSource.TrySetException(new NSErrorException(error)); 
+                }
+            );
+            
+            return taskCompletionSource.Task;
+        }
     }
 }
 

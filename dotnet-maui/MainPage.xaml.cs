@@ -32,4 +32,25 @@ public partial class MainPage : ContentPage
             await DisplayAlert("Alert", "Error: " + e.Message, "OK");
         }
     }
+
+    async void StartReadableCodeScanning(object sender, EventArgs args)
+    {
+        try
+        {
+            var configuration = new Dictionary<string, object>
+            {
+                ["isBatchModeEnabled"] = true,
+                ["supportedCodeTypes"] = new string[] { "qr", "code128", "ean13" }
+            };
+
+            var resultJson = await scanFlowService.StartScanningReadableCodes(configuration);
+
+            await DisplayAlert("Readable Codes", $"Result: {resultJson}", "OK");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.ToString());
+            await DisplayAlert("Alert", "Error: " + e.Message, "OK");
+        }
+    }
 }

@@ -1,4 +1,4 @@
-import { scanDocument } from "@thegrizzlylabs/web-geniusscan-sdk";
+import { scanWithConfiguration } from "@thegrizzlylabs/web-geniusscan-sdk";
 
 // This code shows how to initialize the SDK with a license key.
 //
@@ -10,26 +10,23 @@ import { scanDocument } from "@thegrizzlylabs/web-geniusscan-sdk";
 // });
 
 const scanButton = document.getElementById("scan");
-const buttonText = scanButton.querySelector(".button-text");
-const loadingSpinner = scanButton.querySelector(".loading-spinner");
 const scannedImages = document.querySelector(".scanned-images");
-
-function setLoading(isLoading) {
-  scanButton.disabled = isLoading;
-  buttonText.style.display = isLoading ? "none" : "inline";
-  loadingSpinner.style.display = isLoading ? "inline" : "none";
-}
+const pdfDownload = document.querySelector(".pdf-download");
 
 scanButton.addEventListener("click", async () => {
   try {
-    setLoading(true);
-    const jpegImages = await scanDocument({ highlightColor: "orange" });
+    const { scans, multiPageDocument } = await scanWithConfiguration({
+      highlightColor: "orange",
+      multiPageFormat: "pdf",
+      multiPage: true,
+    });
 
     scannedImages.innerHTML = "";
+    pdfDownload.innerHTML = "";
 
     let imageIndex = 1;
-    for (const jpeg of jpegImages) {
-      const url = URL.createObjectURL(jpeg);
+    for (const scan of scans) {
+      const url = URL.createObjectURL(scan.enhancedImage.data);
       const a = document.createElement("a");
       a.href = url;
       a.download = `scanned-document-${imageIndex}.jpg`;
@@ -44,10 +41,18 @@ scanButton.addEventListener("click", async () => {
       scannedImages.appendChild(a);
       imageIndex++;
     }
+
+    if (multiPageDocument) {
+      const blob = new Blob([multiPageDocument.data], { type: multiPageDocument.type });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.textContent = "Download PDF";
+      a.download = `${Date.now()}-scanned-documents`;
+      pdfDownload.appendChild(a);
+    }
   } catch (error) {
     console.error(error);
     alert(`Error scanning document: ${error.message}`);
-  } finally {
-    setLoading(false);
   }
 });

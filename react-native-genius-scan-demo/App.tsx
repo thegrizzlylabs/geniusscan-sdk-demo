@@ -58,7 +58,8 @@ function App(): React.JSX.Element {
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            padding: 20
+            padding: 20,
+            gap: 20
           }}>
           <Button
             onPress={async () => {
@@ -89,7 +90,28 @@ function App(): React.JSX.Element {
                 alert(e)
               }
             }}
-            title="Start scanning"
+            title="Scan documents"
+          />
+          <Button
+            onPress={async () => {
+              try {
+                // Start readable code scanning
+                const readableCodeConfiguration = {
+                  isBatchModeEnabled: true,
+                  supportedCodeTypes: ['qr', 'code128', 'ean13']
+                }
+                let result = await RNGeniusScan.scanReadableCodesWithConfiguration(readableCodeConfiguration)
+
+                // The result object contains the detected readable codes
+                console.log(result);
+
+                const codesText = result.readableCodes.map(code => `${code.type}: ${code.value}`).join('\n');
+                alert(`Detected codes:\n${codesText}`);
+              } catch(e) {
+                alert(e)
+              }
+            }}
+            title="Scan barcodes"
           />
         </View>
       </ScrollView>

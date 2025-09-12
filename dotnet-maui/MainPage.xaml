@@ -10,9 +10,14 @@
             VerticalOptions="Center">
 
             <Button
-                Text="Start Scanning"
+                Text="Scan documents"
                 HorizontalOptions="Center"
                 Clicked="StartScanning" />
+
+            <Button
+                Text="Scan barcodes"
+                HorizontalOptions="Center"
+                Clicked="StartReadableCodeScanning" />
 
             <!--<Button
                 x:Name="CounterBtn"

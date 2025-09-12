@@ -60,6 +60,7 @@ button#scan {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   width: 100%;
+  margin-bottom: 3rem;
 }
 
 .scanned-images img {

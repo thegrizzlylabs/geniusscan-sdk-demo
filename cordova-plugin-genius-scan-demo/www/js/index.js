@@ -17,6 +17,7 @@ var app = {
     // cordova.plugins.GeniusScan.setLicenseKey("<Your license key>", /* autoRefresh = */ true);
 
     document.getElementById("scan_btn").addEventListener("click", startScanFlow);
+    document.getElementById("scan_readable_codes_btn").addEventListener("click", startReadableCodeScanFlow);
   },
 
   onResume: function(event) {
@@ -68,6 +69,26 @@ function onScanFlowResult(result) {
     previewFile(documentUrl);
   });
   */
+}
+
+function startReadableCodeScanFlow() {
+  var configuration = {
+    isBatchModeEnabled: true,
+    supportedCodeTypes: ['qr', 'code128', 'ean13']
+  };
+  cordova.plugins.GeniusScan.scanReadableCodesWithConfiguration(configuration, onReadableCodeScanFlowResult, onError);
+}
+
+function onReadableCodeScanFlowResult(result) {
+  // The result object contains the detected readable codes
+  console.log(JSON.stringify(result));
+
+  // Display the detected codes
+  var codesText = result.readableCodes.map(function(code) {
+    return code.type + ': ' + code.value;
+  }).join('\n');
+
+  alert('Detected codes:\n' + (codesText || 'No codes detected'));
 }
 
 function previewFile(fileUrl) {

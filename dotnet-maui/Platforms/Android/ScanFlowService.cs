@@ -1,4 +1,5 @@
 ﻿using GeniusScanSDK.Scanflow;
+using GeniusScanSDK.ReadableCodeFlow;
 namespace SimpleDemo
 {
     public partial class ScanFlowService
@@ -13,6 +14,12 @@ namespace SimpleDemo
         {
             var mainActivity = (MainActivity)Platform.CurrentActivity;
             return mainActivity.StartScanning();
+        }
+
+        public partial Task<string> StartScanningReadableCodes(Dictionary<string, object> configuration)
+        {
+            var mainActivity = (MainActivity)Platform.CurrentActivity;
+            return mainActivity.StartScanningReadableCodes(configuration);
         }
     }
 }
