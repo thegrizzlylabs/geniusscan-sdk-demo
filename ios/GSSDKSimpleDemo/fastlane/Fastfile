@@ -30,7 +30,8 @@ platform :ios do
       ipa: ipa,
       distribute_external: true,
       groups: ["External"],
-      changelog: "Refer to the changelog for the list of changes: https://geniusscansdk.com/docs/changelog/"
+      changelog: "Refer to the changelog for the list of changes: https://geniusscansdk.com/docs/changelog/",
+      reject_build_waiting_for_review: true
     )
   end
 end

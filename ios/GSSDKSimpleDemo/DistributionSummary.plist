@@ -10,7 +10,7 @@
 				<string>arm64</string>
 			</array>
 			<key>buildNumber</key>
-			<string>24130</string>
+			<string>24505</string>
 			<key>certificate</key>
 			<dict>
 				<key>SHA1</key>
@@ -28,7 +28,7 @@
 						<string>arm64</string>
 					</array>
 					<key>buildNumber</key>
-					<string>24130</string>
+					<string>24505</string>
 					<key>certificate</key>
 					<dict>
 						<key>SHA1</key>
@@ -50,7 +50,7 @@
 						<string></string>
 					</dict>
 					<key>versionNumber</key>
-					<string>5.14.0</string>
+					<string>5.14.1</string>
 				</dict>
 			</array>
 			<key>entitlements</key>
@@ -85,7 +85,7 @@
 				<string></string>
 			</dict>
 			<key>versionNumber</key>
-			<string>5.14.0</string>
+			<string>5.14.1</string>
 		</dict>
 	</array>
 </dict>

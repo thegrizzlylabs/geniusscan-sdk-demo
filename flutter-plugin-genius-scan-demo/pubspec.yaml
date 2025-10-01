@@ -16,7 +16,7 @@ dependencies:
   open_filex: ^4.7.0
 
   flutter_genius_scan:
-    version: 5.14.0
+    version: 5.14.1
   path_provider: ^2.1.1
 
 dev_dependencies:
