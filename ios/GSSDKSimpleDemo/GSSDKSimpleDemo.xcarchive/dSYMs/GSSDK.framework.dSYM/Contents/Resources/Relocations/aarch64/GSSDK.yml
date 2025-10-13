@@ -3978,7 +3978,7 @@ relocations:
   - { offset: 0x225CB9, size: 0x8, addend: 0x0, symName: '_$sScPSgWOh', symObjAddr: 0xC28, symBinAddr: 0xAA534, symSize: 0x40 }
   - { offset: 0x225CCD, size: 0x8, addend: 0x0, symName: '_$s5GSSDK9TaskQueueC13CombinedErrorVMa', symObjAddr: 0xC68, symBinAddr: 0xAA574, symSize: 0x10 }
   - { offset: 0x225CE1, size: 0x8, addend: 0x0, symName: '_$s5GSSDK9TaskQueueC13CombinedErrorV10Foundation09LocalizedE0AAs0E0PWb', symObjAddr: 0xC78, symBinAddr: 0xAA584, symSize: 0x4 }
-  - { offset: 0x225D24, size: 0x8, addend: 0x0, symName: '_$sSlsE3mapySayqd__Gqd__7ElementQzqd_0_YKXEqd_0_YKs5ErrorRd_0_r0_lFSaysAE_pG_SSs5NeverOTg5029$s5GSSDK9TaskQueueC13CombinedC88V16errorDescriptionSSSgvgSSs0E0_pcfu_32a855007fc29e8e9908b66a6630986f90sAH_pSSTf3nnnpk_nTf1cn_n', symObjAddr: 0x0, symBinAddr: 0xA9A08, symSize: 0x118 }
+  - { offset: 0x225D24, size: 0x8, addend: 0x0, symName: '_$sSlsE3mapySayqd__Gqd__7ElementQzqd_0_YKXEqd_0_YKs5ErrorRd_0_r0_lFSaysAE_pG_SSs5NeverOTg5029$s5GSSDK9TaskQueueC13CombinedC88V16errorDescriptionSSSgvgSSs0E0_pcfu_32eedf1200aa7b17d33813e2322feecf4dsAH_pSSTf3nnnpk_nTf1cn_n', symObjAddr: 0x0, symBinAddr: 0xA9A08, symSize: 0x118 }
   - { offset: 0x225F43, size: 0x8, addend: 0x0, symName: '_$sScTss5Error_pRs_rlE8priority9operationScTyxsAA_pGScPSg_xyYaKYAcntcfCyt_Tt1g5', symObjAddr: 0x118, symBinAddr: 0xA9B20, symSize: 0x12C }
   - { offset: 0x225F9F, size: 0x8, addend: 0x0, symName: '_$s5GSSDK9TaskQueueCfD', symObjAddr: 0x398, symBinAddr: 0xA9DA0, symSize: 0x38 }
   - { offset: 0x225FDF, size: 0x8, addend: 0x0, symName: '_$s5GSSDK9TaskQueueC13CombinedErrorV10Foundation09LocalizedE0AafGP16errorDescriptionSSSgvgTW', symObjAddr: 0x554, symBinAddr: 0xA9F50, symSize: 0xAC }
