@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2 effective-5.10 (swiftlang-6.2.0.19.9 clang-1700.3.19.1)
 // swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name GSSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2
 import AVFoundation
 import Combine
 import Contacts
@@ -23,7 +23,9 @@ import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 @objc public protocol CGImageRepresentable {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc(CGImageRepresentation) func cgImageRepresentation() -> CoreGraphics.CGImage?
+  #endif
 }
 extension AVFoundation.AVCapturePhoto : GSSDK.CGImageRepresentable {
 }
@@ -78,8 +80,12 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willBeginCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, willCapturePhotoFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didCapturePhotoFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVFoundation.AVCapturePhoto, error: (any Swift.Error)?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings, error: (any Swift.Error)?)
+  #endif
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers final public class GSKCameraSessionConfiguration : ObjectiveC.NSObject {
   @objc @available(*, deprecated, message: "Use init(detectionMode:) instead")
@@ -91,7 +97,9 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   case none
   case highlight
   case highlightAndTrigger
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -107,7 +115,9 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   case invalidData = -7
   case badInput = -8
   case warnLockDevice = -1003
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -117,7 +127,9 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   case auto
   case on
   case off
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -138,8 +150,10 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
     get
   }
   @_Concurrency.MainActor @preconcurrency final public let cameraSession: GSSDK.GSKCameraSession
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, unavailable)
   @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
   @objc @_Concurrency.MainActor @preconcurrency public init(cameraSession: GSSDK.GSKCameraSession)
   @objc deinit
   @_Concurrency.MainActor @preconcurrency @objc override dynamic open var prefersStatusBarHidden: Swift.Bool {
@@ -196,7 +210,9 @@ extension GSSDK.GSKDocumentComposition : Swift.CustomStringConvertible {
   case unwarped
   case warped
   case enhanced
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -219,7 +235,9 @@ extension GSSDK.GSKFilterBackgroundCleaningConfiguration {
   @objc override final public var hash: Swift.Int {
     @objc get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
 }
 extension GSSDK.GSKFilterBackgroundCleaningConfiguration {
   @objc override final public var description: Swift.String {
@@ -238,7 +256,9 @@ extension GSSDK.GSKFilterColorConfiguration {
   @objc override final public var hash: Swift.Int {
     @objc get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
 }
 extension GSSDK.GSKFilterColorConfiguration {
   @objc override final public var description: Swift.String {
@@ -275,19 +295,27 @@ extension GSSDK.GSKFilterColorPalette : Swift.CustomStringConvertible {
 }
 @objc @objcMembers final public class GSKFilterConfiguration : ObjectiveC.NSObject {
   @objc public static let noOp: GSSDK.GSKFilterConfiguration
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static func photo(lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?, colorConfiguration: GSSDK.GSKFilterColorConfiguration?) -> GSSDK.GSKFilterConfiguration
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static func configurationWithLightingCorrectionConfiguration(_ lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?, backgroundCleaningConfiguration: GSSDK.GSKFilterBackgroundCleaningConfiguration?, colorConfiguration: GSSDK.GSKFilterColorConfiguration?) -> GSSDK.GSKFilterConfiguration
+  #endif
   @objc final public let lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?
   @objc final public let backgroundCleaningConfiguration: GSSDK.GSKFilterBackgroundCleaningConfiguration?
   @objc final public let colorConfiguration: GSSDK.GSKFilterColorConfiguration?
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(lightingCorrectionConfiguration: GSSDK.GSKFilterLightingCorrectionConfiguration?, backgroundCleaningConfiguration: GSSDK.GSKFilterBackgroundCleaningConfiguration?, colorConfiguration: GSSDK.GSKFilterColorConfiguration?)
+  #endif
   @objc deinit
 }
 extension GSSDK.GSKFilterConfiguration {
   @objc override final public var hash: Swift.Int {
     @objc get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
 }
 @objc @objcMembers public class GSKFilterLightingCorrectionConfiguration : ObjectiveC.NSObject {
   @objc public static let noOp: GSSDK.GSKFilterLightingCorrectionConfiguration
@@ -302,7 +330,9 @@ extension GSSDK.GSKFilterLightingCorrectionConfiguration {
   @objc override dynamic public var hash: Swift.Int {
     @objc get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override dynamic public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
 }
 extension GSSDK.GSKFilterLightingCorrectionConfiguration {
   @objc override dynamic public var description: Swift.String {
@@ -311,9 +341,11 @@ extension GSSDK.GSKFilterLightingCorrectionConfiguration {
 }
 @_hasMissingDesignatedInitializers final public class GSKLicenseKeyRefresher {
   public typealias LicenseKey = Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   final public var cachedLicenseKey: GSSDK.GSKLicenseKeyRefresher.LicenseKey? {
     get
   }
+  #endif
   @objc convenience public init(sdkVersion: Swift.String)
   @objc deinit
 }
@@ -327,7 +359,9 @@ extension GSSDK.GSKReadabilityLevel : Swift.Comparable {
   case restaurant
   case supermarket
   case other
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias AllCases = [GSSDK.GSKReceiptCategory]
   public typealias RawValue = Swift.Int
   nonisolated public static var allCases: [GSSDK.GSKReceiptCategory] {
@@ -345,7 +379,9 @@ extension GSSDK.GSKReceiptCategory : Swift.CustomStringConvertible {
 @_hasMissingDesignatedInitializers @objc final public class GSKReceiptVAT : ObjectiveC.NSObject {
   final public let rate: Swift.Double
   final public let amount: Swift.Double
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override final public func isEqual(_ object: Any?) -> Swift.Bool
+  #endif
   @objc deinit
 }
 @_inheritsConvenienceInitializers @objc public class GSKDocumentGenerator : ObjectiveC.NSObject {
@@ -362,7 +398,9 @@ extension GSSDK.GSKDocumentGeneratorError : Swift.Error {
 @objc public enum GSKDocumentGeneratorFileFormat : Swift.Int {
   @objc(GSKDocumentGeneratorFileFormatPDF) case pdf
   @objc(GSKDocumentGeneratorFileFormatTIFF) case tiff
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -381,7 +419,9 @@ extension GSSDK.GSKDocumentGeneratorError : Swift.Error {
   @objc final public let pdfFontFilePath: Swift.String?
   @objc final public let shouldGeneratePDFA: Swift.Bool
   @objc final public let debugConfiguration: GSSDK.GSKDocumentGeneratorDebugConfiguration?
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(outputFileFormat: GSSDK.GSKDocumentGeneratorFileFormat = .pdf, outputFilePath: Swift.String, pdfFontFilePath: Swift.String? = nil, shouldGeneratePDFA: Swift.Bool = false, debugConfiguration: GSSDK.GSKDocumentGeneratorDebugConfiguration? = nil)
+  #endif
   @objc deinit
 }
 extension GSSDK.GSKDocumentGeneratorConfiguration {
@@ -394,17 +434,23 @@ extension GSSDK.GSKDocumentGeneratorConfiguration {
   @objc(GSKDocumentGeneratorErrorInvalidPageSize) case invalidPageSize
   @objc(GSKDocumentGeneratorErrorProcessorError) case processorError
   @objc(GSKDocumentGeneratorErrorInvalidInput) case invalidInput
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
   }
 }
 @objc public protocol GSKDocumentImageProcessor {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func process(_ inputFilePath: Swift.String) -> Swift.String?
+  #endif
 }
 @_inheritsConvenienceInitializers @objc final public class GSKNoopDocumentImageProcessor : ObjectiveC.NSObject, GSSDK.GSKDocumentImageProcessor {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func process(_ inputFilePath: Swift.String) -> Swift.String?
+  #endif
   @objc override dynamic public init()
   @objc deinit
 }
@@ -418,14 +464,18 @@ extension GSSDK.GSKPDFDocument {
   @objc final public let creationDate: Foundation.Date?
   @objc final public let lastUpdateDate: Foundation.Date?
   @objc final public let pages: [GSSDK.GSKPDFPage]
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(title: Swift.String? = nil, password: Swift.String?, keywords: Swift.String?, creationDate: Foundation.Date?, lastUpdate: Foundation.Date?, pages: [GSSDK.GSKPDFPage])
+  #endif
   @objc deinit
 }
 @objc final public class GSKPDFPage : ObjectiveC.NSObject {
   @objc final public let filePath: Swift.String
   @objc final public let inchesSize: GSSDK.GSKPDFSize
   @objc final public let textLayout: GSSDK.GSKTextLayout?
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(filePath: Swift.String, inchesSize: GSSDK.GSKPDFSize, textLayout: GSSDK.GSKTextLayout?)
+  #endif
   @objc deinit
 }
 @objc final public class GSKPDFSize : ObjectiveC.NSObject {
@@ -436,7 +486,9 @@ extension GSSDK.GSKPDFDocument {
 }
 @objc final public class GSKTextLayout : ObjectiveC.NSObject {
   @objc final public let hocr: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public init(hocr: Swift.String?)
+  #endif
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @objcMembers final public class GSKTextLayoutToTextConverter : ObjectiveC.NSObject {
@@ -575,12 +627,18 @@ public enum GSSDKStrings {
 @_inheritsConvenienceInitializers @objc final public class GSKOCR : ObjectiveC.NSObject {
   @objc public init(logger: any GSSDK.GSKLogger)
   @objc override convenience dynamic public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   final public func recognizeText(in ocrInput: GSSDK.GSKOCRInput, ocrConfiguration configuration: GSSDK.GSKOCRConfiguration, onProgress progressBlock: ((Swift.Float) -> Swift.Void)?) async throws -> GSSDK.GSKOCRResult
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func recognizeText(forImageAtPath imagePath: Swift.String, ocrConfiguration configuration: GSSDK.GSKOCRConfiguration, onProgress progressBlock: ((Swift.Float) -> Swift.Void)?) async throws -> GSSDK.GSKOCRResult
+  #endif
   @objc deinit
 }
 public struct GSKOCRInput {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(originalImagePath: Swift.String, quadrangle: GSSDK.GSKQuadrangle? = nil, rotation: GSSDK.GSKRotation? = nil)
+  #endif
 }
 public struct GSKOCRLanguage {
   public static var allLanguages: [GSSDK.GSKOCRLanguage]
@@ -618,7 +676,9 @@ extension GSSDK.GSKOCRLanguage : Swift.Equatable, Swift.Hashable {
   @objc public var isBatchModeEnabled: Swift.Bool
   @objc public var highlightColor: UIKit.UIColor
   @objc public var menuColor: UIKit.UIColor?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(supportedCodeTypes: [GSSDK.GSKStructuredDataReadableCodeType] = [], isBatchModeEnabled: Swift.Bool = false, highlightColor: UIKit.UIColor = .green, menuColor: UIKit.UIColor? = nil)
+  #endif
   @objc override dynamic public init()
   @objc deinit
 }
@@ -627,7 +687,9 @@ extension GSSDK.GSKOCRLanguage : Swift.Equatable, Swift.Hashable {
   @objc(GSKReadableCodeFlowConfigurationError) case configuration
   @objc(GSKReadableCodeFlowPermissionDeniedError) case permissionDenied
   @objc(GSKReadableCodeFlowDetectorError) case detectorError
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public static var _nsErrorDomain: Swift.String {
     get
@@ -710,7 +772,9 @@ extension GSSDK.GSKScanFlowConfiguration {
 public enum GSKScanFlowCurvatureCorrectionMode : Swift.String {
   case disabled
   case enabled
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -719,7 +783,9 @@ public enum GSKScanFlowCurvatureCorrectionMode : Swift.String {
 @objc public enum GSKScanFlowError : Swift.Int {
   @objc(GSKScanFlowUserCancelationError) case userCancellation = 999
   @objc(GSKScanFlowBadInputError) case badInput = 1000
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -738,7 +804,9 @@ public enum GSKScanFlowCurvatureCorrectionMode : Swift.String {
   @objc(GSKScanFlowFilterStrongColor) case strongColor
   @objc(GSKScanFlowFilterDarkBackground) case darkBackground
   @objc(GSKScanFlowFilterPhoto) case photo
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias AllCases = [GSSDK.GSKScanFlowFilterType]
   public typealias RawValue = Swift.Int
   nonisolated public static var allCases: [GSSDK.GSKScanFlowFilterType] {
@@ -757,7 +825,9 @@ extension GSSDK.GSKScanFlowFilterType : Swift.CustomStringConvertible {
   case auto
   case on
   case off
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt)
+  #endif
   public typealias AllCases = [GSSDK.GSKScanFlowFlashMode]
   public typealias RawValue = Swift.UInt
   nonisolated public static var allCases: [GSSDK.GSKScanFlowFlashMode] {
@@ -776,7 +846,9 @@ extension GSSDK.GSKScanFlowFlashMode : Swift.CustomStringConvertible {
   @objc(GSKScanFlowNone) case none
   @objc(GSKScanFlowPDF) case PDF
   @objc(GSKScanFlowTIFF) case TIFF
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt)
+  #endif
   public typealias RawValue = Swift.UInt
   public var rawValue: Swift.UInt {
     get
@@ -798,7 +870,9 @@ extension GSSDK.GSKScanFlowFlashMode : Swift.CustomStringConvertible {
   @objc(GSKScanFlowPDFPageFit) case fit
   @objc(GSKScanFlowPDFPageA4) case A4
   @objc(GSKScanFlowPDFPageLetter) case letter
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt)
+  #endif
   public typealias RawValue = Swift.UInt
   public var rawValue: Swift.UInt {
     get
@@ -827,7 +901,9 @@ extension GSSDK.GSKScanFlowFlashMode : Swift.CustomStringConvertible {
   case camera
   case imageURL
   case library
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt)
+  #endif
   public typealias AllCases = [GSSDK.GSKScanFlowSource]
   public typealias RawValue = Swift.UInt
   nonisolated public static var allCases: [GSSDK.GSKScanFlowSource] {
@@ -853,7 +929,9 @@ extension GSSDK.GSKScanFlowSource : Swift.CustomStringConvertible {
 @objc public enum GSKScanOrientation : Swift.Int, Swift.CaseIterable {
   case original
   case automatic
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias AllCases = [GSSDK.GSKScanOrientation]
   public typealias RawValue = Swift.Int
   nonisolated public static var allCases: [GSSDK.GSKScanOrientation] {
@@ -878,14 +956,18 @@ extension GSSDK.GSKScanOrientation : Swift.CustomStringConvertible {
   @_Concurrency.MainActor @preconcurrency public var configuration: () -> GSSDK.GSKScanFlowConfiguration
   @_Concurrency.MainActor @preconcurrency public var action: (Swift.Result<GSSDK.GSKScanFlowResult, any Swift.Error>) -> Swift.Void
   @_Concurrency.MainActor @preconcurrency public var label: () -> Label
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public init(configuration: @escaping () -> GSSDK.GSKScanFlowConfiguration, action: @escaping (Swift.Result<GSSDK.GSKScanFlowResult, any Swift.Error>) -> Swift.Void, @SwiftUICore.ViewBuilder label: @escaping () -> Label)
+  #endif
   @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
     get
   }
   public typealias Body = @_opaqueReturnTypeOf("$s5GSSDK17GSKScanFlowButtonV4bodyQrvp", 0) __<Label>
 }
 extension GSSDK.GSKScanFlowButton where Label == SwiftUICore.Text {
+  #if compiler(>=5.3) && $NonescapableTypes
   @_Concurrency.MainActor @preconcurrency public init(_ label: Swift.String, configuration: @escaping () -> GSSDK.GSKScanFlowConfiguration, action: @escaping (Swift.Result<GSSDK.GSKScanFlowResult, any Swift.Error>) -> Swift.Void)
+  #endif
 }
 final public class GSKReadableCodeDetector {
   public init(logger: any GSSDK.GSKLogger = GSKLog())
@@ -920,13 +1002,21 @@ final public class GSKReadableCodeDetector {
   @objc deinit
 }
 @objc extension GSSDK.GSKStructuredDataExtractor {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func bankDetailsFromOCRResult(_ ocrResult: GSSDK.GSKOCRResult) async throws -> GSSDK.GSKStructuredDataBankDetails?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func businessCardContactFromOCRResult(_ ocrResult: GSSDK.GSKOCRResult) async throws -> GSSDK.GSKStructuredDataContact?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc final public func receiptFromOCRResult(_ ocrResult: GSSDK.GSKOCRResult) async throws -> GSSDK.GSKStructuredDataReceipt?
+  #endif
 }
 @objc public enum GSKStructuredDataExtractorError : Swift.Int, Swift.Error {
   case missingRequiredOCRMetadata = -1
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public static var _nsErrorDomain: Swift.String {
     get
@@ -969,7 +1059,9 @@ public enum GSKStructuredDataReadableCodeType : Swift.String, Swift.CaseIterable
   case microPDF417
   case microQR
   case msiPlessey
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [GSSDK.GSKStructuredDataReadableCodeType]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [GSSDK.GSKStructuredDataReadableCodeType] {

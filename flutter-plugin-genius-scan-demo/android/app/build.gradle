@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    compileSdk 35
+    compileSdk 36
     namespace 'com.geniusscansdk.flutter_genius_scan_example'
 
     lintOptions {
@@ -32,8 +32,8 @@ android {
 
     defaultConfig {
         applicationId "com.geniusscansdk.flutter.demo"
-        minSdkVersion 21
-        targetSdkVersion 35
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
