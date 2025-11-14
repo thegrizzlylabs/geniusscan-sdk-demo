@@ -87,11 +87,29 @@ extension GSSDK.GSKCameraSession : AVFoundation.AVCapturePhotoCaptureDelegate {
   @objc dynamic public func photoOutput(_ output: AVFoundation.AVCapturePhotoOutput, didFinishCaptureFor resolvedSettings: AVFoundation.AVCaptureResolvedPhotoSettings, error: (any Swift.Error)?)
   #endif
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers final public class GSKCameraSessionConfiguration : ObjectiveC.NSObject {
+@objc @_inheritsConvenienceInitializers @objcMembers final public class GSKCameraSessionConfiguration : ObjectiveC.NSObject {
   @objc @available(*, deprecated, message: "Use init(detectionMode:) instead")
   public init(documentDetection: GSSDK.GSKCameraSessionDocumentDetection)
+  public init(detectionMode: GSSDK.GSKCameraSessionDetectionMode, readableCodeTypes: [GSSDK.GSKStructuredDataReadableCodeType] = GSKStructuredDataReadableCodeType.allCases)
   @objc override convenience dynamic public init()
   @objc deinit
+}
+public enum GSKCameraSessionDetectionMode : Swift.Equatable {
+  case disabled
+  case document(mode: GSSDK.GSKCameraSessionDetectionMode.DocumentMode)
+  case readableCode
+  public static func == (a: GSSDK.GSKCameraSessionDetectionMode, b: GSSDK.GSKCameraSessionDetectionMode) -> Swift.Bool
+}
+extension GSSDK.GSKCameraSessionDetectionMode {
+  public enum DocumentMode : Swift.Equatable {
+    case highlightOnly
+    case highlightAndAutoCapture
+    public static func == (a: GSSDK.GSKCameraSessionDetectionMode.DocumentMode, b: GSSDK.GSKCameraSessionDetectionMode.DocumentMode) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
 }
 @objc public enum GSKCameraSessionDocumentDetection : Swift.Int {
   case none
@@ -339,6 +357,30 @@ extension GSSDK.GSKFilterLightingCorrectionConfiguration {
     @objc get
   }
 }
+@objc(GSKIntegrationFramework) public enum GSKIntegrationFramework : Swift.Int {
+  case native
+  case reactNative
+  case cordova
+  case flutter
+  case dotnet
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc(GSKIntegrationContext) @objcMembers final public class GSKIntegrationContext : ObjectiveC.NSObject {
+  @objc public static var currentFramework: GSSDK.GSKIntegrationFramework {
+    @objc get
+  }
+  @objc public static func markScanFlowIntegrationDetected()
+  @objc public static func markLowLevelComponentUsed()
+  @objc public static func setFramework(_ framework: GSSDK.GSKIntegrationFramework)
+  @objc override dynamic public init()
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers final public class GSKLicenseKeyRefresher {
   public typealias LicenseKey = Swift.String
   #if compiler(>=5.3) && $NonescapableTypes
@@ -385,9 +427,9 @@ extension GSSDK.GSKReceiptCategory : Swift.CustomStringConvertible {
   @objc deinit
 }
 @_inheritsConvenienceInitializers @objc public class GSKDocumentGenerator : ObjectiveC.NSObject {
+  @objc override dynamic public init()
   @objc public func generate(_ document: GSSDK.GSKPDFDocument, imageProcessor: any GSSDK.GSKDocumentImageProcessor, configuration: GSSDK.GSKDocumentGeneratorConfiguration) throws
   @objc public func generate(_ document: GSSDK.GSKPDFDocument, configuration: GSSDK.GSKDocumentGeneratorConfiguration) throws
-  @objc override dynamic public init()
   @objc deinit
 }
 extension GSSDK.GSKDocumentGeneratorError : Swift.Error {
@@ -1085,6 +1127,7 @@ public enum GSKStructuredDataReadableCodeType : Swift.String, Swift.CaseIterable
 extension GSSDK.GSKCameraSessionFlashStatus : Swift.Equatable {}
 extension GSSDK.GSKCameraSessionFlashStatus : Swift.Hashable {}
 extension GSSDK.GSKCameraSessionFlashStatus : Swift.RawRepresentable {}
+extension GSSDK.GSKCameraSessionDetectionMode.DocumentMode : Swift.Hashable {}
 extension GSSDK.GSKCameraSessionDocumentDetection : Swift.Equatable {}
 extension GSSDK.GSKCameraSessionDocumentDetection : Swift.Hashable {}
 extension GSSDK.GSKCameraSessionDocumentDetection : Swift.RawRepresentable {}
@@ -1096,6 +1139,9 @@ extension GSSDK.GSKDocumentFinderImageType : Swift.Hashable {}
 extension GSSDK.GSKDocumentFinderImageType : Swift.RawRepresentable {}
 extension GSSDK.GSKDocumentFinderImageType : Swift.Sendable {}
 extension GSSDK.GSKDocumentFinderImageType : Swift.BitwiseCopyable {}
+extension GSSDK.GSKIntegrationFramework : Swift.Equatable {}
+extension GSSDK.GSKIntegrationFramework : Swift.Hashable {}
+extension GSSDK.GSKIntegrationFramework : Swift.RawRepresentable {}
 extension GSSDK.GSKReceiptCategory : Swift.Equatable {}
 extension GSSDK.GSKReceiptCategory : Swift.Hashable {}
 extension GSSDK.GSKReceiptCategory : Swift.RawRepresentable {}

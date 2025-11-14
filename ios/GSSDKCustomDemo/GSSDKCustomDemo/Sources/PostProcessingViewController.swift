@@ -15,8 +15,18 @@ final class PostProcessingViewController: UIViewController {
     let scan: GSKScan
     let quadrangle: GSKQuadrangle
     private var currentProcessedImagePath: String?
-    private var enhancementBarButtonItem: UIBarButtonItem!
-    private var imageView: UIImageView!
+    private lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    private lazy var enhancementBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(edit))
+    private lazy var doneBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        item.isEnabled = false
+        return item
+    }()
     private lazy var curvatureButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Correction", for: .normal)
@@ -25,7 +35,7 @@ final class PostProcessingViewController: UIViewController {
         button.sizeToFit()
         return button
     }()
-    private var filterType: GSKFilterType = .none
+    private var enhancementConfiguration: GSKEnhancementConfiguration = .automatic()
     private var curvatureCorrectionEnabled = false
 
     init(scan: GSKScan, quadrangle: GSKQuadrangle) {
@@ -44,11 +54,8 @@ final class PostProcessingViewController: UIViewController {
 
         view.backgroundColor = .black
 
-        imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
 
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -56,12 +63,10 @@ final class PostProcessingViewController: UIViewController {
             imageView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
 
-        enhancementBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(edit))
-
         let correctionDistortionBarButtonItem = UIBarButtonItem(customView: curvatureButton)
 
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done)),
+            doneBarButtonItem,
             correctionDistortionBarButtonItem,
             enhancementBarButtonItem
         ]
@@ -81,30 +86,12 @@ final class PostProcessingViewController: UIViewController {
         let alertController = UIAlertController(title: NSLocalizedString("Choose a filter to apply", comment: ""), message: nil, preferredStyle: .actionSheet)
         alertController.popoverPresentationController?.barButtonItem = enhancementBarButtonItem
 
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("None", comment: ""), style: .default, handler: { _ in
-            self.filterType = GSKFilterType.none
-            self.processImage(autodetect: false)
-        }))
-
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Monochrome", comment: ""), style: .default, handler: { _ in
-            self.filterType = GSKFilterType.monochrome
-            self.processImage(autodetect: false)
-        }))
-
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Black & White", comment: ""), style: .default, handler: { _ in
-            self.filterType = GSKFilterType.blackAndWhite
-            self.processImage(autodetect: false)
-        }))
-
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Color", comment: ""), style: .default, handler: { _ in
-            self.filterType = GSKFilterType.color
-            self.processImage(autodetect: false)
-        }))
-
-        alertController.addAction(UIAlertAction(title: NSLocalizedString("Photo", comment: ""), style: .default, handler: { _ in
-            self.filterType = GSKFilterType.photo
-            self.processImage(autodetect: false)
-        }))
+        FilterOption.allCases.forEach { option in
+            alertController.addAction(UIAlertAction(title: option.title, style: .default, handler: { _ in
+                self.enhancementConfiguration = option.configuration
+                self.processImage(autodetect: false)
+            }))
+        }
 
         alertController.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { _ in
             //
@@ -120,7 +107,12 @@ final class PostProcessingViewController: UIViewController {
     }
 
     @objc private func done() {
-        Storage.shared.addFile(currentProcessedImagePath!)
+        guard let currentProcessedImagePath else {
+            assertionFailure("Done tapped but no processed image available.")
+            return
+        }
+
+        Storage.shared.addFile(currentProcessedImagePath)
         let shareViewController = PDFViewController()
         navigationController?.pushViewController(shareViewController, animated: true)
     }
@@ -131,27 +123,35 @@ final class PostProcessingViewController: UIViewController {
     /// - enhance the image according to this post-processing
     /// - optionally correct the image distortion (book/folded receipt curvature,).
     private func processImage(autodetect: Bool) {
+        doneBarButtonItem.isEnabled = false
         Task.detached(priority: .userInitiated) {
             let perspectiveCorrectionConfiguration = await GSKPerspectiveCorrectionConfiguration(quadrangle: self.quadrangle)
             let curvatureCorrectionConfiguration = await GSKCurvatureCorrectionConfiguration(curvatureCorrection: self.curvatureCorrectionEnabled)
 
-            let enhancementConfiguration: GSKEnhancementConfiguration
-            if autodetect {
-                enhancementConfiguration = GSKEnhancementConfiguration.automatic()
+            let enhancementConfiguration: GSKEnhancementConfiguration = if autodetect {
+                .automatic()
             } else {
-                enhancementConfiguration = await GSKEnhancementConfiguration(filter: self.filterType)
+                await self.enhancementConfiguration
             }
 
             let result: GSKProcessingResult
             do {
-                let configuration = GSKProcessingConfiguration(perspectiveCorrectionConfiguration: perspectiveCorrectionConfiguration,
-                                                               curvatureCorrectionConfiguration: curvatureCorrectionConfiguration,
-                                                               enhancementConfiguration: enhancementConfiguration,
-                                                               rotationConfiguration: .automatic(),
-                                                               outputConfiguration: .png())
+                let configuration = GSKProcessingConfiguration(
+                    perspectiveCorrectionConfiguration: perspectiveCorrectionConfiguration,
+                    curvatureCorrectionConfiguration: curvatureCorrectionConfiguration,
+                    enhancementConfiguration: enhancementConfiguration,
+                    rotationConfiguration: .automatic(),
+                    readabilityConfiguration: .default(),
+                    outputConfiguration: .png()
+                )
                 result = try await GSKScanProcessor().processImage(self.scan.image, configuration: configuration)
             } catch {
                 print("Error while processing scan: \(error)")
+                await MainActor.run {
+                    self.currentProcessedImagePath = nil
+                    self.refreshImageView()
+                    self.doneBarButtonItem.isEnabled = false
+                }
                 return
             }
 
@@ -165,14 +165,17 @@ final class PostProcessingViewController: UIViewController {
 
             await MainActor.run {
                 self.currentProcessedImagePath = result.processedImagePath
+                self.doneBarButtonItem.isEnabled = true
                 self.refreshImageView()
             }
         }
     }
 
     private func refreshImageView() {
-        if let currentProcessedImagePath = currentProcessedImagePath {
-            imageView.image = UIImage(contentsOfFile: currentProcessedImagePath)
+        imageView.image = if let currentProcessedImagePath {
+            UIImage(contentsOfFile: currentProcessedImagePath)
+        } else {
+            nil
         }
     }
 
@@ -184,6 +187,37 @@ final class PostProcessingViewController: UIViewController {
         } else {
             curvatureButton.layer.backgroundColor = UIColor.clear.cgColor
             curvatureButton.setTitleColor(blueColor, for: .normal)
+        }
+    }
+}
+
+private extension PostProcessingViewController {
+    enum FilterOption: CaseIterable {
+        case none, monochrome, blackAndWhite, color, photo
+
+        var title: String {
+            switch self {
+            case .none:
+                NSLocalizedString("None", comment: "")
+            case .monochrome:
+                NSLocalizedString("Monochrome", comment: "")
+            case .blackAndWhite:
+                NSLocalizedString("Black & White", comment: "")
+            case .color:
+                NSLocalizedString("Color", comment: "")
+            case .photo:
+                NSLocalizedString("Photo", comment: "")
+            }
+        }
+
+        var configuration: GSKEnhancementConfiguration {
+            switch self {
+            case .none: .fixed(filterConfiguration: .noOp)
+            case .monochrome: .automatic(filterStyle: .document, colorPalette: .monochrome)
+            case .blackAndWhite: .automatic(filterStyle: .document, colorPalette: .grayscale)
+            case .color: .automatic(filterStyle: .document, colorPalette: .color)
+            case .photo: .fixed(filterConfiguration: .photo)
+            }
         }
     }
 
