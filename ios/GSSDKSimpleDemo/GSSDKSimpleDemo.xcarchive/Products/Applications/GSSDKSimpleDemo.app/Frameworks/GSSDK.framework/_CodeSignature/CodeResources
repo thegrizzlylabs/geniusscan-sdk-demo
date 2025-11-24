@@ -12,9 +12,21 @@
 		<data>
 		8C70pCePGsofeNFdeQx+GKkZTCA=
 		</data>
+		<key>DeviceGuru_DeviceGuru.bundle/DeviceList.plist</key>
+		<data>
+		VrMpzgkeiyKcQCH7CKDZzIGbdw0=
+		</data>
+		<key>DeviceGuru_DeviceGuru.bundle/Info.plist</key>
+		<data>
+		H+tmovwZureSz4oaqRL56USH6xs=
+		</data>
+		<key>DeviceGuru_DeviceGuru.bundle/PrivacyInfo.xcprivacy</key>
+		<data>
+		23LO5hdzFyKqt2iyA5w8K4wN2Wo=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		JL7DMQ1IoIMWUaHnVSp7C/uc8NU=
+		b6Fc9cBuwbSncATkigdoQHdkfpY=
 		</data>
 		<key>PhoneNumberKit_GSKPhoneNumberKit.bundle/Info.plist</key>
 		<data>
@@ -682,6 +694,27 @@
 			<key>hash2</key>
 			<data>
 			E6kOv3rRnkHDTp2ALdr47Ib24dtpyGceslu31lBhZbc=
+			</data>
+		</dict>
+		<key>DeviceGuru_DeviceGuru.bundle/DeviceList.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			xMZKgKKNENXSldMDHKwlMh0axn65/nQyXhnYrMGQ1PM=
+			</data>
+		</dict>
+		<key>DeviceGuru_DeviceGuru.bundle/Info.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			soqd0x/Hjevc4H+k+XeCBtKUlGGTb09HZsFLb2CURb0=
+			</data>
+		</dict>
+		<key>DeviceGuru_DeviceGuru.bundle/PrivacyInfo.xcprivacy</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			CUfGr5+VXq3JcQK+k6r7WRJw1JqzBcfd6st+5DrgUmQ=
 			</data>
 		</dict>
 		<key>PhoneNumberKit_GSKPhoneNumberKit.bundle/Info.plist</key>

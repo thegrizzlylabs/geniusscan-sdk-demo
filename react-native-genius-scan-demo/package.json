@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@react-native/new-app-screen": "^0.82.1",
-    "@thegrizzlylabs/react-native-genius-scan": "5.16.0",
+    "@thegrizzlylabs/react-native-genius-scan": "5.16.1",
     "react": "19.1.1",
     "react-native": "0.82.1",
     "react-native-file-viewer": "^2.1.5",

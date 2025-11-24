@@ -12,6 +12,7 @@ import CryptoKit
 import DeveloperToolsSupport
 import Foundation
 @_exported import GSSDK
+import ImageIO
 import MapKit
 import NaturalLanguage
 import QuartzCore
@@ -48,6 +49,12 @@ extension GSSDK.GSKBackgroundKind : Swift.CustomStringConvertible {
   @objc dynamic public var captureDevice: AVFoundation.AVCaptureDevice?
   @objc public var captureSession: AVFoundation.AVCaptureSession?
   @objc public var flashStatus: GSSDK.GSKCameraSessionFlashStatus
+  @Combine.Published @_projectedValueProperty($activeDetectionMode) public var activeDetectionMode: GSSDK.GSKCameraSessionDetectionMode {
+    get
+  }
+  public var $activeDetectionMode: Combine.Published<GSSDK.GSKCameraSessionDetectionMode>.Publisher {
+    get
+  }
   @available(*, deprecated, message: "Use activeDetectionMode instead")
   @objc dynamic public var activeDocumentDetection: GSSDK.GSKCameraSessionDocumentDetection {
     @objc get
