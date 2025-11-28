@@ -76,7 +76,7 @@ packages:
       name: flutter_genius_scan
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.16.2"
+    version: "5.16.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
