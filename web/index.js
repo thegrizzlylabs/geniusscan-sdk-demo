@@ -16,7 +16,7 @@ const pdfDownload = document.querySelector(".pdf-download");
 scanButton.addEventListener("click", async () => {
   try {
     const { scans, multiPageDocument } = await scanWithConfiguration({
-      highlightColor: "orange",
+      highlightColor: "#ffa500",
       multiPageFormat: "pdf",
       multiPage: true,
     });
