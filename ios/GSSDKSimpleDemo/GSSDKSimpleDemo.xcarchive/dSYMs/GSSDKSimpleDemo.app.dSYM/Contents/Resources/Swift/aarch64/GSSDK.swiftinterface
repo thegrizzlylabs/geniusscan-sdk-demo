@@ -36,6 +36,7 @@ extension AVFoundation.AVCapturePhoto : GSSDK.CGImageRepresentable {
   }
   @objc public static func setLicenseKey(_ licenseKey: Swift.String)
   @objc public static func setLicenseKey(_ licenseKey: Swift.String, autoRefresh: Swift.Bool)
+  @objc public static func checkInitialization() throws
   @objc override dynamic public init()
   @objc deinit
 }
@@ -473,8 +474,9 @@ extension GSSDK.GSKDocumentGeneratorError : Swift.Error {
   #endif
   @objc deinit
 }
-extension GSSDK.GSKDocumentGeneratorConfiguration {
+@objc extension GSSDK.GSKDocumentGeneratorConfiguration {
   @objc convenience dynamic public init(dictionary: [Swift.String : Any]) throws
+  @objc convenience dynamic public init(json: Swift.String) throws
 }
 @objc public enum GSKDocumentGeneratorError : Swift.Int {
   @objc(GSKDocumentGeneratorErrorInternal) case `internal`
@@ -503,8 +505,9 @@ extension GSSDK.GSKDocumentGeneratorConfiguration {
   @objc override dynamic public init()
   @objc deinit
 }
-extension GSSDK.GSKPDFDocument {
+@objc extension GSSDK.GSKPDFDocument {
   @objc convenience dynamic public init(dictionary: [Swift.String : Any]) throws
+  @objc convenience dynamic public init(json: Swift.String) throws
 }
 @objc final public class GSKPDFDocument : ObjectiveC.NSObject {
   @objc final public let title: Swift.String?
@@ -719,6 +722,7 @@ extension GSSDK.GSKOCRLanguage : Swift.Equatable, Swift.Hashable {
 }
 @objc extension GSSDK.GSKReadableCodeFlowConfiguration {
   @objc public static func configurationWithDictionary(_ dictionary: Foundation.NSDictionary) throws -> GSSDK.GSKReadableCodeFlowConfiguration
+  @objc public static func configurationWithJSON(_ json: Swift.String) throws -> GSSDK.GSKReadableCodeFlowConfiguration
 }
 @objc @_inheritsConvenienceInitializers @objcMembers public class GSKReadableCodeFlowConfiguration : ObjectiveC.NSObject {
   public var supportedCodeTypes: [GSSDK.GSKStructuredDataReadableCodeType]
@@ -747,10 +751,11 @@ extension GSSDK.GSKOCRLanguage : Swift.Equatable, Swift.Hashable {
     get
   }
 }
-extension GSSDK.GSKReadableCodeFlowResult {
+@objc extension GSSDK.GSKReadableCodeFlowResult {
   @objc dynamic public var dictionary: [Swift.String : Any] {
     @objc get
   }
+  @objc dynamic public func json() -> Swift.String
 }
 @objc @objcMembers public class GSKReadableCodeFlowResult : ObjectiveC.NSObject {
   final public let readableCodes: [GSSDK.GSKStructuredDataReadableCode]
@@ -817,6 +822,7 @@ extension GSSDK.GSKScanFlowConfiguration {
 }
 @objc extension GSSDK.GSKScanFlowConfiguration {
   @objc public static func configurationWithDictionary(_ dictionary: Foundation.NSDictionary) throws -> Self
+  @objc public static func configurationWithJSON(_ json: Swift.String) throws -> Self
 }
 public enum GSKScanFlowCurvatureCorrectionMode : Swift.String {
   case disabled
@@ -937,6 +943,7 @@ extension GSSDK.GSKScanFlowFlashMode : Swift.CustomStringConvertible {
   @objc final public var dictionary: [Swift.String : Any] {
     @objc get
   }
+  @objc final public func json() -> Swift.String
 }
 @objc @objcMembers final public class GSKScanFlowScan : ObjectiveC.NSObject {
   @objc final public var originalFilePath: Swift.String

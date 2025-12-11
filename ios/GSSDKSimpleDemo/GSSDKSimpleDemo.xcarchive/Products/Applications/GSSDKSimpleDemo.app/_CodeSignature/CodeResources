@@ -24,25 +24,13 @@
 		<data>
 		8C70pCePGsofeNFdeQx+GKkZTCA=
 		</data>
-		<key>Frameworks/GSSDK.framework/DeviceGuru_DeviceGuru.bundle/DeviceList.plist</key>
-		<data>
-		VrMpzgkeiyKcQCH7CKDZzIGbdw0=
-		</data>
-		<key>Frameworks/GSSDK.framework/DeviceGuru_DeviceGuru.bundle/Info.plist</key>
-		<data>
-		H+tmovwZureSz4oaqRL56USH6xs=
-		</data>
-		<key>Frameworks/GSSDK.framework/DeviceGuru_DeviceGuru.bundle/PrivacyInfo.xcprivacy</key>
-		<data>
-		23LO5hdzFyKqt2iyA5w8K4wN2Wo=
-		</data>
 		<key>Frameworks/GSSDK.framework/GSSDK</key>
 		<data>
-		YUwaVMBkIhQiFwPB0yHHKIFBb4o=
+		VFzkLNtZK6C5W2eZpamC4fCQKpA=
 		</data>
 		<key>Frameworks/GSSDK.framework/Info.plist</key>
 		<data>
-		lC6Fe6ZVLbipjA++ay29udKY8fU=
+		l2QZDXizro22eTgOFSyGEEoB4U0=
 		</data>
 		<key>Frameworks/GSSDK.framework/PhoneNumberKit_GSKPhoneNumberKit.bundle/Info.plist</key>
 		<data>
@@ -62,7 +50,7 @@
 		</data>
 		<key>Frameworks/GSSDK.framework/_CodeSignature/CodeResources</key>
 		<data>
-		x54jnIc6FGTAWU4ngAmnoku0mb4=
+		P/Dmhrd+Iyh7RUYXv+mblbG9dwM=
 		</data>
 		<key>Frameworks/GSSDK.framework/accommodation-keywords.txt</key>
 		<data>
@@ -701,7 +689,7 @@
 		</dict>
 		<key>Info.plist</key>
 		<data>
-		HEBJP1B/WvrPRMbkNnmh7UqHufc=
+		qKg0LwHu0aaOmJmUOhqH6o4O1Co=
 		</data>
 		<key>LaunchScreen.nib</key>
 		<data>
@@ -963,39 +951,18 @@
 			E6kOv3rRnkHDTp2ALdr47Ib24dtpyGceslu31lBhZbc=
 			</data>
 		</dict>
-		<key>Frameworks/GSSDK.framework/DeviceGuru_DeviceGuru.bundle/DeviceList.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			xMZKgKKNENXSldMDHKwlMh0axn65/nQyXhnYrMGQ1PM=
-			</data>
-		</dict>
-		<key>Frameworks/GSSDK.framework/DeviceGuru_DeviceGuru.bundle/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			soqd0x/Hjevc4H+k+XeCBtKUlGGTb09HZsFLb2CURb0=
-			</data>
-		</dict>
-		<key>Frameworks/GSSDK.framework/DeviceGuru_DeviceGuru.bundle/PrivacyInfo.xcprivacy</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CUfGr5+VXq3JcQK+k6r7WRJw1JqzBcfd6st+5DrgUmQ=
-			</data>
-		</dict>
 		<key>Frameworks/GSSDK.framework/GSSDK</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ayhc7Vys1F1WU35SeZYFPrf9SKLQY6cj0ffqIo4Vttc=
+			IPo1eJQPT2j3Gz3iQ+ARnAW010L83zsRTJ+hRJcnC4s=
 			</data>
 		</dict>
 		<key>Frameworks/GSSDK.framework/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RmDcmSf9kfzdKn3qBWF518FtvkNziQfj3utyylLO/y0=
+			rS/AdbEng96YYnu7To20ynxzku3t+h28OD95NowP6m4=
 			</data>
 		</dict>
 		<key>Frameworks/GSSDK.framework/PhoneNumberKit_GSKPhoneNumberKit.bundle/Info.plist</key>
@@ -1030,7 +997,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QPG2wb8u65sv04Kyt9ytUEGOrH5rEXHTXMBX2IhnuRQ=
+			z4eaXmgQh0OlaSG1580N7UG3qqLZyYMkoyC6Th96fKo=
 			</data>
 		</dict>
 		<key>Frameworks/GSSDK.framework/accommodation-keywords.txt</key>

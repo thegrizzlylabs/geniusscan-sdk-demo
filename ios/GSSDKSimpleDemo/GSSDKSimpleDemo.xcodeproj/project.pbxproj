@@ -16,6 +16,7 @@
 		134D5FE28DA30523445C5D0C /* TuistStrings+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCFF3DB59E733E7284379A4 /* TuistStrings+GSSDKSimpleDemo.swift */; };
 		317F7467F8B81BE84E6C1DFD /* Binding+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D846E4ADDDA5D4B548A4CDE /* Binding+UIColor.swift */; };
 		386A751C92D7002B39011B7A /* UIApplication+TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F5530B2CEAB59F2B85CC74 /* UIApplication+TopViewController.swift */; };
+		3BB97A1867947E979F2B78C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D793617BCE7F72AB2ED6FC5 /* AppDelegate.swift */; };
 		510D7171B193B7B6BC72D1E7 /* TuistBundle+GSSDKSimpleDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FB28EC5B6B64022328511C8 /* TuistBundle+GSSDKSimpleDemo.swift */; };
 		51E533825C95FF0AD1044E0B /* StructuredDataScanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9FC06A1EB4593A90E07BB /* StructuredDataScanningView.swift */; };
 		5273282D4E1E64E040379343 /* bank-identity-document.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */; };
@@ -51,6 +52,7 @@
 		3457F076C2305900F7CFB57C /* GSSDKSimpleDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GSSDKSimpleDemo-Info.plist"; sourceTree = "<group>"; };
 		363602DFFCADF5F6ECE2A6FB /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FA8DA3AD6F5C6BE870F64FA /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4D793617BCE7F72AB2ED6FC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		569C5E08719F2B0DDA7B3A48 /* bank-identity-document.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bank-identity-document.jpg"; sourceTree = "<group>"; };
 		58CA63038A460FDD9F50ED73 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5D846E4ADDDA5D4B548A4CDE /* Binding+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+UIColor.swift"; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C133A7E624B6779BFB5DE516 /* App.swift */,
+				4D793617BCE7F72AB2ED6FC5 /* AppDelegate.swift */,
 				5D846E4ADDDA5D4B548A4CDE /* Binding+UIColor.swift */,
 				6345984E9436898218ECCDA4 /* CustomDocumentScanningView.swift */,
 				7406FC75659CD9AA46A22265 /* DocumentScanningConfigurationView.swift */,
@@ -301,6 +304,7 @@
 				510D7171B193B7B6BC72D1E7 /* TuistBundle+GSSDKSimpleDemo.swift in Sources */,
 				134D5FE28DA30523445C5D0C /* TuistStrings+GSSDKSimpleDemo.swift in Sources */,
 				E96867F8A4D2BD789606C10B /* App.swift in Sources */,
+				3BB97A1867947E979F2B78C5 /* AppDelegate.swift in Sources */,
 				317F7467F8B81BE84E6C1DFD /* Binding+UIColor.swift in Sources */,
 				0CBAF2DA059AFE32B0F62D03 /* CustomDocumentScanningView.swift in Sources */,
 				F0698068F5587C8ECE5B0E9B /* DocumentScanningConfigurationView.swift in Sources */,
@@ -546,7 +550,7 @@
 			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.16.4;
+				minimumVersion = 5.17.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

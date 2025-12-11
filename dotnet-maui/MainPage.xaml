@@ -12,19 +12,12 @@
             <Button
                 Text="Scan documents"
                 HorizontalOptions="Center"
-                Clicked="StartScanning" />
+                Clicked="StartDocumentScanning" />
 
             <Button
                 Text="Scan barcodes"
                 HorizontalOptions="Center"
-                Clicked="StartReadableCodeScanning" />
-
-            <!--<Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />-->
+                Clicked="StartBarcodeScanning" />
 
         </VerticalStackLayout>
     </ScrollView>
