@@ -50,7 +50,8 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+
 	<ItemGroup>
-		<ProjectReference Include="..\GeniusScanSDK.ScanFlow\GeniusScanSDK.ScanFlow.csproj" />
+		<PackageReference Include="GeniusScanSDK.ScanFlow" Version="5.17.1" />
 	</ItemGroup>
 </Project>
