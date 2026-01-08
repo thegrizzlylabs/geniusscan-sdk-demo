@@ -47,11 +47,11 @@ struct MainView: View {
                 }
 
                 Row(
-                    title: "Readable code scanning",
+                    title: "Barcode scanning",
                     subtitle: "Barcodes and QR codes",
                     imageName: "qrcode.viewfinder"
                 ) {
-                    ReadableCodeScanningView()
+                    BarcodeScanningView()
                 }
             }
             .navigationBarTitle("Genius Scan SDK Simple Demo", displayMode: .inline)

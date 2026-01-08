@@ -4,7 +4,7 @@ These are demo apps for the Genius Scan Android SDK. Check out the [SDK document
 
 ## Requirements
 
-The demo apps support Android 5.0 (21) and above.
+The demo apps support Android 6.0 (23) and above.
 
 ## Installation
 

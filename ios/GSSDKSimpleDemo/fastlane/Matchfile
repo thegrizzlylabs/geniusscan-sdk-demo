@@ -1,5 +1,0 @@
-git_url("git@github.com:bvirlet/provisioning-ios.git")
-
-storage_mode("git")
-
-type("appstore")

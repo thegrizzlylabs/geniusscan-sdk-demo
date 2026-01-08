@@ -29,7 +29,7 @@ struct StructuredDataResultsView: View {
                 }
             }
 
-            if let result = scan.structuredDataResult {
+            if let result = scan.structuredData {
                 Section("Bank details") {
                     if let bankDetails = result.bankDetails {
                         Row(label: "IBAN", value: bankDetails.iban)
@@ -70,13 +70,13 @@ struct StructuredDataResultsView: View {
                     }
                 }
 
-                Section("Readable codes") {
-                    if !result.readableCodes.isEmpty {
-                        ForEach(result.readableCodes, id: \.self) { readableCode in
-                            Row(label: readableCode.type.rawValue, value: readableCode.value)
+                Section("Barcodes") {
+                    if !result.barcodes.isEmpty {
+                        ForEach(result.barcodes, id: \.self) { barcode in
+                            Row(label: barcode.type.rawValue, value: barcode.value)
                         }
                     } else {
-                        ContentUnavailableLabel(text: "No readable codes detected")
+                        ContentUnavailableLabel(text: "No barcodes detected")
                     }
                 }
             } else {

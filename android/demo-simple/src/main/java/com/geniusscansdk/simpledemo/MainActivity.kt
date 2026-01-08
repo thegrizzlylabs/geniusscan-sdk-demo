@@ -66,7 +66,7 @@ class MainActivity: AppCompatActivity() {
                             startActivity(Intent(this@MainActivity, CustomScanFlowActivity::class.java))
                         },
                         barcodeFlowClick = {
-                            startActivity(Intent(this@MainActivity, ReadableCodeActivity::class.java))
+                            startActivity(Intent(this@MainActivity, BarcodeActivity::class.java))
                         }
                     )
                 }

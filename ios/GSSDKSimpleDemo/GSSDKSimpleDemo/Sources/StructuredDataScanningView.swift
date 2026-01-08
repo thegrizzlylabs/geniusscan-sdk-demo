@@ -72,7 +72,7 @@ private extension StructuredDataScanningView {
 
         configuration.multiPage = false
         configuration.skipPostProcessingScreen = true
-        configuration.structuredData = [.bankDetails, .businessCard, .receipt, .readableCode]
+        configuration.structuredData = [.bankDetails, .businessCard, .receipt, .barcode]
 
         return configuration
     }

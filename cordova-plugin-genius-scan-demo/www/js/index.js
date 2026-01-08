@@ -17,7 +17,7 @@ var app = {
     // cordova.plugins.GeniusScan.setLicenseKey("<Your license key>", /* autoRefresh = */ true);
 
     document.getElementById("scan_btn").addEventListener("click", startScanFlow);
-    document.getElementById("scan_readable_codes_btn").addEventListener("click", startReadableCodeScanFlow);
+    document.getElementById("scan_barcodes_btn").addEventListener("click", startBarcodeScanFlow);
   },
 
   onResume: function(event) {
@@ -71,20 +71,20 @@ function onScanFlowResult(result) {
   */
 }
 
-function startReadableCodeScanFlow() {
+function startBarcodeScanFlow() {
   var configuration = {
     isBatchModeEnabled: true,
     supportedCodeTypes: ['qr', 'code128', 'ean13']
   };
-  cordova.plugins.GeniusScan.scanReadableCodesWithConfiguration(configuration, onReadableCodeScanFlowResult, onError);
+  cordova.plugins.GeniusScan.scanBarcodesWithConfiguration(configuration, onBarcodeScanFlowResult, onError);
 }
 
-function onReadableCodeScanFlowResult(result) {
-  // The result object contains the detected readable codes
+function onBarcodeScanFlowResult(result) {
+  // The result object contains the detected barcodes
   console.log(JSON.stringify(result));
 
   // Display the detected codes
-  var codesText = result.readableCodes.map(function(code) {
+  var codesText = result.barcodes.map(function(code) {
     return code.type + ': ' + code.value;
   }).join('\n');
 

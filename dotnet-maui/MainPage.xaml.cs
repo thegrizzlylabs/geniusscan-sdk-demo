@@ -63,11 +63,11 @@ public partial class MainPage : ContentPage
 
             var result = await scanFlowService.ScanBarcodes(configuration);
 
-            var codesText = ((IEnumerable<object>)result["readableCodes"])
+            var codesText = ((IEnumerable<object>)result["barcodes"])
                 .OfType<Dictionary<string, object>>()
                 .Select(code => $"{code["type"]}: {code["value"]}");
 
-            await DisplayAlert("Readable Codes", string.Join(Environment.NewLine, codesText), "OK");
+            await DisplayAlert("Barcodes", string.Join(Environment.NewLine, codesText), "OK");
         }
         catch (Exception e)
         {

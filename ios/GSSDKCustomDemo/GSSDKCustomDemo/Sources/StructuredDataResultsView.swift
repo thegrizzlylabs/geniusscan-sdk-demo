@@ -40,9 +40,9 @@ struct StructuredDataResultsView: View {
                 }
             }
 
-            Section(title: "Readable codes") {
-                ForEach(data.readableCodes, id: \.self) { readableCode in
-                    Row(label: readableCode.type.rawValue, value: readableCode.value)
+            Section(title: "Barcodes") {
+                ForEach(data.barcodes, id: \.self) { barcode in
+                    Row(label: barcode.type.rawValue, value: barcode.value)
                 }
             }
         }

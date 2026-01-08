@@ -17,7 +17,7 @@ final class PDFViewController: UIViewController {
     @IBOutlet private(set) var passwordField: UITextField!
     @IBOutlet private(set) var pageCountLabel: UILabel!
     @IBOutlet private(set) var ocrSwitch: UISwitch!
-    @IBOutlet private(set) var readableCodesSwitch: UISwitch!
+    @IBOutlet private(set) var barcodesSwitch: UISwitch!
     private var previewController: UIDocumentInteractionController?
 
     override func viewWillAppear(_ animated: Bool) {
@@ -80,16 +80,16 @@ final class PDFViewController: UIViewController {
             }
         }
 
-        var readableCodesResults = [String: [GSKStructuredDataReadableCode]]()
-        if #available(iOS 17.0, *), readableCodesSwitch.isOn {
+        var barcodesResults = [String: [GSKBarcode]]()
+        if #available(iOS 17.0, *), barcodesSwitch.isOn {
             for filePath in Storage.shared.filePaths {
                 do {
-                    let result = try await GSKReadableCodeDetector()
-                        .detectReadableCodes(
+                    let result = try await GSKBarcodeDetector()
+                        .detectBarcodes(
                             inFileAt: URL(fileURLWithPath: filePath),
-                            codeTypes: GSKStructuredDataReadableCodeType.allCases
+                            codeTypes: GSKBarcodeType.allCases
                         )
-                    readableCodesResults[filePath] = result
+                    barcodesResults[filePath] = result
                 } catch {
                     print("Error while OCR'ing page: \(error)")
                 }
@@ -138,7 +138,7 @@ final class PDFViewController: UIViewController {
                         previewImage: previewImage,
                         structuredData: makeStructuredData(
                             ocrResult: ocrResults[filePath],
-                            readableCodes: readableCodesResults[filePath]
+                            barcodes: barcodesResults[filePath]
                         )
                     )
                 )
@@ -176,7 +176,7 @@ private extension PDFViewController {
 
     func makeStructuredData(
         ocrResult: GSKOCRResult?,
-        readableCodes: [GSKStructuredDataReadableCode]?
+        barcodes: [GSKBarcode]?
     ) async throws -> StructuredData? {
         guard let ocrResult else { return nil }
 
@@ -186,7 +186,7 @@ private extension PDFViewController {
             bankDetails: dataExtractor.bankDetailsFromOCRResult(ocrResult),
             businessCardContact: dataExtractor.businessCardContactFromOCRResult(ocrResult),
             receipt: dataExtractor.receiptFromOCRResult(ocrResult),
-            readableCodes: readableCodes ?? []
+            barcodes: barcodes ?? []
         )
     }
 

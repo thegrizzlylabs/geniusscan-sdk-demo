@@ -68,7 +68,7 @@ import com.geniusscansdk.simpledemo.helpers.FileHelper
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.ui.theme.SimpleDemoTheme
 import com.geniusscansdk.simpledemo.ui.theme.sectionTitleStyle
-import com.geniusscansdk.structureddata.ReadableCode
+import com.geniusscansdk.structureddata.Barcode
 import com.geniusscansdk.structureddata.ReceiptCategory
 import com.geniusscansdk.structureddata.StructuredDataReceipt
 import java.io.File
@@ -107,7 +107,7 @@ class StructuredDataActivity: AppCompatActivity() {
                             scanWithImage(R.raw.receipt, "receipt.jpg", ScanConfiguration.StructuredData.RECEIPT)
                         },
                         scanWithQrCode = {
-                            scanWithImage(R.raw.barcodes, "codes.jpg", ScanConfiguration.StructuredData.READABLE_CODE)
+                            scanWithImage(R.raw.barcodes, "codes.jpg", ScanConfiguration.StructuredData.BARCODE)
                         },
                         onBackClick = onBackPressedDispatcher::onBackPressed
                     )
@@ -395,7 +395,7 @@ private fun StructuredDataScreenPreview_receipt() {
 @OptIn(ExperimentalCoilApi::class)
 @Preview
 @Composable
-private fun StructuredDataScreenPreview_readableCodes() {
+private fun StructuredDataScreenPreview_barcodes() {
     SimpleDemoTheme {
         val context = LocalContext.current
         val previewHandler = AsyncImagePreviewHandler {
@@ -405,9 +405,9 @@ private fun StructuredDataScreenPreview_readableCodes() {
             StructuredDataScreen(
                 StructuredDataUiState(pages = listOf(Page(
                     barcodes = listOf(
-                        ReadableCode(value = "12345", type = ReadableCode.Type.Code39),
-                        ReadableCode(value = "Hello", type = ReadableCode.Type.QR),
-                        ReadableCode(value = "test", type = ReadableCode.Type.DataMatrix)
+                        Barcode(value = "12345", type = Barcode.Type.Code39),
+                        Barcode(value = "Hello", type = Barcode.Type.QR),
+                        Barcode(value = "test", type = Barcode.Type.DataMatrix)
                     )
                 ))),
                 {}, {}, {}, {}

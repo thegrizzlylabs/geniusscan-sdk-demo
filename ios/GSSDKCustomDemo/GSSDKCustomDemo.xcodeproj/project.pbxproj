@@ -22,6 +22,7 @@
 		C1E488DA4207F1D4E4DBE56D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A799A45B63B71F03B50134F7 /* LaunchScreen.xib */; };
 		C5BC5FC168E832AF832E6916 /* PDFViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976987E6BF3B9D0190972025 /* PDFViewController.xib */; };
 		C6FC26776D2F42AC1DA4E4CA /* PostProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */; };
+		D85CFC7642B269844664DE06 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F3AA7A3700B8EF635651EE /* MainViewController.swift */; };
 		ECD2177E6AF1472F3F823BC0 /* ScanResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC3268D4BF0B7FB31ED1CA9 /* ScanResultsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		1631A575CC1BFD919B02B1BD /* StructuredDataResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredDataResultsView.swift; sourceTree = "<group>"; };
+		19F3AA7A3700B8EF635651EE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFrameViewController.swift; sourceTree = "<group>"; };
 		3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostProcessingViewController.swift; sourceTree = "<group>"; };
 		5743144979A0BD2F8FA8E14D /* PDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				759990AC6F73BB9A5408BB50 /* AppDelegate.swift */,
 				BAF59C71ECBEFAFDD89775FD /* CameraViewController.swift */,
 				1B2336451E8ABC03C6C45DC9 /* EditFrameViewController.swift */,
+				19F3AA7A3700B8EF635651EE /* MainViewController.swift */,
 				E0E481D4C86C0DACB40276F8 /* PageGenerationResult.swift */,
 				5743144979A0BD2F8FA8E14D /* PDFViewController.swift */,
 				3AE65189FC9388DD19ADAF39 /* PostProcessingViewController.swift */,
@@ -236,6 +239,7 @@
 				5BA92C7DCC90BD577868FC45 /* AppDelegate.swift in Sources */,
 				488961074694470F56BE4FB8 /* CameraViewController.swift in Sources */,
 				23C928FD96400455B3282506 /* EditFrameViewController.swift in Sources */,
+				D85CFC7642B269844664DE06 /* MainViewController.swift in Sources */,
 				AE0716229DB4DF5242AE050F /* PDFViewController.swift in Sources */,
 				44EF3046DB07CFBF275F65E8 /* PageGenerationResult.swift in Sources */,
 				C6FC26776D2F42AC1DA4E4CA /* PostProcessingViewController.swift in Sources */,
@@ -256,7 +260,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/GSSDKCustomDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,7 +348,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/GSSDKCustomDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,7 +448,7 @@
 			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.17.1;
+				minimumVersion = "6.0.0-beta01";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

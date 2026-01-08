@@ -3,7 +3,7 @@ package com.geniusscansdk.simpledemo
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import com.geniusscansdk.scanflow.ScanResult
-import com.geniusscansdk.structureddata.ReadableCode
+import com.geniusscansdk.structureddata.Barcode
 import com.geniusscansdk.structureddata.StructuredDataReceipt
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,7 +16,7 @@ data class StructuredDataUiState(
 data class Page(
     val image: Uri? = null,
     val receipt: StructuredDataReceipt? = null,
-    val barcodes: List<ReadableCode>? = listOf()
+    val barcodes: List<Barcode>? = listOf()
 )
 
 class StructuredDataViewModel: ViewModel() {
@@ -31,7 +31,7 @@ class StructuredDataViewModel: ViewModel() {
                     Page(
                         image = Uri.fromFile(scan.enhancedImageFile),
                         receipt = scan.structuredDataResult?.receipt,
-                        barcodes = scan.structuredDataResult?.readableCodes
+                        barcodes = scan.structuredDataResult?.barcodes
                     )} ?: listOf()
             )
         }

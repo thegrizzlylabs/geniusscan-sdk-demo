@@ -82,16 +82,16 @@ class MyScaffoldBody extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  // Start readable code scanning
-                  var readableCodeConfiguration = {
+                  // Start barcode scanning
+                  var barcodeConfiguration = {
                     'isBatchModeEnabled': true,
                     'supportedCodeTypes': ['qr', 'code128', 'ean13']
                   };
-                  var result = await FlutterGeniusScan.scanReadableCodesWithConfiguration(readableCodeConfiguration);
-                  debugPrint('readableCodeResult: $result');
+                  var result = await FlutterGeniusScan.scanBarcodesWithConfiguration(barcodeConfiguration);
+                  debugPrint('barcodeResult: $result');
 
                   // Display the detected codes
-                  List<dynamic> codes = result['readableCodes'];
+                  List<dynamic> codes = result['barcodes'];
                   String codesText = codes.map((code) => '${code['type']}: ${code['value']}').join('\n');
 
                   showDialog(

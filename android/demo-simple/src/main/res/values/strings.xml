@@ -46,9 +46,9 @@
     <string name="structured_data_merchant">Merchant</string>
     <string name="structured_data_currency">Currency</string>
     <string name="structured_data_amount">Amount</string>
-    <string name="structured_data_barcodes">Readable codes</string>
-    <string name="barcode_scanning">Readable code scanning</string>
-    <string name="barcode_scanning_description">Barcodes and QR codes</string>
+    <string name="structured_data_barcodes">Barcodes</string>
+    <string name="barcode_scanning">Barcode scanning</string>
+    <string name="barcode_scanning_description">Barcodes</string>
     <string name="barcode_batch_mode">Batch Mode</string>
     <string name="barcode_batch_mode_description">Continuously scan multiple codes</string>
     <string name="barcode_simple_mode_description">Stop after first code detected</string>
