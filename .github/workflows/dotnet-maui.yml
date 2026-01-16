@@ -23,4 +23,5 @@ jobs:
         command: |
           cd dotnet-maui
           sudo dotnet workload restore
-          dotnet build SimpleDemo.csproj
+          dotnet build SimpleDemo.csproj -f net10.0-ios
+          dotnet build SimpleDemo.csproj -f net10.0-android
