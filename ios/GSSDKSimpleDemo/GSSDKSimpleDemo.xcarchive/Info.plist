@@ -13,9 +13,9 @@
 		<key>CFBundleIdentifier</key>
 		<string>com.thegrizzlylabs.geniusscansdk.GSSDKSimpleDemo</string>
 		<key>CFBundleShortVersionString</key>
-		<string>5.17.1</string>
+		<string>5.17.2</string>
 		<key>CFBundleVersion</key>
-		<string>28201</string>
+		<string>28909</string>
 		<key>SigningIdentity</key>
 		<string>Apple Distribution: The Grizzly Labs (67ZL68PX9A)</string>
 		<key>Team</key>
@@ -24,7 +24,7 @@
 	<key>ArchiveVersion</key>
 	<integer>2</integer>
 	<key>CreationDate</key>
-	<date>2025-12-19T09:34:10Z</date>
+	<date>2026-01-16T09:01:13Z</date>
 	<key>Name</key>
 	<string>GSSDKSimpleDemo</string>
 	<key>SchemeName</key>

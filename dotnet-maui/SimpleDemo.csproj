@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-android;net9.0-ios</TargetFrameworks>
+		<TargetFrameworks>net9.0-android;net10.0-android;net9.0-ios;net10.0-ios</TargetFrameworks>
 		<OutputType>Exe</OutputType>
 		<RootNamespace>SimpleDemo</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -24,7 +24,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net9.0-ios|AnyCPU'">
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 
@@ -50,8 +50,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
-
 	<ItemGroup>
-		<PackageReference Include="GeniusScanSDK.ScanFlow" Version="5.17.1" />
+		<PackageReference Include="GeniusScanSDK.ScanFlow" Version="5.17.2" />
 	</ItemGroup>
 </Project>
