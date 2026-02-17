@@ -7,13 +7,10 @@ on:
       - '**'
 
 jobs:
-  build:
+  build-android:
     runs-on: macos-26
     steps:
     - uses: actions/checkout@v4
-    - uses: maxim-lobanov/setup-xcode@v1
-      with:
-        xcode-version: '26.0.1'
     # Retry in case plugin is not yet available on nuget
     - uses: nick-fields/retry@v3
       with:
@@ -23,4 +20,27 @@ jobs:
         command: |
           cd dotnet-maui
           sudo dotnet workload restore
-          dotnet build SimpleDemo.csproj
+          dotnet build SimpleDemo.csproj -f net9.0-android
+          dotnet build SimpleDemo.csproj -f net10.0-android
+  build-ios-dotnet9:
+    runs-on: macos-26
+    steps:
+    - uses: actions/checkout@v4
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '26.0.1'
+    - run: |
+        cd dotnet-maui
+        sudo dotnet workload restore
+        dotnet build SimpleDemo.csproj -f net9.0-ios
+  build-ios-dotnet10:
+    runs-on: macos-26
+    steps:
+    - uses: actions/checkout@v4
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '26.2'
+    - run: |
+        cd dotnet-maui
+        sudo dotnet workload restore
+        dotnet build SimpleDemo.csproj -f net10.0-ios
