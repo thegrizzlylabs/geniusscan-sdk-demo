@@ -57,7 +57,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
       FocusIndicator focusIndicator = findViewById(R.id.focus_indicator);
 
-      scanFragment = ScanFragment.createBestForDevice();
+      scanFragment = new ScanFragment();
       getSupportFragmentManager().beginTransaction().replace(R.id.scan_fragment_layout, scanFragment).commit();
 
       scanFragment.setPreviewAspectFill(false);

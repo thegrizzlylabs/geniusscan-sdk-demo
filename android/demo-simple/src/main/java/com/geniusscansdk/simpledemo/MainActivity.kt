@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -36,15 +35,15 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.geniusscansdk.core.GeniusScanSDK
-import com.geniusscansdk.scanflow.ScanConfiguration
-import com.geniusscansdk.scanflow.ScanFlow
+import com.geniusscansdk.scanflow.ScanActivity
+import com.geniusscansdk.scanflow.ScanFlowConfiguration
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.helpers.ScanHelper.createBaseOcrConfiguration
 import com.geniusscansdk.simpledemo.ui.theme.SimpleDemoTheme
 
 class MainActivity: AppCompatActivity() {
 
-    private lateinit var scanLauncher : ActivityResultLauncher<Intent>
+    private lateinit var scanLauncher : ActivityResultLauncher<ScanFlowConfiguration>
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,51 +72,48 @@ class MainActivity: AppCompatActivity() {
             }
         })
 
-        scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val intent = result.data.takeIf { result.resultCode == RESULT_OK }
-            intent?.let {
-                ScanHelper.getScanResult(intent, this@MainActivity)?.let { scanResult ->
-                    val uri = FileProvider.getUriForFile(
-                        this, BuildConfig.APPLICATION_ID + ".fileprovider",
-                        scanResult.multiPageDocument!!
-                    )
-                    val resultIntent = Intent(Intent.ACTION_VIEW, uri)
-                    resultIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    startActivity(resultIntent)
-                }
+        scanLauncher = registerForActivityResult(ScanActivity.Contract()) { output ->
+            ScanHelper.getScanResult(output, this@MainActivity)?.let { scanResult ->
+                val uri = FileProvider.getUriForFile(
+                    this, BuildConfig.APPLICATION_ID + ".fileprovider",
+                    scanResult.multiPageDocument!!
+                )
+                val resultIntent = Intent(Intent.ACTION_VIEW, uri)
+                resultIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                startActivity(resultIntent)
             }
         }
     }
 
     private fun scanFromCamera() {
         val scanConfiguration = createBaseConfiguration()
-        scanConfiguration.source = ScanConfiguration.Source.CAMERA
+        scanConfiguration.source = ScanFlowConfiguration.Source.CAMERA
         startScanning(scanConfiguration)
     }
 
-    private fun createBaseConfiguration(): ScanConfiguration {
-        val scanConfiguration = ScanConfiguration()
+    private fun createBaseConfiguration(): ScanFlowConfiguration {
+        val scanConfiguration = ScanFlowConfiguration()
         scanConfiguration.multiPage = true
-        scanConfiguration.multiPageFormat = ScanConfiguration.MultiPageFormat.PDF
-        scanConfiguration.pdfPageSize = ScanConfiguration.PdfPageSize.FIT
+        scanConfiguration.multiPageFormat = ScanFlowConfiguration.MultiPageFormat.PDF
+        scanConfiguration.pdfPageSize = ScanFlowConfiguration.PdfPageSize.FIT
         scanConfiguration.pdfMaxScanDimension = 2000
         scanConfiguration.jpegQuality = 60
-        scanConfiguration.postProcessingActions = ScanConfiguration.Action.ALL
+        scanConfiguration.postProcessingActions = ScanFlowConfiguration.Action.ALL
         scanConfiguration.photoLibraryButtonHidden = false
         scanConfiguration.flashButtonHidden = false
-        scanConfiguration.defaultFlashMode = ScanConfiguration.FlashMode.AUTO
+        scanConfiguration.defaultFlashMode = ScanFlowConfiguration.FlashMode.AUTO
         scanConfiguration.backgroundColor = ContextCompat.getColor(this, R.color.md_theme_background)
         scanConfiguration.foregroundColor = ContextCompat.getColor(this, R.color.md_theme_primary)
         scanConfiguration.highlightColor = Color.BLUE
         scanConfiguration.availableFilters = listOf(
-            ScanConfiguration.Filter.NONE,
-            ScanConfiguration.Filter.AUTOMATIC,
-            ScanConfiguration.Filter.AUTOMATIC_BLACK_AND_WHITE,
-            ScanConfiguration.Filter.AUTOMATIC_COLOR,
-            ScanConfiguration.Filter.PHOTO,
-            ScanConfiguration.Filter.SOFT_GRAYSCALE,
-            ScanConfiguration.Filter.SOFT_COLOR,
-            ScanConfiguration.Filter.STRONG_MONOCHROME
+            ScanFlowConfiguration.Filter.NONE,
+            ScanFlowConfiguration.Filter.AUTOMATIC,
+            ScanFlowConfiguration.Filter.AUTOMATIC_BLACK_AND_WHITE,
+            ScanFlowConfiguration.Filter.AUTOMATIC_COLOR,
+            ScanFlowConfiguration.Filter.PHOTO,
+            ScanFlowConfiguration.Filter.SOFT_GRAYSCALE,
+            ScanFlowConfiguration.Filter.SOFT_COLOR,
+            ScanFlowConfiguration.Filter.STRONG_MONOCHROME
         )
 
         scanConfiguration.ocrConfiguration = createBaseOcrConfiguration()
@@ -125,9 +121,8 @@ class MainActivity: AppCompatActivity() {
         return scanConfiguration
     }
 
-    private fun startScanning(scanConfiguration: ScanConfiguration) {
-        val intent = ScanFlow.createScanFlowIntent(this@MainActivity, scanConfiguration)
-        scanLauncher.launch(intent)
+    private fun startScanning(scanConfiguration: ScanFlowConfiguration) {
+        scanLauncher.launch(scanConfiguration)
     }
 }
 

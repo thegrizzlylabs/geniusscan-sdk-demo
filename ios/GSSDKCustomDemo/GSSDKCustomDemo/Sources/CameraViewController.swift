@@ -15,10 +15,12 @@ import AVFoundation
  A very simple camera view.
 
  The complexity is hidden in GSKCameraViewController.
- You have access to all the delegate methods of the GSKCameraSession.
+
+ You can plug into the delegate methods of the GSKCameraViewControllerDelegate to customize
+ its behavior, in particular what you want to do when a scan has been captured.
 
  You customize the camera interface by subclassing the GSKCameraViewController.
- The GSKCameraViewController doesn't expose any UI aside from the camera preview, so you
+The GSKCameraViewController doesn't expose any UI aside from the camera preview, so you
  are free to add your own. In this example here we had a bottom "toolbar" that contains
  a camera button to snap the photo.
  */

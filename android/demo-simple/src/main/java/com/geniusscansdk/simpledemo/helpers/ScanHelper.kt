@@ -5,42 +5,51 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import com.geniusscansdk.core.LicenseException
-import com.geniusscansdk.scanflow.ScanConfiguration
-import com.geniusscansdk.scanflow.ScanFlow.getScanResultFromActivityResult
-import com.geniusscansdk.scanflow.ScanResult
+import com.geniusscansdk.scanflow.FlowOutput
+import com.geniusscansdk.scanflow.ScanFlowConfiguration
+import com.geniusscansdk.scanflow.ScanFlowErrorCode
+import com.geniusscansdk.scanflow.ScanFlowResult
 import com.geniusscansdk.simpledemo.MainActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 object ScanHelper {
 
-    fun createBaseOcrConfiguration(): ScanConfiguration.OcrConfiguration {
-        return ScanConfiguration.OcrConfiguration().apply {
+    fun createBaseOcrConfiguration(): ScanFlowConfiguration.OcrConfiguration {
+        return ScanFlowConfiguration.OcrConfiguration().apply {
             languages = listOf("en-US")
         }
     }
 
-    fun getScanResult(intent: Intent, activity: Activity): ScanResult? {
-        try {
-            return getScanResultFromActivityResult(intent)
-        } catch (e: LicenseException) {
-            if (e.errorCode == LicenseException.ErrorCode.ExpiredDemo) {
+    fun getScanResult(flowOutput: FlowOutput<ScanFlowResult>, activity: Activity): ScanFlowResult? {
+        if (flowOutput is FlowOutput.Success) {
+            return flowOutput.result
+        }
+        val error = (flowOutput as FlowOutput.Error).error
+        when (error.code) {
+            ScanFlowErrorCode.CANCELLATION -> {
+                // Don't show any error
+            }
+            ScanFlowErrorCode.LICENSING -> {
+                if ((error.underlyingError as? LicenseException)?.errorCode == LicenseException.ErrorCode.ExpiredDemo) {
+                    MaterialAlertDialogBuilder(activity)
+                        .setMessage(error.message)
+                        .setPositiveButton("Restart") { _: DialogInterface?, _: Int -> restartApp(activity) }
+                        .show()
+                } else {
+                    // The license key is invalid or expired, either ask the user to update the app or provide a fallback
+                    MaterialAlertDialogBuilder(activity)
+                        .setMessage("Please update to the latest version.")
+                        .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> }
+                        .show()
+                }
+            }
+            else -> {
+                Log.e(TAG, "Error during scan flow", error)
                 MaterialAlertDialogBuilder(activity)
-                    .setMessage(e.message)
-                    .setPositiveButton("Restart") { _: DialogInterface?, _: Int -> restartApp(activity) }
-                    .show()
-            } else {
-                // The license key is invalid or expired, either ask the user to update the app or provide a fallback
-                MaterialAlertDialogBuilder(activity)
-                    .setMessage("Please update to the latest version.")
+                    .setMessage("An error occurred: " + error.message)
                     .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> }
                     .show()
             }
-        } catch (e: Exception) {
-            Log.e(TAG, "Error during scan flow", e)
-            MaterialAlertDialogBuilder(activity)
-                .setMessage("An error occurred: " + e.message)
-                .setPositiveButton(android.R.string.ok) { _: DialogInterface?, _: Int -> }
-                .show()
         }
 
         return null

@@ -69,7 +69,7 @@ final class PDFViewController: UIViewController {
 
             for filePath in Storage.shared.filePaths {
                 do {
-                    let result = try await GSKOCR().recognizeText(forImageAtPath: filePath, ocrConfiguration: ocrConfiguration, onProgress: { @Sendable progress in
+                    let result = try await GSKOCR().recognizeText(forImageAtPath: filePath, configuration: ocrConfiguration, onProgress: { @Sendable progress in
                         print("OCR engine progress: %f", progress)
                     })
 
@@ -122,7 +122,7 @@ final class PDFViewController: UIViewController {
         try? FileManager.default.removeItem(atPath: outputFilePath)
 
         do {
-            try GSKDocumentGenerator().generate(document, configuration: .pdfConfiguration(withOutputFilePath: outputFilePath))
+            try GSKDocumentGenerator().generate(document, configuration: .pdf(outputFilePath: outputFilePath))
 
             var result = GenerationResult(fileURL: URL(fileURLWithPath: outputFilePath))
 

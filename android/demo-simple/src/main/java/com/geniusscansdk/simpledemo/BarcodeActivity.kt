@@ -38,10 +38,12 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.geniusscansdk.barcodeflow.BarcodeConfiguration
-import com.geniusscansdk.barcodeflow.BarcodeFlow
-import com.geniusscansdk.barcodeflow.BarcodeFlowResult
-import com.geniusscansdk.barcodeflow.ErrorType
+import com.geniusscansdk.barcodeflow.BarcodeScanActivity
+import com.geniusscansdk.barcodeflow.BarcodeScanFlowConfiguration
+import com.geniusscansdk.barcodeflow.BarcodeScanFlowResult
+import com.geniusscansdk.scanflow.FlowOutput
+import com.geniusscansdk.scanflow.ScanFlowError
+import com.geniusscansdk.scanflow.ScanFlowErrorCode
 import com.geniusscansdk.simpledemo.ui.ConfigurationBooleanItem
 import com.geniusscansdk.simpledemo.ui.ConfigurationColorItem
 import com.geniusscansdk.simpledemo.ui.ConfigurationMultiChoiceItem
@@ -56,13 +58,13 @@ import java.util.EnumSet
 class BarcodeActivity : AppCompatActivity() {
 
     private val viewModel: BarcodeViewModel by viewModels()
-    private lateinit var barcodeFlowLauncher: ActivityResultLauncher<BarcodeConfiguration>
+    private lateinit var barcodeFlowLauncher: ActivityResultLauncher<BarcodeScanFlowConfiguration>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        barcodeFlowLauncher = registerForActivityResult(BarcodeFlow.createContract()) { result ->
+        barcodeFlowLauncher = registerForActivityResult(BarcodeScanActivity.Contract()) { result ->
             viewModel.setScanResult(result)
         }
 
@@ -97,12 +99,12 @@ private fun BarcodeScreen(
     onCodeTypesSelected: (List<Barcode.Type>) -> Unit,
     onHighlightColorSelected: (Int) -> Unit,
     onMenuColorSelected: (Int) -> Unit,
-    onScanClick: (BarcodeConfiguration) -> Unit,
+    onScanClick: (BarcodeScanFlowConfiguration) -> Unit,
     clearResult: () -> Unit,
     finish: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val onBackClick = if (uiState.scanResult == null) {
+    val onBackClick = if (uiState.flowOutput == null) {
         finish
     } else {
         clearResult
@@ -125,12 +127,12 @@ private fun BarcodeScreen(
             )
         },
         floatingActionButton = {
-            if (uiState.scanResult == null && uiState.selectedBarcodeTypes.isNotEmpty()) {
+            if (uiState.flowOutput == null && uiState.selectedBarcodeTypes.isNotEmpty()) {
                 ExtendedFloatingActionButton(
                     text = { Text(stringResource(R.string.barcode_scan)) },
                     icon = { Icon(Icons.Default.QrCodeScanner, "Scan") },
                     onClick = {
-                        val configuration = BarcodeConfiguration(
+                        val configuration = BarcodeScanFlowConfiguration(
                             isBatchModeEnabled = uiState.isBatchModeEnabled,
                             supportedCodeTypes = uiState.selectedBarcodeTypes,
                             highlightColor = uiState.highlightColor,
@@ -142,9 +144,9 @@ private fun BarcodeScreen(
             }
         }
     ) { innerPadding ->
-        if (uiState.scanResult is BarcodeFlowResult.Success) {
+        if (uiState.flowOutput is FlowOutput.Success) {
             ResultsContent(
-                codes = uiState.scanResult.codes,
+                codes = uiState.flowOutput.result.codes,
                 modifier = Modifier
                     .padding(innerPadding)
                     .consumeWindowInsets(innerPadding)
@@ -163,12 +165,16 @@ private fun BarcodeScreen(
                     .fillMaxSize()
             )
 
-            if (uiState.scanResult is BarcodeFlowResult.Error) {
-                ErrorDialog(
-                    error = uiState.scanResult,
-                    onDismissed = clearResult
-                )
-            }
+            uiState.flowOutput
+                .let { it as? FlowOutput.Error }
+                ?.error
+                ?.takeUnless { it.code == ScanFlowErrorCode.CANCELLATION }
+                ?.let { error ->
+                    ErrorDialog(
+                        error = error,
+                        onDismissed = clearResult
+                    )
+                }
         }
     }
 }
@@ -252,7 +258,7 @@ private fun ResultsContent(
 
 @Composable
 private fun ErrorDialog(
-    error: BarcodeFlowResult.Error,
+    error: ScanFlowError,
     onDismissed: () -> Unit
 ) {
     AlertDialog(
@@ -315,13 +321,13 @@ private fun BarcodeResultsSuccessPreview() {
                     Barcode.Type.EAN13,
                     Code128
                 ),
-                scanResult = BarcodeFlowResult.Success(
+                flowOutput = FlowOutput.Success(BarcodeScanFlowResult(
                     listOf(
                         Barcode("123456789012", Barcode.Type.EAN13),
                         Barcode("ABCD1234", Code128),
                         Barcode("https://example.com", QR)
                     )
-                )
+                ))
             ),
             onToggleBatchMode = {},
             onCodeTypesSelected = {},
@@ -342,7 +348,7 @@ private fun BarcodeResultsErrorPreview() {
             uiState = BarcodeUiState(
                 isBatchModeEnabled = false,
                 selectedBarcodeTypes = EnumSet.of(QR),
-                scanResult = BarcodeFlowResult.Error(ErrorType.PERMISSION_DENIED, "Camera permission is required")
+                flowOutput = FlowOutput.Error(ScanFlowError.capture("Camera permission is required"))
             ),
             onToggleBatchMode = {},
             onCodeTypesSelected = {},

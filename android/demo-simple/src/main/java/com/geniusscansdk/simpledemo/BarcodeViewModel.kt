@@ -5,7 +5,8 @@ import android.graphics.Color
 import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
-import com.geniusscansdk.barcodeflow.BarcodeFlowResult
+import com.geniusscansdk.barcodeflow.BarcodeScanFlowResult
+import com.geniusscansdk.scanflow.FlowOutput
 import com.geniusscansdk.structureddata.Barcode
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,15 +35,12 @@ class BarcodeViewModel(application: Application) : AndroidViewModel(application)
         _uiState.value = _uiState.value.copy(menuColor = color)
     }
     
-    fun setScanResult(result: BarcodeFlowResult) {
-        // Don't display result page if flow was canceled
-        if (result != BarcodeFlowResult.Canceled) {
-            _uiState.value = _uiState.value.copy(scanResult = result)
-        }
+    fun setScanResult(result: FlowOutput<BarcodeScanFlowResult>) {
+        _uiState.value = _uiState.value.copy(flowOutput = result)
     }
     
     fun clearScanResult() {
-        _uiState.value = _uiState.value.copy(scanResult = null)
+        _uiState.value = _uiState.value.copy(flowOutput = null)
     }
 }
 
@@ -51,5 +49,5 @@ data class BarcodeUiState(
     val selectedBarcodeTypes: EnumSet<Barcode.Type> = EnumSet.allOf(Barcode.Type::class.java),
     @ColorInt val highlightColor: Int = Color.GREEN,
     @ColorInt val menuColor: Int = Color.BLACK,
-    val scanResult: BarcodeFlowResult? = null
+    val flowOutput: FlowOutput<BarcodeScanFlowResult>? = null
 )

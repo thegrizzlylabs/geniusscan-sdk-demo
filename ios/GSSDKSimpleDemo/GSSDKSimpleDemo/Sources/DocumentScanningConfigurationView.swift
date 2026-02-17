@@ -64,18 +64,33 @@ struct DocumentScanningConfigurationView: View {
             viewModel.defaultCurvatureCorrectionMode = isOn ? .enabled : .disabled
         }))
 
-        Section("Enabled post-processing actions") {
-            Toggle("Change filter", isOn: viewModel.bindingForPostProcessingAction(.editFilter))
-            Toggle("Rotate", isOn: viewModel.bindingForPostProcessingAction(.rotate))
-            Toggle("Correct distortion", isOn: viewModel.bindingForPostProcessingAction(.distortionCorrection))
+        Section("Post-processing screen") {
+            Toggle(
+                "Show post-processing screen",
+                isOn: Binding(
+                    get: { !viewModel.skipPostProcessingScreen
+                    },
+                    set: { show in
+                        viewModel.skipPostProcessingScreen = !show
+                    }
+                )
+            )
+        }
+
+        if !viewModel.skipPostProcessingScreen {
+            Section("Enabled post-processing actions") {
+                Toggle("Change filter", isOn: viewModel.bindingForPostProcessingAction(.editFilter))
+                Toggle("Rotate", isOn: viewModel.bindingForPostProcessingAction(.rotate))
+                Toggle("Correct distortion", isOn: viewModel.bindingForPostProcessingAction(.distortionCorrection))
+            }
         }
 
         Section("Output") {
             Toggle("Multipage", isOn: $viewModel.multiPage)
 
             Picker("Format", selection: $viewModel.multiPageFormat) {
-                Text("PDF").tag(GSKScanFlowMultiPageFormat.PDF)
-                Text("TIFF").tag(GSKScanFlowMultiPageFormat.TIFF)
+                Text("PDF").tag(GSKScanFlowMultiPageFormat.pdf)
+                Text("TIFF").tag(GSKScanFlowMultiPageFormat.tiff)
             }
 
             Toggle("Resize scans in PDF", isOn: viewModel.bindingForPDFMaxScanDimensionEnabled())

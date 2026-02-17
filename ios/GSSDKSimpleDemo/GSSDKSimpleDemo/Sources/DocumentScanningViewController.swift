@@ -83,7 +83,7 @@ final class DocumentScanningViewController: UITableViewController, UIDocumentInt
         }
         configuration.backgroundColor = .white
         configuration.foregroundColor = .red
-        configuration.multiPageFormat = .PDF
+        configuration.multiPageFormat = .pdf
         let ocrConfiguration = GSKScanFlowOCRConfiguration()
         ocrConfiguration.languageTags = ["en-US"]
         configuration.ocrConfiguration = ocrConfiguration

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -58,8 +57,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.geniusscansdk.core.ScanProcessor
-import com.geniusscansdk.scanflow.ScanConfiguration
-import com.geniusscansdk.scanflow.ScanFlow
+import com.geniusscansdk.scanflow.ScanActivity
+import com.geniusscansdk.scanflow.ScanFlowConfiguration
 import com.geniusscansdk.simpledemo.helpers.FileHelper
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.ui.ConfigurationBooleanItem
@@ -73,7 +72,7 @@ import java.util.Locale
 
 class CustomScanFlowActivity: AppCompatActivity() {
 
-    private lateinit var scanLauncher : ActivityResultLauncher<Intent>
+    private lateinit var scanLauncher : ActivityResultLauncher<ScanFlowConfiguration>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,31 +89,27 @@ class CustomScanFlowActivity: AppCompatActivity() {
             }
         })
 
-        scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val intent = result.data.takeIf { result.resultCode == RESULT_OK }
-            intent?.let {
-                ScanHelper.getScanResult(intent, this@CustomScanFlowActivity)?.let { scanResult ->
-                    val uri = FileProvider.getUriForFile(
-                        this, BuildConfig.APPLICATION_ID + ".fileprovider",
-                        scanResult.multiPageDocument!!
-                    )
-                    val resultIntent = Intent(Intent.ACTION_VIEW, uri)
-                    resultIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-                    startActivity(resultIntent)
-                }
+        scanLauncher = registerForActivityResult(ScanActivity.Contract()) { output ->
+            ScanHelper.getScanResult(output, this@CustomScanFlowActivity)?.let { scanResult ->
+                val uri = FileProvider.getUriForFile(
+                    this, BuildConfig.APPLICATION_ID + ".fileprovider",
+                    scanResult.multiPageDocument!!
+                )
+                val resultIntent = Intent(Intent.ACTION_VIEW, uri)
+                resultIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                startActivity(resultIntent)
             }
         }
     }
 
-    private fun startScanning(scanConfiguration: ScanConfiguration) {
-        if (scanConfiguration.source == ScanConfiguration.Source.IMAGE) {
+    private fun startScanning(scanConfiguration: ScanFlowConfiguration) {
+        if (scanConfiguration.source == ScanFlowConfiguration.Source.IMAGE) {
             scanConfiguration.sourceImage = File(externalCacheDir, "temp.jpg").apply {
                 FileHelper.copyFileFromResource(R.raw.scan, destinationFile = this, resources)
             }
         }
 
-        val intent = ScanFlow.createScanFlowIntent(this@CustomScanFlowActivity, scanConfiguration)
-        scanLauncher.launch(intent)
+        scanLauncher.launch(scanConfiguration)
     }
 }
 
@@ -122,9 +117,9 @@ class CustomScanFlowActivity: AppCompatActivity() {
 @Composable
 private fun CustomScreen(
     onBackClick: () -> Unit,
-    startScanFlow: (ScanConfiguration) -> Unit
+    startScanFlow: (ScanFlowConfiguration) -> Unit
 ) {
-    var scanConfiguration by rememberSaveable { mutableStateOf(ScanConfiguration()) }
+    var scanConfiguration by rememberSaveable { mutableStateOf(ScanFlowConfiguration()) }
 
     Scaffold(
         topBar = {
@@ -175,7 +170,7 @@ private fun CustomScreen(
             ConfigurationListItem(
                 label = stringResource(R.string.custom_scanning_source),
                 selectedOption = scanConfiguration.source,
-                options = ScanConfiguration.Source.entries,
+                options = ScanFlowConfiguration.Source.entries,
                 formatOption = { option -> option.name.capitalize() },
                 onOptionSelected = { option -> scanConfiguration = scanConfiguration.copy(source = option) }
             )
@@ -222,8 +217,8 @@ private fun CustomScreen(
 
 @Composable
 private fun CameraScreen(
-    scanConfiguration: ScanConfiguration,
-    onScanConfigurationModified: (ScanConfiguration) -> Unit
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     Text(
         stringResource(R.string.custom_scanning_camera_screen),
@@ -250,7 +245,7 @@ private fun CameraScreen(
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_flash_mode),
         selectedOption = scanConfiguration.defaultFlashMode,
-        options = ScanConfiguration.FlashMode.entries,
+        options = ScanFlowConfiguration.FlashMode.entries,
         formatOption = { option -> option.name.capitalize() },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(defaultFlashMode = option)) }
     )
@@ -258,8 +253,8 @@ private fun CameraScreen(
 
 @Composable
 private fun PostProcessingScreen(
-    scanConfiguration: ScanConfiguration,
-    onScanConfigurationModified: (ScanConfiguration) -> Unit
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     val context = LocalContext.current
     Text(
@@ -271,7 +266,7 @@ private fun PostProcessingScreen(
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_scan_orientation),
         selectedOption = scanConfiguration.defaultScanOrientation,
-        options = ScanConfiguration.Orientation.entries,
+        options = ScanFlowConfiguration.Orientation.entries,
         formatOption = { option -> option.name.capitalize() },
         onOptionSelected = { option ->
             onScanConfigurationModified(scanConfiguration.copy(defaultScanOrientation = option))
@@ -281,7 +276,7 @@ private fun PostProcessingScreen(
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_filter),
         selectedOption = scanConfiguration.defaultFilter,
-        options = ScanConfiguration.Filter.entries,
+        options = ScanFlowConfiguration.Filter.entries,
         formatOption = { option -> context.getString(option.labelResId) },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(defaultFilter = option)) }
     )
@@ -298,12 +293,12 @@ private fun PostProcessingScreen(
 
     ConfigurationBooleanItem(
         label = stringResource(R.string.custom_scanning_default_curvature_correction),
-        checked = scanConfiguration.defaultCurvatureCorrection == ScanConfiguration.CurvatureCorrectionMode.ENABLED,
+        checked = scanConfiguration.defaultCurvatureCorrection == ScanFlowConfiguration.CurvatureCorrectionMode.ENABLED,
         onCheckChanged = { checked ->
             val curvature = if (checked) {
-                ScanConfiguration.CurvatureCorrectionMode.ENABLED
+                ScanFlowConfiguration.CurvatureCorrectionMode.ENABLED
             } else {
-                ScanConfiguration.CurvatureCorrectionMode.DISABLED
+                ScanFlowConfiguration.CurvatureCorrectionMode.DISABLED
             }
             onScanConfigurationModified(scanConfiguration.copy(defaultCurvatureCorrection = curvature))
         }
@@ -312,8 +307,8 @@ private fun PostProcessingScreen(
 
 @Composable
 private fun PostProcessingActions(
-    scanConfiguration: ScanConfiguration,
-    onScanConfigurationModified: (ScanConfiguration) -> Unit
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     Text(
         stringResource(R.string.custom_scanning_post_processing_actions),
@@ -324,26 +319,26 @@ private fun PostProcessingActions(
     ConfigurationMultiChoiceItem(
         label = stringResource(R.string.custom_scanning_available_actions),
         selectedOptions = scanConfiguration.postProcessingActions.toList(),
-        options = ScanConfiguration.Action.ALL.toList(),
+        options = ScanFlowConfiguration.Action.ALL.toList(),
         formatOption = { option -> option.name.capitalize().replace(oldValue = "_", newValue = " ") },
         saveSelectedOptions = { actions ->
             onScanConfigurationModified(scanConfiguration.copy(
-                postProcessingActions = actions.toCollection(EnumSet.noneOf(ScanConfiguration.Action::class.java))
+                postProcessingActions = actions.toCollection(EnumSet.noneOf(ScanFlowConfiguration.Action::class.java))
             ))
         }
     )
 
-    if (scanConfiguration.postProcessingActions.contains(ScanConfiguration.Action.EDIT_FILTER)) {
+    if (scanConfiguration.postProcessingActions.contains(ScanFlowConfiguration.Action.EDIT_FILTER)) {
         ConfigurationMultiChoiceItem(
             label = stringResource(R.string.custom_scanning_available_filters),
             selectedOptions = scanConfiguration.availableFilters,
-            options = ScanConfiguration.Filter.entries,
+            options = ScanFlowConfiguration.Filter.entries,
             formatOption = { option -> option.name.capitalize().replace(oldValue = "_", newValue = " ") },
             saveSelectedOptions = { filters ->
                 onScanConfigurationModified(scanConfiguration.copy(
                     // Use toList() to make sure the list is serializable
                     availableFilters = filters.takeIf { it.isNotEmpty() }?.toList()
-                        ?: listOf(ScanConfiguration.Filter.NONE)
+                        ?: listOf(ScanFlowConfiguration.Filter.NONE)
                 ))
             }
         )
@@ -352,8 +347,8 @@ private fun PostProcessingActions(
 
 @Composable
 private fun Output(
-    scanConfiguration: ScanConfiguration,
-    onScanConfigurationModified: (ScanConfiguration) -> Unit
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     Text(
         stringResource(R.string.custom_scanning_output),
@@ -372,7 +367,7 @@ private fun Output(
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_format),
         selectedOption = scanConfiguration.multiPageFormat,
-        options = ScanConfiguration.MultiPageFormat.entries,
+        options = ScanFlowConfiguration.MultiPageFormat.entries,
         formatOption = { option -> option.name.capitalize() },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(multiPageFormat = option)) }
     )
@@ -424,7 +419,7 @@ private fun Output(
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_page_size),
         selectedOption = scanConfiguration.pdfPageSize,
-        options = ScanConfiguration.PdfPageSize.entries,
+        options = ScanFlowConfiguration.PdfPageSize.entries,
         formatOption = { option -> option.name.capitalize() },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(pdfPageSize = option)) }
     )
@@ -432,8 +427,8 @@ private fun Output(
 
 @Composable
 private fun UI(
-    scanConfiguration: ScanConfiguration,
-    onScanConfigurationModified: (ScanConfiguration) -> Unit
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     Text(
         stringResource(R.string.custom_scanning_ui),
@@ -468,8 +463,8 @@ private fun UI(
 
 @Composable
 private fun OCR(
-    scanConfiguration: ScanConfiguration,
-    onScanConfigurationModified: (ScanConfiguration) -> Unit
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     Text(
         stringResource(R.string.custom_scanning_ocr),

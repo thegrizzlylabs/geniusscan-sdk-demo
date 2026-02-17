@@ -2,7 +2,7 @@ package com.geniusscansdk.simpledemo
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
-import com.geniusscansdk.scanflow.ScanResult
+import com.geniusscansdk.scanflow.ScanFlowResult
 import com.geniusscansdk.structureddata.Barcode
 import com.geniusscansdk.structureddata.StructuredDataReceipt
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,7 +24,7 @@ class StructuredDataViewModel: ViewModel() {
     private val viewModelState = MutableStateFlow(StructuredDataUiState())
     val uiState = viewModelState.asStateFlow()
 
-    fun showResult(scanResult: ScanResult) {
+    fun showResult(scanResult: ScanFlowResult) {
         viewModelState.update {
             it.copy(
                 pages = scanResult.scans?.map { scan ->
