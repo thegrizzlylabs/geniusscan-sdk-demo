@@ -51,6 +51,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="GeniusScanSDK.ScanFlow" Version="5.17.2" />
+		<PackageReference Include="GeniusScanSDK.ScanFlow" Version="5.17.3" />
 	</ItemGroup>
 </Project>
