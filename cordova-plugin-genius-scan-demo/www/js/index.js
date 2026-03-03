@@ -1,7 +1,3 @@
-function onError(error) {
-  alert("Error: " + JSON.stringify(error));
-}
-
 var app = {
   initialize: function() {
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
@@ -45,7 +41,7 @@ function startScanFlow() {
       languages: ['en-US']
     }
   };
-  cordova.plugins.GeniusScan.scanWithConfiguration(configuration, onScanFlowResult, onError);
+  cordova.plugins.GeniusScan.scanWithConfiguration(configuration, onScanFlowResult, onScanFlowError);
 }
 
 function onScanFlowResult(result) {
@@ -76,7 +72,7 @@ function startBarcodeScanFlow() {
     isBatchModeEnabled: true,
     supportedCodeTypes: ['qr', 'code128', 'ean13']
   };
-  cordova.plugins.GeniusScan.scanBarcodesWithConfiguration(configuration, onBarcodeScanFlowResult, onError);
+  cordova.plugins.GeniusScan.scanBarcodesWithConfiguration(configuration, onBarcodeScanFlowResult, onScanFlowError);
 }
 
 function onBarcodeScanFlowResult(result) {
@@ -89,6 +85,13 @@ function onBarcodeScanFlowResult(result) {
   }).join('\n');
 
   alert('Detected codes:\n' + (codesText || 'No codes detected'));
+}
+
+function onScanFlowError(error) {
+  if (error && error.code === "cancellation_error") {
+    return;
+  }
+  alert("Error: " + JSON.stringify(error));
 }
 
 function previewFile(fileUrl) {

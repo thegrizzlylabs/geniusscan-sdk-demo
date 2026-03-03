@@ -121,6 +121,9 @@ class MyScaffoldBody extends StatelessWidget {
   }
 
   void displayError(BuildContext context, PlatformException error) {
+    if (error.code == 'cancellation_error') {
+      return;
+    }
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.message!)));
   }
 }

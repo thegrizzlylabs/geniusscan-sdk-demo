@@ -33,6 +33,12 @@ function AppContent() {
 
   const backgroundColor = isDarkMode ? '#000000' : '#FFFFFF';
   const textColor = isDarkMode ? '#F9FAFB' : '#111827';
+  const handleError = (error: any) => {
+    if (error?.code === 'cancellation_error') {
+      return;
+    }
+    Alert.alert('Error', `${error}`);
+  };
 
   // Refer to the Genius Scan SDK plugin README.md for a list of the available options
   const configuration: ScanOptions = {
@@ -84,8 +90,8 @@ function AppContent() {
                   await RNGeniusScan.generateDocument(document, generationConfiguration)
                   await FileViewer.open(documentUrl)
                   */
-                } catch(e) {
-                  Alert.alert('Scan failed', `${e}`)
+                } catch(e: any) {
+                  handleError(e);
                 }
               }}
               title="Scan documents"
@@ -107,8 +113,8 @@ function AppContent() {
 
                   const codesText = result.barcodes.map(code => `${code.type}: ${code.value}`).join('\n');
                   Alert.alert('Detected codes', codesText);
-                } catch(e) {
-                  Alert.alert('Barcode scan failed', `${e}`)
+                } catch(e: any) {
+                  handleError(e);
                 }
               }}
               title="Scan barcodes"

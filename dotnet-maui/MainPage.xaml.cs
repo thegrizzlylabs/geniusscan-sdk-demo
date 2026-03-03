@@ -44,10 +44,9 @@ public partial class MainPage : ContentPage
                 File = new ReadOnlyFile(new Uri(customDocumentUri).AbsolutePath)
             });
         }
-        catch (Exception e)
+        catch (ScanFlowException e)
         {
-            Console.WriteLine(e.ToString());
-            await DisplayAlert("Alert", "Error: " + e.Message, "OK");
+            await HandleException(e);
         }
     }
 
@@ -69,11 +68,21 @@ public partial class MainPage : ContentPage
 
             await DisplayAlert("Barcodes", string.Join(Environment.NewLine, codesText), "OK");
         }
-        catch (Exception e)
+        catch (ScanFlowException e)
         {
-            Console.WriteLine(e.ToString());
-            await DisplayAlert("Alert", "Error: " + e.Message, "OK");
+            await HandleException(e);
         }
+    }
+
+    private async Task HandleException(ScanFlowException exception)
+    {
+        if (exception.Code == "cancellation_error")
+        {
+            return;
+        }
+
+        Console.WriteLine(exception.ToString());
+        await DisplayAlert("Error", exception.Message, "OK");
     }
 
     private string GenerateCustomDocument(Dictionary<string, object> scanFlowResult)
