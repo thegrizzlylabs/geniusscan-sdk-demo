@@ -10,13 +10,13 @@
 				<string>arm64</string>
 			</array>
 			<key>buildNumber</key>
-			<string>29836</string>
+			<string>30191</string>
 			<key>certificate</key>
 			<dict>
 				<key>SHA1</key>
-				<string>E3F3D8CF9F6A7681E818921AD044317463D68CDC</string>
+				<string>81BADC3F13DC4CD17E4C4E24C7008EFB5F16B46E</string>
 				<key>dateExpires</key>
-				<string>3/5/26</string>
+				<string>3/9/27</string>
 				<key>type</key>
 				<string>Apple Distribution</string>
 			</dict>
@@ -28,13 +28,13 @@
 						<string>arm64</string>
 					</array>
 					<key>buildNumber</key>
-					<string>29836</string>
+					<string>30191</string>
 					<key>certificate</key>
 					<dict>
 						<key>SHA1</key>
-						<string>E3F3D8CF9F6A7681E818921AD044317463D68CDC</string>
+						<string>81BADC3F13DC4CD17E4C4E24C7008EFB5F16B46E</string>
 						<key>dateExpires</key>
-						<string>3/5/26</string>
+						<string>3/9/27</string>
 						<key>type</key>
 						<string>Apple Distribution</string>
 					</dict>
@@ -50,7 +50,7 @@
 						<string></string>
 					</dict>
 					<key>versionNumber</key>
-					<string>5.17.4</string>
+					<string>5.17.5</string>
 				</dict>
 			</array>
 			<key>entitlements</key>
@@ -69,9 +69,9 @@
 			<key>profile</key>
 			<dict>
 				<key>UUID</key>
-				<string>35f68735-5136-4a42-b1f6-498e9985a354</string>
+				<string>c8566bad-8b03-42ce-a46c-da0317b55fbc</string>
 				<key>dateExpires</key>
-				<string>3/5/26</string>
+				<string>3/9/27</string>
 				<key>name</key>
 				<string>match AppStore com.thegrizzlylabs.geniusscansdk.GSSDKSimpleDemo</string>
 			</dict>
@@ -85,7 +85,7 @@
 				<string></string>
 			</dict>
 			<key>versionNumber</key>
-			<string>5.17.4</string>
+			<string>5.17.5</string>
 		</dict>
 	</array>
 </dict>
