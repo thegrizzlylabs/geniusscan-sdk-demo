@@ -15,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>6.0.0-beta03</string>
+	<string>6.0.0-beta05</string>
 	<key>CFBundleVersion</key>
-	<string>29893</string>
+	<string>30262</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<string>NO</string>
 	<key>LSRequiresIPhoneOS</key>
