@@ -1,0 +1,12 @@
+{
+  "name": "cordova-plugin-demo-preview",
+  "version": "1.0.0",
+  "description": "Local file preview plugin used by the Cordova demo app.",
+  "cordova": {
+    "id": "cordova-plugin-demo-preview",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  }
+}
