@@ -1,5 +1,6 @@
 platforms
 node_modules
 plugins
-package.json
 package-lock.json
+
+/package.json
