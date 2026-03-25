@@ -365,7 +365,7 @@ private fun StructuredDataScreenPreview_receipt() {
     SimpleDemoTheme {
         val context = LocalContext.current
         val previewHandler = AsyncImagePreviewHandler {
-            AppCompatResources.getDrawable(context, R.raw.receipt)?.asImage()
+            AppCompatResources.getDrawable(context, R.raw.receipt)!!.asImage()
         }
         CompositionLocalProvider(LocalAsyncImagePreviewHandler provides previewHandler) {
             StructuredDataScreen(
@@ -393,7 +393,7 @@ private fun StructuredDataScreenPreview_barcodes() {
     SimpleDemoTheme {
         val context = LocalContext.current
         val previewHandler = AsyncImagePreviewHandler {
-            AppCompatResources.getDrawable(context, R.raw.barcodes)?.asImage()
+            AppCompatResources.getDrawable(context, R.raw.barcodes)!!.asImage()
         }
         CompositionLocalProvider(LocalAsyncImagePreviewHandler provides previewHandler) {
             StructuredDataScreen(

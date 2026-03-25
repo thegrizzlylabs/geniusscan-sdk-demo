@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="cordova-plugin-demo-preview" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+  <name>Demo Preview</name>
+
+  <js-module name="PreviewAnyFile" src="www/preview.js">
+    <clobbers target="window.PreviewAnyFile" />
+  </js-module>
+
+  <platform name="android">
+    <config-file parent="/*" target="res/xml/config.xml">
+      <feature name="PreviewAnyFile">
+        <param name="android-package" value="com.geniusscansdk.cordova.demo.preview.DemoPreview" />
+      </feature>
+    </config-file>
+    <config-file parent="/manifest/application" target="AndroidManifest.xml">
+      <provider
+        android:name="com.geniusscansdk.cordova.demo.preview.DemoPreviewFileProvider"
+        android:authorities="${applicationId}.previewfileprovider"
+        android:exported="false"
+        android:grantUriPermissions="true">
+        <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/demo_preview_paths" />
+      </provider>
+    </config-file>
+    <source-file src="src/android/DemoPreview.java" target-dir="src/com/geniusscansdk/cordova/demo/preview" />
+    <source-file src="src/android/DemoPreviewFileProvider.java" target-dir="src/com/geniusscansdk/cordova/demo/preview" />
+    <resource-file src="src/android/res/xml/demo_preview_paths.xml" target="res/xml/demo_preview_paths.xml" />
+  </platform>
+
+  <platform name="ios">
+    <config-file parent="/*" target="config.xml">
+      <feature name="PreviewAnyFile">
+        <param name="ios-package" value="DemoPreview" />
+      </feature>
+    </config-file>
+    <header-file src="src/ios/DemoPreview.h" />
+    <source-file src="src/ios/DemoPreview.m" />
+    <framework src="QuickLook.framework" />
+  </platform>
+</plugin>
