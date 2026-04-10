@@ -1,0 +1,6 @@
+tasks.register('copyLanguageList', Copy) {
+    from "../../assets/ocr_languages.csv"
+    into "src/main/res/raw"
+}
+
+preBuild.dependsOn tasks.named('copyLanguageList')

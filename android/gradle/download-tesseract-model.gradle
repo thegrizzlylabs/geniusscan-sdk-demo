@@ -1,0 +1,7 @@
+tasks.register('downloadTesseractModel', Download) {
+    src 'https://github.com/thegrizzlylabs/tessdata_fast/raw/ac9220a95b843b62798a5a6bab39be9c087d23f7/deu_latf.traineddata'
+    dest "src/androidTest/res/raw"
+    overwrite false
+}
+
+preBuild.dependsOn tasks.named('downloadTesseractModel')

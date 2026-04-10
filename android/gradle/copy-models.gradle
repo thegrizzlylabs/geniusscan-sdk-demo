@@ -1,0 +1,13 @@
+tasks.register('copyModels', Copy) {
+    from "../../assets"
+    into "src/main/assets"
+    include '*.tflite'
+    // We set PNG extensions to model files to prevent them from being compressed by AAPT
+    // And to avoid having each client disable compression of tflite files
+    // See https://ponystyle.com/blog/2010/03/26/dealing-with-asset-compression-in-android-apps/
+    rename { String fileName ->
+        fileName.replace("tflite", "png")
+    }
+}
+
+preBuild.dependsOn tasks.named('copyModels')
