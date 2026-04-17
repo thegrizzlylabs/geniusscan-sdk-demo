@@ -1,0 +1,29 @@
+name: Capacitor
+
+# Note: using the `branches` selector excludes all tags
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: macos-15
+    defaults:
+      run:
+        working-directory: capacitor-plugin-genius-scan-demo
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'zulu'
+        java-version: 21
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+    - run: npm install
+    - run: npx cap sync
+    # `npx cap build android` only builds a signed release artifact and fails in CI
+    # without explicit signing options, so we compile the default debug variant here.
+    - run: cd android && ./gradlew assembleDebug
+    - run: npx cap build ios
