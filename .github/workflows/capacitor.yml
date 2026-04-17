@@ -26,4 +26,6 @@ jobs:
     # `npx cap build android` only builds a signed release artifact and fails in CI
     # without explicit signing options, so we compile the default debug variant here.
     - run: cd android && ./gradlew assembleDebug
-    - run: npx cap build ios
+    # `npx cap build ios` archives a signed release build, which requires
+    # provisioning profiles. CI only needs an unsigned compile check.
+    - run: xcodebuild build -project ios/App/App.xcodeproj -scheme App CODE_SIGNING_ALLOWED=NO
