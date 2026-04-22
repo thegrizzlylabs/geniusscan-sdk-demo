@@ -16,11 +16,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@capacitor/android": "8.3.0",
-    "@capacitor/cli": "8.3.0",
-    "@capacitor/core": "8.3.0",
-    "@capacitor/ios": "8.3.0",
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
     "@capawesome-team/capacitor-file-opener": "^8.0.1",
-    "@thegrizzlylabs/capacitor-plugin-genius-scan": "6.0.0-beta09"
+    "@thegrizzlylabs/capacitor-plugin-genius-scan": "6.0.0-beta10"
   }
 }
