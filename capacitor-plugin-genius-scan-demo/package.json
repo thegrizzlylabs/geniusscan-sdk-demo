@@ -21,6 +21,6 @@
     "@capacitor/core": "^8.0.0",
     "@capacitor/ios": "^8.0.0",
     "@capawesome-team/capacitor-file-opener": "^8.0.1",
-    "@thegrizzlylabs/capacitor-plugin-genius-scan": "6.0.0-beta10"
+    "@thegrizzlylabs/capacitor-plugin-genius-scan": "6.0.0-beta11"
   }
 }
