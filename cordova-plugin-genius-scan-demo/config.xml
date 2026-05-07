@@ -13,6 +13,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="ios">
+        <preference name="deployment-target" value="15.0" />
         <icon height="40" src="res/ios/icon-iPhone20@2x.png" width="40" />
         <icon height="60" src="res/ios/icon-iPhone20@3x.png" width="60" />
         <icon height="58" src="res/ios/icon-iPhone29@2x.png" width="58" />
