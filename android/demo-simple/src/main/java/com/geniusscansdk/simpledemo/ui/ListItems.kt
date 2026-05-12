@@ -57,7 +57,8 @@ fun ConfigurationBooleanItem(
                 checked = checked,
                 onCheckedChange = onCheckChanged
             )
-        }
+        },
+        modifier = Modifier.clickable { onCheckChanged(!checked) }
     )
 }
 

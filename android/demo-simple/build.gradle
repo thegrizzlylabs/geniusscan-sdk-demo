@@ -41,7 +41,7 @@ kotlin {
 dependencies {
     ext.composeVersion = '1.8.2'
 
-    implementation 'com.geniusscansdk:gssdk:6.0.0-beta12'
+    implementation 'com.geniusscansdk:gssdk:6.0.0-beta13'
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'

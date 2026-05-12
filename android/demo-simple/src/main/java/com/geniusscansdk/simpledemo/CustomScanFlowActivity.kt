@@ -51,7 +51,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -183,13 +183,13 @@ private fun CustomScreen(
 
             HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
 
-            PostProcessingScreen(scanConfiguration) {
+            PostProcessing(scanConfiguration) {
                 scanConfiguration = it
             }
 
             HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
 
-            PostProcessingActions(scanConfiguration) {
+            PostProcessingScreen(scanConfiguration) {
                 scanConfiguration = it
             }
 
@@ -252,13 +252,13 @@ private fun CameraScreen(
 }
 
 @Composable
-private fun PostProcessingScreen(
+private fun PostProcessing(
     scanConfiguration: ScanFlowConfiguration,
     onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
-    val context = LocalContext.current
+    val resources = LocalResources.current
     Text(
-        stringResource(R.string.custom_scanning_post_processing_screen),
+        stringResource(R.string.custom_scanning_post_processing),
         style = sectionTitleStyle(),
         modifier = Modifier.padding(horizontal = 16.dp)
     )
@@ -277,18 +277,8 @@ private fun PostProcessingScreen(
         label = stringResource(R.string.custom_scanning_default_filter),
         selectedOption = scanConfiguration.defaultFilter,
         options = ScanFlowConfiguration.Filter.entries,
-        formatOption = { option -> context.getString(option.labelResId) },
+        formatOption = { option -> resources.getString(option.labelResId) },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(defaultFilter = option)) }
-    )
-
-    ConfigurationListItem(
-        label = stringResource(R.string.custom_scanning_readability),
-        selectedOption = scanConfiguration.requiredReadabilityLevel,
-        options = ScanProcessor.ReadabilityLevel.entries,
-        formatOption = { option -> option.name.capitalize() },
-        onOptionSelected = { option ->
-            onScanConfigurationModified(scanConfiguration.copy(requiredReadabilityLevel = option))
-        }
     )
 
     ConfigurationBooleanItem(
@@ -306,40 +296,64 @@ private fun PostProcessingScreen(
 }
 
 @Composable
-private fun PostProcessingActions(
+private fun PostProcessingScreen(
     scanConfiguration: ScanFlowConfiguration,
     onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
     Text(
-        stringResource(R.string.custom_scanning_post_processing_actions),
+        stringResource(R.string.custom_scanning_post_processing_screen),
         style = sectionTitleStyle(),
         modifier = Modifier.padding(horizontal = 16.dp)
     )
 
-    ConfigurationMultiChoiceItem(
-        label = stringResource(R.string.custom_scanning_available_actions),
-        selectedOptions = scanConfiguration.postProcessingActions.toList(),
-        options = ScanFlowConfiguration.Action.ALL.toList(),
-        formatOption = { option -> option.name.capitalize().replace(oldValue = "_", newValue = " ") },
-        saveSelectedOptions = { actions ->
-            onScanConfigurationModified(scanConfiguration.copy(
-                postProcessingActions = actions.toCollection(EnumSet.noneOf(ScanFlowConfiguration.Action::class.java))
-            ))
-        }
+    ConfigurationBooleanItem(
+        label = stringResource(R.string.custom_scanning_post_processing_screen_display),
+        checked = !scanConfiguration.skipPostProcessingScreen,
+        onCheckChanged = { onScanConfigurationModified(scanConfiguration.copy(skipPostProcessingScreen = !it)) }
     )
 
-    if (scanConfiguration.postProcessingActions.contains(ScanFlowConfiguration.Action.EDIT_FILTER)) {
+    if (!scanConfiguration.skipPostProcessingScreen) {
         ConfigurationMultiChoiceItem(
-            label = stringResource(R.string.custom_scanning_available_filters),
-            selectedOptions = scanConfiguration.availableFilters,
-            options = ScanFlowConfiguration.Filter.entries,
-            formatOption = { option -> option.name.capitalize().replace(oldValue = "_", newValue = " ") },
-            saveSelectedOptions = { filters ->
-                onScanConfigurationModified(scanConfiguration.copy(
-                    // Use toList() to make sure the list is serializable
-                    availableFilters = filters.takeIf { it.isNotEmpty() }?.toList()
-                        ?: listOf(ScanFlowConfiguration.Filter.NONE)
-                ))
+            label = stringResource(R.string.custom_scanning_available_actions),
+            selectedOptions = scanConfiguration.postProcessingActions.toList(),
+            options = ScanFlowConfiguration.Action.ALL.toList(),
+            formatOption = { it.name.capitalize().replace(oldValue = "_", newValue = " ") },
+            saveSelectedOptions = { actions ->
+                onScanConfigurationModified(
+                    scanConfiguration.copy(
+                        postProcessingActions = actions.toCollection(
+                            EnumSet.noneOf(ScanFlowConfiguration.Action::class.java)
+                        )
+                    )
+                )
+            }
+        )
+
+        if (scanConfiguration.postProcessingActions.contains(ScanFlowConfiguration.Action.EDIT_FILTER)) {
+            ConfigurationMultiChoiceItem(
+                label = stringResource(R.string.custom_scanning_available_filters),
+                selectedOptions = scanConfiguration.availableFilters,
+                options = ScanFlowConfiguration.Filter.entries,
+                formatOption = { it.name.capitalize().replace(oldValue = "_", newValue = " ") },
+                saveSelectedOptions = { filters ->
+                    onScanConfigurationModified(
+                        scanConfiguration.copy(
+                            // Use toList() to make sure the list is serializable
+                            availableFilters = filters.takeIf { it.isNotEmpty() }?.toList()
+                                ?: listOf(ScanFlowConfiguration.Filter.NONE)
+                        )
+                    )
+                }
+            )
+        }
+
+        ConfigurationListItem(
+            label = stringResource(R.string.custom_scanning_readability),
+            selectedOption = scanConfiguration.requiredReadabilityLevel,
+            options = ScanProcessor.ReadabilityLevel.entries,
+            formatOption = { option -> option.name.capitalize() },
+            onOptionSelected = { option ->
+                onScanConfigurationModified(scanConfiguration.copy(requiredReadabilityLevel = option))
             }
         )
     }
