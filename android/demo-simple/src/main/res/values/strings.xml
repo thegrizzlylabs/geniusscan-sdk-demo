@@ -11,10 +11,11 @@
     <string name="custom_scanning_display_photo_library_button">Display photo library button</string>
     <string name="custom_scanning_display_flash_button">Display flash button</string>
     <string name="custom_scanning_default_flash_mode">Default flash mode</string>
+    <string name="custom_scanning_post_processing">Post-processing</string>
     <string name="custom_scanning_post_processing_screen">Post-processing screen</string>
+    <string name="custom_scanning_post_processing_screen_display">Display post-processing screen</string>
     <string name="custom_scanning_default_scan_orientation">Default scan orientation</string>
     <string name="custom_scanning_default_filter">Default filter</string>
-    <string name="custom_scanning_post_processing_actions">Post-processing actions</string>
     <string name="custom_scanning_available_actions">Available actions</string>
     <string name="custom_scanning_available_filters">Available filters</string>
     <string name="custom_scanning_change_filter">Change filter</string>
@@ -46,9 +47,9 @@
     <string name="structured_data_merchant">Merchant</string>
     <string name="structured_data_currency">Currency</string>
     <string name="structured_data_amount">Amount</string>
-    <string name="structured_data_barcodes">Readable codes</string>
-    <string name="barcode_scanning">Readable code scanning</string>
-    <string name="barcode_scanning_description">Barcodes and QR codes</string>
+    <string name="structured_data_barcodes">Barcodes</string>
+    <string name="barcode_scanning">Barcode scanning</string>
+    <string name="barcode_scanning_description">Barcodes</string>
     <string name="barcode_batch_mode">Batch Mode</string>
     <string name="barcode_batch_mode_description">Continuously scan multiple codes</string>
     <string name="barcode_simple_mode_description">Stop after first code detected</string>

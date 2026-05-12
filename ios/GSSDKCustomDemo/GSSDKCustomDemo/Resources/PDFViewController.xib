@@ -14,7 +14,7 @@
                 <outlet property="ocrSwitch" destination="Gfu-fX-Fr9" id="Pa5-vR-n4K"/>
                 <outlet property="pageCountLabel" destination="qrP-00-fNF" id="fdD-Nv-NKa"/>
                 <outlet property="passwordField" destination="Pji-v3-xhN" id="EKp-Op-dh6"/>
-                <outlet property="readableCodesSwitch" destination="snq-4M-qrK" id="iyJ-5s-Z6v"/>
+                <outlet property="barcodesSwitch" destination="snq-4M-qrK" id="iyJ-5s-Z6v"/>
                 <outlet property="titleField" destination="JDE-LQ-fr7" id="7lf-Ut-KyX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -88,7 +88,7 @@
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snq-4M-qrK">
                                             <rect key="frame" x="0.0" y="0.0" width="51" height="31"/>
                                         </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Readable codes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT4-vU-W6I">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Barcodes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT4-vU-W6I">
                                             <rect key="frame" x="57" y="0.0" width="122.5" height="31"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>

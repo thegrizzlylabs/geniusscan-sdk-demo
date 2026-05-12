@@ -1,7 +1,3 @@
-function onError(error) {
-  alert("Error: " + JSON.stringify(error));
-}
-
 var app = {
   initialize: function() {
     document.addEventListener("deviceready", this.onDeviceReady.bind(this), false);
@@ -17,7 +13,7 @@ var app = {
     // cordova.plugins.GeniusScan.setLicenseKey("<Your license key>", /* autoRefresh = */ true);
 
     document.getElementById("scan_btn").addEventListener("click", startScanFlow);
-    document.getElementById("scan_readable_codes_btn").addEventListener("click", startReadableCodeScanFlow);
+    document.getElementById("scan_barcodes_btn").addEventListener("click", startBarcodeScanFlow);
   },
 
   onResume: function(event) {
@@ -45,7 +41,7 @@ function startScanFlow() {
       languages: ['en-US']
     }
   };
-  cordova.plugins.GeniusScan.scanWithConfiguration(configuration, onScanFlowResult, onError);
+  cordova.plugins.GeniusScan.scanWithConfiguration(configuration, onScanFlowResult, onScanFlowError);
 }
 
 function onScanFlowResult(result) {
@@ -71,24 +67,31 @@ function onScanFlowResult(result) {
   */
 }
 
-function startReadableCodeScanFlow() {
+function startBarcodeScanFlow() {
   var configuration = {
     isBatchModeEnabled: true,
     supportedCodeTypes: ['qr', 'code128', 'ean13']
   };
-  cordova.plugins.GeniusScan.scanReadableCodesWithConfiguration(configuration, onReadableCodeScanFlowResult, onError);
+  cordova.plugins.GeniusScan.scanBarcodesWithConfiguration(configuration, onBarcodeScanFlowResult, onScanFlowError);
 }
 
-function onReadableCodeScanFlowResult(result) {
-  // The result object contains the detected readable codes
+function onBarcodeScanFlowResult(result) {
+  // The result object contains the detected barcodes
   console.log(JSON.stringify(result));
 
   // Display the detected codes
-  var codesText = result.readableCodes.map(function(code) {
+  var codesText = result.barcodes.map(function(code) {
     return code.type + ': ' + code.value;
   }).join('\n');
 
   alert('Detected codes:\n' + (codesText || 'No codes detected'));
+}
+
+function onScanFlowError(error) {
+  if (error && error.code === "cancellation_error") {
+    return;
+  }
+  alert("Error: " + JSON.stringify(error));
 }
 
 function previewFile(fileUrl) {

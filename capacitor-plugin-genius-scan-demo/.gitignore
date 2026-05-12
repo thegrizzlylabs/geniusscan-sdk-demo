@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+package-lock.json
+npm-debug.log*
+yarn-error.log*
+
+# Local env
+.env
+.env.local
+
+# iOS
+ios/DerivedData/
+ios/App/build/
+
+# Android
+android/.gradle/
+android/build/
+android/local.properties

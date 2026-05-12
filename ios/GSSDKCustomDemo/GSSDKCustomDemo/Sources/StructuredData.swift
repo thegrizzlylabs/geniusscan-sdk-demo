@@ -9,6 +9,6 @@ struct StructuredData {
     var businessCardContact: GSKStructuredDataContact?
     /// Any receipt/invoice info that was extracted.
     var receipt: GSKStructuredDataReceipt?
-    /// Any readable codes
-    var readableCodes: [GSKStructuredDataReadableCode] = []
+    /// Any barcodes
+    var barcodes: [GSKBarcode] = []
 }

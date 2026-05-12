@@ -1,12 +1,10 @@
 package com.geniusscansdk.simpledemo
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RawRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -62,13 +60,13 @@ import coil3.asImage
 import coil3.compose.AsyncImagePreviewHandler
 import coil3.compose.LocalAsyncImagePreviewHandler
 import coil3.compose.rememberAsyncImagePainter
-import com.geniusscansdk.scanflow.ScanConfiguration
-import com.geniusscansdk.scanflow.ScanFlow
+import com.geniusscansdk.scanflow.ScanActivity
+import com.geniusscansdk.scanflow.ScanFlowConfiguration
 import com.geniusscansdk.simpledemo.helpers.FileHelper
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.ui.theme.SimpleDemoTheme
 import com.geniusscansdk.simpledemo.ui.theme.sectionTitleStyle
-import com.geniusscansdk.structureddata.ReadableCode
+import com.geniusscansdk.structureddata.Barcode
 import com.geniusscansdk.structureddata.ReceiptCategory
 import com.geniusscansdk.structureddata.StructuredDataReceipt
 import java.io.File
@@ -78,7 +76,7 @@ import java.util.Locale
 
 class StructuredDataActivity: AppCompatActivity() {
 
-    private lateinit var scanLauncher : ActivityResultLauncher<Intent>
+    private lateinit var scanLauncher : ActivityResultLauncher<ScanFlowConfiguration>
 
     private val viewModel = StructuredDataViewModel()
 
@@ -86,12 +84,9 @@ class StructuredDataActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         this.enableEdgeToEdge()
 
-        scanLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            val intent = result.data.takeIf { result.resultCode == RESULT_OK }
-            intent?.let {
-                ScanHelper.getScanResult(intent, this@StructuredDataActivity)?.let { scanResult ->
-                    viewModel.showResult(scanResult)
-                }
+        scanLauncher = registerForActivityResult(ScanActivity.Contract()) { output ->
+            ScanHelper.getScanResult(output, this@StructuredDataActivity)?.let { scanResult ->
+                viewModel.showResult(scanResult)
             }
         }
 
@@ -104,10 +99,10 @@ class StructuredDataActivity: AppCompatActivity() {
                         viewModel,
                         ::scan,
                         scanWithReceipt = {
-                            scanWithImage(R.raw.receipt, "receipt.jpg", ScanConfiguration.StructuredData.RECEIPT)
+                            scanWithImage(R.raw.receipt, "receipt.jpg", ScanFlowConfiguration.StructuredData.RECEIPT)
                         },
                         scanWithQrCode = {
-                            scanWithImage(R.raw.barcodes, "codes.jpg", ScanConfiguration.StructuredData.READABLE_CODE)
+                            scanWithImage(R.raw.barcodes, "codes.jpg", ScanFlowConfiguration.StructuredData.BARCODE)
                         },
                         onBackClick = onBackPressedDispatcher::onBackPressed
                     )
@@ -127,17 +122,17 @@ class StructuredDataActivity: AppCompatActivity() {
     }
 
     private fun scan() {
-        val scanConfiguration = ScanConfiguration().apply {
-            source = ScanConfiguration.Source.CAMERA
+        val scanConfiguration = ScanFlowConfiguration().apply {
+            source = ScanFlowConfiguration.Source.CAMERA
             skipPostProcessingScreen = true
-            structuredData = EnumSet.allOf(ScanConfiguration.StructuredData::class.java)
+            structuredData = EnumSet.allOf(ScanFlowConfiguration.StructuredData::class.java)
         }
         startScanFlow(scanConfiguration)
     }
 
-    private fun scanWithImage(@RawRes image: Int, fileName: String, structureData: ScanConfiguration.StructuredData) {
-        val scanConfiguration = ScanConfiguration().apply {
-            source = ScanConfiguration.Source.IMAGE
+    private fun scanWithImage(@RawRes image: Int, fileName: String, structureData: ScanFlowConfiguration.StructuredData) {
+        val scanConfiguration = ScanFlowConfiguration().apply {
+            source = ScanFlowConfiguration.Source.IMAGE
             sourceImage = File(externalCacheDir, fileName).apply {
                 FileHelper.copyFileFromResource(image, destinationFile = this, resources)
             }
@@ -147,11 +142,10 @@ class StructuredDataActivity: AppCompatActivity() {
         startScanFlow(scanConfiguration)
     }
 
-    private fun startScanFlow(scanConfiguration: ScanConfiguration) {
+    private fun startScanFlow(scanConfiguration: ScanFlowConfiguration) {
         viewModel.clearPages()
 
-        val intent = ScanFlow.createScanFlowIntent(this@StructuredDataActivity, scanConfiguration)
-        scanLauncher.launch(intent)
+        scanLauncher.launch(scanConfiguration)
     }
 }
 
@@ -371,7 +365,7 @@ private fun StructuredDataScreenPreview_receipt() {
     SimpleDemoTheme {
         val context = LocalContext.current
         val previewHandler = AsyncImagePreviewHandler {
-            AppCompatResources.getDrawable(context, R.raw.receipt)?.asImage()
+            AppCompatResources.getDrawable(context, R.raw.receipt)!!.asImage()
         }
         CompositionLocalProvider(LocalAsyncImagePreviewHandler provides previewHandler) {
             StructuredDataScreen(
@@ -395,19 +389,19 @@ private fun StructuredDataScreenPreview_receipt() {
 @OptIn(ExperimentalCoilApi::class)
 @Preview
 @Composable
-private fun StructuredDataScreenPreview_readableCodes() {
+private fun StructuredDataScreenPreview_barcodes() {
     SimpleDemoTheme {
         val context = LocalContext.current
         val previewHandler = AsyncImagePreviewHandler {
-            AppCompatResources.getDrawable(context, R.raw.barcodes)?.asImage()
+            AppCompatResources.getDrawable(context, R.raw.barcodes)!!.asImage()
         }
         CompositionLocalProvider(LocalAsyncImagePreviewHandler provides previewHandler) {
             StructuredDataScreen(
                 StructuredDataUiState(pages = listOf(Page(
                     barcodes = listOf(
-                        ReadableCode(value = "12345", type = ReadableCode.Type.Code39),
-                        ReadableCode(value = "Hello", type = ReadableCode.Type.QR),
-                        ReadableCode(value = "test", type = ReadableCode.Type.DataMatrix)
+                        Barcode(value = "12345", type = Barcode.Type.Code39),
+                        Barcode(value = "Hello", type = Barcode.Type.QR),
+                        Barcode(value = "test", type = Barcode.Type.DataMatrix)
                     )
                 ))),
                 {}, {}, {}, {}

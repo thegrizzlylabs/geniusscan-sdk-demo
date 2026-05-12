@@ -26,12 +26,20 @@ platform :ios do
     ipa = options[:ipa]
     UI.user_error! "Missing parameter ipa" unless ipa
 
-    upload_to_testflight(
+    params = {
       ipa: ipa,
-      distribute_external: true,
-      groups: ["External"],
       changelog: "Refer to the changelog for the list of changes: https://geniusscansdk.com/docs/changelog/",
       reject_build_waiting_for_review: true
-    )
+    }
+
+    if options[:external].to_s == "true"
+      params[:distribute_external] = true
+      params[:groups] = ["External"]
+      params[:skip_waiting_for_build_processing] = false
+    else
+      params[:skip_waiting_for_build_processing] = true
+    end
+
+    upload_to_testflight(params)
   end
 end

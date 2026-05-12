@@ -125,7 +125,7 @@ final class PostProcessingViewController: UIViewController {
     private func processImage(autodetect: Bool) {
         doneBarButtonItem.isEnabled = false
         Task.detached(priority: .userInitiated) {
-            let perspectiveCorrectionConfiguration = await GSKPerspectiveCorrectionConfiguration(quadrangle: self.quadrangle)
+            let perspectiveCorrectionConfiguration = GSKPerspectiveCorrectionConfiguration(quadrangle: self.quadrangle)
             let curvatureCorrectionConfiguration = await GSKCurvatureCorrectionConfiguration(curvatureCorrection: self.curvatureCorrectionEnabled)
 
             let enhancementConfiguration: GSKEnhancementConfiguration = if autodetect {

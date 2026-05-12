@@ -52,6 +52,7 @@
 **/ios/**/Icon?
 **/ios/**/Pods/
 **/ios/**/.symlinks/
+**/ios/**/.swiftpm/
 **/ios/**/profile
 **/ios/**/xcuserdata
 **/ios/.generated/

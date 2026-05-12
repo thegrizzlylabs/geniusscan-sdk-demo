@@ -1,0 +1,36 @@
+def resolveNextMavenLocalVersion = {
+    def metadataFile = new File(System.properties['user.home'], '.m2/repository/com/geniusscansdk/gssdk/maven-metadata-local.xml')
+    if (!metadataFile.exists()) {
+        return findProperty('gssdkVersion')?.toString()
+    }
+
+    def latestVersionMatcher = metadataFile.text =~ /<latest>([^<]+)<\/latest>/
+    if (!latestVersionMatcher.find()) {
+        throw new GradleException("Could not read the latest published version from ${metadataFile}.")
+    }
+
+    def latestVersion = latestVersionMatcher.group(1).trim()
+    if (!latestVersion) {
+        throw new GradleException("Could not read the latest published version from ${metadataFile}.")
+    }
+
+    def versionMatcher = latestVersion =~ /^(\d+)\.(\d+)$/
+    if (!versionMatcher.matches()) {
+        throw new GradleException("Unsupported gssdk version '${latestVersion}'. Expected 'major.minor'.")
+    }
+
+    return "${versionMatcher[0][1]}.${versionMatcher[0][2].toInteger() + 1}"
+}
+
+rootProject.tasks.register('publishNextToMavenLocal', GradleBuild) {
+    group = 'publishing'
+    description = 'Publishes gssdk to Maven Local using the next minor version from the local Maven metadata.'
+    tasks = [':gssdk:publishToMavenLocal']
+
+    doFirst {
+        def nextVersion = resolveNextMavenLocalVersion()
+        println("Publishing gssdk to Maven Local with version ${nextVersion}")
+        startParameter.projectProperties = new LinkedHashMap<>(gradle.startParameter.projectProperties)
+        startParameter.projectProperties.put('gssdkVersion', nextVersion)
+    }
+}

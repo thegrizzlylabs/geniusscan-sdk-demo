@@ -5,7 +5,8 @@ This is a demo app for the [`@thegrizzlylabs/cordova-plugin-genius-scan`](https:
 ## Requirements
 
 For the demo app installation you will require:
-* [Cordova](https://cordova.apache.org/#getstarted), minimum version 7.1.0
+* [Cordova](https://cordova.apache.org/#getstarted)
+* `cordova-ios` 8.0.0 or above to use the plugin through Swift Package Manager on iOS
 
 ## Installation
 
@@ -25,7 +26,7 @@ If you have trouble deploying your application after upgrading the plugin to a n
 To run the demo on a physical device, you first need to [sign code it in XCode](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca), which requires a change of its Bundle ID:
 
 1. Connect the device to your Mac and unlock it.
-2. Open `/cordova-plugin-genius-scan-demo/platforms/ios/GS\ SDK\ Cordova\ Demo.xcworkspace` in XCode
+2. Open `/cordova-plugin-genius-scan-demo/platforms/ios/App.xcworkspace` in Xcode
 3. Choose your device from the XCode Scheme menu
 4. Set your own [Bundle ID](https://help.apple.com/xcode/mac/current/#/dev9b66ae7df) under Identity
 5. Enable [Automatic Signing](https://help.apple.com/xcode/mac/current/#/dev80cc24546) and select a Team you are a member of (personal or organization)

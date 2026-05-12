@@ -57,7 +57,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
       FocusIndicator focusIndicator = findViewById(R.id.focus_indicator);
 
-      scanFragment = ScanFragment.createBestForDevice();
+      scanFragment = new ScanFragment();
       getSupportFragmentManager().beginTransaction().replace(R.id.scan_fragment_layout, scanFragment).commit();
 
       scanFragment.setPreviewAspectFill(false);
@@ -149,16 +149,9 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
    public ScanFragment.Callback getCameraCallback() {
       return new ScanFragment.Callback() {
          @Override
-         public void onCameraReady() {}
-
-         @Override
-         public void onCameraFailure() {}
-
-         @Override
-         public void onShutterTriggered() {}
-
-         @Override
-         public void onPreviewFrame(byte[] bytes, int width, int height, int format) {
+         public void onCameraFailure() {
+            Toast.makeText(ScanActivity.this, "Camera error", Toast.LENGTH_SHORT).show();
+            finish();
          }
       };
    }

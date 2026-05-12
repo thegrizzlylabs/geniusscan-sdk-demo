@@ -1,0 +1,6 @@
+{
+  "appId": "com.geniusscansdk.capacitor.demo",
+  "appName": "GS SDK Capacitor",
+  "npmClient": "npm",
+  "webDir": "www"
+}

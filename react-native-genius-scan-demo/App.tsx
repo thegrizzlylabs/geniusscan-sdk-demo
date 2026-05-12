@@ -14,7 +14,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import FileViewer from 'react-native-file-viewer';
 import RNGeniusScan, {
   ScanOptions,
-  ReadableCodeConfiguration,
+  BarcodeConfiguration,
 } from '@thegrizzlylabs/react-native-genius-scan';
 
 function App() {
@@ -33,6 +33,12 @@ function AppContent() {
 
   const backgroundColor = isDarkMode ? '#000000' : '#FFFFFF';
   const textColor = isDarkMode ? '#F9FAFB' : '#111827';
+  const handleError = (error: any) => {
+    if (error?.code === 'cancellation_error') {
+      return;
+    }
+    Alert.alert('Error', `${error}`);
+  };
 
   // Refer to the Genius Scan SDK plugin README.md for a list of the available options
   const configuration: ScanOptions = {
@@ -84,8 +90,8 @@ function AppContent() {
                   await RNGeniusScan.generateDocument(document, generationConfiguration)
                   await FileViewer.open(documentUrl)
                   */
-                } catch(e) {
-                  Alert.alert('Scan failed', `${e}`)
+                } catch(e: any) {
+                  handleError(e);
                 }
               }}
               title="Scan documents"
@@ -95,20 +101,20 @@ function AppContent() {
             <Button
               onPress={async () => {
                 try {
-                  // Start readable code scanning
-                  const readableCodeConfiguration: ReadableCodeConfiguration = {
+                  // Start barcode scanning
+                  const barcodeConfiguration: BarcodeConfiguration = {
                     isBatchModeEnabled: true,
                     supportedCodeTypes: ['qr', 'code128', 'ean13']
                   }
-                  let result = await RNGeniusScan.scanReadableCodesWithConfiguration(readableCodeConfiguration)
+                  let result = await RNGeniusScan.scanBarcodesWithConfiguration(barcodeConfiguration)
 
-                  // The result object contains the detected readable codes
+                  // The result object contains the detected barcodes
                   console.log(result);
 
-                  const codesText = result.readableCodes.map(code => `${code.type}: ${code.value}`).join('\n');
+                  const codesText = result.barcodes.map(code => `${code.type}: ${code.value}`).join('\n');
                   Alert.alert('Detected codes', codesText);
-                } catch(e) {
-                  Alert.alert('Readable code scan failed', `${e}`)
+                } catch(e: any) {
+                  handleError(e);
                 }
               }}
               title="Scan barcodes"
