@@ -145,6 +145,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       return 0;
    }
 
+   @NonNull
    @Override
    public ScanFragment.Callback getCameraCallback() {
       return new ScanFragment.Callback() {
