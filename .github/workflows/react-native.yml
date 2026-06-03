@@ -28,6 +28,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '26.2'
     - run: npm install
     - run: cd ios && pod install
     - run: cd ios && xcodebuild archive -workspace demo.xcworkspace -scheme demo CODE_SIGNING_ALLOWED=NO
