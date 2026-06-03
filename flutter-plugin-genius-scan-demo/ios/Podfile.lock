@@ -1,34 +1,21 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_genius_scan (0.0.1):
-    - Flutter
   - open_filex (0.0.2):
     - Flutter
-  - path_provider_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_genius_scan (from `.symlinks/plugins/flutter_genius_scan/ios`)
   - open_filex (from `.symlinks/plugins/open_filex/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_genius_scan:
-    :path: ".symlinks/plugins/flutter_genius_scan/ios"
   open_filex:
     :path: ".symlinks/plugins/open_filex/ios"
-  path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/darwin"
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_genius_scan: 3b904e39d3b870d0ce648026593b71cea3ce2859
   open_filex: 432f3cd11432da3e39f47fcc0df2b1603854eff1
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
 
 PODFILE CHECKSUM: 602a0eef199e7b9045e0f577964e31a1694bbea3
 

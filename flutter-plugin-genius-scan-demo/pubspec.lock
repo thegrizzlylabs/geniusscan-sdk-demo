@@ -74,7 +74,8 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_genius_scan
-      url: "https://pub.dartlang.org"
+      sha256: "3a87de7add5f6503a4369bb113492e492e39532450d6760c6f375a43ca635c4e"
+      url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
   flutter_test:
