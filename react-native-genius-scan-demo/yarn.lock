@@ -1757,10 +1757,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@thegrizzlylabs/react-native-genius-scan@*":
-  version "5.15.0"
-  resolved "https://registry.yarnpkg.com/@thegrizzlylabs/react-native-genius-scan/-/react-native-genius-scan-5.15.0.tgz#f6b9ec20e7b5d6f16ba4c7e1766c30862d4fb806"
-  integrity sha512-RxvhZn6uIc30nZb1HzStXIMR0z/AEEv0z8c/eN1jFTUE8J+tvGLWFWD0ZoK4ytElfzzOg4SZZz9yYQ1ZOKipzg==
+"@thegrizzlylabs/react-native-genius-scan@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@thegrizzlylabs/react-native-genius-scan/-/react-native-genius-scan-6.1.0.tgz#2ecea198d094ccbc176b0378baa39ff0699bd2de"
+  integrity sha512-EMNjmGOTHXYuENUHIEWox/+Tr60kf0KttzFDuvY571qGKu7dd9RmzlXFGrDK2d7P8syjkgC5kAnOjmAJNOUaVg==
 
 "@types/babel__core@^7.1.14":
   version "7.20.5"

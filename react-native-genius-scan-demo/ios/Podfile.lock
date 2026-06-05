@@ -2656,11 +2656,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
-  DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
+  DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
   fast_float: b32c788ed9c6a8c584d114d0047beda9664e7cc6
   FBLazyVector: 0aa6183b9afe3c31fc65b5d1eeef1f3c19b63bfa
   fmt: a40bb5bd0294ea969aaaba240a927bd33d878cdd
-  glog: 5683914934d5b6e4240e497e0f4a3b42d1854183
+  glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: 273e30e7fb618279934b0b95ffab60ecedb7acf5
   RCT-Folly: 846fda9475e61ec7bcbf8a3fe81edfcaeb090669
   RCTDeprecation: f17e2ebc07876ca9ab8eb6e4b0a4e4647497ae3a
@@ -2729,7 +2729,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 878add6c7d8ff8cea87697c44d29c03b79b6f2d9
   ReactCommon: 804dc80944fa90b86800b43c871742ec005ca424
   RNFileViewer: 4b5d83358214347e4ab2d4ca8d5c1c90d869e251
-  RNGeniusScan: b76952792aafd5a87eb913332c036f3e638cbc77
+  RNGeniusScan: 472808e8f36b873af38fafdd6819d011c07434e8
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: 689c8e04277f3ad631e60fe2a08e41d411daf8eb
 
