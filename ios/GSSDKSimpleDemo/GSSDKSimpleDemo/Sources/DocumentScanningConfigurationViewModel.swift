@@ -81,4 +81,12 @@ final class DocumentScanningViewModel: ObservableObject {
             self.jpegQuality = Int(quality)
         })
     }
+
+    func bindingForPDFPassword() -> Binding<String> {
+        Binding(get: {
+            self.pdfPassword ?? ""
+        }, set: { password in
+            self.pdfPassword = password.isEmpty ? nil : password
+        })
+    }
 }

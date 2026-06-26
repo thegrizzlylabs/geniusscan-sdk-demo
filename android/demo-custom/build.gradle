@@ -10,6 +10,13 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        def localProps = new Properties()
+        def localPropsFile = rootProject.file("local.properties")
+        if (localPropsFile.exists()) {
+            localProps.load(new FileInputStream(localPropsFile))
+        }
+        def gsSdkKey = System.getenv("GSSDK_CUSTOM_LICENSE_KEY") ?: localProps['gssdk.custom.license.key'] ?: ""
+        buildConfigField("String", "GSSDK_CUSTOM_LICENSE_KEY", "\"$gsSdkKey\"")
     }
 
     buildFeatures {
@@ -24,7 +31,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.geniusscansdk:gssdk:6.1.0'
+    implementation 'com.geniusscansdk:gssdk:6.2.0'
 
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'

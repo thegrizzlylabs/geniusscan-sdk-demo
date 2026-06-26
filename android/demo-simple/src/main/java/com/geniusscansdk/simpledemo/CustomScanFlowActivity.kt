@@ -64,6 +64,7 @@ import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.ui.ConfigurationBooleanItem
 import com.geniusscansdk.simpledemo.ui.ConfigurationColorItem
 import com.geniusscansdk.simpledemo.ui.ConfigurationMultiChoiceItem
+import com.geniusscansdk.simpledemo.ui.ConfigurationPasswordItem
 import com.geniusscansdk.simpledemo.ui.theme.SimpleDemoTheme
 import com.geniusscansdk.simpledemo.ui.theme.sectionTitleStyle
 import java.io.File
@@ -190,6 +191,12 @@ private fun CustomScreen(
             HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
 
             PostProcessingScreen(scanConfiguration) {
+                scanConfiguration = it
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
+
+            FinalReviewScreen(scanConfiguration) {
                 scanConfiguration = it
             }
 
@@ -360,6 +367,24 @@ private fun PostProcessingScreen(
 }
 
 @Composable
+private fun FinalReviewScreen(
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
+) {
+    Text(
+        stringResource(R.string.custom_scanning_final_review_screen),
+        style = sectionTitleStyle(),
+        modifier = Modifier.padding(horizontal = 16.dp)
+    )
+
+    ConfigurationBooleanItem(
+        label = stringResource(R.string.custom_scanning_final_review_screen_display),
+        checked = scanConfiguration.showFinalReview,
+        onCheckChanged = { checked -> onScanConfigurationModified(scanConfiguration.copy(showFinalReview = checked)) }
+    )
+}
+
+@Composable
 private fun Output(
     scanConfiguration: ScanFlowConfiguration,
     onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
@@ -385,6 +410,16 @@ private fun Output(
         formatOption = { option -> option.name.capitalize() },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(multiPageFormat = option)) }
     )
+
+    if (scanConfiguration.multiPageFormat == ScanFlowConfiguration.MultiPageFormat.PDF) {
+        ConfigurationPasswordItem(
+            label = stringResource(R.string.custom_scanning_pdf_password),
+            password = scanConfiguration.pdfPassword,
+            onPasswordChanged = { password ->
+                onScanConfigurationModified(scanConfiguration.copy(pdfPassword = password))
+            }
+        )
+    }
 
     ConfigurationBooleanItem(
         label = stringResource(R.string.custom_scanning_resize_scans),

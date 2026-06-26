@@ -1883,7 +1883,7 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@thegrizzlylabs/react-native-genius-scan@6.1.0":
+"@thegrizzlylabs/react-native-genius-scan@*":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@thegrizzlylabs/react-native-genius-scan/-/react-native-genius-scan-6.1.0.tgz#2ecea198d094ccbc176b0378baa39ff0699bd2de"
   integrity sha512-EMNjmGOTHXYuENUHIEWox/+Tr60kf0KttzFDuvY571qGKu7dd9RmzlXFGrDK2d7P8syjkgC5kAnOjmAJNOUaVg==

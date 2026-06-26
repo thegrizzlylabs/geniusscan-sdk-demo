@@ -77,6 +77,10 @@ struct DocumentScanningConfigurationView: View {
             )
         }
 
+        Section("Final review screen") {
+            Toggle("Show final review screen", isOn: $viewModel.showFinalReview)
+        }
+
         if !viewModel.skipPostProcessingScreen {
             Section("Enabled post-processing actions") {
                 Toggle("Change filter", isOn: viewModel.bindingForPostProcessingAction(.editFilter))
@@ -91,6 +95,10 @@ struct DocumentScanningConfigurationView: View {
             Picker("Format", selection: $viewModel.multiPageFormat) {
                 Text("PDF").tag(GSKScanFlowMultiPageFormat.pdf)
                 Text("TIFF").tag(GSKScanFlowMultiPageFormat.tiff)
+            }
+
+            if viewModel.multiPageFormat == .pdf {
+                SecureField("PDF password", text: viewModel.bindingForPDFPassword())
             }
 
             Toggle("Resize scans in PDF", isOn: viewModel.bindingForPDFMaxScanDimensionEnabled())

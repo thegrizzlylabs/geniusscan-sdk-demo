@@ -33,25 +33,29 @@ final class PDFViewController: UIViewController {
     }
 
     @IBAction func share(_ sender: Any) {
-        Task {
-            let result = try await generatePDF()
+        Task { [self] in
+            do {
+                let result = try await generatePDF()
 
-            present(
-                UINavigationController(rootViewController: UIHostingController(
-                    rootView: ScanResultsView(
-                        pageResults: result.pages,
-                        onShowPDF: { [weak self] in
-                            self?.dismiss(animated: true) {
-                                self?.showPreviewController(forFileURL: result.fileURL)
+                present(
+                    UINavigationController(rootViewController: UIHostingController(
+                        rootView: ScanResultsView(
+                            pageResults: result.pages,
+                            onShowPDF: { [weak self] in
+                                self?.dismiss(animated: true) {
+                                    self?.showPreviewController(forFileURL: result.fileURL)
+                                }
+                            },
+                            onDismiss: { [weak self] in
+                                self?.dismiss(animated: true)
                             }
-                        },
-                        onDismiss: { [weak self] in
-                            self?.dismiss(animated: true)
-                        }
-                    )
-                )),
-                animated: true
-            )
+                        )
+                    )),
+                    animated: true
+                )
+            } catch {
+                print("Error while generating PDF: \(error)")
+            }
         }
     }
 

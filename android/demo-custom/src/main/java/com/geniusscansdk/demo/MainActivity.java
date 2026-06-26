@@ -14,6 +14,7 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 
+import com.geniusscansdk.core.GeniusScanSDK;
 import com.geniusscansdk.demo.camera.ScanActivity;
 import com.geniusscansdk.demo.enhance.PdfGenerationTask;
 import com.geniusscansdk.demo.model.DocumentManager;
@@ -46,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
         // This code shows how to initialize the SDK with a license key.
         // Without a license key, the SDK runs for 60 seconds and then the app needs to be restarted.
-        //
-        // GeniusScanSDK.setLicenseKey(this, "<Your license key>");
+        if (!BuildConfig.GSSDK_CUSTOM_LICENSE_KEY.isEmpty()) {
+            GeniusScanSDK.setLicenseKey(this, BuildConfig.GSSDK_CUSTOM_LICENSE_KEY, /*autorefresh*/ true);
+        }
 
         pageCountView = findViewById(R.id.page_count);
 

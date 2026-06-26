@@ -10,7 +10,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@thegrizzlylabs/react-native-genius-scan": "6.1.0",
+    "@thegrizzlylabs/react-native-genius-scan": "6.2.0",
     "react-native-file-viewer": "^2.1.5",
     "react": "19.2.3",
     "react-native": "0.85.3",

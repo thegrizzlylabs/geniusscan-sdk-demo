@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.geniusscansdk.core.DocumentDetector;
+import com.geniusscansdk.core.FileInput;
 import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.core.Quadrangle;
 import com.geniusscansdk.demo.model.Page;
@@ -27,7 +28,7 @@ class AnalyzeAsyncTask extends AsyncTask<Page, Void, Quadrangle> {
       try {
          Page scanContainer = params[0];
          File imageFile = scanContainer.getOriginalImage();
-         return documentDetector.detectDocument(imageFile);
+         return documentDetector.detectDocument(new FileInput(imageFile)).getQuadrangle();
       } catch (Exception e) {
          error = e;
          return null;

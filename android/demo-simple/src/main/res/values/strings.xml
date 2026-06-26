@@ -14,6 +14,8 @@
     <string name="custom_scanning_post_processing">Post-processing</string>
     <string name="custom_scanning_post_processing_screen">Post-processing screen</string>
     <string name="custom_scanning_post_processing_screen_display">Display post-processing screen</string>
+    <string name="custom_scanning_final_review_screen">Final review screen</string>
+    <string name="custom_scanning_final_review_screen_display">Display final review screen</string>
     <string name="custom_scanning_default_scan_orientation">Default scan orientation</string>
     <string name="custom_scanning_default_filter">Default filter</string>
     <string name="custom_scanning_available_actions">Available actions</string>
@@ -24,6 +26,11 @@
     <string name="custom_scanning_output">Output</string>
     <string name="custom_scanning_multipage">Multipage</string>
     <string name="custom_scanning_format">Format</string>
+    <string name="custom_scanning_pdf_password">PDF password</string>
+    <string name="custom_scanning_configured">Configured</string>
+    <string name="custom_scanning_not_set">Not set</string>
+    <string name="custom_scanning_show_password">Show password</string>
+    <string name="custom_scanning_hide_password">Hide password</string>
     <string name="custom_scanning_resize_scans">Resize scans in PDF</string>
     <string name="custom_scanning_max_size">Max size</string>
     <string name="custom_scanning_page_size">Page size</string>

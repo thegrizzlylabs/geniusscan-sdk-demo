@@ -13,10 +13,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -34,6 +40,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.geniusscansdk.simpledemo.R
 import com.github.skydoves.colorpicker.compose.AlphaSlider
@@ -60,6 +68,84 @@ fun ConfigurationBooleanItem(
         },
         modifier = Modifier.clickable { onCheckChanged(!checked) }
     )
+}
+
+@Composable
+fun ConfigurationPasswordItem(
+    label: String,
+    password: String?,
+    onPasswordChanged: (String?) -> Unit
+) {
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    var showPassword by rememberSaveable { mutableStateOf(false) }
+    var editedPassword by remember(password) { mutableStateOf(password.orEmpty()) }
+    val dismissDialog = {
+        editedPassword = password.orEmpty()
+        showPassword = false
+        showDialog = false
+    }
+
+    ListItem(
+        headlineContent = { Text(text = label) },
+        supportingContent = {
+            Text(
+                text = if (password.isNullOrEmpty()) {
+                    stringResource(R.string.custom_scanning_not_set)
+                } else {
+                    stringResource(R.string.custom_scanning_configured)
+                }
+            )
+        },
+        modifier = Modifier.clickable {
+            showPassword = false
+            showDialog = true
+        }
+    )
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = dismissDialog,
+            title = { Text(label) },
+            text = {
+                OutlinedTextField(
+                    value = editedPassword,
+                    onValueChange = { editedPassword = it },
+                    visualTransformation = if (showPassword) {
+                        VisualTransformation.None
+                    } else {
+                        PasswordVisualTransformation()
+                    },
+                    trailingIcon = {
+                        IconButton(onClick = { showPassword = !showPassword }) {
+                            Icon(
+                                imageVector = if (showPassword) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                                contentDescription = if (showPassword) {
+                                    stringResource(R.string.custom_scanning_hide_password)
+                                } else {
+                                    stringResource(R.string.custom_scanning_show_password)
+                                }
+                            )
+                        }
+                    },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    onPasswordChanged(editedPassword.ifEmpty { null })
+                    dismissDialog()
+                }) {
+                    Text(text = stringResource(id = android.R.string.ok))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = dismissDialog) {
+                    Text(stringResource(id = android.R.string.cancel))
+                }
+            }
+        )
+    }
 }
 
 @Composable
