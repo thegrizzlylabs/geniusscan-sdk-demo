@@ -110,7 +110,7 @@ extension CameraViewController: GSKCameraViewControllerDelegate {
         addPulseAnimation()
     }
 
-    func cameraViewController(_ cameraViewController: GSKCameraViewController, willSnapPhotoWithQuadrangle quadrangle: GSKQuadrangle) {
+    func cameraViewControllerWillCapturePhoto(_ cameraViewController: GSKCameraViewController) {
         // For instance, here we disable the camera button so that the user doesn't take multiple photos at the same time.
         cameraButton.isEnabled = false
         removePulseAnimation()

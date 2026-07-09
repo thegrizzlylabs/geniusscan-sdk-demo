@@ -32,7 +32,7 @@ object ScanHelper {
             ScanFlowErrorCode.LICENSING -> {
                 if ((error.underlyingError as? LicenseException)?.errorCode == LicenseException.ErrorCode.ExpiredDemo) {
                     MaterialAlertDialogBuilder(activity)
-                        .setMessage(error.message)
+                        .setMessage("Unlicensed Genius Scan SDK demo. The demo is allowed to run for 60 seconds. After that, you have to relaunch the application.")
                         .setPositiveButton("Restart") { _: DialogInterface?, _: Int -> restartApp(activity) }
                         .show()
                 } else {

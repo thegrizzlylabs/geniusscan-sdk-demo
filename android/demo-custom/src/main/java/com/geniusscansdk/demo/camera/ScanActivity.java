@@ -66,7 +66,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       scanFragment.setAutoTriggerAnimationEnabled(true);
       scanFragment.setBorderDetectorListener(new BorderDetector.BorderDetectorListener() {
          @Override
-         public void onBorderDetectionResult(QuadStreamAnalyzer.Result result) {
+         public void onBorderDetectionResult(@NonNull QuadStreamAnalyzer.Result result) {
             if (result.status == QuadStreamAnalyzer.Status.TRIGGER) {
                takePicture();
             }
@@ -74,7 +74,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
          }
 
          @Override
-         public void onBorderDetectionFailure(Exception e) {
+         public void onBorderDetectionFailure(@NonNull Exception e) {
             scanFragment.setPreviewEnabled(false);
             new AlertDialog.Builder(ScanActivity.this)
                     .setMessage(e.getMessage())
@@ -113,13 +113,13 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       File outputFile = new File(getExternalFilesDir(null), UUID.randomUUID().toString() + ".jpeg");
       scanFragment.takePicture(new FileImageCaptureCallback(outputFile) {
          @Override
-         public void onImageCaptured(RotationAngle imageOrientation) {
+         public void onImageCaptured(@NonNull RotationAngle imageOrientation) {
             Page page = new Page(outputFile);
             new RotateTask(page, imageOrientation).execute();
          }
 
          @Override
-         public void onError(Exception e) {
+         public void onError(@NonNull Exception e) {
             Toast.makeText(ScanActivity.this, "Capture failed", Toast.LENGTH_SHORT).show();
             Log.e(TAG, "Capture failed", e);
          }

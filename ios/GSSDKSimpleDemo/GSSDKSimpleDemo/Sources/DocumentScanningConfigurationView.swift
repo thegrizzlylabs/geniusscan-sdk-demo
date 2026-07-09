@@ -64,6 +64,37 @@ struct DocumentScanningConfigurationView: View {
             viewModel.defaultCurvatureCorrectionMode = isOn ? .enabled : .disabled
         }))
 
+        Section(content: {
+            Picker("Perform validation", selection: $viewModel.showCropValidation) {
+                Text("Never").tag(GSKCropValidation.never)
+                Text("Always").tag(GSKCropValidation.always)
+                Text("Confidence-based").tag({ () -> GSKCropValidation in
+                    switch viewModel.showCropValidation {
+                    case .always, .never:
+                        .whenConfidenceBelowOrEqual(.lowest)
+                    case .whenConfidenceBelowOrEqual:
+                        viewModel.showCropValidation
+                    @unknown default:
+                        .whenConfidenceBelowOrEqual(.lowest)
+                    }
+                }())
+            }
+
+            if case GSKCropValidation.whenConfidenceBelowOrEqual = viewModel.showCropValidation {
+                Picker("Confidence threshold", selection: $viewModel.showCropValidation) {
+                    ForEach(GSKAutoCropConfidenceLevel.allCases, id: \.self) { level in
+                        Text(level.rawValue.capitalized).tag(GSKCropValidation.whenConfidenceBelowOrEqual(level))
+                    }
+                }
+            }
+        }, header: {
+            Text("Auto-crop validation")
+        }, footer: {
+            if case GSKCropValidation.whenConfidenceBelowOrEqual = viewModel.showCropValidation {
+                Text("Perform validation if the auto-crop confidence is below or equal to the selected threshold.")
+            }
+        })
+
         Section("Post-processing screen") {
             Toggle(
                 "Show post-processing screen",

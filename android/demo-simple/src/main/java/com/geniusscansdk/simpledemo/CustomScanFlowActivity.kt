@@ -56,9 +56,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
+import com.geniusscansdk.core.DocumentDetectionResult.QuadrangleConfidenceLevel
 import com.geniusscansdk.core.ScanProcessor
 import com.geniusscansdk.scanflow.ScanActivity
 import com.geniusscansdk.scanflow.ScanFlowConfiguration
+import com.geniusscansdk.scanflow.ScanFlowConfiguration.CropValidation.WhenConfidenceBelowOrEqual
+import com.geniusscansdk.scanflow.ScanFlowConfiguration.Source
 import com.geniusscansdk.simpledemo.helpers.FileHelper
 import com.geniusscansdk.simpledemo.helpers.ScanHelper
 import com.geniusscansdk.simpledemo.ui.ConfigurationBooleanItem
@@ -104,7 +107,7 @@ class CustomScanFlowActivity: AppCompatActivity() {
     }
 
     private fun startScanning(scanConfiguration: ScanFlowConfiguration) {
-        if (scanConfiguration.source == ScanFlowConfiguration.Source.IMAGE) {
+        if (scanConfiguration.source == Source.IMAGE) {
             scanConfiguration.sourceImage = File(externalCacheDir, "temp.jpg").apply {
                 FileHelper.copyFileFromResource(R.raw.scan, destinationFile = this, resources)
             }
@@ -162,7 +165,7 @@ private fun CustomScreen(
         ) {
             Text(
                 text = stringResource(R.string.custom_scanning_description),
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(horizontal = 16.dp)
             )
 
@@ -171,14 +174,22 @@ private fun CustomScreen(
             ConfigurationListItem(
                 label = stringResource(R.string.custom_scanning_source),
                 selectedOption = scanConfiguration.source,
-                options = ScanFlowConfiguration.Source.entries,
+                options = Source.entries,
                 formatOption = { option -> option.name.capitalize() },
                 onOptionSelected = { option -> scanConfiguration = scanConfiguration.copy(source = option) }
             )
 
             HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
 
-            CameraScreen(scanConfiguration) {
+            if (scanConfiguration.source == Source.CAMERA) {
+                CameraScreen(scanConfiguration) {
+                    scanConfiguration = it
+                }
+
+                HorizontalDivider(modifier = Modifier.padding(bottom = 24.dp))
+            }
+
+            CropValidationScreen(scanConfiguration) {
                 scanConfiguration = it
             }
 
@@ -303,6 +314,46 @@ private fun PostProcessing(
 }
 
 @Composable
+private fun CropValidationScreen(
+    scanConfiguration: ScanFlowConfiguration,
+    onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
+) {
+    val resources = LocalResources.current
+    val showCropValidation = scanConfiguration.showCropValidation
+    Text(
+        stringResource(R.string.custom_scanning_crop_validation_section),
+        style = sectionTitleStyle(),
+        modifier = Modifier.padding(horizontal = 16.dp)
+    )
+
+    ConfigurationListItem(
+        label = stringResource(R.string.custom_scanning_validate_crop),
+        selectedOption = showCropValidation.toDemoMode(),
+        options = CropValidationMode.entries,
+        formatOption = { option -> resources.getString(option.labelResId) },
+        onOptionSelected = { option ->
+            onScanConfigurationModified(
+                scanConfiguration.copy(showCropValidation = option.toConfigurationValue(showCropValidation))
+            )
+        }
+    )
+
+    if (showCropValidation is WhenConfidenceBelowOrEqual) {
+        ConfigurationListItem(
+            label = stringResource(R.string.custom_scanning_crop_validation_confidence_threshold),
+            selectedOption = showCropValidation.confidenceThreshold,
+            options = QuadrangleConfidenceLevel.entries,
+            formatOption = { option -> option.name.capitalize() },
+            onOptionSelected = { confidenceThreshold ->
+                onScanConfigurationModified(
+                    scanConfiguration.copy(showCropValidation = WhenConfidenceBelowOrEqual(confidenceThreshold))
+                )
+            }
+        )
+    }
+}
+
+@Composable
 private fun PostProcessingScreen(
     scanConfiguration: ScanFlowConfiguration,
     onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
@@ -362,6 +413,33 @@ private fun PostProcessingScreen(
             onOptionSelected = { option ->
                 onScanConfigurationModified(scanConfiguration.copy(requiredReadabilityLevel = option))
             }
+        )
+    }
+}
+
+private enum class CropValidationMode(val labelResId: Int) {
+    NEVER(R.string.custom_scanning_crop_validation_never),
+    ALWAYS(R.string.custom_scanning_crop_validation_always),
+    BASED_ON_CONFIDENCE(R.string.custom_scanning_crop_validation_based_on_confidence)
+}
+
+private fun ScanFlowConfiguration.CropValidation.toDemoMode(): CropValidationMode {
+    return when (this) {
+        ScanFlowConfiguration.CropValidation.Never -> CropValidationMode.NEVER
+        ScanFlowConfiguration.CropValidation.Always -> CropValidationMode.ALWAYS
+        is WhenConfidenceBelowOrEqual -> CropValidationMode.BASED_ON_CONFIDENCE
+    }
+}
+
+private fun CropValidationMode.toConfigurationValue(
+    currentValue: ScanFlowConfiguration.CropValidation
+): ScanFlowConfiguration.CropValidation {
+    return when (this) {
+        CropValidationMode.NEVER -> ScanFlowConfiguration.CropValidation.Never
+        CropValidationMode.ALWAYS -> ScanFlowConfiguration.CropValidation.Always
+        CropValidationMode.BASED_ON_CONFIDENCE -> WhenConfidenceBelowOrEqual(
+            (currentValue as? WhenConfidenceBelowOrEqual)?.confidenceThreshold
+                ?: QuadrangleConfidenceLevel.MEDIUM
         )
     }
 }

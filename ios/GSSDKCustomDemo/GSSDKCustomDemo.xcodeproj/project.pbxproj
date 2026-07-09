@@ -147,8 +147,8 @@
 		C96CB49B46D39FD74EDB3B3D = {
 			isa = PBXGroup;
 			children = (
-				BC7FF8569C7A90E69A89591C /* Project */,
 				CF38E1BE1A331EA70717E25E /* Products */,
+				BC7FF8569C7A90E69A89591C /* Project */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,8 +169,8 @@
 			buildPhases = (
 				EC3FEA3B0A5DAB14073612D9 /* Sources */,
 				14E36C91F2A9201582D82463 /* Resources */,
-				8884B45A5A5C93153B545E86 /* Embed Frameworks */,
 				8D25D11AEB583A00F20273E7 /* Frameworks */,
+				8884B45A5A5C93153B545E86 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,6 +257,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/GSSDKCustomDemo-Info.plist";
@@ -264,6 +265,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.geniusscansdk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GSSDKCustomDemo;
@@ -277,7 +282,7 @@
 				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -345,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/GSSDKCustomDemo-Info.plist";
@@ -353,6 +359,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-L$(DT_TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thegrizzlylabs.geniusscansdk.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = GSSDKCustomDemo;
 				SDKROOT = iphoneos;
@@ -360,8 +370,8 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -448,7 +458,7 @@
 			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.0;
+				minimumVersion = 6.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

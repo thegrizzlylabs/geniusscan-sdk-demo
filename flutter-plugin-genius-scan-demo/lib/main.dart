@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_genius_scan/flutter_genius_scan.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:open_filex/open_filex.dart';
+import 'package:open_file/open_file.dart';
 
 void main() => runApp(MyApp());
 
@@ -55,7 +52,7 @@ class MyScaffoldBody extends StatelessWidget {
 
                   // Here is how you can display the resulting document:
                   String documentUrl = scanResult['multiPageDocumentUrl'];
-                  await OpenFilex.open(documentUrl.replaceAll("file://", ''));
+                  await OpenFile.open(documentUrl.replaceAll("file://", ''));
 
                   // You can also generate your document separately from selected pages:
                   /*
@@ -69,7 +66,7 @@ class MyScaffoldBody extends StatelessWidget {
                   };
                   var documentGenerationConfiguration = { 'outputFileUrl': documentUrl };
                   await FlutterGeniusScan.generateDocument(document, documentGenerationConfiguration);
-                  await OpenFilex.open(documentUrl);
+                  await OpenFile.open(documentUrl);
                   */
 
                 } on PlatformException catch (error) {
