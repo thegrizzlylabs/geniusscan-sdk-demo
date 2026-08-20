@@ -12,8 +12,6 @@ import GSSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Set the SDK license key as early as possible to give it a chance to refresh
@@ -22,19 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // GSK.setLicenseKey("<YOUR LICENSE KEY - MAKE SURE TO CHANGE YOUR BUNDLE ID TO MATCH THE KEY - WITHOUT LICENSE KEY THE DEMO WILL RUN FOR ONLY 60 SECONDS>")
 
-        window = UIWindow(frame: UIScreen.main.bounds)
-
-        let mainViewController = MainViewController()
-
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        let appearance = UINavigationBarAppearance()
-        navigationController.navigationBar.standardAppearance = appearance
-        navigationController.navigationBar.scrollEdgeAppearance = appearance
-
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-
         return true
     }
-
 }

@@ -560,7 +560,7 @@
 			repositoryURL = "https://github.com/thegrizzlylabs/geniusscan-sdk-spm";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.3.0;
+				minimumVersion = 6.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

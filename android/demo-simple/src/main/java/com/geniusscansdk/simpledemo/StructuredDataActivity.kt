@@ -192,8 +192,12 @@ private fun StructuredDataScreen(
             )
         }
     ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding).consumeWindowInsets(innerPadding).fillMaxSize()) {
-            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+                .consumeWindowInsets(innerPadding)
+            ){
                 if (uiState.pages.isEmpty()) {
                     MenuScreen(scan, scanWithReceipt, scanWithQrCode)
                 } else {

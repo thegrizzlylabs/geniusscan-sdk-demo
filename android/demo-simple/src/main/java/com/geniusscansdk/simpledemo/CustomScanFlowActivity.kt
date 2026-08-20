@@ -157,10 +157,10 @@ private fun CustomScreen(
     ) { innerPadding ->
         Column(
             modifier = Modifier
-                .padding(innerPadding)
-                .consumeWindowInsets(innerPadding)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+                .consumeWindowInsets(innerPadding)
                 .padding(bottom = 68.dp) // save button
         ) {
             Text(
