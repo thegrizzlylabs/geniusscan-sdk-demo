@@ -12,6 +12,7 @@ import SwiftUI
 @dynamicMemberLookup
 final class DocumentScanningViewModel: ObservableObject {
     @Published var configuration = GSKScanFlowConfiguration()
+    @Published var shouldPresentOutputFolderPicker = false
 
     init() {
         configuration.sourceImageURL = Bundle.main.url(forResource: "bank-identity-document", withExtension: "jpg")

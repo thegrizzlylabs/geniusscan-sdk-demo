@@ -27,7 +27,7 @@ public class PdfGenerationTask extends AsyncTask<Void, Integer, Exception> {
 
     private static final String TAG = PdfGenerationTask.class.getSimpleName();
 
-    private final static PDFSize A4_SIZE = new PDFSize(8.27f, 11.69f); // Size of A4 in inches
+    private final static PDFSize A4_SIZE = new PDFSize(210.0 / 25.4, 297.0 / 25.4);
 
     private Context context;
     private File outputFile;

@@ -1,8 +1,8 @@
 buildscript {
     ext {
         minSdkVersion = 24
-        compileSdkVersion = 36
-        targetSdkVersion = 36
+        compileSdkVersion = 37
+        targetSdkVersion = 37
 
         ndkVersion = "27.2.12479018"
         kotlinVersion = "2.1.20"

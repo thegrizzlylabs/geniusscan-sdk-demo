@@ -22,6 +22,12 @@ DerivedData
 *.xcuserstate
 **/.xcode.env.local
 
+# Swift Package Manager
+ios/**/Package.resolved
+ios/.build/
+ios/build/generated/
+ios/build/xcframeworks/
+
 # Android/IntelliJ
 #
 build/
@@ -54,10 +60,6 @@ yarn-error.log
 
 # Bundle artifact
 *.jsbundle
-
-# Ruby / CocoaPods
-**/Pods/
-/vendor/bundle/
 
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*

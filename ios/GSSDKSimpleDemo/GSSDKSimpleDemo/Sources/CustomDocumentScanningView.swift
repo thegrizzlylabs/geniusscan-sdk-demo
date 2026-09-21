@@ -52,12 +52,28 @@ struct CustomDocumentScanningView: View {
                 }
             }
         )
+        .fileImporter(
+            isPresented: $viewModel.shouldPresentOutputFolderPicker,
+            allowedContentTypes: [.folder],
+            allowsMultipleSelection: false,
+            onCompletion: { result in
+                if let url = try? result.get().first {
+                    viewModel.outputDirectoryURL = url
+                }
+            }
+        )
     }
 
     private func scan() {
         guard let topViewController = UIApplication.shared.topViewController else {
             fatalError("No view controller to start scan flow from")
         }
+
+        // If the user picked a custom, security-scoped output URL, then start accessing that resource:
+        let isOutputDirectorySecurityScoped = viewModel
+            .configuration
+            .outputDirectoryURL
+            .startAccessingSecurityScopedResource()
 
         // Start the scan flow with a configuration. Here we retrieve the configuration
         // from the view model, but you probably want to hardcode it in your code.
@@ -73,6 +89,12 @@ struct CustomDocumentScanningView: View {
                 let previewController = UIDocumentInteractionController(url: multiPageDocumentURL)
                 previewController.delegate = documentInteractionControllerDelegate
                 previewController.presentPreview(animated: true)
+
+                if isOutputDirectorySecurityScoped {
+                    // Since we're now done with the output directory for this scanning session, we can
+                    // stop accessing it as a security-scoped resource:
+                    viewModel.configuration.outputDirectoryURL.stopAccessingSecurityScopedResource()
+                }
             }
 
             /*

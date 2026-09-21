@@ -107,7 +107,7 @@ final class PDFViewController: UIViewController {
             // For each page, we specify the document and a size in inches.
             GSKPDFPage(
                 filePath: filePath,
-                inchesSize: GSKPDFSize(width: 8.27, height: 11.69),
+                inchesSize: GSKPDFSize(width: 210 / 25.4, height: 297 / 25.4),
                 textLayout: ocrResults[filePath]?.textLayout
             )
         }

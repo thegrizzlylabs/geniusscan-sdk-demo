@@ -2,41 +2,42 @@
 
 ## Installation
 
-1. Ensure [you are using the recommended version of Node](https://reactnative.dev/docs/environment-setup?guide=native). For instance, for React Native 0.75, you need to use Node 18 or newer.
+1. Ensure [you are using a Node version supported by React Native](https://reactnative.dev/docs/environment-setup?guide=native). React Native 0.87 requires Node 22.13 or newer.
 
-    ```
-    nvm install 18
-    nvm alias default 18
-    ```
+```
+nvm install 22
+nvm alias default 22
+```
 
-2. If you don't have it already, install the React Native CLI:
+2. Install the project dependencies:
 
-    ```
-    npm install -g react-native-cli
-    ```
+```
+yarn install
+```
 
-3. Install the project dependencies:
+3. Run the app:
 
-    ```
-    yarn install
-    ```
+```
+yarn ios
+yarn android
+```
 
-4. For iOS, install the Cocoapods dependencies:
+The `yarn ios` command sets up the Swift Package Manager integration before building the app.
 
-    ```
-    cd ios
-    pod install
-    ```
+For iOS, it's also possible to run the app from Xcode. Set up the Swift Package Manager integration first:
 
-5. Run the app:
+```
+yarn spm:setup
+```
 
-    ```
-    yarn ios
-    yarn android
-    ```
+Then start Metro in a separate terminal:
 
-    For iOS, it's also possible to run the app from Xcode, after opening the `ios/demo.xcworkspace` project:
+```
+yarn start
+```
 
-    ```
-    xed ios/demo.xcworkspace
-    ```
+Then open the project and run the `demo` scheme:
+
+```
+xed ios/demo.xcodeproj
+```

@@ -121,6 +121,20 @@ struct DocumentScanningConfigurationView: View {
         }
 
         Section("Output") {
+            Button(action: {
+                viewModel.shouldPresentOutputFolderPicker = true
+            }, label: {
+                HStack {
+                    Text("Folder")
+                        .foregroundStyle(Color.primary)
+                    Spacer(minLength: 100)
+                    Text(viewModel.configuration.outputDirectoryURL.relativePath)
+                        .lineLimit(1)
+                        .truncationMode(.head)
+                        .foregroundStyle(Color.secondary)
+                }
+            })
+
             Toggle("Multipage", isOn: $viewModel.multiPage)
 
             Picker("Format", selection: $viewModel.multiPageFormat) {
@@ -148,7 +162,11 @@ struct DocumentScanningConfigurationView: View {
                 Text("A4").tag(GSKScanFlowPDFPageSize.A4)
             }
 
-            Slider(value: viewModel.bindingForJPEGQuality(), in: 0...100)
+            HStack {
+                Text("JPEG Quality")
+                Slider(value: viewModel.bindingForJPEGQuality(), in: 0...100)
+                Text("\(viewModel.jpegQuality)")
+            }
         }
 
         Section("UI") {
