@@ -13,6 +13,9 @@ defaults:
 jobs:
   android:
     runs-on: ubuntu-22.04
+    environment:
+      name: package-publication
+      deployment: false
     steps:
     - uses: actions/checkout@v4
     - name: set up JDK
@@ -25,6 +28,9 @@ jobs:
     - run: cd android && ./gradlew assembleRelease
   ios:
     runs-on: macos-26
+    environment:
+      name: package-publication
+      deployment: false
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4

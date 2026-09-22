@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: macos-15
+    environment:
+      name: package-publication
+      deployment: false
     defaults:
       run:
         working-directory: capacitor-plugin-genius-scan-demo

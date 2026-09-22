@@ -14,6 +14,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment:
+      name: package-publication
+      deployment: false
 
     steps:
       - uses: actions/checkout@v4

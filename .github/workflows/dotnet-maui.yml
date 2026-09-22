@@ -9,6 +9,9 @@ on:
 jobs:
   build-android:
     runs-on: macos-26
+    environment:
+      name: package-publication
+      deployment: false
     steps:
     - uses: actions/checkout@v4
     # Retry in case plugin is not yet available on nuget
@@ -24,6 +27,9 @@ jobs:
           dotnet build SimpleDemo.csproj -f net10.0-android
   build-ios:
     runs-on: macos-26
+    environment:
+      name: package-publication
+      deployment: false
     steps:
     - uses: actions/checkout@v4
     - uses: maxim-lobanov/setup-xcode@v1
