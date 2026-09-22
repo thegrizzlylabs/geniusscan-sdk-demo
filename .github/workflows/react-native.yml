@@ -35,5 +35,5 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
     - run: npm install
-    - run: cd ios && pod install
-    - run: cd ios && xcodebuild archive -workspace demo.xcworkspace -scheme demo CODE_SIGNING_ALLOWED=NO
+    - run: yarn spm:setup
+    - run: cd ios && xcodebuild archive -project demo.xcodeproj -scheme demo CODE_SIGNING_ALLOWED=NO
