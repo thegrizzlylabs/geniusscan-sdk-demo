@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -18,6 +19,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.geniusscansdk.core.RotationAngle;
+import com.geniusscansdk.demo.util.ErrorDisplayUtil;
 import com.geniusscansdk.demo.MainActivity;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.model.DocumentManager;
@@ -36,6 +38,7 @@ public class ImageProcessingActivity extends AppCompatActivity {
    private ImageView distortionCorrectionButton;
    private ProgressDialog progressDialog;
    private Page page;
+   private PageProcessing pageProcessing;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +60,7 @@ public class ImageProcessingActivity extends AppCompatActivity {
 
       imageView = findViewById(R.id.image_view);
       distortionCorrectionButton = findViewById(R.id.distortion_correction_button);
+      pageProcessing = new PageProcessing(this);
    }
 
    @Override
@@ -68,6 +72,12 @@ public class ImageProcessingActivity extends AppCompatActivity {
       progressDialog = new ProgressDialog(this);
       progressDialog.show();
       enhance();
+   }
+
+   @Override
+   protected void onDestroy() {
+      pageProcessing.close();
+      super.onDestroy();
    }
 
    private void updateDistortionCorrectionButton() {
@@ -110,23 +120,41 @@ public class ImageProcessingActivity extends AppCompatActivity {
 
    private void rotate(RotationAngle angle) {
       progressDialog.show();
-      new RotateAsyncTask(this, angle) {
+      pageProcessing.rotateAndProcess(page, angle, new PageProcessing.Callback() {
          @Override
-         protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            endRotate();
+         public void onSuccess() {
+            runOnUiThread(ImageProcessingActivity.this::endRotate);
          }
-      }.execute(page);
+
+         @Override
+         public void onFailure(@NonNull Exception exception) {
+            runOnUiThread(() -> onRotationFailed(exception));
+         }
+      });
+   }
+
+   private void onRotationFailed(Exception exception) {
+      ErrorDisplayUtil.displayError(this, exception, "Unable to rotate image");
+      endRotate();
    }
 
    private void enhance() {
-      new EnhanceAsyncTask(this) {
+      pageProcessing.process(page, new PageProcessing.Callback() {
          @Override
-         protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            endEnhance();
+         public void onSuccess() {
+            runOnUiThread(ImageProcessingActivity.this::endEnhance);
          }
-      }.execute(page);
+
+         @Override
+         public void onFailure(@NonNull Exception exception) {
+            runOnUiThread(() -> onEnhancementFailed(exception));
+         }
+      });
+   }
+
+   private void onEnhancementFailed(Exception exception) {
+      ErrorDisplayUtil.displayError(this, exception, "Unable to enhance image");
+      endEnhance();
    }
 
    private void displayEnhancedScan() {

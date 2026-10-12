@@ -1,1 +1,1 @@
-include ':demo-custom', ':demo-simple'
+include ':demo-custom', ':demo-simple', ':demo-compose'

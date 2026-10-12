@@ -35,12 +35,17 @@
         <resource-file src="res/android/ic_launcher_foreground.xml" target="/app/src/main/res/drawable/ic_launcher_foreground.xml" />
         <resource-file src="res/android/ic_launcher.xml" target="/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" />
         <preference name="AndroidXEnabled" value="true" />
+        <!-- Cordova Android 15 defaults to older Android build tooling. These overrides keep the demo aligned
+             with the SDK's API level and AGP/Gradle versions, and should be unnecessary with Cordova Android 16. -->
+        <preference name="android-compileSdkVersion" value="37" />
+        <preference name="AndroidGradlePluginVersion" value="9.4.1" />
+        <preference name="GradleVersion" value="9.7.1" />
     </platform>
     <engine name="ios" spec="~8.0.0" />
-    <engine name="android" spec="~15.0.0" />
+    <engine name="android" spec="~15.1.0" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <plugin name="cordova-plugin-demo-preview" spec="file://./cordova-plugin-demo-preview" />
-    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@6.5.1">
+    <plugin name="@thegrizzlylabs/cordova-plugin-genius-scan" spec="@thegrizzlylabs/cordova-plugin-genius-scan@6.6.0">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Access camera for demo" />
     </plugin>
 </widget>

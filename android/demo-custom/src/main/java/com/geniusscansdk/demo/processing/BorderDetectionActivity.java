@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -15,6 +16,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.geniusscansdk.core.Quadrangle;
+import com.geniusscansdk.demo.util.ErrorDisplayUtil;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.enhance.ImageProcessingActivity;
 import com.geniusscansdk.demo.model.Page;
@@ -32,6 +34,7 @@ public class BorderDetectionActivity extends AppCompatActivity {
    private ProgressDialog progressDialog;
    private BorderDetectionImageView imageView;
    private MagnifierView magnifierView;
+   private PageAnalysis pageAnalysis;
 
    public final static String EXTRA_PAGE = "page";
 
@@ -59,6 +62,7 @@ public class BorderDetectionActivity extends AppCompatActivity {
       imageView.setListener(new MagnifierBorderDetectionListener(magnifierView));
 
       page = getIntent().getParcelableExtra(EXTRA_PAGE);
+      pageAnalysis = new PageAnalysis(this);
    }
 
    @Override
@@ -75,15 +79,33 @@ public class BorderDetectionActivity extends AppCompatActivity {
       progressDialog = new ProgressDialog(this);
 
       progressDialog.show();
-      new AnalyzeAsyncTask(this) {
+      pageAnalysis.analyze(page, new PageAnalysis.Callback() {
          @Override
-         protected void onPostExecute(Quadrangle quadrangle) {
-            super.onPostExecute(quadrangle);
-            progressDialog.dismiss();
-            addQuadrangleToView(quadrangle);
-
+         public void onSuccess(@NonNull Quadrangle quadrangle) {
+            runOnUiThread(() -> {
+               progressDialog.dismiss();
+               addQuadrangleToView(quadrangle);
+            });
          }
-      }.execute(page);
+
+         @Override
+         public void onFailure(@NonNull Exception exception) {
+            runOnUiThread(() -> {
+               progressDialog.dismiss();
+               ErrorDisplayUtil.displayError(
+                       BorderDetectionActivity.this,
+                       exception,
+                       "Unable to analyze image"
+               );
+            });
+         }
+      });
+   }
+
+   @Override
+   protected void onDestroy() {
+      pageAnalysis.close();
+      super.onDestroy();
    }
 
    void addQuadrangleToView(Quadrangle quadrangle) {

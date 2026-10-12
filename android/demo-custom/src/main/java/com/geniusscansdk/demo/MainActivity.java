@@ -1,6 +1,7 @@
 package com.geniusscansdk.demo;
 
 import android.content.Intent;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,7 @@ import androidx.core.content.FileProvider;
 
 import com.geniusscansdk.core.GeniusScanSDK;
 import com.geniusscansdk.demo.camera.ScanActivity;
-import com.geniusscansdk.demo.enhance.PdfGenerationTask;
+import com.geniusscansdk.demo.enhance.PdfGeneration;
 import com.geniusscansdk.demo.model.DocumentManager;
 import com.geniusscansdk.demo.model.Page;
 
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView pageCountView;
     private Button shareButton;
     private SwitchCompat ocrSwitch;
+    private PdfGeneration pdfGeneration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         shareButton.setOnClickListener(v -> shareDocument());
 
         ocrSwitch = findViewById(R.id.ocr_switch);
+        pdfGeneration = new PdfGeneration(this);
 
         Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScanActivity.class)));
@@ -72,21 +75,62 @@ public class MainActivity extends AppCompatActivity {
         ocrSwitch.setEnabled(pageCount > 0);
     }
 
+    @Override
+    protected void onDestroy() {
+        pdfGeneration.close();
+        super.onDestroy();
+    }
+
     private void shareDocument() {
         List<Page> pages = DocumentManager.getInstance(this).getPages();
         final File outputFile = new File(getExternalCacheDir(), "test.pdf");
-        new PdfGenerationTask(this, pages, outputFile, ocrSwitch.isChecked(), (isSuccess, error) -> {
-            if (!isSuccess) {
-                Log.e(TAG, "Error generating PDF", error);
-                Toast.makeText(MainActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-                return;
+        boolean isOcrEnabled = ocrSwitch.isChecked();
+        ProgressDialog progressDialog = isOcrEnabled ? createOcrProgressDialog() : null;
+        pdfGeneration.generate(pages, outputFile, isOcrEnabled, new PdfGeneration.Callback() {
+            @Override
+            public void onProgress(int progress) {
+                runOnUiThread(() -> progressDialog.setProgress(progress));
             }
 
-            // View generated PDF document with another compatible installed app
-            Uri uri = FileProvider.getUriForFile(MainActivity.this, BuildConfig.APPLICATION_ID + ".fileprovider", outputFile);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(intent);
-        }).execute();
+            @Override
+            public void onSuccess() {
+                runOnUiThread(() -> {
+                    dismissProgressDialog(progressDialog);
+                    viewPdf(outputFile);
+                });
+            }
+
+            @Override
+            public void onFailure(Exception exception) {
+                runOnUiThread(() -> {
+                    dismissProgressDialog(progressDialog);
+                    Log.e(TAG, "Error generating PDF", exception);
+                    Toast.makeText(MainActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                });
+            }
+        });
+    }
+
+    private ProgressDialog createOcrProgressDialog() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setMax(100);
+        progressDialog.setMessage("OCR in progress");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        return progressDialog;
+    }
+
+    private void dismissProgressDialog(ProgressDialog progressDialog) {
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+        }
+    }
+
+    private void viewPdf(File outputFile) {
+        Uri uri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".fileprovider", outputFile);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
     }
 }

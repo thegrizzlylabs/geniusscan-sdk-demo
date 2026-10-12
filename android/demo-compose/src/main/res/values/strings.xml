@@ -1,0 +1,45 @@
+<resources>
+
+    <string name="app_name">Compose Demo</string>
+    <string name="open_camera">Add page</string>
+    <string name="generate_pdf">Generate PDF document</string>
+    <string name="ocr">With OCR</string>
+    <string name="capture">Capture</string>
+    <string name="enhancement_dialog_title">Please select the enhancement to apply</string>
+    <string name="image_type_none">None</string>
+    <string name="image_type_auto">Automatic</string>
+    <string name="image_type_color">Color</string>
+    <string name="image_type_photo">Photo</string>
+    <string name="image_type_black_white">Black &amp; White</string>
+
+    <plurals name="page_count">
+        <item quantity="one">The document has %d page</item>
+        <item quantity="other">The document has %d pages</item>
+    </plurals>
+
+    <string name="detection_status_searching">Looking for document…</string>
+    <string name="detection_status_found">Document found. Please remain steady.</string>
+    <string name="gs_sdk_compose_demo_name">GS SDK Compose Demo</string>
+    <string name="full_image">Full image</string>
+    <string name="adjust_borders">Adjust borders</string>
+    <string name="enhance_scan">Enhance scan</string>
+    <string name="filter">Filter</string>
+    <string name="flattened">Flattened</string>
+    <string name="curved">Curved</string>
+    <string name="rotate">Rotate</string>
+    <string name="validate">Validate</string>
+    <string name="choose_enhancement">Choose enhancement</string>
+    <string name="ok">OK</string>
+    <string name="none">None</string>
+    <string name="automatic">Automatic</string>
+    <string name="black_white"><![CDATA[Black & White]]></string>
+    <string name="color">Color</string>
+    <string name="photo">Photo</string>
+    <string name="allow_camera_access">Allow camera access</string>
+    <string name="looking_for_document">Looking for document…</string>
+    <string name="capture_failed">Capture failed</string>
+    <string name="document_found_please_remain_steady">Document found. Please remain steady.</string>
+    <string name="restart">Restart</string>
+
+    <string name="camera_error">Camera error</string>
+</resources>

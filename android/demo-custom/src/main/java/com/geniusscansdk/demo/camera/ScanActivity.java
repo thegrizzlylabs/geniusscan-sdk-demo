@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,10 +23,9 @@ import com.geniusscansdk.camera.FileImageCaptureCallback;
 import com.geniusscansdk.camera.FocusIndicator;
 import com.geniusscansdk.camera.ScanFragment;
 import com.geniusscansdk.camera.realtime.BorderDetector;
-import com.geniusscansdk.core.GeniusScanSDK;
-import com.geniusscansdk.core.LicenseException;
 import com.geniusscansdk.core.QuadStreamAnalyzer;
 import com.geniusscansdk.core.RotationAngle;
+import com.geniusscansdk.demo.util.ErrorDisplayUtil;
 import com.geniusscansdk.demo.R;
 import com.geniusscansdk.demo.model.Page;
 import com.geniusscansdk.demo.processing.BorderDetectionActivity;
@@ -41,6 +39,7 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
 
    private ScanFragment scanFragment;
    private TextView userGuidanceTextView;
+   private final PageRotation pageRotation = new PageRotation();
 
    private boolean cameraPermissionGranted = false;
 
@@ -100,6 +99,12 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
    }
 
    @Override
+   protected void onDestroy() {
+      pageRotation.close();
+      super.onDestroy();
+   }
+
+   @Override
    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
       if (requestCode == PERMISSION_REQUEST_CODE) {
          cameraPermissionGranted =  grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
@@ -113,9 +118,9 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
       File outputFile = new File(getExternalFilesDir(null), UUID.randomUUID().toString() + ".jpeg");
       scanFragment.takePicture(new FileImageCaptureCallback(outputFile) {
          @Override
-         public void onImageCaptured(@NonNull RotationAngle imageOrientation) {
+         public void onImageCaptured() {
             Page page = new Page(outputFile);
-            new RotateTask(page, imageOrientation).execute();
+            rotatePage(page, RotationAngle.ROTATION_0);
          }
 
          @Override
@@ -124,6 +129,39 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
             Log.e(TAG, "Capture failed", e);
          }
       });
+   }
+
+   private void rotatePage(Page page, RotationAngle rotationAngle) {
+      ProgressDialog progressDialog = new ProgressDialog(this);
+      progressDialog.show();
+
+      pageRotation.rotate(page, rotationAngle, new PageRotation.Callback() {
+         @Override
+         public void onSuccess() {
+            runOnUiThread(() -> {
+               progressDialog.dismiss();
+               launchBorderDetection(page);
+            });
+         }
+
+         @Override
+         public void onFailure(@NonNull Exception exception) {
+            runOnUiThread(() -> {
+               progressDialog.dismiss();
+               ErrorDisplayUtil.displayError(
+                       ScanActivity.this,
+                       exception,
+                       "Unable to rotate image"
+               );
+            });
+         }
+      });
+   }
+
+   private void launchBorderDetection(Page page) {
+      Intent intent = new Intent(this, BorderDetectionActivity.class);
+      intent.putExtra(BorderDetectionActivity.EXTRA_PAGE, page);
+      startActivity(intent);
    }
 
    private void updateUserGuidance(QuadStreamAnalyzer.Result result) {
@@ -155,58 +193,6 @@ public class ScanActivity extends AppCompatActivity implements ScanFragment.Came
             finish();
          }
       };
-   }
-
-   class RotateTask extends AsyncTask<Void, Void, Void> {
-
-      private final RotationAngle rotationAngle;
-      private final Page page;
-      private ProgressDialog progressDialog;
-      private Exception exception = null;
-
-      RotateTask(Page page, RotationAngle rotationAngle) {
-         this.rotationAngle = rotationAngle;
-         this.page = page;
-      }
-
-      @Override
-      protected void onPreExecute() {
-         super.onPreExecute();
-         progressDialog = new ProgressDialog(ScanActivity.this);
-         progressDialog.show();
-      }
-
-      @Override
-      protected Void doInBackground(Void... params) {
-         String path = page.getOriginalImage().getAbsolutePath();
-         // Even if rotation angle is 0, we perform a rotation to apply exif orientation
-         try {
-            GeniusScanSDK.rotateImage(path, path, rotationAngle);
-         } catch (Exception e) {
-            exception = e;
-         }
-
-         return null;
-      }
-
-      @Override
-      protected void onPostExecute(Void aVoid) {
-         super.onPostExecute(aVoid);
-         progressDialog.dismiss();
-
-         if (exception instanceof LicenseException) {
-            new AlertDialog.Builder(ScanActivity.this)
-                    .setMessage(exception.getMessage())
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show();
-         } else if (exception != null) {
-            throw new RuntimeException(exception);
-         } else {
-            Intent intent = new Intent(ScanActivity.this, BorderDetectionActivity.class);
-            intent.putExtra(BorderDetectionActivity.EXTRA_PAGE, page);
-            startActivity(intent);
-         }
-      }
    }
 
 }

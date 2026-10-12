@@ -1,0 +1,50 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
+apply plugin: 'org.jetbrains.kotlin.plugin.serialization'
+
+android {
+    namespace 'com.geniusscansdk.demo'
+    compileSdk = rootProject.ext.compileSdkVersion
+    ndkVersion = rootProject.ext.ndkVersion
+
+    defaultConfig {
+        applicationId 'com.geniusscansdk.demo.compose'
+        minSdk = rootProject.ext.minSdkVersion
+        targetSdk = rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        def localProps = new Properties()
+        def localPropsFile = rootProject.file("local.properties")
+        if (localPropsFile.exists()) {
+            localProps.load(new FileInputStream(localPropsFile))
+        }
+        def gsSdkKey = System.getenv("GSSDK_COMPOSE_LICENSE_KEY") ?: localProps['gssdk.compose.license.key'] ?: ""
+        buildConfigField("String", "GSSDK_COMPOSE_LICENSE_KEY", "\"$gsSdkKey\"")
+    }
+
+    buildFeatures {
+        buildConfig true
+        compose true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.geniusscansdk:gssdk:6.6.0'
+
+    implementation 'androidx.activity:activity-compose:1.13.0'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.compose.foundation:foundation:1.12.1'
+    implementation 'androidx.compose.material3:material3-android:1.4.0'
+    implementation 'androidx.compose.ui:ui-android:1.12.1'
+    implementation 'androidx.compose.ui:ui-tooling-preview-android:1.12.1'
+    implementation 'androidx.exifinterface:exifinterface:1.4.2'
+    implementation 'androidx.navigation:navigation-compose:2.9.8'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.11.0'
+}
