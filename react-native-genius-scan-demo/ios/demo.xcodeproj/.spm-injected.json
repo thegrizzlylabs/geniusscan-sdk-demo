@@ -49,7 +49,6 @@
       "createdScalars": [
         "CLANG_CXX_LANGUAGE_STANDARD",
         "REACT_NATIVE_PATH",
-        "HERMES_CLI_PATH",
         "RN_SPM_FLAVOR",
         "\"RN_SPM_REACT_FRAMEWORK[sdk=iphoneos*]\"",
         "\"RN_SPM_REACT_BINARY[sdk=iphoneos*]\"",
@@ -121,7 +120,6 @@
       "createdScalars": [
         "CLANG_CXX_LANGUAGE_STANDARD",
         "REACT_NATIVE_PATH",
-        "HERMES_CLI_PATH",
         "RN_SPM_FLAVOR",
         "\"RN_SPM_REACT_FRAMEWORK[sdk=iphoneos*]\"",
         "\"RN_SPM_REACT_BINARY[sdk=iphoneos*]\"",

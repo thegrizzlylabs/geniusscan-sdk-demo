@@ -128,7 +128,9 @@ if [ &quot;$STALE&quot; -eq 0 ] &amp;&amp; [ -f &quot;$WATCH_FILE&quot; ]; then
   while IFS= read -r P; do
     [ -z &quot;$P&quot; ] &amp;&amp; continue
     if [ -d &quot;$P&quot; ]; then
-      if [ -n &quot;$(find &quot;$P&quot; -newer &quot;$STAMP&quot; -print -quit 2&gt;/dev/null)&quot; ]; then
+      # .swiftpm holds Xcode&apos;s own per-user scheme state, which it rewrites
+      # during a build — reading it as a change makes every IDE build re-sync.
+      if [ -n &quot;$(find &quot;$P&quot; -name .swiftpm -prune -o -newer &quot;$STAMP&quot; -print -quit 2&gt;/dev/null)&quot; ]; then
         STALE=1
         break
       fi
@@ -198,7 +200,8 @@ if [ &quot;$STALE&quot; -eq 1 ]; then
   fi
 fi
 
-">
+"
+               shellToInvoke = "/bin/bash">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

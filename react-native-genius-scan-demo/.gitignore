@@ -61,6 +61,10 @@ yarn-error.log
 # Bundle artifact
 *.jsbundle
 
+# Ruby / CocoaPods
+**/Pods/
+/vendor/bundle/
+
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
 

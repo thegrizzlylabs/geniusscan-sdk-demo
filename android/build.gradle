@@ -9,7 +9,7 @@ buildscript {
         classpath "androidx.benchmark:benchmark-gradle-plugin:1.5.0"
         classpath 'org.jetbrains.kotlin.plugin.compose:org.jetbrains.kotlin.plugin.compose.gradle.plugin:2.4.20'
         classpath 'org.jetbrains.kotlin:kotlin-serialization:2.4.20'
-        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:1.9.20'
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:2.2.0'
     }
 }
 
@@ -28,7 +28,7 @@ allprojects {
 }
 
 ext {
-    ndkVersion = '27.2.12479018'
+    ndkVersion = '30.0.16248370'
     compileSdkVersion = 37
     targetSdkVersion = 37
     minSdkVersion = 23
