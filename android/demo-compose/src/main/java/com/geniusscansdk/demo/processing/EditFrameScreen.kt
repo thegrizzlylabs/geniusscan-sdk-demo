@@ -1,6 +1,6 @@
 package com.geniusscansdk.demo.processing
 
-import android.graphics.BitmapFactory
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,18 +14,23 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.IntSize
 import com.geniusscansdk.core.DocumentDetector
 import com.geniusscansdk.core.FileInput
 import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.Quadrangle
 import com.geniusscansdk.demo.R
 import com.geniusscansdk.demo.model.Page
+import com.geniusscansdk.demo.utils.rememberBitmap
 import com.geniusscansdk.ui.compose.EditFrameView
 import com.geniusscansdk.ui.compose.rememberEditFrameViewState
 import com.geniusscansdk.util.ExperimentalApi
@@ -43,9 +48,11 @@ fun EditFrameScreen(
     val editFrameState = rememberEditFrameViewState(
         page.quadrangle ?: Quadrangle.createFullQuadrangle(),
     )
-    val imageBitmap = remember(page.originalImage) {
-        BitmapFactory.decodeFile(page.originalImage.absolutePath).asImageBitmap()
-    }
+    var editorSize by remember { mutableStateOf(IntSize.Zero) }
+    val imageBitmap = rememberBitmap(
+        imageFile = page.originalImage,
+        targetSize = editorSize,
+    )
 
     LaunchedEffect(page.originalImage) {
         if (!editFrameState.quadrangle.isFullImage()) return@LaunchedEffect
@@ -69,13 +76,20 @@ fun EditFrameScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            EditFrameView(
-                imageBitmap = imageBitmap,
-                state = editFrameState,
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .weight(1f),
-            )
+                    .weight(1f)
+                    .onSizeChanged { editorSize = it },
+            ) {
+                imageBitmap?.let {
+                    EditFrameView(
+                        imageBitmap = it,
+                        state = editFrameState,
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                }
+            }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,

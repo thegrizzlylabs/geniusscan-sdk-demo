@@ -1,9 +1,6 @@
 package com.geniusscansdk.demo.enhance
 
 import android.content.Context
-import android.graphics.BitmapFactory
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import com.geniusscansdk.core.GeniusScanSDK
 import com.geniusscansdk.core.RotationAngle
 import com.geniusscansdk.core.ScanProcessor
@@ -20,7 +17,7 @@ class PageProcessing(context: Context) : AutoCloseable {
     private val dispatcher = executor.asCoroutineDispatcher()
     private var pageProcessingEngine: PageProcessingEngine? = null
 
-    suspend fun process(page: Page, rotationAngle: RotationAngle? = null): ImageBitmap =
+    suspend fun process(page: Page, rotationAngle: RotationAngle? = null): File =
         withContext(dispatcher) {
             rotationAngle?.let { angle ->
                 page.quadrangle = page.quadrangle?.rotate(angle)
@@ -31,7 +28,7 @@ class PageProcessing(context: Context) : AutoCloseable {
                 pageProcessingEngine = it
             }
             engine.process(page)
-            BitmapFactory.decodeFile(checkNotNull(page.enhancedImage).absolutePath).asImageBitmap()
+            checkNotNull(page.enhancedImage)
         }
 
     override fun close() {

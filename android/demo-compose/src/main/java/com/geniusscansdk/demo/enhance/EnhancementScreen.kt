@@ -1,7 +1,5 @@
 package com.geniusscansdk.demo.enhance
 
-import android.graphics.BitmapFactory
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,8 +31,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -43,9 +39,10 @@ import androidx.compose.ui.unit.dp
 import com.geniusscansdk.core.RotationAngle
 import com.geniusscansdk.demo.R
 import com.geniusscansdk.demo.model.Page
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.addLastModifiedToFileCacheKey
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,7 +53,7 @@ fun EnhancementScreen(
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val pageProcessor = remember { PageProcessing(context) }
-    var bitmap by remember { mutableStateOf<ImageBitmap?>(null) }
+    var displayedImage by remember(page) { mutableStateOf(page.originalImage) }
     var isProcessing by remember { mutableStateOf(false) }
     var showFilterDialog by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -67,16 +64,13 @@ fun EnhancementScreen(
         coroutineScope.launch {
             runCatching {
                 pageProcessor.process(page, rotationAngle)
-            }.onSuccess { bitmap = it }
+            }.onSuccess { displayedImage = it }
                 .onFailure { error = it.message }
             isProcessing = false
         }
     }
 
     LaunchedEffect(page) {
-        bitmap = withContext(Dispatchers.IO) {
-            BitmapFactory.decodeFile(page.originalImage.absolutePath).asImageBitmap()
-        }
         processPage()
     }
 
@@ -97,14 +91,15 @@ fun EnhancementScreen(
                     .background(Color.Black),
                 contentAlignment = Alignment.Center,
             ) {
-                bitmap?.let {
-                    Image(
-                        bitmap = it,
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Fit,
-                    )
-                }
+                AsyncImage(
+                    model = ImageRequest.Builder(context)
+                        .data(displayedImage)
+                        .addLastModifiedToFileCacheKey(true)
+                        .build(),
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Fit,
+                )
                 if (isProcessing) CircularProgressIndicator()
             }
             Row(
