@@ -89,11 +89,11 @@ final class PDFViewController: UIViewController {
             for filePath in Storage.shared.filePaths {
                 do {
                     let result = try await GSKBarcodeDetector()
-                        .detectBarcodes(
+                        .detect(
                             inFileAt: URL(fileURLWithPath: filePath),
                             codeTypes: GSKBarcodeType.allCases
                         )
-                    barcodesResults[filePath] = result
+                    barcodesResults[filePath] = result.map(\.barcode)
                 } catch {
                     print("Error while OCR'ing page: \(error)")
                 }

@@ -294,7 +294,7 @@ private fun PostProcessing(
     ConfigurationListItem(
         label = stringResource(R.string.custom_scanning_default_filter),
         selectedOption = scanConfiguration.defaultFilter,
-        options = ScanFlowConfiguration.Filter.entries,
+        options = ScanFlowConfiguration.Filter.ALL,
         formatOption = { option -> resources.getString(option.labelResId) },
         onOptionSelected = { option -> onScanConfigurationModified(scanConfiguration.copy(defaultFilter = option)) }
     )
@@ -358,6 +358,7 @@ private fun PostProcessingScreen(
     scanConfiguration: ScanFlowConfiguration,
     onScanConfigurationModified: (ScanFlowConfiguration) -> Unit
 ) {
+    val resources = LocalResources.current
     Text(
         stringResource(R.string.custom_scanning_post_processing_screen),
         style = sectionTitleStyle(),
@@ -391,8 +392,8 @@ private fun PostProcessingScreen(
             ConfigurationMultiChoiceItem(
                 label = stringResource(R.string.custom_scanning_available_filters),
                 selectedOptions = scanConfiguration.availableFilters,
-                options = ScanFlowConfiguration.Filter.entries,
-                formatOption = { it.name.capitalize().replace(oldValue = "_", newValue = " ") },
+                options = ScanFlowConfiguration.Filter.ALL,
+                formatOption = { option -> resources.getString(option.labelResId) },
                 saveSelectedOptions = { filters ->
                     onScanConfigurationModified(
                         scanConfiguration.copy(
